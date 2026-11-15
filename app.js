@@ -1,4 +1,4 @@
-/* SignalPath — 2026–2030 Technician License Study App (Zero-Build Static PWA) */
+/* Watt a Ham — 2026–2030 Technician License Study App (Zero-Build Static PWA) */
 (function () {
   'use strict';
 
@@ -677,7 +677,7 @@
           <div class="signal-top">
             <div>
               <div class="signal-eyebrow">Night 1 · 12-to-14 Night Campaign</div>
-              <h2 class="signal-title">Welcome to Your Technician Path</h2>
+              <h2 class="signal-title">Welcome to Watt a Ham</h2>
             </div>
           </div>
           <p class="signal-desc">

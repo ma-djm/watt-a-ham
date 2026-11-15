@@ -1,10 +1,10 @@
-# SignalPath — US FCC Technician (Element 2) Study PWA
+# Watt a Ham — US FCC Technician (Element 2) Study PWA
 
-**Live App:** [https://ma-djm.github.io/ham/](https://ma-djm.github.io/ham/)
+**Live App:** [https://ma-djm.github.io/watt-a-ham/](https://ma-djm.github.io/watt-a-ham/)
 
-**SignalPath** is a zero-build, offline-capable Progressive Web App (PWA) designed to help you pass the **2026–2030 US FCC Technician Class (Element 2) Amateur Radio Exam** in **12 to 14 nights** (~30 minutes per night).
+**Watt a Ham** is a zero-build, offline-capable Progressive Web App (PWA) designed to help you pass the **2026–2030 US FCC Technician Class (Element 2) Amateur Radio Exam** in **12 to 14 nights** (~30 minutes per night).
 
-Instead of dumping 409 random flashcards on Night 1, SignalPath organizes the official pool into a **35-node guided skill path**—starting with intuitive on-air operating and station setup, and weaving in electronics, propagation, schematics, and FCC Part 97 rules in bite-sized blocks.
+Instead of dumping 409 random flashcards on Night 1, Watt a Ham organizes the official pool into a **35-node guided skill path**—starting with intuitive on-air operating and station setup, and weaving in electronics, propagation, schematics, and FCC Part 97 rules in bite-sized blocks.
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "SignalPath — Technician HAM Study",
-  "short_name": "SignalPath",
+  "name": "Watt a Ham — Technician Radio Study",
+  "short_name": "Watt a Ham",
   "description": "Guided 35-node study path & mock exams for the 2026-2030 FCC Technician exam.",
   "start_url": "./index.html",
   "scope": "./",

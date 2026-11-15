@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ham-tech-2026-v1';
+const CACHE_NAME = 'watt-a-ham-2026-v2';
 const ASSETS = [
   './',
   './index.html',
