@@ -1,0 +1,941 @@
+{
+  "explanations": {
+    "T5A01": {
+      "explanation": "Electrical current—the flow rate of electric charge—is measured in amperes (amps, symbol A), whereas volts measure electrical pressure, ohms measure resistance, and watts measure power.",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5A02": {
+      "explanation": "Electrical power—the rate at which energy is consumed or generated—is measured in watts (W). Watt-hours measure total energy over time rather than instantaneous power.",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5A03": {
+      "explanation": "Current is the directed flow of electrons through a conductor. Think of voltage as water pressure in a hose and current as the actual flow of water.",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A04": {
+      "explanation": "Frequency is the number of complete alternating-current cycles occurring each second, measured in hertz (Hz).",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A05": {
+      "explanation": "A difference in electrical potential—called voltage (or electromotive force)—pushes electrons from a point of excess negative charge toward a more positive point.",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A06": {
+      "explanation": "Frequency is measured in hertz (Hz), where 1 Hz equals one complete cycle per second. Henries measure inductance and farads measure capacitance.",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5A07": {
+      "explanation": "Metal atoms hold their outer valence electrons loosely, creating a 'sea' of free electrons that drift easily whenever voltage is applied.",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A08": {
+      "explanation": "Glass binds its electrons tightly so almost no current can flow through it, making it an excellent insulator. Sea water, stainless steel, and graphite all conduct electricity.",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A09": {
+      "explanation": "Alternating current (AC) periodically reverses polarity, flowing first in the positive direction and then in the negative direction each cycle.",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A10": {
+      "explanation": "Power describes how fast electrical energy is converted into heat, light, or radio waves (energy per unit time), measured in watts.",
+      "tags": [
+        "electronics"
+      ]
+    },
+    "T5A11": {
+      "explanation": "Electrical resistance opposes the motion of electrons regardless of whether the current is steady DC, low-frequency AC, or high-frequency RF.",
+      "tags": [
+        "electronics",
+        "circuits"
+      ]
+    },
+    "T5B01": {
+      "explanation": "One ampere equals 1,000 milliamperes, so multiply by 1,000 (move the decimal 3 places right): 1.5 A × 1,000 mA/A = 1500 milliamperes.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B02": {
+      "explanation": "One kilohertz (kHz) is 1,000 hertz, so divide by 1,000 (move the decimal 3 places left): 1,500,000 Hz / 1,000 = 1500 kHz (which is also 1.5 MHz).",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B03": {
+      "explanation": "The metric prefix 'kilo' means 1,000, so 1 kilovolt (kV) = 1 × 1,000 V = one thousand volts.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B04": {
+      "explanation": "The metric prefix 'micro' (µ) means 10⁻⁶, so 1 microvolt (µV) = 1 / 1,000,000 V = one one-millionth of a volt.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B05": {
+      "explanation": "The prefix 'milli' means one-thousandth, so divide milliwatts by 1,000: 500 mW / 1,000 mW/W = 0.5 watts.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B06": {
+      "explanation": "There are 1,000 milliamperes in 1 ampere, so divide by 1,000: 3000 mA / 1,000 mA/A = 3 amperes.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B07": {
+      "explanation": "One megahertz (MHz) equals 1,000 kilohertz (kHz), so multiply by 1,000 (move the decimal 3 places right): 3.525 MHz × 1,000 kHz/MHz = 3525 kHz.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B08": {
+      "explanation": "One microfarad (10⁻⁶ F) is 1,000,000 picofarads (10⁻¹² F), so 1,000,000 pF / 1,000,000 pF/µF = 1 microfarad.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B09": {
+      "explanation": "Going from 5 W to 10 W doubles the power (10 W / 5 W = 2), and every 2× power increase equals +3 dB (10 × log10(2) ≈ 3.01 dB).",
+      "tags": [
+        "math",
+        "decibels"
+      ]
+    },
+    "T5B10": {
+      "explanation": "Dropping from 12 W to 3 W cuts power to one-fourth (12 W → 6 W → 3 W, halved twice): -3 dB + -3 dB = -6 dB.",
+      "tags": [
+        "math",
+        "decibels"
+      ]
+    },
+    "T5B11": {
+      "explanation": "Going from 20 W to 200 W multiplies power by 10 (200 W / 20 W = 10), and a 10× power increase is exactly 10 dB (10 × log10(10) = 10 dB).",
+      "tags": [
+        "math",
+        "decibels"
+      ]
+    },
+    "T5B12": {
+      "explanation": "Convert kilohertz to megahertz by dividing by 1,000 (move the decimal 3 places left): 28400 kHz / 1,000 kHz/MHz = 28.400 MHz.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5B13": {
+      "explanation": "One gigahertz (GHz) equals 1,000 megahertz (MHz), so divide by 1,000 (move the decimal 3 places left): 2425 MHz / 1,000 MHz/GHz = 2.425 GHz.",
+      "tags": [
+        "math",
+        "units"
+      ]
+    },
+    "T5C01": {
+      "explanation": "Capacitance is the ability to store electrical energy in an electric field between separated conductive plates.",
+      "tags": [
+        "electronics",
+        "components"
+      ]
+    },
+    "T5C02": {
+      "explanation": "Capacitance is measured in farads (F); practical radio circuits usually use microfarads (µF), nanofarads (nF), or picofarads (pF).",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5C03": {
+      "explanation": "Inductance is the ability to store energy in a magnetic field created around a current-carrying coil of wire.",
+      "tags": [
+        "electronics",
+        "components"
+      ]
+    },
+    "T5C04": {
+      "explanation": "Inductance is measured in henries (H), typically seen in millihenries (mH) or microhenries (µH) in RF circuits.",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5C05": {
+      "explanation": "Impedance (Z) combines resistance and reactance into total AC opposition, and like pure resistance, it is measured in ohms (Ω).",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5C06": {
+      "explanation": "Metric prefixes smaller than mega use lowercase letters ('k' for kilo), while units named after people capitalize the first letter ('Hz' for Heinrich Hertz), giving kHz.",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5C07": {
+      "explanation": "Capital 'M' stands for mega (million, 10⁶), whereas lowercase 'm' means milli (thousandth), so megahertz is always written MHz.",
+      "tags": [
+        "electronics",
+        "units"
+      ]
+    },
+    "T5C08": {
+      "explanation": "DC electrical power equals current times voltage: P = I × E (remember the 'PIE' power circle: Watts = Amps × Volts).",
+      "tags": [
+        "math",
+        "power"
+      ]
+    },
+    "T5C09": {
+      "explanation": "Multiply current by voltage using the power formula: P = I × E = 10 A × 13.8 V = 138 watts.",
+      "tags": [
+        "math",
+        "power"
+      ]
+    },
+    "T5C10": {
+      "explanation": "Multiply current by voltage using the power formula: P = I × E = 2.5 A × 12 V = 30 watts.",
+      "tags": [
+        "math",
+        "power"
+      ]
+    },
+    "T5C11": {
+      "explanation": "Rearrange P = I × E to solve for current: I = P / E = 120 W / 12 V = 10 amperes.",
+      "tags": [
+        "math",
+        "power"
+      ]
+    },
+    "T5C12": {
+      "explanation": "Impedance is the total opposition to alternating current (AC) flow, combining both resistance and frequency-dependent reactance.",
+      "tags": [
+        "electronics",
+        "circuits"
+      ]
+    },
+    "T5D01": {
+      "explanation": "In the Ohm's Law triangle (E on top, I and R on the bottom), covering I leaves E over R: I = E / R.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D02": {
+      "explanation": "In the Ohm's Law triangle (E on top, I and R side-by-side on the bottom), covering E leaves I times R: E = I × R.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D03": {
+      "explanation": "In the Ohm's Law triangle (E on top, I and R on the bottom), covering R leaves E divided by I: R = E / I.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D04": {
+      "explanation": "Divide voltage by current using Ohm's Law: R = E / I = 90 V / 3 A = 30 ohms.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D05": {
+      "explanation": "Divide voltage by current using Ohm's Law: R = E / I = 12 V / 1.5 A = 8 ohms.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D06": {
+      "explanation": "Divide voltage by current using Ohm's Law: R = E / I = 12 V / 4 A = 3 ohms.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D07": {
+      "explanation": "Divide voltage by resistance using Ohm's Law: I = E / R = 120 V / 80 Ω = 1.5 amperes.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D08": {
+      "explanation": "Divide voltage by resistance using Ohm's Law: I = E / R = 200 V / 100 Ω = 2 amperes.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D09": {
+      "explanation": "Divide voltage by resistance using Ohm's Law: I = E / R = 240 V / 24 Ω = 10 amperes.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D10": {
+      "explanation": "Multiply current by resistance using Ohm's Law: E = I × R = 0.5 A × 2 Ω = 1 volt.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D11": {
+      "explanation": "Multiply current by resistance using Ohm's Law: E = I × R = 1 A × 10 Ω = 10 volts.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D12": {
+      "explanation": "Multiply current by resistance using Ohm's Law: E = I × R = 2 A × 10 Ω = 20 volts.",
+      "tags": [
+        "math",
+        "ohms-law"
+      ]
+    },
+    "T5D13": {
+      "explanation": "A series circuit forms a single end-to-end loop with no branches, so the exact same current must flow through every component.",
+      "tags": [
+        "circuits",
+        "electronics"
+      ]
+    },
+    "T5D14": {
+      "explanation": "In a parallel circuit, every component connects directly across the same two rails, so each branch sees the exact same voltage.",
+      "tags": [
+        "circuits",
+        "electronics"
+      ]
+    },
+    "T6A01": {
+      "explanation": "A resistor introduces controlled opposition to current flow in both DC and AC circuits, converting electrical energy into heat.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A02": {
+      "explanation": "A potentiometer is a three-terminal variable resistor with a rotating or sliding wiper, commonly wired as a voltage divider for volume controls.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A03": {
+      "explanation": "Turning a potentiometer moves a sliding contact along a resistive track, directly varying resistance.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A04": {
+      "explanation": "A capacitor stores electrical energy in an electrostatic field across an insulating layer between its plates.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A05": {
+      "explanation": "A capacitor is built from two or more conductive plates separated by an insulating dielectric (such as ceramic, film, mica, or air).",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A06": {
+      "explanation": "An inductor stores energy in the magnetic field generated when current flows through its coiled turns.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A07": {
+      "explanation": "Winding wire into a coil concentrates the magnetic field around the turns, which is how an inductor is constructed.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A08": {
+      "explanation": "SPDT stands for Single-Pole Double-Throw: one common input terminal ('single pole') can be routed to either of two output paths ('double throw').",
+      "tags": [
+        "components",
+        "circuits"
+      ]
+    },
+    "T6A09": {
+      "explanation": "Component 3 in Figure T-2 shows a single hinged contact arm bridging one input terminal to one output terminal—a single-pole single-throw (SPST) on/off switch.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6A10": {
+      "explanation": "Nickel-metal hydride (NiMH), lithium-ion (Li-ion), and lead-acid are all secondary (rechargeable) battery chemistries widely used in portable and mobile ham gear.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6A11": {
+      "explanation": "Carbon-zinc ('heavy duty' flashlight cells) are primary single-use batteries; attempting to recharge them risks leakage or rupture.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6B01": {
+      "explanation": "Forward voltage drop depends on the diode's semiconductor chemistry—for example, Schottky and germanium diodes drop ~0.2–0.3 V, silicon drops ~0.6–0.7 V, and LEDs drop ~1.8–3.3 V.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B02": {
+      "explanation": "A diode acts like a one-way electrical check valve, conducting easily when forward-biased and blocking current when reverse-biased.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B03": {
+      "explanation": "A small control signal at a transistor's base or gate can rapidly switch a much larger load current completely on or off with no moving parts.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B04": {
+      "explanation": "A bipolar transistor is made by sandwiching three alternating doped semiconductor regions together—either NPN or PNP.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B05": {
+      "explanation": "A field-effect transistor (FET) uses voltage on its Gate to control current flowing through a channel between its Source and Drain.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B06": {
+      "explanation": "Cylindrical diode packages have a printed band or stripe at one end marking the cathode (negative/output) lead, matching the vertical bar on the diode schematic symbol.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B07": {
+      "explanation": "When forward current flows from anode to cathode across an LED's semiconductor junction, recombining electrons release energy directly as photons of light.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B08": {
+      "explanation": "FET stands for Field Effect Transistor, named because an internal electric field controlled by gate voltage regulates current flow.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B09": {
+      "explanation": "A diode's two leads are the anode (positive input side, triangle) and the cathode (negative output side, bar/stripe). Conventional current flows from Anode to Cathode (A to C).",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6B10": {
+      "explanation": "A transistor is an active component that uses a DC power source to amplify a weak input signal into higher output power. Passive transformers only trade voltage for current without adding power.",
+      "tags": [
+        "semiconductors",
+        "circuits"
+      ]
+    },
+    "T6B11": {
+      "explanation": "Amplifier gain is the ratio of output signal to input signal, and can be specified in terms of voltage gain, current gain, or power gain.",
+      "tags": [
+        "semiconductors",
+        "circuits"
+      ]
+    },
+    "T6B12": {
+      "explanation": "A bipolar junction transistor (BJT) has three terminals—Emitter, Base, and Collector—whereas Gate, Drain, and Source belong to an FET.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6C01": {
+      "explanation": "A schematic diagram uses standardized graphic symbols and lines to show how circuit components are electrically connected.",
+      "tags": [
+        "schematics",
+        "circuits"
+      ]
+    },
+    "T6C02": {
+      "explanation": "Component 1 in Figure T-1 is drawn as a sharp zigzag line, the standard schematic symbol for a fixed resistor.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C03": {
+      "explanation": "Component 2 in Figure T-1 shows a vertical base bar inside a circle with collector and emitter leads (and an outward-pointing emitter arrow), representing an NPN transistor.",
+      "tags": [
+        "schematics",
+        "semiconductors"
+      ]
+    },
+    "T6C04": {
+      "explanation": "Component 3 in Figure T-1 is a dome-shaped bulb outline containing a looped filament, the schematic symbol for an incandescent indicator lamp.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C05": {
+      "explanation": "Component 4 in Figure T-1 shows alternating long (positive) and short thick (negative) parallel lines, the symbol for a multi-cell DC battery.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C06": {
+      "explanation": "Component 6 in Figure T-2 shows a flat plate facing a curved plate with a gap between them, the symbol for a (polarized) capacitor.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C07": {
+      "explanation": "Component 8 in Figure T-2 is a diode triangle-and-bar symbol with two small parallel arrows pointing outward to indicate emitted light—a light emitting diode (LED).",
+      "tags": [
+        "schematics",
+        "semiconductors"
+      ]
+    },
+    "T6C08": {
+      "explanation": "Component 9 in Figure T-2 is a zigzag resistor with a movable wiper arrow contacting the element, representing a variable resistor.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C09": {
+      "explanation": "Component 4 in Figure T-2 shows two wire coils facing each other across parallel vertical iron-core lines, the symbol for a transformer.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C10": {
+      "explanation": "Component 3 in Figure T-3 is a looped inductor coil with an adjustable tap arrow contacting the windings, representing a variable inductor.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C11": {
+      "explanation": "Component 4 in Figure T-3 is a vertical feed line topped by an inverted three-pronged triangle, the standard schematic symbol for an antenna.",
+      "tags": [
+        "schematics",
+        "components"
+      ]
+    },
+    "T6C12": {
+      "explanation": "Schematics map out exact electrical connections between terminals; they do not show physical part sizes, board layout, or actual wire lengths.",
+      "tags": [
+        "schematics",
+        "circuits"
+      ]
+    },
+    "T6D01": {
+      "explanation": "A rectifier uses one or more diodes to block half of an AC waveform (or flip it), converting bidirectional AC into pulsating one-way DC.",
+      "tags": [
+        "circuits",
+        "semiconductors"
+      ]
+    },
+    "T6D02": {
+      "explanation": "A relay uses an electromagnet coil so a low-power control current can mechanically open or close isolated switch contacts.",
+      "tags": [
+        "components",
+        "circuits"
+      ]
+    },
+    "T6D03": {
+      "explanation": "Shielded wire wraps signal conductors in a grounded metallic braid or foil that blocks stray RF and noise from coupling into or radiating out of the cable.",
+      "tags": [
+        "circuits",
+        "electronics"
+      ]
+    },
+    "T6D04": {
+      "explanation": "A meter (analog scale or digital readout) measures and displays an electrical quantity—such as volts, amps, or watts—as a numeric value.",
+      "tags": [
+        "components",
+        "electronics"
+      ]
+    },
+    "T6D05": {
+      "explanation": "A voltage regulator holds a power supply's output at a steady, predictable DC voltage (such as 13.8 V) even as load current or input voltage fluctuates.",
+      "tags": [
+        "circuits",
+        "electronics"
+      ]
+    },
+    "T6D06": {
+      "explanation": "A step-down transformer uses magnetic coupling between primary and secondary coils to convert 120 V household AC into a lower AC voltage.",
+      "tags": [
+        "components",
+        "circuits"
+      ]
+    },
+    "T6D07": {
+      "explanation": "LEDs (light-emitting diodes) are efficient, long-lasting solid-state lamps used everywhere as panel status and power indicators.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6D08": {
+      "explanation": "Combining an inductor (L) with a capacitor (C) forms a resonant LC ('tank') circuit that trades energy back and forth at a specific tuned frequency.",
+      "tags": [
+        "circuits",
+        "components"
+      ]
+    },
+    "T6D09": {
+      "explanation": "An integrated circuit (IC or 'chip') fabricates transistors, diodes, resistors, and capacitors together onto a single semiconductor die inside one package.",
+      "tags": [
+        "semiconductors",
+        "components"
+      ]
+    },
+    "T6D10": {
+      "explanation": "Component 2 in Figure T-1 is an NPN transistor acting as an electronic switch or amplifier to control current flowing from the battery through the lamp.",
+      "tags": [
+        "schematics",
+        "semiconductors",
+        "circuits"
+      ]
+    },
+    "T6D11": {
+      "explanation": "Connecting an inductor and a capacitor in series or parallel creates a resonant (tuned) LC circuit used to select or reject specific radio frequencies.",
+      "tags": [
+        "circuits",
+        "components"
+      ]
+    }
+  },
+  "briefings": {
+    "T5A": {
+      "group": "T5A",
+      "title": "Voltage, Current, Power & AC/DC",
+      "subtitle": "Core electrical quantities, their units, conductors vs. insulators, and how current flows",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "The Water-Pipe Analogy of Electricity",
+          "body": "Electricity behaves a lot like water in a hose. **Voltage** is the pressure pushing electrons, **current** is the flow of electrons, **resistance** narrows the pipe to oppose flow, and **power** is how fast energy gets used.",
+          "bullets": [
+            "**Voltage** (Volts, `V` or `E`): electrical pressure difference that causes electrons to flow",
+            "**Current** (Amperes, `A` or `I`): the flow of electrons in a circuit",
+            "**Power** (Watts, `W` or `P`): the rate at which electrical energy is used (not Watt-hours, which measure total energy)",
+            "**Resistance** (Ohms, `Ω` or `R`): opposes **all** types of current—DC, low-frequency AC, and RF alike"
+          ]
+        },
+        {
+          "heading": "Conductors, Insulators & Alternating Current",
+          "body": "Materials conduct or block electricity depending on how tightly their atoms hold outer electrons. Meanwhile, circuits can carry steady one-way **DC** or reversing **AC**.",
+          "bullets": [
+            "**Metals** are great conductors because they have **many free electrons** (not free protons!)",
+            "**Glass** is a classic electrical **insulator**; sea water, stainless steel, and graphite all conduct",
+            "**Alternating current (AC)** alternates between **positive and negative directions**",
+            "**Frequency** is the number of complete AC cycles per second, measured in **hertz (Hz)**"
+          ]
+        },
+        {
+          "heading": "Instant Exam Shortcuts",
+          "body": "Watch out for unit distractors that tack on 'per second' or 'hours' where they don't belong.",
+          "bullets": [
+            "**Watts** = rate of energy use (power); **Amperes** = flow rate of charge (never pick 'Amperes per second')",
+            "If asked what current resistance opposes (`T5A11`), pick **All these choices are correct** (DC, AC, and RF)"
+          ]
+        }
+      ]
+    },
+    "T5B": {
+      "group": "T5B",
+      "title": "Metric Prefixes & Decibel Ratios",
+      "subtitle": "Sliding decimals by 3s across pico, micro, milli, kilo, mega, giga—plus the 3 dB and 10 dB power rules",
+      "aid": "metric-db",
+      "cards": [
+        {
+          "heading": "Sliding the Decimal by 3 Places",
+          "body": "Radio units step in multiples of **1,000** (`10³`). Moving to a **smaller** unit makes the number **1,000× bigger** (shift decimal 3 places right); moving to a **larger** unit makes the number **1,000× smaller** (shift 3 places left).",
+          "bullets": [
+            "**kilo (`k`)** = `1,000` (`1 kV` = 1,000 V; `1,500,000 Hz` = `1500 kHz`)",
+            "**milli (`m`)** = `1/1,000` (`1.5 A` = `1500 mA`; `3000 mA` = `3 A`; `500 mW` = `0.5 W`)",
+            "**micro (`µ`)** = `1/1,000,000` (one one-millionth of a volt); `1,000,000 pF` (`10⁻¹²`) = **`1 µF`** (`10⁻⁶`)",
+            "Frequency hops: `3.525 MHz` = **`3525 kHz`** | `28400 kHz` = **`28.400 MHz`** | `2425 MHz` = **`2.425 GHz`**"
+          ]
+        },
+        {
+          "heading": "Decibels Made Painless: Only Two Numbers to Know",
+          "body": "Decibels (`dB`) compare output power to input power logarithmically, so **multiplying power** turns into **adding dB**. Every Technician exam dB question uses just `2×` (`3 dB`) or `10×` (`10 dB`).",
+          "bullets": [
+            "**`+3 dB`** = **2× power** (`5 W → 10 W` is doubled, so **`3 dB`**)",
+            "**`-3 dB`** = **½ power**; halving twice (`12 W → 6 W → 3 W`, or ¼ power) is `-3 dB + -3 dB` = **`-6 dB`**",
+            "**`+10 dB`** = **10× power** (`20 W → 200 W` is 10×, so **`10 dB`**)"
+          ]
+        },
+        {
+          "heading": "Sanity-Check Before Clicking",
+          "body": "Avoid shifting the decimal the wrong way under test pressure by checking unit size.",
+          "bullets": [
+            "Smaller unit = bigger number (`3.525 MHz` must become thousands of `kHz`, never `0.003525 kHz`)",
+            "Power **increase** = **positive** dB; power **decrease** = **negative** dB"
+          ]
+        }
+      ]
+    },
+    "T5C": {
+      "group": "T5C",
+      "title": "Capacitance, Inductance, Impedance & Power",
+      "subtitle": "Electric vs. magnetic energy storage, AC impedance, unit capitalization, and the P = I × E power circle",
+      "aid": "ohms-triangle",
+      "cards": [
+        {
+          "heading": "Fields, Units & Impedance",
+          "body": "Reactive components store energy temporarily in fields instead of burning it as heat, while **impedance** measures total opposition to alternating current.",
+          "bullets": [
+            "**Capacitance** stores energy in an **electric field** — measured in **Farads (`F`)**",
+            "**Inductance** stores energy in a **magnetic field** — measured in **Henries (`H`)**",
+            "**Impedance (`Z`)** is the **opposition to AC current flow** — measured in **Ohms (`Ω`)**"
+          ]
+        },
+        {
+          "heading": "DC Power Law (`P = I × E` — Easy as PIE)",
+          "body": "Electrical power in watts equals current in amperes multiplied by voltage in volts. Cover the unknown letter in the **PIE** circle (`P` on top, `I` and `E` on the bottom) to solve any DC power problem.",
+          "bullets": [
+            "Formula: **`P = I × E`** (Power = Current × Voltage)",
+            "`13.8 V` at `10 A`: `P = 10 × 13.8` = **`138 watts`**",
+            "`12 V` at `2.5 A`: `P = 2.5 × 12` = **`30 watts`**",
+            "Current for `120 W` at `12 V`: `I = P / E = 120 / 12` = **`10 amperes`**"
+          ]
+        },
+        {
+          "heading": "Case-Sensitive Abbreviations Trap",
+          "body": "Two questions specifically test exact uppercase vs. lowercase letters in frequency abbreviations!",
+          "bullets": [
+            "**Kilohertz** = **`kHz`** (lowercase `k` for kilo; capital `H`, lowercase `z` for Hertz)",
+            "**Megahertz** = **`MHz`** (capital `M` for mega = `10⁶` — lowercase `mHz` would mean *millihertz*!)"
+          ]
+        }
+      ]
+    },
+    "T5D": {
+      "group": "T5D",
+      "title": "Ohm's Law & Series vs. Parallel Circuits",
+      "subtitle": "Solving for E, I, and R with the E-I-R triangle, plus what stays constant in series and parallel loops",
+      "aid": "ohms-triangle",
+      "cards": [
+        {
+          "heading": "Mastering the Ohm's Law Triangle (`E = I × R`)",
+          "body": "Place **E** (Volts) at the top of a triangle with **I** (Amps) and **R** (Ohms) at the bottom. Cover whichever value the question asks for to see whether to multiply or divide!",
+          "bullets": [
+            "**Voltage**: **`E = I × R`** (`0.5 A × 2 Ω = 1 V` | `1 A × 10 Ω = 10 V` | `2 A × 10 Ω = 20 V`)",
+            "**Current**: **`I = E / R`** (`120 V / 80 Ω = 1.5 A` | `200 V / 100 Ω = 2 A` | `240 V / 24 Ω = 10 A`)",
+            "**Resistance**: **`R = E / I`** (`90 V / 3 A = 30 Ω` | `12 V / 1.5 A = 8 Ω` | `12 V / 4 A = 3 Ω`)"
+          ]
+        },
+        {
+          "heading": "Series vs. Parallel Circuits",
+          "body": "How components are wired determines whether they share the same current flow or see the same voltage across their leads.",
+          "bullets": [
+            "**Series circuit** (one single loop, daisy-chained): **Current is always the same** through all components",
+            "**Parallel circuit** (side-by-side rungs across two rails): **Voltage is always the same** across all components"
+          ]
+        },
+        {
+          "heading": "Zero-Mistake Exam Habit",
+          "body": "Every single Ohm's Law distractor comes from multiplying when you should divide (or flipping `I / E` instead of `E / I`).",
+          "bullets": [
+            "Jot **`E` over `I · R`** on scratch paper first—**`E`** is *always* on top of the fraction (`I = E/R`, `R = E/I`)",
+            "Memory hook: **S**eries = **S**ame current; **P**arallel = same **P**otential (voltage)"
+          ]
+        }
+      ]
+    },
+    "T6A": {
+      "group": "T6A",
+      "title": "Resistors, Capacitors, Inductors, Switches & Batteries",
+      "subtitle": "How basic passive components are built, how poles and throws work, and which batteries recharge",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "The Big Three Passive Components",
+          "body": "Resistors, capacitors, and inductors are the foundational building blocks of every power supply, filter, and radio stage.",
+          "bullets": [
+            "**Resistor**: opposes DC and AC current flow; a **potentiometer** is an adjustable resistor (controls **resistance**, used as a **volume control**)",
+            "**Capacitor**: **conductive surfaces separated by an insulator** (dielectric); stores energy in an **electric field**",
+            "**Inductor**: constructed as a **coil of wire**; stores energy in a **magnetic field**"
+          ]
+        },
+        {
+          "heading": "Switches & Battery Chemistries",
+          "body": "Switches are named by how many separate circuits they control (**poles**) and how many positions each pole connects to (**throws**). Batteries split into rechargeable vs. single-use.",
+          "bullets": [
+            "**SPST** (Single-Pole Single-Throw, **Component 3 in Figure T-2**): simple on/off switch for one circuit",
+            "**SPDT** (Single-Pole Double-Throw): routes **a single circuit between one of two other circuits**",
+            "**Rechargeable**: **Nickel-metal hydride (NiMH)**, **Lithium-ion**, **Nickel-cadmium (NiCd)**, and **Lead-acid**",
+            "**NOT rechargeable**: **Carbon-zinc** (disposable heavy-duty flashlight cells)"
+          ]
+        }
+      ]
+    },
+    "T6B": {
+      "group": "T6B",
+      "title": "Diodes, LEDs & Transistors",
+      "subtitle": "One-way semiconductor junctions, diode stripes, BJT vs. FET pin names, and amplifier gain",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Diodes & LEDs: One-Way Valves",
+          "body": "A **diode** allows current to flow in **only one direction**—from **anode** to **cathode**—with a small **forward voltage drop** that varies by diode type.",
+          "bullets": [
+            "Electrodes: **Anode** and **Cathode**; the **cathode** end of the package is marked **with a stripe**",
+            "**Forward voltage drop** is **lower in some diode types than in others** (e.g., ~0.3 V Schottky/germanium vs. ~0.7 V silicon)",
+            "An **LED** (light-emitting diode) emits light when **forward current** flows through it"
+          ]
+        },
+        {
+          "heading": "Transistors: Electronic Switches & Amplifiers",
+          "body": "Transistors are active **three-region** semiconductor devices that act as fast **electronic switches** and provide **power gain**.",
+          "bullets": [
+            "**Bipolar Junction Transistor (BJT)** electrodes: **Emitter, Base, Collector** (`E-B-C`)",
+            "**FET (Field Effect Transistor)** electrodes: **Gate, Drain, Source** (`G-D-S`)",
+            "**Amplifier gain** means output signal relative to input signal—for **voltage, current, or power** (**All these choices are correct**)"
+          ]
+        },
+        {
+          "heading": "Quick Semiconductor Traps to Dodge",
+          "body": "Don't let look-alike component names trip you up on test day.",
+          "bullets": [
+            "**Transistors** provide **power gain**; passive *transformers* step voltage up or down but never create extra power",
+            "Keep pin trios straight: **BJT** = **E**mitter/**B**ase/**C**ollector; **FET** = **G**ate/**D**rain/**S**ource"
+          ]
+        }
+      ]
+    },
+    "T6C": {
+      "group": "T6C",
+      "title": "Reading Schematics: Figures T-1, T-2 & T-3",
+      "subtitle": "Identifying every component symbol on the three Technician exam circuit diagrams",
+      "aid": "figures",
+      "cards": [
+        {
+          "heading": "What Schematics Show — & Figure T-1 (Transistor Lamp Driver)",
+          "body": "A **schematic** uses standard symbols to show **component connections** (never physical wire lengths or real-world shapes). **Figure T-1** shows a transistor switching a lamp:",
+          "bullets": [
+            "**Fig T-1 #1**: **Resistor** (sharp zigzag line feeding the base)",
+            "**Fig T-1 #2**: **Transistor** (NPN symbol with base bar, collector, and outward emitter arrow—controls current flow)",
+            "**Fig T-1 #3**: **Lamp** (bulb dome with looped filament inside)",
+            "**Fig T-1 #4**: **Battery** (alternating long and short parallel cell lines)"
+          ]
+        },
+        {
+          "heading": "Figure T-2 (Power Supply) & Figure T-3 (Antenna Tuner)",
+          "body": "**Figure T-2** steps down AC, rectifies, filters, and regulates DC. **Figure T-3** is a T-network antenna tuner matching a rig to an antenna:",
+          "bullets": [
+            "**Fig T-2 #4**: **Transformer** (two coils facing across vertical core lines) | **#6**: **Capacitor** (flat + curved plate)",
+            "**Fig T-2 #8**: **Light emitting diode (LED)** (diode with two arrows pointing out) | **#9**: **Variable resistor** (zigzag with wiper arrow)",
+            "**Fig T-3 #3**: **Variable inductor** (coil loops with tap arrow) | **#4**: **Antenna** (vertical line with 3-pronged triangle top)"
+          ]
+        },
+        {
+          "heading": "Visual Arrow Clues",
+          "body": "Arrows on schematic symbols give away the answer instantly if you check where they point.",
+          "bullets": [
+            "**Arrow across/onto a zigzag or coil** = **variable/adjustable** (`T-2 #9` variable resistor, `T-3 #3` variable inductor)",
+            "**Two tiny arrows pointing away** from a diode = shines light = **LED** (`T-2 #8`)"
+          ]
+        }
+      ]
+    },
+    "T6D": {
+      "group": "T6D",
+      "title": "Practical Circuits: Power Supplies, Relays, ICs & Tuned LC",
+      "subtitle": "How rectifiers, transformers, regulators, relays, shielded wire, ICs, and resonant circuits work together",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Inside a Linear DC Power Supply",
+          "body": "Turning `120 V AC` wall power into clean `13.8 V DC` for a transceiver takes three classic stages working in sequence.",
+          "bullets": [
+            "**Transformer**: steps `120 V AC` down to a lower AC voltage",
+            "**Rectifier**: diode circuit that converts bidirectional **AC into varying (pulsating) DC**",
+            "**Regulator**: holds the power supply output at a steady, controlled DC voltage"
+          ]
+        },
+        {
+          "heading": "Relays, Shielding, Indicators, Meters & ICs",
+          "body": "Practical radio hardware combines switching, measurement, noise protection, and miniaturized semiconductor packages.",
+          "bullets": [
+            "**Relay**: an **electrically-controlled switch** | **Meter**: displays an electrical quantity as a **numeric value**",
+            "**Shielded wire**: prevents **coupling of unwanted signals** to or from the wire",
+            "**LED**: common visual indicator | **Integrated circuit (IC)**: combines **several semiconductors and other components** in one package",
+            "**Fig T-1 #2 (Transistor)** function: **control the flow of current**"
+          ]
+        },
+        {
+          "heading": "Resonant (Tuned) Circuits",
+          "body": "Two exam questions test how radios tune in one frequency while rejecting others.",
+          "bullets": [
+            "Combine an **inductor** with a **capacitor** (**in series or parallel**) to form a **resonant (tuned) circuit**"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "SignalPath — Technician HAM Study",
+  "short_name": "SignalPath",
+  "description": "Guided 35-node study path & mock exams for the 2026-2030 FCC Technician exam.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

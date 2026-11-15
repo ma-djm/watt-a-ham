@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Guided 35-node skill path and official mock exams for the 2026–2030 US FCC Technician Class (Element 2) Amateur Radio Exam.">
+  <title>SignalPath — 2026–2030 Technician License Study</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Persistent App Shell -->
+  <div id="app-shell" class="app-shell">
+    <!-- Sticky Nightly Telemetry Header -->
+    <header class="top-bar" aria-label="Study readiness and nightly goals">
+      <div class="top-bar-inner">
+        <div class="brand-cluster">
+          <img src="./icon.svg" alt="" width="34" height="34" class="brand-logo" aria-hidden="true">
+          <div>
+            <div class="brand-title">SignalPath <span class="badge-pill">Element 2</span></div>
+            <div id="readiness-sub" class="brand-sub">Readiness: 0% (0/35 groups)</div>
+          </div>
+        </div>
+
+        <div class="telemetry-cluster">
+          <button type="button" id="streak-pill" class="stat-chip streak-chip" aria-label="Study streak details">
+            <span class="chip-icon" aria-hidden="true">&#x1F525;</span>
+            <span id="streak-count">0</span>
+            <span class="chip-unit">d</span>
+          </button>
+
+          <button type="button" id="goal-pill" class="goal-ring-btn" aria-label="Nightly 30-minute session goal details">
+            <div class="progress-ring-wrapper">
+              <progress id="nightly-progress" value="0" max="100" aria-label="Nightly 30-minute study goal" aria-valuetext="0 of 30 minutes" class="progress-ring"></progress>
+              <div id="nightly-ring-label" class="progress-ring-content" aria-hidden="true">0m</div>
+            </div>
+            <div class="goal-meta">
+              <span class="goal-heading">Tonight</span>
+              <span id="goal-nodes-label" class="goal-sub">0/2 nodes</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Tab Views -->
+    <main id="main-content" class="main-content">
+      <!-- TAB 1: SKILL PATH -->
+      <section id="view-path" class="tab-view is-active" aria-labelledby="tab-btn-path">
+        <div id="signal-check-slot" class="signal-check-slot"></div>
+        <div id="campaign-container" class="campaign-container"></div>
+      </section>
+
+      <!-- TAB 2: PRACTICE EXAMS -->
+      <section id="view-exams" class="tab-view" hidden aria-labelledby="tab-btn-exams">
+        <div id="exams-container" class="exams-container"></div>
+      </section>
+
+      <!-- TAB 3: STUDY AIDS & INFO -->
+      <section id="view-aids" class="tab-view" hidden aria-labelledby="tab-btn-aids">
+        <div id="aids-container" class="aids-container"></div>
+      </section>
+    </main>
+
+    <!-- Bottom Thumb-Zone Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Primary sections">
+      <button type="button" id="tab-btn-path" class="nav-tab is-active" data-tab="path" aria-current="page">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/>
+          <path d="M9 19h5.5a3.5 3.5 0 0 0 0-7h-5a3.5 3.5 0 0 1 0-7H15"/>
+        </svg>
+        <span class="nav-label">Path</span>
+        <span id="cracked-nav-badge" class="nav-badge" hidden>0</span>
+      </button>
+
+      <button type="button" id="tab-btn-exams" class="nav-tab" data-tab="exams">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span class="nav-label">Exams</span>
+      </button>
+
+      <button type="button" id="tab-btn-aids" class="nav-tab" data-tab="aids">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        <span class="nav-label">Aids &amp; Info</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Full-Screen Active Session View (Lessons, Signal Check, Math Drill, Mock Exam, Mistake Walkthrough) -->
+  <section id="session-overlay" class="session-overlay" hidden aria-label="Study session">
+    <header class="session-header">
+      <button type="button" id="session-close-btn" class="icon-btn" aria-label="Exit session">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="session-progress-wrap">
+        <div class="session-stage-row">
+          <span id="session-title-pill" class="session-stage-pill">Briefing</span>
+          <span id="session-counter" class="session-counter">1 / 3</span>
+        </div>
+        <progress id="session-bar" class="session-linear-bar" value="0" max="100" aria-label="Session progress"></progress>
+      </div>
+      <div id="session-right-slot" class="session-right-slot"></div>
+    </header>
+
+    <div id="session-body" class="session-body"></div>
+    <div id="session-footer" class="session-footer"></div>
+  </section>
+
+  <!-- Native Modal Dialog: Node Preview / Jump Ahead / Re-practice -->
+  <dialog id="node-dialog" closedby="any" aria-labelledby="node-dialog-title">
+    <div id="node-dialog-body" class="dialog-card">
+      <h2 id="node-dialog-title" class="dialog-title">Node Details</h2>
+    </div>
+  </dialog>
+
+  <!-- Native Modal Dialog: Schematic Zoom Lightbox -->
+  <dialog id="figure-dialog" closedby="any" aria-labelledby="figure-dialog-title" class="figure-modal">
+    <div class="dialog-card figure-dialog-card">
+      <div class="dialog-head-row">
+        <h2 id="figure-dialog-title" class="dialog-title">Schematic Diagram</h2>
+        <form method="dialog">
+          <button value="close" class="icon-btn" aria-label="Close diagram" autofocus>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div id="figure-dialog-svg" class="figure-zoom-stage"></div>
+      <p id="figure-dialog-caption" class="figure-caption"></p>
+    </div>
+  </dialog>
+
+  <!-- Native Modal Dialog: Confirmations & Nightly Goal Summary -->
+  <dialog id="confirm-dialog" closedby="any" aria-labelledby="confirm-dialog-title">
+    <div class="dialog-card">
+      <h2 id="confirm-dialog-title" class="dialog-title">Confirm</h2>
+      <div id="confirm-dialog-desc" class="dialog-desc"></div>
+      <form method="dialog" id="confirm-dialog-actions" class="dialog-actions">
+        <button value="cancel" class="btn btn-secondary" autofocus>Cancel</button>
+        <button value="confirm" class="btn btn-primary">Confirm</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Polite Screen-Reader & Visual Toast Status -->
+  <div id="toast-region" class="toast-region" role="status" aria-live="polite"></div>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

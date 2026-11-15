@@ -1,0 +1,39 @@
+SignalPath — Technician Class (Element 2) Amateur Radio Study PWA
+Copyright (c) 2026 Michael Ames
+
+===============================================================================
+1. Official Exam Question Pool & Examination Figures (Public Domain)
+===============================================================================
+The 409 Element 2 (Technician Class) examination questions, answer choices,
+FCC Part 97 rule citations, syllabus structure, February 19, 2026 errata
+revisions, and underlying circuit topologies for Figures T-1, T-2, and T-3
+were created by the National Conference of Volunteer Examiner Coordinators
+(NCVEC) Question Pool Committee for use from July 1, 2026 through June 30,
+2030, and are released into the public domain:
+  https://www.ncvec.org/index.php/2026-2030-technician-question-pool
+
+===============================================================================
+2. Machine-Readable Pool Data Conversion (Apache License 2.0)
+===============================================================================
+The raw machine-readable JSON and plain-text pool files stored in
+`scripts/pool_raw.json`, `scripts/pool_raw.txt`, and reference PNG renders
+(`scripts/t-1.png`, `scripts/t-2.png`, `scripts/t-3.png`) originate from:
+  russolsen/ham_radio_question_pool
+  https://github.com/russolsen/ham_radio_question_pool
+  Copyright Russ Olsen and contributors.
+  Licensed under the Apache License, Version 2.0:
+  https://www.apache.org/licenses/LICENSE-2.0
+
+State of Changes (Apache-2.0 Section 4(b)):
+  `scripts/build_data.py` transforms `scripts/pool_raw.json` into `data.js`
+  (`window.HAM_DATA`), adding original plain-English explanations, topic tags,
+  positional-choice metadata, 35 multi-card group briefings, and dark-mode
+  vector SVG renderings (`scripts/figures_svg.py`) for Figures T-1, T-2,
+  and T-3.
+
+===============================================================================
+3. Non-Affiliation Notice
+===============================================================================
+SignalPath is an independent open-source educational tool and is not
+affiliated with, sponsored by, or endorsed by the Federal Communications
+Commission (FCC), NCVEC, ARRL, Laurel VEC, or HamStudy.org.

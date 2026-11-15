@@ -1,0 +1,1008 @@
+{
+  "explanations": {
+    "T1A01": {
+      "explanation": "Part 97 exists to advance radio technical and communication skills, emergency readiness, and international goodwill—unlike CB or FRS, which serve mass personal radio use.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1A02": {
+      "explanation": "The Federal Communications Commission (FCC) writes and enforces Part 97 rules; the ARRL is a private membership organization, not a government regulator.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1A03": {
+      "explanation": "Standard phonetics (Alfa, Bravo, Charlie) prevent similar-sounding letters from getting confused over noisy voice channels, so the FCC encourages—but never requires—them on phone.",
+      "tags": [
+        "fcc-rules",
+        "station-id"
+      ]
+    },
+    "T1A04": {
+      "explanation": "The FCC no longer mails paper licenses; official notice arrives via an FCC email containing a link to download your official license grant PDF.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1A05": {
+      "explanation": "Your exam-day CSCE only proves you passed the test—an operator/primary license isn't officially granted until it appears in the FCC ULS database.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1A06": {
+      "explanation": "Worldwide automatic 10-meter propagation beacons transmit exclusively inside the 100 kHz window from 28.200 to 28.300 MHz, right below Technician SSB voice.",
+      "tags": [
+        "band-plan",
+        "fcc-rules"
+      ]
+    },
+    "T1A07": {
+      "explanation": "Part 97 draws the legal boundary of space at 50 km: any amateur station operating more than 50 km above Earth's surface is a space station, crewed or uncrewed.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1A08": {
+      "explanation": "Rather than assigning repeater frequencies from Washington, the FCC relies on locally recognized Volunteer Frequency Coordinators to recommend channel pairs that avoid interference.",
+      "tags": [
+        "repeaters",
+        "fcc-rules"
+      ]
+    },
+    "T1A09": {
+      "explanation": "Frequency coordinators are not appointed by the FCC—they are selected directly by local or regional amateurs whose stations are eligible to be repeaters or auxiliary links.",
+      "tags": [
+        "repeaters",
+        "fcc-rules"
+      ]
+    },
+    "T1A10": {
+      "explanation": "Because RACES supports official government civil-defense operations, acting as a RACES control operator requires both an FCC ham license and enrollment certified by a civil defense organization.",
+      "tags": [
+        "emergency",
+        "fcc-rules"
+      ]
+    },
+    "T1A11": {
+      "explanation": "Deliberately transmitting on top of or jamming other stations—willful or malicious interference—is strictly illegal across every amateur band.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1B01": {
+      "explanation": "Technicians get HF single-sideband (SSB) voice privileges in one dedicated window: 28.300 to 28.500 MHz on the 10-meter band.",
+      "tags": [
+        "band-plan",
+        "licensing"
+      ]
+    },
+    "T1B02": {
+      "explanation": "The ISS ham station uses standard 2-meter VHF frequencies, so any Technician or higher licensee can talk to astronauts without special NASA permission.",
+      "tags": [
+        "band-plan",
+        "licensing"
+      ]
+    },
+    "T1B03": {
+      "explanation": "The 6-meter band spans 50 to 54 MHz (300 / 6 = 50), making 52.525 MHz—the 6m national FM simplex calling channel—the only frequency inside the band.",
+      "tags": [
+        "band-plan"
+      ]
+    },
+    "T1B04": {
+      "explanation": "The 2-meter band runs from 144 to 148 MHz (300 / 2 is ~150), with 146.52 MHz sitting right in the middle as the national 2m FM calling frequency.",
+      "tags": [
+        "band-plan",
+        "simplex"
+      ]
+    },
+    "T1B05": {
+      "explanation": "Technicians can transmit digital modes like FT8 on 10 meters (28.000–28.300 MHz) as well as across VHF/UHF bands including 6 meters and 2 meters.",
+      "tags": [
+        "band-plan",
+        "licensing"
+      ]
+    },
+    "T1B06": {
+      "explanation": "Although Technicians have CW privileges on 80m, 40m, and 15m, the 10-meter band (28.3–28.5 MHz) is the ONLY HF band where Technicians have voice privileges.",
+      "tags": [
+        "band-plan",
+        "licensing"
+      ]
+    },
+    "T1B07": {
+      "explanation": "The bottom 100 kHz of both 6 meters (50.0–50.1 MHz) and 2 meters (144.0–144.1 MHz) are legally protected weak-signal segments reserved strictly for CW (Morse code).",
+      "tags": [
+        "band-plan",
+        "fcc-rules"
+      ]
+    },
+    "T1B08": {
+      "explanation": "Where amateurs have secondary status (such as 70 cm, shared with military radar), primary non-amateur stations have priority and you must avoid interfering with them.",
+      "tags": [
+        "fcc-rules",
+        "band-plan"
+      ]
+    },
+    "T1B09": {
+      "explanation": "Dialing right onto a band edge risks out-of-band transmission from display calibration error, oscillator drift, or modulation sidebands extending past your dial frequency.",
+      "tags": [
+        "band-plan",
+        "fcc-rules"
+      ]
+    },
+    "T1B10": {
+      "explanation": "Above 50 MHz (from 6 meters upward), SSB voice is permitted in at least part of every amateur band—even right above the narrow CW-only bottom segments.",
+      "tags": [
+        "band-plan",
+        "fcc-rules"
+      ]
+    },
+    "T1B11": {
+      "explanation": "Across all Technician HF sub-bands below 30 MHz (80m, 40m, 15m CW, and 10m CW/data/SSB), Technicians are capped at 200 watts PEP output.",
+      "tags": [
+        "fcc-rules",
+        "band-plan"
+      ]
+    },
+    "T1B12": {
+      "explanation": "Above 30 MHz (starting with 6 meters and all VHF/UHF bands), Technicians enjoy the full legal amateur limit of 1,500 watts PEP unless a specific band restriction applies.",
+      "tags": [
+        "fcc-rules",
+        "band-plan"
+      ]
+    },
+    "T1C01": {
+      "explanation": "The FCC issues new grants for only three classes today—Technician, General, and Amateur Extra; Novice and Advanced are grandfathered classes that can only be renewed.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C02": {
+      "explanation": "Any licensed amateur of any class may pick a custom vanity call sign, provided the format belongs to a call sign group eligible for their license class.",
+      "tags": [
+        "callsigns",
+        "licensing"
+      ]
+    },
+    "T1C03": {
+      "explanation": "International contacts must stick to discussions incidental to amateur radio's purposes and casual personal remarks—conducting business over ham radio is forbidden.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1C04": {
+      "explanation": "Maintaining a valid email address in the FCC ULS is mandatory; undeliverable FCC correspondence can result in revocation of your station license or suspension of your operator license.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C05": {
+      "explanation": "Group D (Technician-eligible) call signs use a 2x3 format—two prefix letters, one region digit, and three suffix letters—like KF1XXX; shorter 1x2 and 2x1 calls require higher classes.",
+      "tags": [
+        "callsigns",
+        "licensing"
+      ]
+    },
+    "T1C06": {
+      "explanation": "In international waters, a US-documented ship falls under FCC rules, so you may operate maritime mobile aboard it as soon as the vessel's master (captain) approves.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C07": {
+      "explanation": "You can file for license renewal starting 90 days (about three months) before your expiration date; applications submitted more than 90 days out are dismissed as premature.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C08": {
+      "explanation": "Every new or renewed FCC amateur radio license grant carries a standard 10-year term—lifetime amateur licenses do not exist.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C09": {
+      "explanation": "If your license expires, you get a 2-year grace period to renew and rescue your call sign without retaking exams—after two years, the license is gone for good.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C10": {
+      "explanation": "After passing your first exam, you must wait until your new call sign actually posts in the FCC's ULS license database before transmitting—your CSCE receipt alone doesn't grant air privileges.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1C11": {
+      "explanation": "Think of the 2-year grace period like an expired driver's license: you can still renew without retesting, but you may NOT transmit until the renewal actually posts.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T1D01": {
+      "explanation": "US hams may talk to amateurs in any country unless that nation's government formally notifies the ITU (an international UN agency, not the ARRL) that it objects.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D02": {
+      "explanation": "Amateur radio is strictly a two-way service, so broadcasting is banned; narrow Part 97 exceptions permit one-way ham bulletins, Morse practice, telemetry, and telecommand.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D03": {
+      "explanation": "Ciphers and encryption are prohibited on amateur airwaves, EXCEPT for obscured control commands so unauthorized stations cannot hijack space stations or RC model craft.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D04": {
+      "explanation": "Playing music over ham radio is strictly banned, with one space-age exception: background or wake-up music heard during an authorized retransmission of crewed spacecraft audio.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D05": {
+      "explanation": "Occasional swap-net announcements to buy, sell, or trade personal amateur radio gear are allowed as long as you aren't doing it on a regular commercial basis.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D06": {
+      "explanation": "Indecent or obscene language is flatly prohibited on all amateur bands—even without a printed word list, FCC broadcast decency standards apply on the air.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D07": {
+      "explanation": "An auxiliary station acts as an internal point-to-point link—such as relaying audio one-way from a remote hilltop repeater receiver over to the main repeater transmitter.",
+      "tags": [
+        "repeaters",
+        "fcc-rules"
+      ]
+    },
+    "T1D08": {
+      "explanation": "Hams normally cannot be paid to operate, but Part 97 carves out an exception for paid teachers using an amateur station as part of classroom instruction at a school.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D09": {
+      "explanation": "Assisting news gathering or broadcast production is barred unless NO other communication exists AND the message directly protects immediate human life or property.",
+      "tags": [
+        "emergency",
+        "fcc-rules"
+      ]
+    },
+    "T1D10": {
+      "explanation": "Part 97 defines broadcasting by its intended audience: any transmission meant for reception by the general public rather than licensed amateurs.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1D11": {
+      "explanation": "Telecommand of model craft (up to 1 watt with a call-sign label on the transmitter) is the sole situation where an amateur transmitter may operate without on-air station ID.",
+      "tags": [
+        "station-id",
+        "fcc-rules"
+      ]
+    },
+    "T1D12": {
+      "explanation": "Even brief tune-ups or antenna test transmissions are subject to normal station ID rules—you must still identify your transmitting station on the air.",
+      "tags": [
+        "station-id",
+        "fcc-rules"
+      ]
+    },
+    "T1E01": {
+      "explanation": "An amateur station may NEVER transmit without a control operator—even an unattended repeater under automatic control has a designated human control operator legally in charge.",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1E02": {
+      "explanation": "Working satellites requires no special Extra ticket or AMSAT badge—any ham whose license covers the satellite's uplink frequency (often 2m or 70cm) can be control operator.",
+      "tags": [
+        "control-op",
+        "band-plan"
+      ]
+    },
+    "T1E03": {
+      "explanation": "The station licensee owns legal responsibility for the station hardware and therefore decides who is designated as the station's control operator.",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1E04": {
+      "explanation": "Transmitting privileges always follow the active control operator's license class—not the station owner's class or whoever else happens to be standing in the room.",
+      "tags": [
+        "control-op",
+        "licensing"
+      ]
+    },
+    "T1E05": {
+      "explanation": "A station's control point is wherever the control operator actually performs the control function—whether sitting right at the radio desk or logged in over the internet miles away.",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1E06": {
+      "explanation": "Outside an emergency, you can never serve as control operator beyond your own license privileges; to operate in an Extra segment, an Extra licensee must act as the control operator.",
+      "tags": [
+        "control-op",
+        "licensing"
+      ]
+    },
+    "T1E07": {
+      "explanation": "When someone else acts as control operator at your station, the FCC holds BOTH the control operator and the station licensee equally responsible for proper operation.",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1E08": {
+      "explanation": "Automatic control uses built-in devices and procedures to keep transmissions legal without a live operator at the control point—unattended repeater operation is the classic example.",
+      "tags": [
+        "control-op",
+        "repeaters"
+      ]
+    },
+    "T1E09": {
+      "explanation": "Part 97 permits ANY amateur station to be operated by remote control, provided a reliable control link lets the control operator shut down transmissions when needed.",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1E10": {
+      "explanation": "Operating your home rig over the internet puts the control point away from the transmitter, which is remote control (steering an RC plane by radio is telecommand, not remote control).",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1E11": {
+      "explanation": "Part 97 defines the control operator as the licensed amateur designated by the station licensee to be responsible for all transmissions and FCC rule compliance at that station.",
+      "tags": [
+        "control-op",
+        "fcc-rules"
+      ]
+    },
+    "T1F01": {
+      "explanation": "Holding an FCC station license carries an open-door condition: you must make your station and records available at any time upon request by an FCC representative.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1F02": {
+      "explanation": "Tactical labels like 'Race Headquarters' make event coordination clearer, but they never replace your FCC call sign—you still must ID every 10 minutes and at the end.",
+      "tags": [
+        "station-id",
+        "fcc-rules"
+      ]
+    },
+    "T1F03": {
+      "explanation": "Watch out for the 'beginning of contact' trap: Part 97 requires your call sign at least every 10 minutes during a communication and at the very end—not legally at the start!",
+      "tags": [
+        "station-id",
+        "fcc-rules"
+      ]
+    },
+    "T1F04": {
+      "explanation": "You can converse in any shared language on phone, but your spoken call sign identification must always be given clearly in English.",
+      "tags": [
+        "station-id",
+        "fcc-rules"
+      ]
+    },
+    "T1F05": {
+      "explanation": "On voice (phone) transmissions, you may legally identify using either spoken English phone OR CW (Morse code)—which is why voice repeaters can send automatic Morse IDs.",
+      "tags": [
+        "station-id",
+        "fcc-rules"
+      ]
+    },
+    "T1F06": {
+      "explanation": "When separating your call sign from a self-assigned portable indicator on voice, Part 97 explicitly accepts 'stroke,' 'slant,' or 'slash' interchangeably.",
+      "tags": [
+        "station-id",
+        "callsigns"
+      ]
+    },
+    "T1F07": {
+      "explanation": "Letting an unlicensed guest talk over your mic to another country is international third-party traffic, which is legal only if the US has a third-party agreement with that nation.",
+      "tags": [
+        "fcc-rules",
+        "control-op"
+      ]
+    },
+    "T1F08": {
+      "explanation": "Third-party communications doesn't mean three hams in a roundtable—it means one control operator passing a message (voice, text, or spoken live) on behalf of another person.",
+      "tags": [
+        "fcc-rules"
+      ]
+    },
+    "T1F09": {
+      "explanation": "A repeater listens on an input frequency and simultaneously retransmits that exact signal on a different output frequency, dramatically extending handheld and mobile range.",
+      "tags": [
+        "repeaters",
+        "fcc-rules"
+      ]
+    },
+    "T1F10": {
+      "explanation": "An automatic repeater isn't blamed if a user transmits profanity or out-of-bounds audio into it; accountability rests squarely on the control operator of the originating station.",
+      "tags": [
+        "repeaters",
+        "control-op"
+      ]
+    },
+    "T1F11": {
+      "explanation": "To qualify for an FCC club station license grant, a club must have at least four members—it does not need ARRL affiliation or an Extra-class trustee.",
+      "tags": [
+        "licensing",
+        "fcc-rules"
+      ]
+    },
+    "T2A01": {
+      "explanation": "On the 2-meter band (144–148 MHz), repeaters use a standard plus or minus 600 kHz (0.6 MHz) frequency separation between transmit and receive.",
+      "tags": [
+        "repeaters",
+        "band-plan"
+      ]
+    },
+    "T2A02": {
+      "explanation": "Memorize 146.520 MHz ('one-four-six five-two')—it is the nationwide 2-meter FM simplex calling channel where travelers and hikers monitor for direct radio-to-radio calls.",
+      "tags": [
+        "simplex",
+        "band-plan"
+      ]
+    },
+    "T2A03": {
+      "explanation": "Because the 70-centimeter UHF band (420–450 MHz) is 30 MHz wide, repeaters there separate input and output by a roomy plus or minus 5 MHz offset.",
+      "tags": [
+        "repeaters",
+        "band-plan"
+      ]
+    },
+    "T2A04": {
+      "explanation": "Calling a specific friend on a repeater is straightforward: state their call sign first to get their attention, then identify with your own call sign—never call 'CQ' or 'break, break.'",
+      "tags": [
+        "repeaters",
+        "callsigns"
+      ]
+    },
+    "T2A05": {
+      "explanation": "When answering a 'CQ,' always lead with the calling station's call sign so they know you are replying to them, followed immediately by your own call sign.",
+      "tags": [
+        "callsigns",
+        "simplex"
+      ]
+    },
+    "T2A06": {
+      "explanation": "When tuning around simplex or HF SSB without a repeater, repeating 'CQ' a few times followed by 'this is [your call sign]' and pausing to listen invites anyone nearby to answer.",
+      "tags": [
+        "simplex",
+        "callsigns"
+      ]
+    },
+    "T2A07": {
+      "explanation": "Repeater offset is simply the frequency split (such as 600 kHz on 2m or 5 MHz on 70cm) between the repeater's transmit output frequency and its receive input frequency.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2A08": {
+      "explanation": "Think of 'CQ' as sounding like 'seek you'—it is the universal radio procedural signal meaning 'calling any station' for a general contact.",
+      "tags": [
+        "q-signals",
+        "simplex"
+      ]
+    },
+    "T2A09": {
+      "explanation": "On local FM repeaters where operators casually monitor a quiet channel, you skip long 'CQ' calls and simply give your call sign followed by 'listening' or 'monitoring.'",
+      "tags": [
+        "repeaters",
+        "callsigns"
+      ]
+    },
+    "T2A10": {
+      "explanation": "Beyond broad legal FCC rules, a band plan is a voluntary community guideline that neatly separates repeaters, simplex channels, digital modes, and weak-signal work to prevent clashes.",
+      "tags": [
+        "band-plan"
+      ]
+    },
+    "T2A11": {
+      "explanation": "Simplex ('single-frequency' direct mode) means both stations transmit and receive directly on the exact same frequency without going through an offset repeater.",
+      "tags": [
+        "simplex"
+      ]
+    },
+    "T2B01": {
+      "explanation": "Hitting 'Reverse' flips your RX/TX split so you listen directly on the repeater's input frequency—if you can still hear the other station clearly, you're close enough to move to simplex!",
+      "tags": [
+        "repeaters",
+        "simplex"
+      ]
+    },
+    "T2B02": {
+      "explanation": "CTCSS (Continuous Tone-Coded Squelch System, often called a PL tone) transmits a quiet sub-audible tone below 300 Hz along with your voice to unlock a repeater's receiver.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2B03": {
+      "explanation": "A linked repeater network connects multiple repeaters via RF or internet links so a signal heard on any single repeater is simultaneously broadcast out of every repeater in the system.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2B04": {
+      "explanation": "If you hear a repeater's output fine, your receive frequency works—so failing to wake it up almost always comes down to a transmit mismatch: wrong offset, wrong CTCSS tone, or wrong DCS code.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2B05": {
+      "explanation": "Speaking too loudly over-deviates an FM signal, pushing its instantaneous frequency swing wider than the receiver's IF filter so your voice clips and drops out completely on loud syllables.",
+      "tags": [
+        "repeaters",
+        "simplex"
+      ]
+    },
+    "T2B06": {
+      "explanation": "DTMF (Dual-Tone Multi-Frequency)—the familiar telephone keypad touch-tones on your mic or handheld—sends one row tone and one column tone simultaneously to trigger repeater commands.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2B07": {
+      "explanation": "Joining a digital repeater talkgroup (like 'Statewide' or 'TAC 310') requires no registration paperwork—you just program that talkgroup's numeric ID code into your digital transceiver.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2B08": {
+      "explanation": "No operator or net ever owns exclusive rights to a ham frequency—if two stations accidentally interfere on the same channel, they should courteously negotiate sharing or shifting frequency.",
+      "tags": [
+        "fcc-rules",
+        "simplex"
+      ]
+    },
+    "T2B09": {
+      "explanation": "Band plans carve out dedicated simplex channels so nearby stations can talk directly radio-to-radio instead of tying up a wide-coverage repeater that dozens of others share.",
+      "tags": [
+        "simplex",
+        "band-plan"
+      ]
+    },
+    "T2B10": {
+      "explanation": "Memory hook: QRM = Man-Made interference from other radio stations, while QRN = Natural static noise like thunderstorms.",
+      "tags": [
+        "q-signals"
+      ]
+    },
+    "T2B11": {
+      "explanation": "Memory hook: QSY = 'Shift Your frequency'—used whenever announcing or suggesting a move to a different frequency or simplex channel.",
+      "tags": [
+        "q-signals"
+      ]
+    },
+    "T2B12": {
+      "explanation": "On DMR digital repeaters, the Color Code (numbered 0–15) serves the exact same gatekeeper role as an analog CTCSS tone—your radio must send the matching Color Code to access the repeater.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2B13": {
+      "explanation": "Squelch acts as an automatic audio gate that mutes annoying background static when a channel is idle and unmutes the speaker as soon as an incoming signal exceeds the threshold.",
+      "tags": [
+        "repeaters",
+        "simplex"
+      ]
+    },
+    "T2B14": {
+      "explanation": "In DMR digital radio, a talkgroup ID filters shared repeater timeslots into virtual chat rooms so operators monitoring one group aren't interrupted by unrelated conversations.",
+      "tags": [
+        "repeaters"
+      ]
+    },
+    "T2C01": {
+      "explanation": "Classic exam trap: FCC Part 97 rules ALWAYS apply to every US amateur station—operating for ARES, RACES, or FEMA never overrides FCC regulations.",
+      "tags": [
+        "fcc-rules",
+        "emergency"
+      ]
+    },
+    "T2C02": {
+      "explanation": "A Net Control Station (NCS) acts like a meeting moderator—calling the net to order, taking check-ins, and directing who speaks next so stations don't step on each other.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C03": {
+      "explanation": "Uncommon names, medications, or street spellings get garbled easily on noisy voice channels, so operators spell unusual words aloud using the standard ITU phonetic alphabet.",
+      "tags": [
+        "emergency",
+        "station-id"
+      ]
+    },
+    "T2C04": {
+      "explanation": "RACES (Radio Amateur Civil Emergency Service) is a formal FCC Part 97 service established specifically for government civil-defense communications during national emergencies.",
+      "tags": [
+        "emergency",
+        "fcc-rules"
+      ]
+    },
+    "T2C05": {
+      "explanation": "In net operations, 'traffic' means formal written messages (radiograms) originated, relayed, or delivered systematically between amateur stations.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C06": {
+      "explanation": "ARES (Amateur Radio Emergency Service) consists of licensed hams who voluntarily register their skills and gear for public-service disaster and community event communications.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C07": {
+      "explanation": "Directed nets prevent pileups by following one strict discipline: hold your mic and transmit ONLY when invited by Net Control, unless breaking in with urgent emergency traffic.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C08": {
+      "explanation": "Winlink ('Global Radio Email') routes real internet email over HF and VHF/UHF radio links using callsign-based email addresses, keeping critical messages flowing during grid outages.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C09": {
+      "explanation": "Only when human life or property faces immediate danger—and normal communications are unavailable—may a control operator step outside their license class's normal frequency privileges.",
+      "tags": [
+        "emergency",
+        "fcc-rules"
+      ]
+    },
+    "T2C10": {
+      "explanation": "The preamble at the top of a formal radiogram carries administrative tracking data (message number, precedence, origin station, word check, place, and filing time/date)—not the recipient's address.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C11": {
+      "explanation": "The 'check' in a radiogram header is simply the exact count of words (or word equivalents) in the message text so receiving operators can verify no words were lost along the relay.",
+      "tags": [
+        "emergency"
+      ]
+    },
+    "T2C12": {
+      "explanation": "Memory hook: C in RACES = Civil defense! Unlike voluntary ARES or SKYWARN weather spotting, RACES requires formal enrollment/certification by a government civil defense agency.",
+      "tags": [
+        "emergency",
+        "fcc-rules"
+      ]
+    }
+  },
+  "briefings": {
+    "T1A": {
+      "group": "T1A",
+      "title": "Purpose, FCC Rules & Coordination",
+      "subtitle": "Why the Amateur Radio Service exists, how your license becomes official, and how repeaters and beacons stay organized.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Part 97 & Getting Officially Licensed",
+          "body": "The **FCC** regulates the U.S. Amateur Radio Service under **Part 97** to advance technical and communication skills in the radio art—not for mass personal chat like CB or FRS. Once you pass your exam, the FCC sends an **email link** to download your grant, and you are officially licensed as soon as your call sign appears in the **FCC ULS database**.",
+          "bullets": [
+            "**Regulator:** The **FCC** enforces Part 97 (the ARRL is a private club, not a government agency)",
+            "**Official proof:** Appearing in the **FCC ULS database** (not your exam-day paper CSCE)",
+            "**License delivery:** **Email from the FCC** with a download link"
+          ]
+        },
+        {
+          "heading": "Beacons, Space & Frequency Coordinators",
+          "body": "Part 97 sets clear boundaries for specialized stations while letting local hams self-organize repeater channels. Local repeater-eligible amateurs select a **Volunteer Frequency Coordinator** to recommend repeater and auxiliary frequencies.",
+          "bullets": [
+            "**10m HF beacons:** Automatically controlled propagation beacons live at **`28.200–28.300 MHz`**",
+            "**Space station:** Any amateur station located **more than `50 km`** above Earth's surface",
+            "**RACES control operator:** Requires both an FCC ham license AND **civil defense enrollment certification**"
+          ]
+        },
+        {
+          "heading": "On-Air Conduct & Phonetics",
+          "body": "Good operating keeps shared spectrum clear and intelligible for everyone. The FCC **encourages** phonetic alphabets on voice to clarify call signs and strictly bans intentional jamming.",
+          "bullets": [
+            "**Phonetic alphabet:** **Encouraged** (not required) on phone emissions",
+            "**Strictly prohibited:** **Willful or malicious interference** on any frequency"
+          ]
+        }
+      ]
+    },
+    "T1B": {
+      "group": "T1B",
+      "title": "Technician Frequencies, Modes & Power",
+      "subtitle": "Where Technicians can use voice and digital modes, contact the ISS, and how much power you may run.",
+      "aid": "band-map",
+      "cards": [
+        {
+          "heading": "Your HF Gateway: The 10-Meter Band",
+          "body": "Below `30 MHz` (HF), Technicians are limited to **`200 watts` PEP** and get CW on parts of 80m, 40m, 15m, and 10m. However, **10 meters is the ONLY HF band** where Technicians enjoy voice privileges!",
+          "bullets": [
+            "**Technician HF phone (SSB):** **`28.300 MHz` to `28.500 MHz`** on **10 meters only**",
+            "**Digital modes (FT8):** Authorized for Technicians on **10 meters, 6 meters, and 2 meters**",
+            "**HF power cap:** **`200 watts` PEP** maximum in Technician HF segments"
+          ]
+        },
+        {
+          "heading": "VHF/UHF Bands, CW Windows & Full Power",
+          "body": "Above `30 MHz`, Technicians unlock full privileges—including **`1500 watts` PEP** power, contacting astronauts aboard the **ISS** on VHF without NASA paperwork, and SSB voice in at least part of every band above `50 MHz`.",
+          "bullets": [
+            "**Band anchors:** **`52.525 MHz`** is in **6 meters** (`50–54 MHz`); **`146.52 MHz`** is in **2 meters** (`144–148 MHz`)",
+            "**CW-only sub-bands:** Bottom `100 kHz` of 6m (**`50.0–50.1 MHz`**) and 2m (**`144.0–144.1 MHz`**)",
+            "**VHF/UHF power cap:** **`1500 watts` PEP** above `30 MHz` (except specific band limits)"
+          ]
+        },
+        {
+          "heading": "Band Edges & Secondary Allocations",
+          "body": "Smart operators stay safely inside band boundaries and respect shared spectrum rules where amateurs are secondary users.",
+          "bullets": [
+            "**Stay off exact band edges:** Guards against **display calibration error**, **frequency drift**, and **modulation sidebands** spilling out-of-band",
+            "**Secondary bands:** Non-amateur primary stations operate there—you **must avoid interfering** with them"
+          ]
+        }
+      ]
+    },
+    "T1C": {
+      "group": "T1C",
+      "title": "License Classes, Call Signs & Renewals",
+      "subtitle": "Modern license classes, Technician call sign formats, international operating, and renewal timelines.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "License Classes & Call Sign Rules",
+          "body": "The FCC currently issues new licenses for just **three classes**: **Technician, General, and Amateur Extra**. Once your first grant posts in the **FCC license database**, you can transmit immediately and even apply for a custom vanity call sign.",
+          "bullets": [
+            "**Vanity call signs:** Available to **any licensed amateur** (within class-eligible format groups)",
+            "**Group D Technician format:** `2×3` call signs like **`KF1XXX`** (2 letters, 1 number, 3 letters)",
+            "**First transmission:** Wait until your license grant **appears in the FCC's license database**"
+          ]
+        },
+        {
+          "heading": "Key License Numbers: 10 Years, 90 Days, 2 Years",
+          "body": "Keeping your license active and your email current in ULS protects your operating privileges. If FCC emails bounce, your station license can be **revoked** or your operator license **suspended**.",
+          "bullets": [
+            "**Normal term:** **10 years**, renewable starting **90 days** before expiration",
+            "**Expired grace period:** **2 years** to renew without retesting—**NO transmitting** until renewed!",
+            "**Unreachable email penalty:** **Revocation** of station license or **suspension** of operator license"
+          ]
+        },
+        {
+          "heading": "International Contacts & Maritime Waters",
+          "body": "An FCC amateur license lets you talk across borders and even operate at sea when following simple jurisdiction rules.",
+          "bullets": [
+            "**International topics:** Hobby-incidental talk and **remarks of a personal character** (never business)",
+            "**International waters:** Legal aboard a **US-documented vessel** with the **master's permission**"
+          ]
+        }
+      ]
+    },
+    "T1D": {
+      "group": "T1D",
+      "title": "Authorized & Prohibited Transmissions",
+      "subtitle": "What Part 97 bans on the air—and the narrow exceptions for spacecraft music, model craft, and classroom teachers.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Core On-Air Prohibitions",
+          "body": "Amateur radio is a non-commercial, two-way service—not a public radio station. **Broadcasting** (transmissions intended for the **general public**) and **indecent or obscene language** are strictly prohibited.",
+          "bullets": [
+            "**Banned one-way mode:** **Broadcasting** (bulletins, Morse practice, telemetry, and telecommand are allowed)",
+            "**Prohibited countries:** Only nations whose administration notified the **ITU** that it objects",
+            "**Encoded/encrypted messages:** Permitted **only** for control commands to **space stations or model craft**"
+          ]
+        },
+        {
+          "heading": "Four Narrow Exceptions Tested on the Exam",
+          "body": "Part 97 bans music, commercial sales, paid operating, and media gathering—except in four very specific situations that exam writers love to ask about.",
+          "bullets": [
+            "**Music on phone:** Only when incidental to authorized **manned spacecraft** retransmissions",
+            "**Paid control operator:** Allowed when part of **classroom instruction** at an educational institution",
+            "**Equipment sales & news:** Occasional **amateur gear** swaps (not regular); media help **only** for **immediate safety of life or property** with no other means"
+          ]
+        },
+        {
+          "heading": "Auxiliary Links & Identification Exceptions",
+          "body": "Almost every transmission—including brief on-the-air **test transmissions**—requires station identification, with just one low-power remote-control exception.",
+          "bullets": [
+            "**No on-air ID needed:** Only when transmitting signals to **control model craft**",
+            "**Auxiliary station:** Sends one-way links inside a repeater system (e.g., **remote receiver to main transmitter**)"
+          ]
+        }
+      ]
+    },
+    "T1E": {
+      "group": "T1E",
+      "title": "Control Operators & Station Control",
+      "subtitle": "Who is legally in charge of a transmitting station, how privileges work, and remote vs. automatic control.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Who Controls the Station & Sets Privileges",
+          "body": "An amateur station may **never** transmit without a **control operator**—the licensed amateur designated by the **station licensee** to ensure FCC compliance. If a guest operates your station, **both** of you share responsibility.",
+          "bullets": [
+            "**Frequency privileges:** Determined solely by the **control operator's license class**",
+            "**Shared accountability:** Both the **control operator AND the station licensee** are responsible",
+            "**Extra sub-bands:** Outside emergencies, a Technician may be control operator there **at no time**"
+          ]
+        },
+        {
+          "heading": "Control Points, Remote & Automatic Control",
+          "body": "The **control point** is the physical or virtual spot where the control operator performs the control function. Modern Part 97 rules allow **any station** to be remotely controlled.",
+          "bullets": [
+            "**Remote control example:** **Operating the station over the internet** (allowed for **any station**)",
+            "**Automatic control example:** Unattended **repeater operation**"
+          ]
+        },
+        {
+          "heading": "Satellite Control & Exam Shortcuts",
+          "body": "Don't fall for distractors claiming you need an Extra Class ticket or special certifications to work amateur satellites.",
+          "bullets": [
+            "**Satellite control operator:** **Any amateur** allowed to transmit on the **satellite uplink frequency** (usually 2m or 70cm)",
+            "**No control operator allowed?** **Never**—even automatic repeaters have a designated control operator"
+          ]
+        }
+      ]
+    },
+    "T1F": {
+      "group": "T1F",
+      "title": "Station ID, Third-Party Traffic & Clubs",
+      "subtitle": "The 10-minute English ID rule, portable indicators, international guests on the mic, repeaters, and club grants.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Mastering the 10-Minute Station ID Rule",
+          "body": "Whether chatting casually or using tactical call signs like \"Race Headquarters,\" you must transmit your FCC-assigned call sign **at least every 10 minutes during and at the end** of a communication.",
+          "bullets": [
+            "**Exam trap:** Identifying at the *beginning* of a contact is **not** required by Part 97!",
+            "**Phone ID rules:** Must be in **English**, sent via **CW or phone** emission",
+            "**Portable indicators:** **\"Stroke,\" \"slant,\" and \"slash\"** (e.g., `KL7CC slash W3`) are all acceptable"
+          ]
+        },
+        {
+          "heading": "Third-Party Traffic & Repeaters",
+          "body": "**Third-party communications** are messages passed between control operators on behalf of another person. Meanwhile, a **repeater station** simultaneously retransmits another station's signal on a different channel.",
+          "bullets": [
+            "**Foreign third-party traffic:** Allowed **only** with countries holding a **U.S. third-party agreement**",
+            "**Repeater rule violations:** The **control operator of the originating station** is accountable (not the repeater owner)"
+          ]
+        },
+        {
+          "heading": "FCC Inspections & Club Licenses",
+          "body": "Station records and hardware remain subject to FCC oversight, and local radio clubs can apply for their own shared club call sign.",
+          "bullets": [
+            "**FCC inspection:** Station and records must be available **at any time upon request** by an FCC representative",
+            "**Club station license:** Requires a club with **at least four members**"
+          ]
+        }
+      ]
+    },
+    "T2A": {
+      "group": "T2A",
+      "title": "Repeater Offsets, Simplex & Calling",
+      "subtitle": "Standard 2m and 70cm offsets, the 146.520 MHz calling frequency, and clean on-air calling procedures.",
+      "aid": "band-map",
+      "cards": [
+        {
+          "heading": "Simplex vs. Repeater Offsets",
+          "body": "**Simplex** means transmitting and receiving on the **exact same frequency** directly between radios. Repeaters use a **repeater offset**—the difference between the repeater's transmit and receive frequencies.",
+          "bullets": [
+            "**2m national FM simplex calling frequency:** **`146.520 MHz`**",
+            "**2-meter repeater offset:** **`±600 kHz`** (`0.6 MHz`)",
+            "**70-centimeter repeater offset:** **`±5 MHz`**"
+          ]
+        },
+        {
+          "heading": "How to Make & Answer Calls Cleanly",
+          "body": "Whenever calling a specific station or answering **`CQ`** (\"**Calling any station**\"), always transmit **the other station's call sign first, followed by your call sign**. Match your calling style to repeater vs. simplex operation.",
+          "bullets": [
+            "**Looking for a repeater chat:** Say **your call sign followed by \"listening\"** (don't call `CQ` on FM repeaters)",
+            "**Seeking any phone contact off-repeater:** Repeat **`CQ`** a few times + \"this is\" + **your call sign**, then pause to listen",
+            "**Calling a known station:** Say **their call sign, then identify with your call sign** (skip \"break, break\")"
+          ]
+        },
+        {
+          "heading": "Voluntary Band Plans",
+          "body": "FCC rules only divide bands into broad license and mode segments; the amateur community organizes the rest cooperatively.",
+          "bullets": [
+            "**Band plan definition:** A **voluntary guideline** for organizing modes and activities (repeaters, simplex, satellites) within a band"
+          ]
+        }
+      ]
+    },
+    "T2B": {
+      "group": "T2B",
+      "title": "Tones, Digital Talkgroups & Operating Tips",
+      "subtitle": "CTCSS, DTMF, DMR Color Codes and talkgroups, repeater troubleshooting, and essential Q-signals.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Analog Repeater Controls & Tones",
+          "body": "**Squelch** mutes background static when no signal is present, while **CTCSS** adds a **sub-audible tone** under your voice to open a repeater's squelch. **Linked repeater networks** retransmit one repeater's input across every repeater in the system.",
+          "bullets": [
+            "**`Reverse` button:** Listens on a repeater's **input frequency** to see if you can reach the other station on simplex",
+            "**`DTMF` tones:** **Two simultaneous audio tones** (keypad touch-tones) used to send commands to a repeater",
+            "**Simplex channels:** Designated in band plans so nearby stations **don't tie up a repeater**"
+          ]
+        },
+        {
+          "heading": "DMR Digital Repeaters & Troubleshooting",
+          "body": "DMR repeaters require a programmed **Color Code** (access code) and route conversations using **talkgroups** so listeners only hear traffic meant for their chosen group.",
+          "bullets": [
+            "**Joining a talkgroup:** Simply **program your radio with the group's ID or code**",
+            "**Can hear a repeater, can't key it up?** Check **improper offset**, **wrong CTCSS tone**, or **wrong DCS code**",
+            "**FM audio dropping out on voice peaks?** **You are talking too loudly** (over-deviating past the receiver filter)"
+          ]
+        },
+        {
+          "heading": "Frequency Sharing & Must-Know Q-Signals",
+          "body": "No ham has preemptive ownership of a frequency—when two stations interfere on the same channel, they should **negotiate continued use** politely.",
+          "bullets": [
+            "**`QRM`:** Receiving **M**an-made interference from other stations (`QRN` = natural static)",
+            "**`QSY`:** Changing frequency (**S**hift **Y**our frequency)"
+          ]
+        }
+      ]
+    },
+    "T2C": {
+      "group": "T2C",
+      "title": "Emergencies, Nets & Formal Traffic",
+      "subtitle": "When emergency rules apply, ARES vs. RACES, directed net etiquette, Winlink email, and radiogram headers.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Emergency Rules & Agency Organizations",
+          "body": "**FCC Part 97 rules ALWAYS apply**—even during disasters or exercises! However, control operators may transmit outside their license class's frequency privileges **only** when **immediate safety of human life or protection of property** is at stake.",
+          "bullets": [
+            "**ARES:** Licensed volunteers who **register their qualifications and equipment** for public-service duty",
+            "**RACES:** Official Part 97 **civil defense** emergency service requiring **certification by a civil defense agency**"
+          ]
+        },
+        {
+          "heading": "Directed Net Etiquette",
+          "body": "During a net, the **Net Control Station (NCS)** calls the net to order and directs all communications between check-ins so stations never talk over one another.",
+          "bullets": [
+            "**Golden net rule:** Unless reporting an emergency, **transmit ONLY when directed** by Net Control",
+            "**Unusual words:** Spell tricky names or terms aloud using a **standard phonetic alphabet**"
+          ]
+        },
+        {
+          "heading": "Formal Traffic, Radiograms & Winlink",
+          "body": "In net jargon, **traffic** refers to **formal messages** relayed systematically between stations, either by voice radiogram or digital email.",
+          "bullets": [
+            "**Radiogram `preamble`:** Contains metadata needed to **track the message**",
+            "**Radiogram `check`:** Exact **number of words** (or word equivalents) in the message text",
+            "**`Winlink`:** Relays digital messages using **email addresses based on amateur callsigns**"
+          ]
+        }
+      ]
+    }
+  }
+}

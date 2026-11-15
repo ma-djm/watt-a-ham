@@ -1,0 +1,1071 @@
+{
+  "explanations": {
+    "T7A01": {
+      "explanation": "Think of sensitivity as having sensitive ears—it measures how well a receiver can pick up very weak signals near the noise floor, whereas selectivity separates closely spaced signals.",
+      "tags": [
+        "receivers"
+      ]
+    },
+    "T7A02": {
+      "explanation": "Transceiver blends transmitter and receiver into one shared unit. Don't confuse it with a transverter, which converts an existing radio to operate on a different frequency band.",
+      "tags": [
+        "receivers",
+        "transmitters"
+      ]
+    },
+    "T7A03": {
+      "explanation": "A mixer combines two signals (typically an incoming RF signal and a local oscillator) to create sum and difference frequencies, shifting the signal from one frequency to another.",
+      "tags": [
+        "receivers",
+        "transmitters"
+      ]
+    },
+    "T7A04": {
+      "explanation": "Selectivity is the ability to select one desired station while rejecting strong nearby signals on adjacent frequencies—contrast with sensitivity, which detects faint signals.",
+      "tags": [
+        "receivers"
+      ]
+    },
+    "T7A05": {
+      "explanation": "An oscillator generates a steady alternating-current signal at a specific frequency, serving as the core frequency source inside transmitters and receivers.",
+      "tags": [
+        "receivers",
+        "transmitters"
+      ]
+    },
+    "T7A06": {
+      "explanation": "A transverter (transfer + converter) shifts both the receive input and transmit output of a transceiver—such as a 10m or 2m rig—to operate on another band like UHF or microwave.",
+      "tags": [
+        "receivers",
+        "transmitters"
+      ]
+    },
+    "T7A07": {
+      "explanation": "PTT stands for Push-To-Talk: pulling the PTT control line to ground (via a mic button, footswitch, or digital interface) switches the transceiver from receive to transmit.",
+      "tags": [
+        "transmitters"
+      ]
+    },
+    "T7A08": {
+      "explanation": "Modulation imprints speech or data onto an RF carrier wave by varying its amplitude, frequency, or phase so a distant receiver can recover the audio.",
+      "tags": [
+        "transmitters",
+        "modulation"
+      ]
+    },
+    "T7A09": {
+      "explanation": "SSB requires linear biasing and a brief relay hang-time between syllables, whereas constant-carrier CW and FM run higher-efficiency biasing—the switch sets the amplifier properly for each mode.",
+      "tags": [
+        "transmitters"
+      ]
+    },
+    "T7A10": {
+      "explanation": "Connecting an external RF power amplifier between the transceiver output and the antenna boosts low transmit wattage (for example, turning 5 W from a handheld into 50 W).",
+      "tags": [
+        "transmitters"
+      ]
+    },
+    "T7A11": {
+      "explanation": "Controlled by the main tuning knob, the Variable Frequency Oscillator (VFO) adjusts the internal local frequency that sets your transceiver's operating receive and transmit frequency.",
+      "tags": [
+        "receivers",
+        "transmitters"
+      ]
+    },
+    "T7B01": {
+      "explanation": "On FM, overly loud audio pushes frequency swing (deviation) wider than a receiver's filter, causing choppy clipping. Simply talk farther away from the microphone to lower your audio level.",
+      "tags": [
+        "troubleshooting",
+        "modulation"
+      ]
+    },
+    "T7B02": {
+      "explanation": "This is fundamental overload: inexpensive AM or FM broadcast receivers often lack front-end filtering to reject strong nearby out-of-band signals, even when your transmitter is clean.",
+      "tags": [
+        "troubleshooting",
+        "receivers"
+      ]
+    },
+    "T7B03": {
+      "explanation": "RFI can stem from fundamental overload (swamping a receiver's front end) or unwanted transmitter outputs like harmonics (integer multiples) and spurious emissions on other frequencies.",
+      "tags": [
+        "troubleshooting"
+      ]
+    },
+    "T7B04": {
+      "explanation": "Modern solid-state rigs monitor reflected power and automatically throttle output when SWR is high so excess voltage and heat don't destroy the final amplifier transistors.",
+      "tags": [
+        "troubleshooting",
+        "swr",
+        "transmitters"
+      ]
+    },
+    "T7B05": {
+      "explanation": "When your clean signal overloads a non-amateur receiver, install a high-pass or band-reject filter right at the affected receiver's antenna input to block your signal before it enters.",
+      "tags": [
+        "troubleshooting",
+        "filters"
+      ]
+    },
+    "T7B06": {
+      "explanation": "Always troubleshoot your own shack first: verify your station works properly and check whether it interferes with your own TV or radio tuned to the same channel.",
+      "tags": [
+        "troubleshooting"
+      ]
+    },
+    "T7B07": {
+      "explanation": "Commercial FM broadcast (88–108 MHz) sits right below 2 meters (144–148 MHz); a band-reject (notch) filter blocks booming FM broadcast towers while letting 2-meter signals pass.",
+      "tags": [
+        "troubleshooting",
+        "filters",
+        "receivers"
+      ]
+    },
+    "T7B08": {
+      "explanation": "Verify your own station meets good amateur practice first, politely explain that FCC rules prohibit devices from causing harmful interference, and cooperate to locate the noisy device.",
+      "tags": [
+        "troubleshooting"
+      ]
+    },
+    "T7B09": {
+      "explanation": "Cable TV runs inside a closed coaxial shield rather than an over-the-air antenna, so loose, corroded, or poorly installed coax connectors are the #1 leak point letting your RF sneak in.",
+      "tags": [
+        "troubleshooting",
+        "connectors",
+        "feed-lines"
+      ]
+    },
+    "T7B10": {
+      "explanation": "Distorted FM repeater audio can result from transmitting slightly off frequency, over-deviating (speaking too loudly or closely), or operating from a weak or multipath dead spot.",
+      "tags": [
+        "troubleshooting",
+        "modulation"
+      ]
+    },
+    "T7B11": {
+      "explanation": "Stray RF picked up by the mic cord can feed back into audio circuits and garble your voice; snapping a clip-on ferrite choke onto the mic cable blocks that stray RF current.",
+      "tags": [
+        "troubleshooting",
+        "filters"
+      ]
+    },
+    "T7C01": {
+      "explanation": "A dummy load replaces your antenna during bench tests, absorbing transmitter power as heat instead of radiating signals over the air where they could cause interference.",
+      "tags": [
+        "antennas",
+        "troubleshooting",
+        "transmitters"
+      ]
+    },
+    "T7C02": {
+      "explanation": "An antenna analyzer contains a low-power variable RF source and bridge that sweeps frequencies to reveal exact SWR, impedance, and where an antenna is resonant.",
+      "tags": [
+        "antennas",
+        "swr"
+      ]
+    },
+    "T7C03": {
+      "explanation": "A dummy load pairs a 50-ohm non-inductive resistor with a heat sink so it mimics a matched antenna across wide RF frequencies while dissipating heat (inductance would spoil the match).",
+      "tags": [
+        "antennas",
+        "swr"
+      ]
+    },
+    "T7C04": {
+      "explanation": "An SWR of 1:1 is the lowest possible ratio and indicates a perfect impedance match (such as a 50-ohm antenna on 50-ohm coax), with zero power reflected back toward the transmitter.",
+      "tags": [
+        "swr",
+        "feed-lines"
+      ]
+    },
+    "T7C05": {
+      "explanation": "High SWR reflects RF energy back toward the radio, creating dangerous voltage and current spikes that could destroy delicate RF output amplifier transistors without power foldback.",
+      "tags": [
+        "swr",
+        "transmitters"
+      ]
+    },
+    "T7C06": {
+      "explanation": "While 1:1 is a perfect match, 4:1 means over a third of your forward power is bouncing back down the line due to a significant impedance mismatch between feed line and antenna.",
+      "tags": [
+        "swr",
+        "antennas"
+      ]
+    },
+    "T7C07": {
+      "explanation": "RF power absorbed by conductor resistance and dielectric loss inside a feed line doesn't vanish or radiate—conservation of energy turns that lost power directly into heat.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T7C08": {
+      "explanation": "A directional wattmeter measures forward power heading to the antenna and reflected power bouncing back, letting you calculate or read Standing Wave Ratio (SWR) directly.",
+      "tags": [
+        "swr",
+        "troubleshooting"
+      ]
+    },
+    "T7C09": {
+      "explanation": "Moisture contamination wicks down inside coaxial braid and foam dielectric, corroding the copper shield and spiking RF signal attenuation until the cable fails.",
+      "tags": [
+        "feed-lines",
+        "troubleshooting"
+      ]
+    },
+    "T7C10": {
+      "explanation": "Sunlight's ultraviolet (UV) rays degrade unprotected plastic outer jackets until they turn brittle and crack, allowing rainwater to seep in and ruin the coax.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T7C11": {
+      "explanation": "Air is a better RF insulator than solid plastic; trapping tiny gas bubbles in foam dielectric lowers dielectric absorption, giving less signal loss per foot than solid dielectric coax.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T7D01": {
+      "explanation": "Electric potential (electromotive force) is measured in volts, so you measure it with a voltmeter.",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T7D02": {
+      "explanation": "Voltage is the potential difference across two points, so a voltmeter is always connected in parallel across the component's terminals.",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T7D03": {
+      "explanation": "To measure current flow, you must break the circuit path and connect the meter in series so all current flowing through the component also passes through the meter.",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T7D04": {
+      "explanation": "Electric current is measured in amperes (amps), so the dedicated instrument is an ammeter (think amp-meter).",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T7D05": {
+      "explanation": "Using its internal battery, an ohmmeter pushes a small known current through the component, measures the resulting voltage drop, and computes resistance via Ohm's law (R = E / I).",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T7D06": {
+      "explanation": "The resistance (ohms) mode expects an unpowered component—touching probes to live voltage while set to resistance drives external power into sensitive sensing circuits and can ruin the meter.",
+      "tags": [
+        "multimeters",
+        "troubleshooting"
+      ]
+    },
+    "T7D07": {
+      "explanation": "A standard multimeter (VOM or DMM) measures voltage, current, and resistance—not RF impedance, reactance, or receiver signal-to-noise ratio.",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T7D08": {
+      "explanation": "Never use plumbing acid-core solder on electronics! Its corrosive acid flux stays behind and eats through fine copper circuit traces and leads; always use rosin-core or no-clean solder.",
+      "tags": [
+        "troubleshooting"
+      ]
+    },
+    "T7D09": {
+      "explanation": "A sound tin-lead solder joint cools smooth and shiny; if the joint wasn't heated enough or moved while cooling, you get a cold joint with a dull, rough, or lumpy surface.",
+      "tags": [
+        "troubleshooting"
+      ]
+    },
+    "T7D10": {
+      "explanation": "An empty capacitor initially draws heavy current from the ohmmeter's battery like a short (low ohms), then draws less and less current as it charges—showing increasing resistance with time.",
+      "tags": [
+        "multimeters",
+        "troubleshooting"
+      ]
+    },
+    "T7D11": {
+      "explanation": "Always ensure the circuit is powered off (and filter capacitors are discharged) before measuring resistance; live circuit voltages will corrupt the reading and can damage the ohmmeter.",
+      "tags": [
+        "multimeters"
+      ]
+    },
+    "T8A01": {
+      "explanation": "Single sideband (SSB) is a streamlined form of amplitude modulation (AM) with the carrier and one redundant sideband removed so 100% of transmitter power goes into voice audio.",
+      "tags": [
+        "modulation"
+      ]
+    },
+    "T8A02": {
+      "explanation": "VHF packet radio (including APRS on 144.39 MHz) feeds audio data tones into standard VHF voice transceivers using FM or PM (frequency or phase modulation).",
+      "tags": [
+        "modulation",
+        "digital-modes"
+      ]
+    },
+    "T8A03": {
+      "explanation": "SSB concentrates all RF power into a narrow 3 kHz slice without FM's noise-threshold drop-off, enabling weak VHF and UHF voice signals to reach hundreds of miles.",
+      "tags": [
+        "modulation",
+        "bandwidth"
+      ]
+    },
+    "T8A04": {
+      "explanation": "Analog VHF and UHF voice repeaters standardize on FM or PM because constant-envelope modulation delivers quiet squelch operation, crisp local audio, and consistent volume.",
+      "tags": [
+        "modulation"
+      ]
+    },
+    "T8A05": {
+      "explanation": "CW (Morse code) simply switches a pure carrier on and off, needing only about 150 Hz—roughly 20 times narrower than SSB voice (3 kHz) and up to 100 times narrower than FM!",
+      "tags": [
+        "bandwidth",
+        "modulation"
+      ]
+    },
+    "T8A06": {
+      "explanation": "By amateur convention, Upper Sideband (USB) is always used for SSB voice on 10 meters and all VHF/UHF bands (Lower Sideband is used only on 160m, 80m, and 40m).",
+      "tags": [
+        "modulation"
+      ]
+    },
+    "T8A07": {
+      "explanation": "SSB occupies much narrower bandwidth (~3 kHz) than FM (~10–15 kHz), letting far more stations fit in a band while boosting weak-signal range.",
+      "tags": [
+        "modulation",
+        "bandwidth"
+      ]
+    },
+    "T8A08": {
+      "explanation": "Intelligible speech audio spans roughly 300 to 3,000 Hz, so transmitting a single voice sideband takes right around 3 kHz of RF bandwidth.",
+      "tags": [
+        "bandwidth",
+        "modulation"
+      ]
+    },
+    "T8A09": {
+      "explanation": "Standard 5 kHz-deviation amateur FM voice occupies between 10 and 15 kHz on VHF repeaters—much narrower than the 150+ kHz used by commercial FM broadcast stations.",
+      "tags": [
+        "bandwidth",
+        "modulation"
+      ]
+    },
+    "T8A10": {
+      "explanation": "Full-motion analog video packs huge amounts of picture detail per second, requiring about 6 MHz of bandwidth—wider than the entire 4 MHz-wide 2-meter ham band!",
+      "tags": [
+        "bandwidth",
+        "modulation"
+      ]
+    },
+    "T8A11": {
+      "explanation": "Keying a Morse code (CW) carrier at normal operating speeds requires only about 150 Hz of bandwidth, making it the narrowest traditional mode on the Technician exam.",
+      "tags": [
+        "bandwidth",
+        "modulation"
+      ]
+    },
+    "T8A12": {
+      "explanation": "Because of FM's capture effect, the strongest station locks onto the detector and suppresses weaker ones, so only one signal can be received at a time (unlike SSB, where overlapping voices remain audible).",
+      "tags": [
+        "modulation"
+      ]
+    },
+    "T8B01": {
+      "explanation": "Satellite beacons transmit onboard telemetry reporting the spacecraft's health and status, including battery voltage, solar charging current, and internal temperatures.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B02": {
+      "explanation": "Running excessive uplink power hogs the satellite's limited transponder wattage and triggers automatic gain limiting, blocking access by other users trying to share the pass.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B03": {
+      "explanation": "Satellite tracking programs compute real-time ground-track maps, pass start/peak/end times with azimuth and elevation angles, and live Doppler-shifted frequencies.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B04": {
+      "explanation": "Amateur satellites carry FM voice repeaters, linear transponders for SSB and CW, and packet/telemetry data modems—so all of these modes are widely used in orbit.",
+      "tags": [
+        "satellites",
+        "modulation"
+      ]
+    },
+    "T8B05": {
+      "explanation": "A satellite beacon is a continuous or periodic RF transmission sent by the satellite itself so ground stations can locate it, judge propagation, and read status telemetry.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B06": {
+      "explanation": "Keplerian elements ('Keps') are the standardized set of orbital numbers describing a satellite's ellipse and timing; tracking software loads fresh Keps to predict passes.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B07": {
+      "explanation": "Just as a siren pitches higher approaching and lower receding, Doppler shift raises a satellite's apparent frequency as it speeds toward your station and lowers it moving away.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B08": {
+      "explanation": "Satellite mode letters always list Uplink / Downlink in order: U/V means UHF (70 cm) going up from your transmitter and VHF (2 m) coming back down to your receiver.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B09": {
+      "explanation": "As a satellite rotates in space, its antenna polarization continuously turns relative to your Earth station antenna, creating rhythmic signal peaks and fades called spin fading.",
+      "tags": [
+        "satellites",
+        "antennas"
+      ]
+    },
+    "T8B10": {
+      "explanation": "LEO stands for Low Earth Orbit (a few hundred miles up), where satellites circle Earth once every ~100 minutes and sweep overhead in brisk 10-to-15-minute passes.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B11": {
+      "explanation": "Anyone may receive and decode amateur satellite telemetry—no license is ever needed to listen to amateur radio signals, and public open telemetry is never encrypted.",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8B12": {
+      "explanation": "Listen to your own full-duplex downlink while transmitting: set your uplink power so your returned signal matches the strength of the satellite's beacon—never louder!",
+      "tags": [
+        "satellites"
+      ]
+    },
+    "T8C01": {
+      "explanation": "Radio direction finding (RDF) uses directional antennas and signal readings from multiple spots to triangulate hidden transmitters, noisy power-line insulators, or jammers.",
+      "tags": [
+        "operating-activities",
+        "troubleshooting"
+      ]
+    },
+    "T8C02": {
+      "explanation": "Sweeping a directional antenna (such as a handheld Yagi) reveals sharp signal peaks and nulls, pointing you along the compass bearing toward the hidden 'fox' transmitter.",
+      "tags": [
+        "operating-activities",
+        "antennas"
+      ]
+    },
+    "T8C03": {
+      "explanation": "Contesting (radiosport) challenges operators to log as many verified station contacts and geographic multipliers as possible within a fixed time window.",
+      "tags": [
+        "operating-activities"
+      ]
+    },
+    "T8C04": {
+      "explanation": "In a fast-moving contest, send only the minimum required info—your complete call sign (never just the last two letters!) and the contest exchange—without extra filler.",
+      "tags": [
+        "operating-activities"
+      ]
+    },
+    "T8C05": {
+      "explanation": "A Maidenhead grid locator (such as FN31 or DM79) is a letter-number code designating a latitude/longitude map square on Earth, commonly exchanged in VHF contests and FT8.",
+      "tags": [
+        "operating-activities"
+      ]
+    },
+    "T8C06": {
+      "explanation": "You dial up or disconnect an IRLP repeater link over the air by sending numeric DTMF (Dual-Tone Multi-Frequency) touch-tones from your radio's keypad.",
+      "tags": [
+        "operating-activities"
+      ]
+    },
+    "T8C07": {
+      "explanation": "Voice Over Internet Protocol (VoIP) turns spoken audio into digital packets delivered over the internet, forming the backbone of EchoLink, IRLP, and AllStar repeater linking.",
+      "tags": [
+        "operating-activities",
+        "digital-modes"
+      ]
+    },
+    "T8C08": {
+      "explanation": "The Internet Radio Linking Project (IRLP) uses dedicated VoIP nodes to connect amateur repeaters and simplex link radios across cities and countries via the internet.",
+      "tags": [
+        "operating-activities"
+      ]
+    },
+    "T8C09": {
+      "explanation": "Unlike IRLP (which requires RF radios on both ends), EchoLink lets licensed hams connect directly from a smartphone or computer app and transmit out through linked repeaters.",
+      "tags": [
+        "operating-activities",
+        "digital-modes"
+      ]
+    },
+    "T8C10": {
+      "explanation": "Because EchoLink lets a computer or phone key real RF transmitters on amateur bands, you must first register your call sign and submit proof of your amateur license.",
+      "tags": [
+        "operating-activities"
+      ]
+    },
+    "T8C11": {
+      "explanation": "A gateway is an amateur station that bridges over-the-air RF signals to and from the internet (such as an APRS IGate, Winlink gateway, or VoIP repeater link).",
+      "tags": [
+        "operating-activities",
+        "digital-modes"
+      ]
+    },
+    "T8D01": {
+      "explanation": "Packet radio (AX.25 frames), IEEE 802.11 (Wi-Fi protocols adapted for ham mesh networks), and FT8 (weak-signal HF/VHF data) are all digital communications modes.",
+      "tags": [
+        "digital-modes"
+      ]
+    },
+    "T8D02": {
+      "explanation": "FT8 is a popular 15-second narrowband digital mode in WSJT-X with strong forward error correction capable of decoding signals at very low signal-to-noise levels well below human hearing.",
+      "tags": [
+        "digital-modes"
+      ]
+    },
+    "T8D03": {
+      "explanation": "The Automatic Packet Reporting System (APRS) transmits GPS position coordinates, short text messages, and live weather station data that plot directly onto shared maps.",
+      "tags": [
+        "digital-modes",
+        "operating-activities"
+      ]
+    },
+    "T8D04": {
+      "explanation": "NTSC is the classic North American analog fast-scan color TV standard (~6 MHz wide), still used for amateur television (ATV) transmissions on UHF and microwave bands.",
+      "tags": [
+        "modulation"
+      ]
+    },
+    "T8D05": {
+      "explanation": "APRS shines during public-service events and emergencies by combining real-time tactical digital messaging with live station-tracking maps.",
+      "tags": [
+        "digital-modes",
+        "operating-activities"
+      ]
+    },
+    "T8D06": {
+      "explanation": "PSK stands for Phase Shift Keying, which encodes digital 1s and 0s by shifting the phase of an RF carrier wave (famously used in keyboard-to-keyboard PSK31).",
+      "tags": [
+        "digital-modes",
+        "modulation"
+      ]
+    },
+    "T8D07": {
+      "explanation": "DMR (Digital Mobile Radio) uses two alternating TDMA time slots to carry two independent digital voice signals simultaneously on a single 12.5 kHz repeater channel.",
+      "tags": [
+        "digital-modes",
+        "bandwidth"
+      ]
+    },
+    "T8D08": {
+      "explanation": "Packet radio frames include an address header with station call signs, a checksum to catch corrupted bits, and automatic repeat request (ARQ) support so bad packets get resent.",
+      "tags": [
+        "digital-modes"
+      ]
+    },
+    "T8D09": {
+      "explanation": "CW (Continuous Wave) is another name for Morse code—transmitting dits and dahs by switching a steady unmodulated RF carrier on and off.",
+      "tags": [
+        "modulation",
+        "digital-modes"
+      ]
+    },
+    "T8D10": {
+      "explanation": "The WSJT-X software suite provides specialized weak-signal digital modes designed for Earth-Moon-Earth (moonbounce), meteor scatter, and propagation beacons (WSPR), plus FT8.",
+      "tags": [
+        "digital-modes",
+        "operating-activities"
+      ]
+    },
+    "T8D11": {
+      "explanation": "ARQ (Automatic Repeat Request) ensures clean delivery: the receiving station checks each incoming block for errors and automatically requests retransmission if bits are corrupted.",
+      "tags": [
+        "digital-modes"
+      ]
+    },
+    "T8D12": {
+      "explanation": "Amateur mesh networks load custom ham firmware (such as AREDN) onto commercial Wi-Fi equipment to form high-speed, self-healing data networks on amateur microwave bands.",
+      "tags": [
+        "digital-modes"
+      ]
+    },
+    "T9A01": {
+      "explanation": "Like a flashlight reflector, a beam antenna (such as a Yagi or dish) concentrates transmitted and received signals in one preferred direction, increasing gain and cutting side noise.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A02": {
+      "explanation": "Inserting series inductors (loading coils) into a physically compact whip or dipole electrically lengthens the element so it can resonate on lower frequency bands.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A03": {
+      "explanation": "Antenna polarization is always defined by the orientation of its electric field: a vertical whip creates a vertical electric field (vertical polarization), while a horizontal wire is horizontally polarized.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A04": {
+      "explanation": "Winding an antenna into a stubby flexible 'rubber duck' makes a handheld compact, but its shrunken radiating length results in low efficiency compared to a full-sized quarter-wave whip.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A05": {
+      "explanation": "Frequency and wavelength move in opposite directions—higher frequencies have shorter wavelengths, so physically shortening a dipole increases its resonant frequency.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A06": {
+      "explanation": "While verticals and J-poles spread RF omnidirectionally around the horizon, a multi-element Yagi beam focuses energy forward into one tight lobe, giving the greatest gain of the choices.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A07": {
+      "explanation": "A metal vehicle body acts like a partial Faraday cage that shields and weakens VHF signals inside the cabin; mounting an external antenna on the roof dramatically extends range.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A08": {
+      "explanation": "Divide a 2-meter wavelength (~78 inches) by 4 and you get ~19 inches (2 m / 4 = 0.5 m, trimmed slightly for wire end-effects)—making a 19-inch whip a naturally resonant quarter-wave!",
+      "tags": [
+        "antennas",
+        "math"
+      ]
+    },
+    "T9A09": {
+      "explanation": "Compared to a 1/4-wave whip, a taller 5/8-wavelength vertical compresses more of its radiated energy down toward the horizon instead of high into the sky, delivering more gain.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A10": {
+      "explanation": "A half-wave dipole radiates in a figure-8 pattern with its strongest signal broadside (perpendicular) to the wire and deep nulls straight off both ends.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9A11": {
+      "explanation": "Passive antennas never manufacture extra wattage; antenna gain measures the increase in signal strength in a specified direction by focusing RF energy, compared to a reference antenna.",
+      "tags": [
+        "antennas"
+      ]
+    },
+    "T9B01": {
+      "explanation": "Rain and condensation eventually work into PL-259, BNC, and even gasketed Type N joints outdoors, so all outdoor coax connectors should be carefully taped for weather protection.",
+      "tags": [
+        "connectors",
+        "feed-lines"
+      ]
+    },
+    "T9B02": {
+      "explanation": "Virtually all amateur radio transmitters, SWR meters, dummy loads, and coaxial cables standardize on 50 ohms impedance (unlike 75-ohm home television coax).",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T9B03": {
+      "explanation": "Coaxial cable confines RF fields inside its braided outer shield so you can tape it to metal masts, route it against walls, or coil slack—making it easy to use with few special installation rules.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T9B04": {
+      "explanation": "An antenna tuner (coupler) transforms the impedance seen at the shack end of the antenna system to match the transceiver's 50-ohm output impedance so the rig delivers full power safely.",
+      "tags": [
+        "antennas",
+        "feed-lines",
+        "swr"
+      ]
+    },
+    "T9B05": {
+      "explanation": "Because RF skin effect and dielectric heating grow worse at higher frequencies, attenuation (loss) in any coaxial cable always increases as signal frequency goes up.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T9B06": {
+      "explanation": "Type N connectors maintain a constant 50-ohm impedance and low loss well above 400 MHz into the microwave bands, whereas PL-259 connectors introduce impedance bumps at UHF.",
+      "tags": [
+        "connectors",
+        "feed-lines"
+      ]
+    },
+    "T9B07": {
+      "explanation": "Despite its vintage 1930s 'UHF connector' nickname, the screw-on PL-259 is neither watertight nor microwave-grade—it is the everyday workhorse coax plug for HF and VHF gear.",
+      "tags": [
+        "connectors",
+        "feed-lines"
+      ]
+    },
+    "T9B08": {
+      "explanation": "Water intrusion ruins cable insulation, high SWR bounces energy back and forth through lossy coax, and multiple inline connectors each add insertion loss—all three waste RF power.",
+      "tags": [
+        "feed-lines",
+        "swr",
+        "connectors"
+      ]
+    },
+    "T9B09": {
+      "explanation": "When SWR jumps erratically as the wind shakes the antenna or you wiggle a jumper cable, suspect an intermittent loose connection in the antenna elements or feed line connectors.",
+      "tags": [
+        "swr",
+        "troubleshooting",
+        "feed-lines"
+      ]
+    },
+    "T9B10": {
+      "explanation": "Both are 50-ohm flexible coax, but thicker RG-213 (~0.40 inch diameter) uses much larger copper conductors than thin RG-58 (~0.20 inch), giving RG-213 less loss at any given frequency.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T9B11": {
+      "explanation": "Air-insulated hardline uses rigid or semi-rigid metal tubing separated mostly by air dielectric, achieving the lowest RF loss—far lower than flexible 50-ohm or 75-ohm coax.",
+      "tags": [
+        "feed-lines"
+      ]
+    },
+    "T9B12": {
+      "explanation": "Standing Wave Ratio (SWR) compares forward and reflected waves to measure how well a load (your antenna) is matched to the characteristic impedance of the transmission line.",
+      "tags": [
+        "swr",
+        "feed-lines"
+      ]
+    }
+  },
+  "briefings": {
+    "T7A": {
+      "group": "T7A",
+      "title": "Inside Your Radio: Transceivers, Mixers & Amplifiers",
+      "subtitle": "How core radio stages generate, tune, shift, and boost RF signals.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Receivers vs. Transceivers",
+          "body": "A **transceiver** combines a transmitter and receiver in one box, using a **Variable Frequency Oscillator (VFO)** knob to set both your transmit and receive frequency. Two classic exam specs describe how well the receiver hears.",
+          "bullets": [
+            "**Sensitivity:** Ability to detect faint, weak signals (think 'sensitive ears')",
+            "**Selectivity:** Ability to **discriminate between multiple signals** and reject strong neighbors",
+            "**PTT (Push-To-Talk):** Switches the rig from receive to transmit **when grounded**"
+          ]
+        },
+        {
+          "heading": "Oscillators, Mixers & Modulation",
+          "body": "Inside the radio, dedicated stages generate steady waves, shift signals between frequencies, and put your voice onto the RF carrier.",
+          "bullets": [
+            "**Oscillator:** Generates a signal at a **specific frequency**",
+            "**Mixer:** Converts a signal from **one frequency to another**",
+            "**Modulation:** Combines speech or data with an **RF carrier signal**"
+          ]
+        },
+        {
+          "heading": "Boosting Power & Shifting Bands",
+          "body": "External accessories can either boost a low-power rig's wattage or convert an existing transceiver to operate on a completely different band.",
+          "bullets": [
+            "**RF power amplifier:** Connects to a transceiver's output to **increase transmitted power**",
+            "**SSB vs. CW-FM switch:** Sets a VHF power amplifier for **proper operation in the selected mode**",
+            "**Transverter:** Converts a transceiver's RF input and output to **another band**"
+          ]
+        }
+      ]
+    },
+    "T7B": {
+      "group": "T7B",
+      "title": "Troubleshooting Audio, SWR & Interference (RFI)",
+      "subtitle": "Fixing distorted transmissions, RF feedback, and neighbor TV or radio interference.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Clean Audio & Solid-State Foldback",
+          "body": "When other stations report clipped, garbled, or low-power signals, check your microphone habits, repeater tuning, and SWR first.",
+          "bullets": [
+            "**Over-deviating on FM:** Talk **farther away** from the microphone",
+            "**Distorted voice from RF feedback:** Add a **clip-on ferrite choke** to the microphone cable",
+            "**Distorted FM repeater audio:** Off frequency, speaking too loudly/closely, or bad location",
+            "**Low RF output power:** **High SWR** triggers solid-state protection foldback"
+          ]
+        },
+        {
+          "heading": "Curing Radio Frequency Interference (RFI)",
+          "body": "RFI can come from **fundamental overload**, **harmonics**, or **spurious emissions**. Often your transmitter is completely clean and the affected receiver simply lacks input filtering.",
+          "bullets": [
+            "**AM/FM broadcast radio hears you:** Receiver **cannot reject strong signals** outside its band",
+            "**Overloaded non-amateur OTA receiver:** Put a **filter at the antenna input** of the affected receiver",
+            "**Nearby commercial FM overloading 2m rig:** Install a **band-reject filter**",
+            "**Non-fiber cable TV interference:** First ensure all **TV coax connectors** are installed properly"
+          ]
+        },
+        {
+          "heading": "Working With Neighbors",
+          "body": "Good amateur practice always begins in your own shack—verify your equipment first and stay friendly and cooperative.",
+          "bullets": [
+            "**Neighbor reports interference:** Check your own station first and test **your own radio/TV** on the same channel",
+            "**Neighbor's device interferes with you:** Verify your station standards, politely share FCC interference rules, and work together to locate the offending device"
+          ]
+        }
+      ]
+    },
+    "T7C": {
+      "group": "T7C",
+      "title": "Dummy Loads, SWR Readings & Coax Care",
+      "subtitle": "Testing off the air, interpreting Standing Wave Ratio, and preventing cable failure.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Off-Air Testing & Resonance Tools",
+          "body": "Dummy loads let you test transmitters silently without radiating a signal, while antenna analyzers find where an antenna is resonant without full-power transmissions.",
+          "bullets": [
+            "**Dummy load purpose:** Prevents **transmitting signals over the air** when making tests",
+            "**Dummy load construction:** A `50-ohm` **non-inductive resistor** mounted on a heat sink",
+            "**Antenna analyzer:** Determines if an antenna is **resonant** at the desired operating frequency"
+          ]
+        },
+        {
+          "heading": "SWR Numbers & Transmitter Protection",
+          "body": "Measured with a **directional wattmeter**, Standing Wave Ratio (SWR) tells you how cleanly RF energy transfers from feed line into the antenna.",
+          "bullets": [
+            "**`1:1` SWR:** Indicates a **perfect impedance match** between antenna and feed line",
+            "**`4:1` SWR:** Indicates a significant **impedance mismatch**",
+            "**Power foldback at high SWR:** Protects the **RF output amplifier transistors** from damage"
+          ]
+        },
+        {
+          "heading": "Feed-Line Heat Loss & Weather Protection",
+          "body": "Any RF power lost in a feed line is **converted directly into heat**. Protecting outdoor coax from sun and rain keeps losses low for years.",
+          "bullets": [
+            "**#1 cause of coax failure:** **Moisture contamination** inside the cable",
+            "**UV-resistant outer jacket:** Prevents sunlight from cracking the jacket and letting **water enter**",
+            "**Foam vs. solid dielectric coax:** Foam dielectric has **less loss per foot**"
+          ]
+        }
+      ]
+    },
+    "T7D": {
+      "group": "T7D",
+      "title": "Multimeters, Circuit Testing & Soldering",
+      "subtitle": "Connecting voltmeters, ammeters, and ohmmeters safely—plus spotting cold solder joints.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Voltmeter vs. Ammeter Connections",
+          "body": "A standard **multimeter** measures **voltage and resistance** (plus current). Always match your probe wiring to the quantity you're measuring.",
+          "bullets": [
+            "**Voltmeter:** Measures **electric potential** and connects **in parallel** across the component",
+            "**Ammeter:** Measures **electric current** and connects **in series** with the circuit path"
+          ]
+        },
+        {
+          "heading": "Ohmmeter Precautions & Capacitor Checks",
+          "body": "An **ohmmeter** applies a **small current and measures the resulting voltage** (`R = E / I`). Because it uses its own internal battery, live circuit voltage can destroy it.",
+          "bullets": [
+            "**First rule of ohmmeters:** Ensure the **circuit is NOT powered** before measuring resistance",
+            "**Multimeter damage trap:** Attempting to measure **voltage while on the resistance setting**",
+            "**Large discharged capacitor:** Ohmmeter shows **increasing resistance with time** as it charges"
+          ]
+        },
+        {
+          "heading": "Electronics Soldering Essentials",
+          "body": "Clean electronic joints require rosin-core or no-clean solder and enough heat for solder to wet both surfaces smoothly.",
+          "bullets": [
+            "**Never use acid-core solder:** Corrosive plumbing acid ruins electronic leads and traces",
+            "**Cold tin-lead solder joint:** Appears dull with a **rough or lumpy surface**"
+          ]
+        }
+      ]
+    },
+    "T8A": {
+      "group": "T8A",
+      "title": "Modulation Modes & Signal Bandwidths",
+      "subtitle": "Picking CW, SSB, FM, or TV for the job—and memorizing the 4 exam bandwidth anchors.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Matching the Mode: FM vs. SSB",
+          "body": "**Single Sideband (SSB)** is a form of **amplitude modulation (AM)**. On VHF and UHF, operators use **FM or PM** for local repeaters/packet and **SSB** for weak-signal DX.",
+          "bullets": [
+            "**FM or PM:** Standard for **VHF/UHF voice repeaters** and **VHF packet radio**",
+            "**SSB:** Preferred voice mode for **long-distance (weak-signal) VHF/UHF** contacts",
+            "**Upper Sideband (USB):** Always used for `10m` HF, VHF, and UHF SSB communications",
+            "**FM drawback vs. SSB:** Capture effect means **only one signal can be received at a time**"
+          ]
+        },
+        {
+          "heading": "The 4 Exam Bandwidths (Narrowest to Widest)",
+          "body": "Memorize these four bandwidth numbers in order from razor-thin Morse code up to wide analog television!",
+          "bullets": [
+            "**CW (Morse code):** **`150 Hz`** — the **narrowest** bandwidth of all",
+            "**SSB voice:** **`3 kHz`** — much **narrower bandwidth** than FM",
+            "**VHF repeater FM voice:** **Between `10 and 15 kHz`**",
+            "**AM fast-scan TV:** **About `6 MHz`**"
+          ]
+        }
+      ]
+    },
+    "T8B": {
+      "group": "T8B",
+      "title": "Talking Through Space: Amateur Satellites",
+      "subtitle": "LEO orbits, U/V bands, Doppler shift, beacons, and polite uplink power.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "LEO Orbits, Tracking & Signal Physics",
+          "body": "Most ham satellites orbit in **LEO (Low Earth Orbit)** with a period of **around `100 minutes`**. Tracking programs load **Keplerian elements** to predict passes.",
+          "bullets": [
+            "**Tracking apps display:** Live maps, pass times/azimuth/elevation, and **Doppler shift**",
+            "**Doppler shift:** Observed frequency shift from **relative motion** between satellite and Earth",
+            "**Spin fading:** Rhythmic fading caused by **rotation of the satellite and its antennas**"
+          ]
+        },
+        {
+          "heading": "Modes, U/V Bands & Beacons",
+          "body": "Amateur satellites use **SSB, FM, and CW/data**, and **anyone** is permitted to receive their unencrypted telemetry and **beacons**.",
+          "bullets": [
+            "**U/V mode (`Uplink / Downlink`):** **`70 cm` (UHF) uplink** and **`2 m` (VHF) downlink**",
+            "**Satellite beacon:** Transmission from the satellite containing **health and status** telemetry"
+          ]
+        },
+        {
+          "heading": "Polite Satellite Uplink Power",
+          "body": "Spacecraft transponders share limited solar power across everyone on the pass—never overpower the bird!",
+          "bullets": [
+            "**Excessive uplink ERP:** Hogs transponder power and **blocks access by other users**",
+            "**Linear transponder check:** Adjust uplink power until your downlink matches **beacon strength**"
+          ]
+        }
+      ]
+    },
+    "T8C": {
+      "group": "T8C",
+      "title": "On-Air Activities: Foxhunts, Contests & VoIP",
+      "subtitle": "Direction finding, radiosport exchanges, grid locators, IRLP, and EchoLink.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Direction Finding, Contests & Grid Squares",
+          "body": "Popular ham activities include hunting hidden transmitters, racing the clock in contests, and collecting geographic grid squares.",
+          "bullets": [
+            "**Radio direction finding (RDF):** Locates noise interference, jamming, or hidden 'fox' transmitters using a **directional antenna**",
+            "**Contesting:** Contacting maximum stations in a set period—send **only the minimum info** needed for ID and the exchange",
+            "**Grid locator:** A **letter-number designator** (like `FN31`) assigned to a geographic location"
+          ]
+        },
+        {
+          "heading": "Internet Linking: VoIP, IRLP & EchoLink",
+          "body": "**VoIP (Voice Over Internet Protocol)** delivers voice digitally over the internet, while a **gateway** links over-the-air ham stations to the internet.",
+          "bullets": [
+            "**IRLP:** Connects repeaters over the internet; accessed over the air using **DTMF** tones",
+            "**EchoLink:** Lets you transmit through a repeater **without using a radio** (via PC/phone) once you **register your call sign and provide proof of license**"
+          ]
+        }
+      ]
+    },
+    "T8D": {
+      "group": "T8D",
+      "title": "Digital Modes: FT8, APRS, DMR, Packet & Mesh",
+      "subtitle": "Weak-signal WSJT-X modes, live APRS maps, error-checked packets, and digital voice.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Weak-Signal & Keyboard Modes (WSJT-X, PSK, CW)",
+          "body": "Digital modes span from classic **CW** (another name for **Morse code**) and **PSK (Phase Shift Keying)** to ultra-sensitive computer-decoded protocols.",
+          "bullets": [
+            "**FT8:** Digital mode capable of **low signal-to-noise** operation deep in the noise",
+            "**WSJT-X suite supports:** **Earth-Moon-Earth**, **meteor scatter**, and **weak-signal beacons**"
+          ]
+        },
+        {
+          "heading": "Packet Radio, ARQ & APRS Mapping",
+          "body": "**Packet radio**, **FT8**, and **IEEE 802.11** are all digital modes. Connected packet links verify every frame automatically.",
+          "bullets": [
+            "**Packet transmissions include:** Call-sign **header**, error **checksum**, and **ARQ**",
+            "**ARQ:** Receiving station detects errors and **sends a request for retransmission**",
+            "**APRS transmits:** **GPS position data, text messages, and weather data** for live tactical maps"
+          ]
+        },
+        {
+          "heading": "DMR, Wi-Fi Mesh & Analog TV",
+          "body": "VHF, UHF, and microwave ham bands also support dual-slot digital repeaters, high-speed IP mesh backbones, and fast-scan video.",
+          "bullets": [
+            "**DMR:** Time-multiplexes **two digital voice signals** on a single `12.5 kHz` repeater channel",
+            "**Mesh network:** Amateur data network using **commercial Wi-Fi gear with modified firmware**",
+            "**NTSC:** Standard **analog fast-scan color TV** signal"
+          ]
+        }
+      ]
+    },
+    "T9A": {
+      "group": "T9A",
+      "title": "Antennas: Wavelength, Gain, Polarization & Beams",
+      "subtitle": "How physical length, loading coils, orientation, and beam elements shape your signal.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "Resonance, Wavelength & Loading",
+          "body": "Antenna size and frequency move inversely: shorter wires resonate at higher frequencies. Compact antennas trade away efficiency or add coils.",
+          "bullets": [
+            "**Increase a dipole's resonant frequency:** **Shorten it**",
+            "**`19-inch` vertical on `2 meters`:** Popular because it is a **resonant quarter-wave** (`2 m / 4 ≈ 19 in`)",
+            "**Antenna loading:** Electrically lengthening an antenna by **inserting inductors** in elements",
+            "**Handheld rubber-duck drawbacks:** **Low efficiency**; inside a car, vehicle metal **shields** signals"
+          ]
+        },
+        {
+          "heading": "Polarization, Radiation Patterns & Gain",
+          "body": "**Antenna gain** is the increase in signal strength **in a specified direction** compared to a reference antenna.",
+          "bullets": [
+            "**Polarization:** Defined by the orientation of the **electric field**",
+            "**Half-wave dipole:** Radiates strongest **broadside** to the antenna",
+            "**Beam antenna:** Concentrates signals in one direction; a **Yagi** offers the **greatest gain**",
+            "**`5/8-wave` vs. `1/4-wave` mobile whip:** `5/8-wave` has **more gain**"
+          ]
+        }
+      ]
+    },
+    "T9B": {
+      "group": "T9B",
+      "title": "Feed Lines, Coax Connectors, SWR & Tuners",
+      "subtitle": "50-ohm coax choices, HF vs. UHF connectors, weather sealing, and impedance matching.",
+      "aid": null,
+      "cards": [
+        {
+          "heading": "50-Ohm Coax & Frequency Loss",
+          "body": "Most ham coax is **`50 ohms`** and is used everywhere because it is **easy to use and requires few special installation considerations**. As frequency increases, coax **loss always increases**.",
+          "bullets": [
+            "**Lowest-loss feed line:** **Air-insulated hardline**",
+            "**RG-213 vs. RG-58:** Thicker **RG-213 has less loss** at a given frequency",
+            "**Coax loss sources:** Water intrusion in connectors, high SWR, and multiple connectors"
+          ]
+        },
+        {
+          "heading": "RF Connectors & Outdoor Sealing",
+          "body": "Choose RF connectors rated for your operating frequency, and weatherproof every outdoor joint against moisture.",
+          "bullets": [
+            "**PL-259:** Commonly used at **HF and VHF frequencies** (NOT watertight)",
+            "**Type N:** Most suitable RF connector for frequencies **above `400 MHz`**",
+            "**Outdoor weather protection:** Carefully tape **ALL connectors** (PL-259, BNC, and Type N)"
+          ]
+        },
+        {
+          "heading": "SWR & Antenna Tuners",
+          "body": "**Standing Wave Ratio (SWR)** measures **how well a load is matched to a transmission line**.",
+          "bullets": [
+            "**Antenna tuner (coupler):** Matches the **antenna system impedance** to the transceiver's `50-ohm` output impedance",
+            "**Erratic SWR changes:** Caused by a **loose connection** in the antenna or feed line"
+          ]
+        }
+      ]
+    }
+  }
+}
