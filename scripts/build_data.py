@@ -64,7 +64,7 @@ CAMPAIGN = [
         "chapter": 5,
         "title": "Basic Electronics & Ohm's Law",
         "subelement": "T5",
-        "focus": "Voltage, current, resistance, metric prefixes, dB, Ohm's Law & Power math puzzles.",
+        "focus": "Voltage, current, resistance, metric prefixes, dB, Ohm's Law & Power calculations.",
         "groups": ["T5A", "T5B", "T5C", "T5D"],
         "bossAfter": None,
     },

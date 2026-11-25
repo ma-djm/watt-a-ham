@@ -17,8 +17,8 @@
 <body>
   <!-- Persistent App Shell -->
   <div id="app-shell" class="app-shell">
-    <!-- Sticky Nightly Telemetry Header -->
-    <header class="top-bar" aria-label="Study readiness and nightly goals">
+    <!-- Sticky Study Telemetry Header -->
+    <header class="top-bar" aria-label="Study readiness and daily progress">
       <div class="top-bar-inner">
         <div class="brand-cluster">
           <img src="./icon.svg" alt="" width="34" height="34" class="brand-logo" aria-hidden="true">
@@ -35,14 +35,14 @@
             <span class="chip-unit">d</span>
           </button>
 
-          <button type="button" id="goal-pill" class="goal-ring-btn" aria-label="Nightly 30-minute session goal details">
+          <button type="button" id="goal-pill" class="goal-ring-btn" aria-label="Today's study activity">
             <div class="progress-ring-wrapper">
-              <progress id="nightly-progress" value="0" max="100" aria-label="Nightly 30-minute study goal" aria-valuetext="0 of 30 minutes" class="progress-ring"></progress>
-              <div id="nightly-ring-label" class="progress-ring-content" aria-hidden="true">0m</div>
+              <progress id="daily-progress" value="0" max="100" aria-label="Daily study pace (30-minute ring)" aria-valuetext="0 minutes studied today" class="progress-ring"></progress>
+              <div id="daily-ring-label" class="progress-ring-content" aria-hidden="true">0m</div>
             </div>
             <div class="goal-meta">
-              <span class="goal-heading">Tonight</span>
-              <span id="goal-nodes-label" class="goal-sub">0/2 nodes</span>
+              <span class="goal-heading">Today</span>
+              <span id="goal-nodes-label" class="goal-sub">0 nodes</span>
             </div>
           </button>
         </div>
@@ -142,7 +142,7 @@
     </div>
   </dialog>
 
-  <!-- Native Modal Dialog: Confirmations & Nightly Goal Summary -->
+  <!-- Native Modal Dialog: Confirmations & Activity Summary -->
   <dialog id="confirm-dialog" closedby="any" aria-labelledby="confirm-dialog-title">
     <div class="dialog-card">
       <h2 id="confirm-dialog-title" class="dialog-title">Confirm</h2>

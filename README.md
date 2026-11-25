@@ -2,9 +2,9 @@
 
 **Live App:** [https://ma-djm.github.io/watt-a-ham/](https://ma-djm.github.io/watt-a-ham/)
 
-**Watt a Ham** is a zero-build, offline-capable Progressive Web App (PWA) designed to help you pass the **2026–2030 US FCC Technician Class (Element 2) Amateur Radio Exam** in **12 to 14 nights** (~30 minutes per night).
+**Watt a Ham** is a zero-build, offline-capable Progressive Web App (PWA) designed to help you pass the **2026–2030 US FCC Technician Class (Element 2) Amateur Radio Exam**—whether you're studying in short daily sessions or cramming over a weekend.
 
-Instead of dumping 409 random flashcards on Night 1, Watt a Ham organizes the official pool into a **35-node guided skill path**—starting with intuitive on-air operating and station setup, and weaving in electronics, propagation, schematics, and FCC Part 97 rules in bite-sized blocks.
+Instead of dumping 409 random flashcards on you all at once, Watt a Ham organizes the official pool into a **35-node guided skill path**—starting with intuitive on-air operating and station setup, and weaving in electronics, propagation, schematics, and FCC Part 97 rules in bite-sized blocks.
 
 ---
 
@@ -17,7 +17,7 @@ Instead of dumping 409 random flashcards on Night 1, Watt a Ham organizes the of
   3. **Node Challenge:** Positional-safe shuffled 4-choice quiz that loops missed questions at the end of the round until 100% cleared (`Gold`).
 - **Closed-Loop Practice Exams:**
   - **Official 35-Question Mock Exam:** True VEC simulation (1 random question per group, flagging, no mid-test hints, `26/35` pass) featuring **Smart Dual Scoring** mid-campaign (*Raw Score* + *Studied-Nodes Score*), Subelement breakdown, automatic `Cracked` node markers on missed Gold groups, and an immediate **Mistake Walkthrough**.
-  - **Progress Checkpoint Exam:** 1 question per unlocked/Gold group for quick end-of-night checks.
+  - **Progress Checkpoint Exam:** 1 question per unlocked/Gold group for quick mid-path retention checks without unseen chapters.
 - **Interactive Study Aids:**
   - **Visual Technician Band & Privilege Map** (`80m`, `40m`, `15m`, `10m`, `6m`, `2m`, `1.25m`, `70cm`).
   - **Interactive Ohm's Law, Power & Wavelength Sandbox** + 1-tap **33-Question Math & Conversion Drill**.

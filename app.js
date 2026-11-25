@@ -9,8 +9,7 @@
   }
 
   const STORAGE_KEY = 'ham_study_v1';
-  const GOAL_SECONDS = 30 * 60; // 30-minute nightly session ring
-  const GOAL_NODES = 2;
+  const GOAL_SECONDS = 30 * 60; // 30-minute daily pace ring (uncapped beyond 30m)
   const HESITATION_MS = 12000;
 
   // Lookup indexes
@@ -511,13 +510,14 @@
 
     const mins = Math.floor(state.streak.todaySeconds / 60);
     const ringPct = Math.min(100, Math.round((state.streak.todaySeconds / GOAL_SECONDS) * 100));
-    const prog = document.getElementById('nightly-progress');
+    const prog = document.getElementById('daily-progress');
     prog.setAttribute('value', String(ringPct));
     prog.style.setProperty('--value', String(ringPct));
-    prog.setAttribute('aria-valuetext', `${mins} of 30 minutes studied tonight`);
-    document.getElementById('nightly-ring-label').textContent = `${mins}m`;
+    prog.setAttribute('aria-valuetext', `${mins} minutes studied today`);
+    document.getElementById('daily-ring-label').textContent = `${mins}m`;
+    const nToday = state.streak.todayNodes || 0;
     document.getElementById('goal-nodes-label').textContent =
-      `${state.streak.todayNodes}/${GOAL_NODES} nodes`;
+      `${nToday} node${nToday === 1 ? '' : 's'}`;
 
     const navBadge = document.getElementById('cracked-nav-badge');
     if (crackedCount > 0) {
@@ -784,7 +784,7 @@
     const { goldCount, crackedCount } = computeOverallReadiness();
     const signalQueue = buildSignalCheckQueue();
 
-    // Nightly Signal Check Banner
+    // Signal Check & Welcome Banner
     if (signalQueue.length === 0) {
       const firstGroup = ORDERED_GROUPS[0];
       const firstBrief = DATA.briefings[firstGroup];
@@ -792,12 +792,12 @@
         <div class="signal-card">
           <div class="signal-top">
             <div>
-              <div class="signal-eyebrow">Night 1 · 12-to-14 Night Campaign</div>
+              <div class="signal-eyebrow">35-Node Guided Path · 2026–2030 Exam Pool</div>
               <h2 class="signal-title">Welcome to Watt a Ham</h2>
             </div>
           </div>
           <p class="signal-desc">
-            Swap 30 minutes of evening puzzles for 2–3 guided radio nodes per night. Start with intuitive repeater &amp; on-air operating first!
+            Master all 409 official FCC Technician questions at your own pace—knock out one 8-minute node whenever you have a spare moment, or power through multiple chapters in a sitting.
           </p>
           <button type="button" class="btn btn-primary btn-block" data-open-node="${escHtml(firstGroup)}" data-direct-start="1">
             Start Node 1: ${escHtml(firstGroup)} — ${escHtml(firstBrief ? firstBrief.title : 'Operating')}
@@ -805,26 +805,26 @@
         </div>
       `;
     } else {
-      const doneTonight = state.streak.todayReviewDone && crackedCount === 0;
+      const doneToday = state.streak.todayReviewDone && crackedCount === 0;
       signalSlot.innerHTML = `
         <div class="signal-card ${crackedCount > 0 ? 'has-cracks' : ''}">
           <div class="signal-top">
             <div>
               <div class="signal-eyebrow">
-                ${crackedCount > 0 ? `⚡ ${crackedCount} Cracked Node${crackedCount > 1 ? 's' : ''} Need Tune-Up` : doneTonight ? '✓ Signal Check Clear Tonight' : 'Nightly 3-Minute Warm-Up'}
+                ${crackedCount > 0 ? `⚡ ${crackedCount} Cracked Node${crackedCount > 1 ? 's' : ''} Need Tune-Up` : doneToday ? '✓ Warm-Up Complete Today' : 'Quick 3-Minute Warm-Up'}
               </div>
-              <h2 class="signal-title">Nightly "Signal Check" (${signalQueue.length} Qs)</h2>
+              <h2 class="signal-title">Signal Check Review (${signalQueue.length} Qs)</h2>
             </div>
           </div>
           <p class="signal-desc">
             ${crackedCount > 0
-              ? 'Targets missed exam/review questions first so cracked nodes turn solid Gold again.'
-              : doneTonight
-                ? 'Warm-up complete for tonight! You can still run an extra quick review anytime.'
-                : 'Quick 3-minute warm-up from nodes you have already studied—prioritizing tricky & hesitated questions.'}
+              ? 'Targets missed exam and review questions first so cracked nodes turn solid Gold again.'
+              : doneToday
+                ? 'You have already completed a Signal Check today—run another quick refresher anytime you like.'
+                : 'A fast refresher pulled from nodes you have already studied, prioritizing tricky and hesitated questions.'}
           </p>
-          <button type="button" class="btn ${crackedCount > 0 ? 'btn-gold' : doneTonight ? 'btn-secondary' : 'btn-primary'} btn-block" data-action="start-signal-check">
-            ${doneTonight ? 'Run Bonus Signal Check' : 'Start 3-Min Signal Check'}
+          <button type="button" class="btn ${crackedCount > 0 ? 'btn-gold' : doneToday ? 'btn-secondary' : 'btn-primary'} btn-block" data-action="start-signal-check">
+            ${doneToday ? 'Run Extra Signal Check' : 'Start 3-Min Signal Check'}
           </button>
         </div>
       `;
@@ -1077,7 +1077,7 @@
       <div class="panel-card">
         <div class="panel-header">
           <div>
-            <div class="panel-eyebrow">5–8 Minute End-of-Night Check</div>
+            <div class="panel-eyebrow">5–8 Minute Mid-Path Check</div>
             <h2 class="panel-title">Progress Checkpoint Exam</h2>
           </div>
           <span class="badge-pill">${checkpointPoolGroups.length} Qs</span>
@@ -1297,7 +1297,7 @@
         <div class="panel-eyebrow">Offline Storage &amp; Device Sync</div>
         <h2 class="panel-title" style="margin-bottom:0.35rem">1-Tap Progress Backup &amp; Settings</h2>
         <p class="panel-desc">
-          Progress saves automatically in <code>localStorage</code>. Copy this compact code to save a backup in Notes or move your streak between desktop and phone.
+          Progress saves automatically in <code>localStorage</code>. Copy this compact code to save a backup in Notes or move your progress between desktop and phone.
         </p>
         <label for="backup-code-box" style="font-size:0.78rem;font-weight:700;color:var(--text-secondary)">Backup / Restore Code (<code>HAM1:...</code>)</label>
         <textarea id="backup-code-box" class="backup-textarea" spellcheck="false">${escHtml(backupCode)}</textarea>
@@ -1828,8 +1828,8 @@
         </p>
         <div class="stat-grid" style="margin-bottom:0">
           <div class="stat-box">
-            <div class="stat-box-val">${state.streak.todayNodes}/${GOAL_NODES}</div>
-            <div class="stat-box-lbl">Tonight's Nodes</div>
+            <div class="stat-box-val">${state.streak.todayNodes}</div>
+            <div class="stat-box-lbl">Nodes Cleared Today</div>
           </div>
           <div class="stat-box">
             <div class="stat-box-val">${computeOverallReadiness().pct}%</div>
@@ -2114,7 +2114,7 @@
         ` : ''}
         ${newlyCracked.length > 0 ? `
           <p class="panel-desc" style="margin:0.65rem 0 0;color:var(--warning)">
-            ⚡ Marked <strong>${escHtml(newlyCracked.join(', '))}</strong> as <em>Cracked</em> on your Path so your next Nightly Signal Check targets those weak spots!
+            ⚡ Marked <strong>${escHtml(newlyCracked.join(', '))}</strong> as <em>Cracked</em> on your Path so your next Signal Check targets those weak spots!
           </p>
         ` : ''}
       </div>
@@ -2199,15 +2199,15 @@
       btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
 
-    // Header streak & goal summary pills
+    // Header streak & daily activity pills
     document.getElementById('streak-pill').addEventListener('click', () => {
       openConfirmDialog({
-        title: `🔥 ${state.streak.count}-Night Study Streak`,
+        title: `🔥 ${state.streak.count}-Day Study Streak`,
         html: `
-          <p>Longest streak: <strong>${state.streak.longest} night(s)</strong>.</p>
-          <p>Streaks roll over at <strong>3:00 AM local time</strong>, so late-night sessions after midnight always count toward tonight!</p>
+          <p>Longest streak: <strong>${state.streak.longest} day(s)</strong>.</p>
+          <p>Days roll over at <strong>3:00 AM local time</strong>, so studying past midnight still counts toward the same day.</p>
         `,
-        confirmLabel: 'Nice!',
+        confirmLabel: 'Got It',
         cancelLabel: ''
       });
     });
@@ -2215,11 +2215,12 @@
     document.getElementById('goal-pill').addEventListener('click', () => {
       const mins = Math.floor(state.streak.todaySeconds / 60);
       openConfirmDialog({
-        title: 'Tonight’s 30-Minute Session Goal',
+        title: 'Today’s Study Activity',
         html: `
-          <p>Active study time tonight: <strong>${mins} / 30 minutes</strong></p>
-          <p>New Gold nodes tonight: <strong>${state.streak.todayNodes} / ${GOAL_NODES} nodes</strong></p>
-          <p>Signal Check warm-up: <strong>${state.streak.todayReviewDone ? 'Completed ✓' : 'Pending'}</strong></p>
+          <p>Active study time today: <strong>${mins} min</strong> (ring fills at 30 min)</p>
+          <p>New Gold nodes cleared today: <strong>${state.streak.todayNodes || 0}</strong></p>
+          <p>Signal Check warm-up: <strong>${state.streak.todayReviewDone ? 'Completed ✓' : 'Available'}</strong></p>
+          <p style="font-size:0.82rem">Go at whatever pace fits your schedule—one quick node when you have a spare moment, or several chapters in a single cram session.</p>
         `,
         confirmLabel: 'Keep Going',
         cancelLabel: ''
@@ -2333,7 +2334,7 @@
 
       if (act === 'start-signal-check') {
         const qList = buildSignalCheckQueue();
-        startDrillSession({ mode: 'signal', title: 'Nightly Signal Check', questions: qList });
+        startDrillSession({ mode: 'signal', title: 'Signal Check Review', questions: qList });
       } else if (act === 'start-mock35') {
         startExamSession('mock35');
       } else if (act === 'start-checkpoint') {
@@ -2424,7 +2425,7 @@
           applyTheme();
           saveState();
           renderActiveTab();
-          showToast('Progress reset to Night 1.');
+          showToast('Study progress reset.');
         }
       }
     });
