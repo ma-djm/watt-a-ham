@@ -421,7 +421,7 @@
       ]
     },
     "T6B01": {
-      "explanation": "Forward voltage drop depends on the diode's semiconductor chemistry—for example, Schottky and germanium diodes drop ~0.2–0.3 V, silicon drops ~0.6–0.7 V, and LEDs drop ~1.8–3.3 V.",
+      "explanation": "Forward voltage drop depends on semiconductor material—some diode types drop ~0.3 V while standard silicon drops ~0.7 V and LEDs drop ~2 V.",
       "tags": [
         "semiconductors",
         "components"
@@ -712,7 +712,7 @@
       "cards": [
         {
           "heading": "Sliding the Decimal by 3 Places",
-          "body": "Radio units step in multiples of **1,000** (`10³`). Moving to a **smaller** unit makes the number **1,000× bigger** (shift decimal 3 places right); moving to a **larger** unit makes the number **1,000× smaller** (shift 3 places left).",
+          "body": "Radio prefixes step in clean jumps of **1,000** (3 decimal places)—moving to a smaller unit always makes the number 1,000× bigger.",
           "bullets": [
             "**kilo (`k`)** = `1,000` (`1 kV` = 1,000 V; `1,500,000 Hz` = `1500 kHz`)",
             "**milli (`m`)** = `1/1,000` (`1.5 A` = `1500 mA`; `3000 mA` = `3 A`; `500 mW` = `0.5 W`)",
@@ -722,7 +722,7 @@
         },
         {
           "heading": "Decibels Made Painless: Only Two Numbers to Know",
-          "body": "Decibels (`dB`) compare output power to input power logarithmically, so **multiplying power** turns into **adding dB**. Every Technician exam dB question uses just `2×` (`3 dB`) or `10×` (`10 dB`).",
+          "body": "Decibels (`dB`) turn power multiplication into simple addition—every Technician question uses just `2×` (`3 dB`) or `10×` (`10 dB`).",
           "bullets": [
             "**`+3 dB`** = **2× power** (`5 W → 10 W` is doubled, so **`3 dB`**)",
             "**`-3 dB`** = **½ power**; halving twice (`12 W → 6 W → 3 W`, or ¼ power) is `-3 dB + -3 dB` = **`-6 dB`**",
@@ -743,7 +743,7 @@
       "group": "T5C",
       "title": "Capacitance, Inductance, Impedance & Power",
       "subtitle": "Electric vs. magnetic energy storage, AC impedance, unit capitalization, and the P = I × E power circle",
-      "aid": "ohms-triangle",
+      "aid": "power-circle",
       "cards": [
         {
           "heading": "Fields, Units & Impedance",
@@ -756,7 +756,7 @@
         },
         {
           "heading": "DC Power Law (`P = I × E` — Easy as PIE)",
-          "body": "Electrical power in watts equals current in amperes multiplied by voltage in volts. Cover the unknown letter in the **PIE** circle (`P` on top, `I` and `E` on the bottom) to solve any DC power problem.",
+          "body": "Cover the unknown letter in the **PIE** circle (`P` on top, `I × E` on bottom) to solve every DC power question.",
           "bullets": [
             "Formula: **`P = I × E`** (Power = Current × Voltage)",
             "`13.8 V` at `10 A`: `P = 10 × 13.8` = **`138 watts`**",
@@ -778,11 +778,11 @@
       "group": "T5D",
       "title": "Ohm's Law & Series vs. Parallel Circuits",
       "subtitle": "Solving for E, I, and R with the E-I-R triangle, plus what stays constant in series and parallel loops",
-      "aid": "ohms-triangle",
+      "aid": "ohms-circle",
       "cards": [
         {
           "heading": "Mastering the Ohm's Law Triangle (`E = I × R`)",
-          "body": "Place **E** (Volts) at the top of a triangle with **I** (Amps) and **R** (Ohms) at the bottom. Cover whichever value the question asks for to see whether to multiply or divide!",
+          "body": "Cover whichever letter the question asks for in the **E-I-R** circle (`E` always sits on top; `I × R` sit side-by-side underneath).",
           "bullets": [
             "**Voltage**: **`E = I × R`** (`0.5 A × 2 Ω = 1 V` | `1 A × 10 Ω = 10 V` | `2 A × 10 Ω = 20 V`)",
             "**Current**: **`I = E / R`** (`120 V / 80 Ω = 1.5 A` | `200 V / 100 Ω = 2 A` | `240 V / 24 Ω = 10 A`)",
@@ -811,7 +811,7 @@
       "group": "T6A",
       "title": "Resistors, Capacitors, Inductors, Switches & Batteries",
       "subtitle": "How basic passive components are built, how poles and throws work, and which batteries recharge",
-      "aid": null,
+      "aid": "fig-t2-switch",
       "cards": [
         {
           "heading": "The Big Three Passive Components",

@@ -826,18 +826,28 @@ progress.progress-ring[value="100"] {
   color: var(--text-secondary);
 }
 
-/* Band Map Spectrum Bars */
+/* Clean Privilege Cards, Quick Tiles, T-Circles & Bandwidth Ladder */
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  padding: 0.1rem 0.36rem;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 .band-list {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .band-row {
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 0.75rem 0.85rem;
+  padding: 0.8rem 0.9rem;
 }
 
 .band-row-top {
@@ -845,46 +855,68 @@ progress.progress-ring[value="100"] {
   justify-content: space-between;
   align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
 }
 
 .band-name {
   font-weight: 800;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
 }
 
 .band-power {
-  font-size: 0.74rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.14rem 0.5rem;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--gold);
+}
+
+.slice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.slice-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+.slice-freq {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 800;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+
+.slice-desc {
+  font-size: 0.8rem;
   color: var(--text-secondary);
 }
 
-.spectrum-bar {
-  display: flex;
-  width: 100%;
-  min-block-size: 28px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-}
-
-.seg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.15rem 0.35rem;
-  font-size: 0.68rem;
+.mode-tag {
+  font-size: 0.7rem;
   font-weight: 800;
-  text-align: center;
-  line-height: 1.1;
+  padding: 0.16rem 0.52rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
 }
 
-.seg-cw { background: rgba(251, 191, 36, 0.28); color: #fde68a; }
-.seg-data { background: rgba(167, 139, 250, 0.3); color: #ddd6fe; }
-.seg-ssb { background: rgba(56, 189, 248, 0.32); color: #bae6fd; }
-.seg-all { background: rgba(16, 185, 129, 0.3); color: #a7f3d0; }
-.seg-none { background: rgba(100, 116, 139, 0.18); color: var(--text-muted); }
+.seg-cw { background: rgba(251, 191, 36, 0.22); color: #fde68a; }
+.seg-data { background: rgba(167, 139, 250, 0.24); color: #ddd6fe; }
+.seg-ssb { background: rgba(56, 189, 248, 0.25); color: #bae6fd; }
+.seg-all { background: rgba(16, 185, 129, 0.24); color: #a7f3d0; }
 
 [data-theme="light"] .seg-cw { color: #78350f; }
 [data-theme="light"] .seg-data { color: #4c1d95; }
@@ -892,74 +924,189 @@ progress.progress-ring[value="100"] {
 [data-theme="light"] .seg-all { color: #064e3b; }
 
 .band-notes {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 0.48rem;
+}
+
+.quick-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 0.6rem;
+}
+
+.quick-tile {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.8rem;
+}
+
+.quick-tile-val {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.02rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.quick-tile-lbl {
   font-size: 0.76rem;
   color: var(--text-secondary);
-  margin-top: 0.42rem;
+  margin-top: 0.18rem;
 }
 
-.legend-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.85rem;
+.extra-ref-drawer {
+  margin-top: 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.85rem;
 }
 
-.legend-pill {
-  font-size: 0.72rem;
+.extra-ref-drawer summary {
+  cursor: pointer;
+  font-size: 0.8rem;
   font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
+  color: var(--text-secondary);
 }
 
-/* Interactive Ohm's Law & Math Helper */
+/* True Visual Cover-Up T-Circles (Ohm's Law & DC Power) */
 .formula-triangles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0.85rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 .triangle-card {
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 0.85rem;
+  padding: 0.9rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.tri-grid {
+.t-circle {
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  border: 2.5px solid var(--border-strong);
+  background: var(--bg-surface);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+  margin: 0.65rem auto 0.45rem;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.22);
+}
+
+.t-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2.5px solid var(--accent);
+}
+
+.t-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.45rem;
-  max-width: 180px;
-  margin: 0.6rem auto;
 }
 
-.tri-btn {
-  padding: 0.55rem;
-  border-radius: var(--radius-sm);
-  background: var(--bg-surface);
-  border: 1.5px solid var(--border-strong);
+.t-bottom > :first-child {
+  border-right: 2.5px solid var(--border-strong);
+}
+
+.t-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-weight: 900;
-  font-size: 1.05rem;
+  font-size: 1.12rem;
+  line-height: 1.05;
+  padding: 0.2rem;
+  width: 100%;
+  height: 100%;
 }
 
-.tri-btn.tri-top {
-  grid-column: 1 / -1;
+.t-cell small {
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-top: 0.1rem;
 }
 
-.tri-btn.is-selected {
+button.t-cell:hover {
   background: var(--accent-soft);
-  border-color: var(--accent);
+}
+
+button.t-cell.is-selected {
+  background: var(--accent-soft);
   color: var(--accent);
 }
 
 .formula-readout {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 800;
   color: var(--gold);
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+/* Bandwidth Ladder & Tested Callout Chips */
+.bw-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.48rem;
+  margin-top: 0.45rem;
+}
+
+.bw-row {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  background: var(--bg-elevated);
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.bw-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.bw-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--purple));
+}
+
+.callout-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.callout-chip {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.2rem 0.52rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+}
+
+.callout-chip strong {
+  color: var(--accent);
 }
 
 .calc-row {
@@ -1365,11 +1512,22 @@ progress.progress-ring[value="100"] {
 }
 
 .briefing-bullets {
-  padding-left: 1.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 0.48rem;
+  font-size: 0.88rem;
+}
+
+.briefing-bullets li {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.75rem;
+  line-height: 1.42;
 }
 
 .briefing-dots {

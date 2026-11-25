@@ -451,18 +451,32 @@
     document.documentElement.setAttribute('data-theme', state.theme || 'dark');
   }
 
+  function shouldHideSchematicLegend() {
+    if (!activeSession) return false;
+    if (activeSession.kind === 'exam' && activeSession.stage === 'taking') return true;
+    if (activeSession.kind === 'node' && (activeSession.stage === 'flash' || activeSession.stage === 'challenge') && !activeSession.answeredState) {
+      return true;
+    }
+    if (activeSession.kind === 'drill' && activeSession.qIdx < activeSession.queue.length && !activeSession.answeredState) {
+      return true;
+    }
+    return false;
+  }
+
   function openFigureZoom(figKey) {
     const svg = DATA.figures[figKey];
     if (!svg) return;
     const dlg = document.getElementById('figure-dialog');
     document.getElementById('figure-dialog-title').textContent = `Official Schematic — Figure ${figKey}`;
     document.getElementById('figure-dialog-svg').innerHTML = svg;
-    const captions = {
-      'T-1': 'Figure T-1: (1) Resistor, (2) NPN Transistor, (3) Lamp, (4) Battery, (5) Chassis Ground.',
-      'T-2': 'Figure T-2: (1) AC Plug, (2) Fuse, (3) SPST Switch, (4) Transformer, (5) Rectifier Diode, (6) Filter Capacitor, (7) Resistor, (8) LED, (9) Variable Resistor, (10) Zener Diode.',
-      'T-3': 'Figure T-3: (1) RF Input, (2) Variable Capacitor, (3) Variable/Tapped Inductor, (4) Antenna.'
+    const testedCaptions = {
+      'T-1': 'Tested on Exam: #1 Resistor · #2 NPN Transistor (controls current flow) · #3 Lamp · #4 Battery. (#5 Ground is not asked.)',
+      'T-2': 'Tested on Exam: #3 SPST Switch · #4 Transformer · #6 Capacitor · #8 LED · #9 Variable Resistor. (#1, #2, #5, #7, #10 are circuit context only—not asked!)',
+      'T-3': 'Tested on Exam: #3 Variable Inductor · #4 Antenna. (#1 & #2 are not asked!)'
     };
-    document.getElementById('figure-dialog-caption').textContent = captions[figKey] || '';
+    document.getElementById('figure-dialog-caption').textContent = shouldHideSchematicLegend()
+      ? 'Component labels hidden while answering—tap ✕ or outside to return to your question.'
+      : (testedCaptions[figKey] || '');
     dlg.showModal();
   }
 
@@ -514,146 +528,248 @@
     }
   }
 
-  // Reusable Visual Helpers (used in both Aids Tab and Stage 1 Briefing Cards)
-  function renderBandMapHtml(compact = false) {
-    const bands = [
-      {
-        name: '80m / 40m / 15m (HF)',
-        power: '200W PEP max',
-        segs: [
-          { cls: 'seg-cw', flex: 45, label: 'CW Only: 3.525–3.600 · 7.025–7.125 · 21.025–21.200 MHz' },
-          { cls: 'seg-none', flex: 55, label: 'General / Extra' }
-        ],
-        note: 'Technicians get CW (Morse code) privileges only on 80m, 40m, and 15m (200W PEP limit).'
-      },
-      {
-        name: '10 Meters (28.0–29.7 MHz)',
-        power: '200W PEP max',
-        segs: [
-          { cls: 'seg-data', flex: 34, label: '28.0–28.3 RTTY/Data & CW' },
-          { cls: 'seg-ssb', flex: 26, label: '28.3–28.5 SSB Phone' },
-          { cls: 'seg-none', flex: 40, label: '28.5–29.7 Gen/Extra' }
-        ],
-        note: 'Techs ONLY HF voice slice: 28.300–28.500 MHz SSB! Propagation beacons live at 28.200–28.300 MHz.'
-      },
-      {
-        name: '6m (50–54 MHz) & 2m (144–148 MHz)',
-        power: '1500W PEP max',
-        segs: [
-          { cls: 'seg-cw', flex: 18, label: '.0–.1 CW Only' },
-          { cls: 'seg-all', flex: 82, label: '50.1–54 & 144.1–148 MHz: All Amateur Modes (FM, SSB, Digital)' }
-        ],
-        note: 'Bottom 100 kHz (50.0–50.1 & 144.0–144.1 MHz) is CW-only! 146.520 MHz = National 2m FM Simplex Calling.'
-      },
-      {
-        name: '1.25 Meters (219–225 MHz)',
-        power: '50W (219–220) · 1500W (222–225)',
-        segs: [
-          { cls: 'seg-data', flex: 26, label: '219–220 Fixed Digital (50W)' },
-          { cls: 'seg-none', flex: 12, label: 'Gap' },
-          { cls: 'seg-all', flex: 62, label: '222–225 MHz: All Modes' }
-        ],
-        note: '219–220 MHz is strictly fixed digital message forwarding (50W max). Full privileges on 222–225 MHz.'
-      },
-      {
-        name: '70 Centimeters (420–450 MHz)',
-        power: '1500W PEP max (secondary)',
-        segs: [
-          { cls: 'seg-all', flex: 100, label: '420–450 MHz: All Modes (No 420–430 MHz north of Line A)' }
-        ],
-        note: '446.000 MHz = 70cm FM Simplex Calling. Amateur service is secondary—must not interfere with radiolocation.'
-      }
-    ];
-
-    const list = compact ? bands.slice(0, 3) : bands;
+  // Reusable Visual Helpers (Exam-Focused & Contextually Timed)
+  function renderBandPrivilegesHtml(includeOptionalFullChart = false) {
     return `
-      <div class="legend-pills">
-        <span class="legend-pill seg-cw">CW Only</span>
-        <span class="legend-pill seg-data">RTTY / Data</span>
-        <span class="legend-pill seg-ssb">SSB Phone</span>
-        <span class="legend-pill seg-all">All Modes</span>
-      </div>
       <div class="band-list">
-        ${list.map((b) => `
-          <div class="band-row">
-            <div class="band-row-top">
-              <span class="band-name">${escHtml(b.name)}</span>
-              <span class="band-power">${escHtml(b.power)}</span>
-            </div>
-            <div class="spectrum-bar">
-              ${b.segs.map((s) => `<div class="seg ${s.cls}" style="flex:${s.flex}">${escHtml(s.label)}</div>`).join('')}
-            </div>
-            <p class="band-notes">${escHtml(b.note)}</p>
+        <!-- 1. 10-Meter HF Band -->
+        <div class="band-row">
+          <div class="band-row-top">
+            <span class="band-name">10-Meter Band — Your ONLY HF Voice Band</span>
+            <span class="band-power">200 W PEP max</span>
           </div>
-        `).join('')}
+          <div class="slice-list">
+            <div class="slice-row">
+              <div>
+                <div class="slice-freq">28.200 – 28.300 MHz</div>
+                <div class="slice-desc">Automatic propagation beacons (one-way band-opening signals)</div>
+              </div>
+              <span class="mode-tag seg-cw">Beacons</span>
+            </div>
+            <div class="slice-row">
+              <div>
+                <div class="slice-freq">28.300 – 28.500 MHz</div>
+                <div class="slice-desc">Technician SSB Phone (only HF voice slice for Techs!)</div>
+              </div>
+              <span class="mode-tag seg-ssb">SSB Voice</span>
+            </div>
+          </div>
+          <p class="band-notes">Digital modes like <strong>FT8</strong> are also authorized on <code>10m</code>, <code>6m</code>, and <code>2m</code>.</p>
+        </div>
+
+        <!-- 2. VHF / UHF Landmarks & .0-.1 CW Rule -->
+        <div class="band-row">
+          <div class="band-row-top">
+            <span class="band-name">6m, 2m &amp; 70cm — VHF / UHF Rules</span>
+            <span class="band-power">1500 W PEP max</span>
+          </div>
+          <div class="slice-list">
+            <div class="slice-row">
+              <div>
+                <div class="slice-freq">50.0–50.1 &amp; 144.0–144.1 MHz</div>
+                <div class="slice-desc">Bottom 100 kHz of 6m &amp; 2m are reserved strictly for Morse code</div>
+              </div>
+              <span class="mode-tag seg-cw">CW Only</span>
+            </div>
+            <div class="slice-row">
+              <div>
+                <div class="slice-freq">52.525 MHz → 6m · 146.520 MHz → 2m</div>
+                <div class="slice-desc">Exam band-matching landmarks (<code>146.520 MHz</code> = 2m FM simplex calling)</div>
+              </div>
+              <span class="mode-tag seg-all">FM / All Modes</span>
+            </div>
+            <div class="slice-row">
+              <div>
+                <div class="slice-freq">All Bands Above 50 MHz</div>
+                <div class="slice-desc">SSB voice allowed in at least some segment; any Tech can contact the <strong>ISS</strong> on VHF</div>
+              </div>
+              <span class="mode-tag seg-all">VHF / Space</span>
+            </div>
+          </div>
+          <p class="band-notes">Repeater offsets: <code>±600 kHz</code> on 2m · <code>±5 MHz</code> on 70cm. Stay off exact band edges, and yield to primary users on secondary bands.</p>
+        </div>
+
+        <!-- 3. Two-Number Power Comparison -->
+        <div class="quick-tiles">
+          <div class="quick-tile">
+            <div class="quick-tile-val">200 Watts PEP</div>
+            <div class="quick-tile-lbl">Max Tech power in <strong>HF segments</strong> (below 30 MHz)</div>
+          </div>
+          <div class="quick-tile">
+            <div class="quick-tile-val">1500 Watts PEP</div>
+            <div class="quick-tile-lbl">Max Tech power <strong>above 30 MHz</strong> (VHF / UHF)</div>
+          </div>
+        </div>
       </div>
+
+      ${includeOptionalFullChart ? `
+        <details class="extra-ref-drawer">
+          <summary>Optional: Full Post-License Technician Band Chart (Not Tested on Exam)</summary>
+          <div style="margin-top:0.65rem;font-size:0.8rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.38rem">
+            <div><strong>80m / 40m / 15m HF CW-only:</strong> <code>3.525–3.600</code>, <code>7.025–7.125</code>, and <code>21.025–21.200 MHz</code> (200W PEP).</div>
+            <div><strong>10m RTTY / Data &amp; CW:</strong> <code>28.000–28.300 MHz</code> (200W PEP).</div>
+            <div><strong>6m &amp; 2m full spans:</strong> <code>50–54 MHz</code> and <code>144–148 MHz</code> (all modes above <code>.1 MHz</code>).</div>
+            <div><strong>1.25m &amp; 70cm spans:</strong> <code>222–225 MHz</code> (plus <code>219–220 MHz</code> 50W fixed digital) and <code>420–450 MHz</code> (<code>446.000 MHz</code> simplex calling).</div>
+          </div>
+        </details>
+      ` : ''}
     `;
   }
 
   function renderMiniAidForBriefing(aid) {
     if (!aid) return '';
-    if (aid === 'band-map') {
+    if (aid === 'repeater-basics') {
       return `
-        <div class="panel-card" style="margin-top:0.4rem">
-          <div class="panel-eyebrow">Visual Privilege Reference</div>
-          ${renderBandMapHtml(true)}
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow" style="margin-bottom:0.5rem">3 Starter Numbers in Group T2A</div>
+          <div class="quick-tiles">
+            <div class="quick-tile">
+              <div class="quick-tile-val">146.520 MHz</div>
+              <div class="quick-tile-lbl">National 2-meter FM simplex calling channel</div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">±600 kHz</div>
+              <div class="quick-tile-lbl">Standard repeater offset on 2 meters</div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">±5 MHz</div>
+              <div class="quick-tile-lbl">Standard repeater offset on 70 centimeters</div>
+            </div>
+          </div>
         </div>
       `;
     }
-    if (aid === 'ohms-triangle') {
+    if (aid === 'band-privileges' || aid === 'band-map') {
       return `
-        <div class="formula-triangles" style="margin-top:0.4rem">
-          <div class="triangle-card">
-            <strong>Ohm's Law Circle</strong>
-            <div class="tri-grid">
-              <div class="tri-btn tri-top is-selected">E (Volts)</div>
-              <div class="tri-btn">I (Amps)</div>
-              <div class="tri-btn">R (Ohms)</div>
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow" style="margin-bottom:0.5rem">Exam-Tested Band &amp; Power Summary</div>
+          ${renderBandPrivilegesHtml(false)}
+        </div>
+      `;
+    }
+    if (aid === 'power-circle') {
+      return `
+        <div class="panel-card" style="margin-top:0.2rem;text-align:center">
+          <div class="panel-eyebrow">Cover-Up Circle: DC Power ("PIE")</div>
+          <div class="t-circle" aria-label="P on top, I times E on bottom">
+            <div class="t-top"><div class="t-cell">P<small>Watts</small></div></div>
+            <div class="t-bottom">
+              <div class="t-cell">I<small>Amps</small></div>
+              <div class="t-cell">E<small>Volts</small></div>
             </div>
-            <div class="formula-readout">E = I × R · I = E / R · R = E / I</div>
           </div>
-          <div class="triangle-card">
-            <strong>DC Power Circle</strong>
-            <div class="tri-grid">
-              <div class="tri-btn tri-top is-selected">P (Watts)</div>
-              <div class="tri-btn">I (Amps)</div>
-              <div class="tri-btn">E (Volts)</div>
+          <div class="formula-readout">P = I × E &nbsp;·&nbsp; I = P / E &nbsp;·&nbsp; E = P / I</div>
+        </div>
+      `;
+    }
+    if (aid === 'ohms-circle' || aid === 'ohms-triangle') {
+      return `
+        <div class="panel-card" style="margin-top:0.2rem;text-align:center">
+          <div class="panel-eyebrow">Cover-Up Circle: Ohm's Law (E Always on Top)</div>
+          <div class="t-circle" aria-label="E on top, I times R on bottom">
+            <div class="t-top"><div class="t-cell">E<small>Volts</small></div></div>
+            <div class="t-bottom">
+              <div class="t-cell">I<small>Amps</small></div>
+              <div class="t-cell">R<small>Ohms</small></div>
             </div>
-            <div class="formula-readout">P = I × E · I = P / E · E = P / I</div>
           </div>
+          <div class="formula-readout">E = I × R &nbsp;·&nbsp; I = E / R &nbsp;·&nbsp; R = E / I</div>
         </div>
       `;
     }
     if (aid === 'metric-db') {
       return `
-        <div class="panel-card" style="margin-top:0.4rem">
-          <div class="panel-eyebrow">Quick Exam Cheat-Bar</div>
-          <p class="panel-desc" style="margin-bottom:0.45rem">
-            <strong>Decibels:</strong> <code>+3 dB = 2× power</code> · <code>-3 dB = ½</code> · <code>-6 dB = ¼</code> · <code>+10 dB = 10×</code><br>
-            <strong>Prefixes:</strong> <code>pico (10⁻¹²) → nano (10⁻⁹) → micro (10⁻⁶) → milli (10⁻³) → kilo (10³) → mega (10⁶) → giga (10⁹)</code>
-          </p>
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow" style="margin-bottom:0.5rem">Only Conversions &amp; dB Steps Tested</div>
+          <div class="quick-tiles">
+            <div class="quick-tile">
+              <div class="quick-tile-val">Slide 3 Places</div>
+              <div class="quick-tile-lbl"><code>mA ⇄ A</code> · <code>mW ⇄ W</code> · <code>Hz ⇄ kHz ⇄ MHz ⇄ GHz</code></div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">1,000,000 pF</div>
+              <div class="quick-tile-lbl">Equals <code>1 µF</code> (micro = millionth)</div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">+3 / -6 / +10 dB</div>
+              <div class="quick-tile-lbl"><code>2×</code> power · <code>¼</code> power · <code>10×</code> power</div>
+            </div>
+          </div>
         </div>
       `;
     }
     if (aid === 'wavelength') {
       return `
-        <div class="panel-card" style="margin-top:0.4rem">
-          <div class="panel-eyebrow">Wavelength &amp; Spectrum Rule</div>
-          <div class="formula-readout" style="margin:0.35rem 0">Wavelength (m) = 300 / Frequency (MHz)</div>
-          <p class="panel-desc" style="margin-bottom:0">
-            <strong>HF:</strong> 3–30 MHz · <strong>VHF:</strong> 30–300 MHz · <strong>UHF:</strong> 300–3000 MHz (All travel at <code>300,000,000 m/s</code>!)
-          </p>
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow" style="margin-bottom:0.45rem">The 300 Rule &amp; Spectrum Steps</div>
+          <div class="quick-tiles">
+            <div class="quick-tile">
+              <div class="quick-tile-val">m = 300 / MHz</div>
+              <div class="quick-tile-lbl">Higher frequency = shorter wavelength (all move at <code>300,000,000 m/s</code>)</div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">3 · 30 · 300 MHz</div>
+              <div class="quick-tile-lbl"><strong>HF:</strong> 3–30 · <strong>VHF:</strong> 30–300 · <strong>UHF:</strong> 300–3000 MHz</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    if (aid === 'bandwidth-ladder') {
+      return `
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow">Signal Widths from Narrowest to Widest</div>
+          <div class="bw-ladder">
+            <div class="bw-row"><strong>CW (Morse)</strong><div class="bw-track"><div class="bw-fill" style="width:6%"></div></div><code>150 Hz</code></div>
+            <div class="bw-row"><strong>SSB Voice</strong><div class="bw-track"><div class="bw-fill" style="width:24%"></div></div><code>3 kHz</code></div>
+            <div class="bw-row"><strong>FM Repeater</strong><div class="bw-track"><div class="bw-fill" style="width:52%"></div></div><code>10–15 kHz</code></div>
+            <div class="bw-row"><strong>Fast-Scan TV</strong><div class="bw-track"><div class="bw-fill" style="width:100%"></div></div><code>~6 MHz</code></div>
+          </div>
+        </div>
+      `;
+    }
+    if (aid === 'fig-t2-switch') {
+      return `
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow">Preview for Question T6A09 — Component #3 in Figure T-2</div>
+          <button type="button" class="schematic-box btn-block" data-zoom-fig="T-2">
+            ${DATA.figures['T-2']}
+            <div class="zoom-hint">Look at #3 (top-left): 1 wire in, 1 open blade = Single-Pole Single-Throw (SPST) switch</div>
+          </button>
         </div>
       `;
     }
     if (aid === 'figures') {
       return `
-        <div class="panel-card" style="margin-top:0.4rem">
-          <div class="panel-eyebrow">Official NCVEC Schematics (Tap to Zoom)</div>
-          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem">
-            <button type="button" class="btn btn-secondary" data-zoom-fig="T-1">Inspect Figure T-1</button>
-            <button type="button" class="btn btn-secondary" data-zoom-fig="T-2">Inspect Figure T-2</button>
-            <button type="button" class="btn btn-secondary" data-zoom-fig="T-3">Inspect Figure T-3</button>
+        <div class="panel-card" style="margin-top:0.2rem">
+          <div class="panel-eyebrow" style="margin-bottom:0.45rem">Tap Any Diagram to Zoom — Only Highlighted Numbers Are Tested!</div>
+          <div style="display:flex;flex-direction:column;gap:0.65rem">
+            <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-1">
+              ${DATA.figures['T-1']}
+              <div class="callout-chips">
+                <span class="callout-chip"><strong>#1</strong> Resistor</span>
+                <span class="callout-chip"><strong>#2</strong> Transistor</span>
+                <span class="callout-chip"><strong>#3</strong> Lamp</span>
+                <span class="callout-chip"><strong>#4</strong> Battery</span>
+              </div>
+            </button>
+            <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-2">
+              ${DATA.figures['T-2']}
+              <div class="callout-chips">
+                <span class="callout-chip"><strong>#3</strong> SPST Switch</span>
+                <span class="callout-chip"><strong>#4</strong> Transformer</span>
+                <span class="callout-chip"><strong>#6</strong> Capacitor</span>
+                <span class="callout-chip"><strong>#8</strong> LED</span>
+                <span class="callout-chip"><strong>#9</strong> Variable Resistor</span>
+              </div>
+            </button>
+            <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-3">
+              ${DATA.figures['T-3']}
+              <div class="callout-chips">
+                <span class="callout-chip"><strong>#3</strong> Variable Inductor</span>
+                <span class="callout-chip"><strong>#4</strong> Antenna</span>
+              </div>
+            </button>
           </div>
         </div>
       `;
@@ -984,6 +1100,7 @@
 
   // TAB 3: Study Aids, Math Sandbox, Schematics, Logistics & Backup
   let mathSolveTarget = 'E';
+  let powerSolveTarget = 'P';
 
   function renderAidsTab() {
     const container = document.getElementById('aids-container');
@@ -1013,43 +1130,74 @@
       }
     ];
 
+    const ohmsReadout = mathSolveTarget === 'I'
+      ? 'I = E / R (Amps = Volts ÷ Ohms)'
+      : mathSolveTarget === 'R'
+        ? 'R = E / I (Ohms = Volts ÷ Amps)'
+        : 'E = I × R (Volts = Amps × Ohms)';
+
+    const powerReadout = powerSolveTarget === 'PI'
+      ? 'I = P / E (Amps = Watts ÷ Volts)'
+      : powerSolveTarget === 'PE'
+        ? 'E = P / I (Volts = Watts ÷ Amps)'
+        : 'P = I × E (Watts = Amps × Volts)';
+
     container.innerHTML = `
       <!-- 1. Interactive Math Sandbox & Math Drill -->
       <div class="panel-card">
         <div class="panel-header">
           <div>
             <div class="panel-eyebrow">Subelements T5 &amp; T3</div>
-            <h2 class="panel-title">Interactive Ohm's Law, Power &amp; Wavelength Sandbox</h2>
+            <h2 class="panel-title">Interactive Formula Circles &amp; Math Sandbox</h2>
           </div>
           <span class="badge-pill">${mathCount} Math Qs</span>
         </div>
         <p class="panel-desc">
-          Tap any variable below to see its cover-up formula, test live numbers, or launch a focused drill across all ${mathCount} calculation &amp; unit questions.
+          Tap any letter inside either circle to cover it up and reveal the exact exam formula, or test live numbers below.
         </p>
 
         <div class="formula-triangles">
           <div class="triangle-card">
-            <strong>Ohm's Law (Tap Variable)</strong>
-            <div class="tri-grid">
-              <button type="button" class="tri-btn tri-top ${mathSolveTarget === 'E' ? 'is-selected' : ''}" data-math-target="E">E (Volts)</button>
-              <button type="button" class="tri-btn ${mathSolveTarget === 'I' ? 'is-selected' : ''}" data-math-target="I">I (Amps)</button>
-              <button type="button" class="tri-btn ${mathSolveTarget === 'R' ? 'is-selected' : ''}" data-math-target="R">R (Ohms)</button>
+            <strong>Ohm's Law Circle (Tap E, I, or R)</strong>
+            <div class="t-circle" role="group" aria-label="Ohm's Law interactive circle">
+              <div class="t-top">
+                <button type="button" class="t-cell ${mathSolveTarget === 'E' ? 'is-selected' : ''}" data-math-target="E">E<small>Volts</small></button>
+              </div>
+              <div class="t-bottom">
+                <button type="button" class="t-cell ${mathSolveTarget === 'I' ? 'is-selected' : ''}" data-math-target="I">I<small>Amps</small></button>
+                <button type="button" class="t-cell ${mathSolveTarget === 'R' ? 'is-selected' : ''}" data-math-target="R">R<small>Ohms</small></button>
+              </div>
             </div>
-            <div id="ohms-formula-box" class="formula-readout">
-              ${mathSolveTarget === 'I' ? 'I = E / R (Amps = Volts ÷ Ohms)' : mathSolveTarget === 'R' ? 'R = E / I (Ohms = Volts ÷ Amps)' : 'E = I × R (Volts = Amps × Ohms)'}
-            </div>
+            <div id="ohms-formula-box" class="formula-readout">${escHtml(ohmsReadout)}</div>
           </div>
 
           <div class="triangle-card">
-            <strong>Power &amp; Wavelength</strong>
-            <div class="tri-grid">
-              <button type="button" class="tri-btn tri-top ${mathSolveTarget === 'P' ? 'is-selected' : ''}" data-math-target="P">P (Watts)</button>
-              <button type="button" class="tri-btn ${mathSolveTarget === 'WL' ? 'is-selected' : ''}" data-math-target="WL">λ (Meters)</button>
-              <button type="button" class="tri-btn ${mathSolveTarget === 'DB' ? 'is-selected' : ''}" data-math-target="DB">dB Rules</button>
+            <strong>DC Power Circle (Tap P, I, or E)</strong>
+            <div class="t-circle" role="group" aria-label="DC Power interactive circle">
+              <div class="t-top">
+                <button type="button" class="t-cell ${powerSolveTarget === 'P' ? 'is-selected' : ''}" data-power-target="P">P<small>Watts</small></button>
+              </div>
+              <div class="t-bottom">
+                <button type="button" class="t-cell ${powerSolveTarget === 'PI' ? 'is-selected' : ''}" data-power-target="PI">I<small>Amps</small></button>
+                <button type="button" class="t-cell ${powerSolveTarget === 'PE' ? 'is-selected' : ''}" data-power-target="PE">E<small>Volts</small></button>
+              </div>
             </div>
-            <div class="formula-readout">
-              ${mathSolveTarget === 'WL' ? 'Meters = 300 / MHz · MHz = 300 / Meters' : mathSolveTarget === 'DB' ? '+3dB = 2× · -6dB = ¼ · +10dB = 10×' : 'P = I × E (Watts = Amps × Volts)'}
-            </div>
+            <div class="formula-readout">${escHtml(powerReadout)}</div>
+          </div>
+        </div>
+
+        <div class="quick-tiles" style="margin-bottom:0.85rem">
+          <div class="quick-tile">
+            <div class="quick-tile-val">m = 300 / MHz</div>
+            <div class="quick-tile-lbl">Wavelength in meters (<code>MHz = 300 / m</code>)</div>
+          </div>
+          <div class="quick-tile">
+            <div class="quick-tile-val">+3 / -6 / +10 dB</div>
+            <div class="quick-tile-lbl"><code>2×</code> power · <code>¼</code> power · <code>10×</code> power</div>
+          </div>
+          <div class="quick-tile">
+            <div class="quick-tile-val">Slide 3 Places</div>
+            <div class="quick-tile-lbl"><code>mA ⇄ A</code> · <code>kHz ⇄ MHz ⇄ GHz</code> (<code>10⁶ pF = 1 µF</code>)</div>
           </div>
         </div>
 
@@ -1079,25 +1227,48 @@
         </button>
       </div>
 
-      <!-- 2. Visual Technician Band Map -->
+      <!-- 2. Exam-Focused Technician Band & Privilege Guide -->
       <div class="panel-card">
         <div class="panel-eyebrow">Subelements T1B &amp; T2A</div>
-        <h2 class="panel-title" style="margin-bottom:0.35rem">Visual Technician Band &amp; Privilege Map</h2>
+        <h2 class="panel-title" style="margin-bottom:0.35rem">Exam-Focused Band &amp; Privilege Guide</h2>
         <p class="panel-desc">
-          Every frequency slice, mode restriction, calling channel, and power cap tested on the 2026–2030 Element 2 exam.
+          Trimmed strictly to the frequencies, mode rules, and power caps actually tested on the 2026–2030 Element 2 exam.
         </p>
-        ${renderBandMapHtml(false)}
+        ${renderBandPrivilegesHtml(true)}
       </div>
 
-      <!-- 3. Official Circuit Schematics Reference -->
+      <!-- 3. Official Circuit Schematics Reference (Tested Callouts Only) -->
       <div class="panel-card">
-        <div class="panel-eyebrow">Subelements T6 &amp; T7</div>
-        <h2 class="panel-title" style="margin-bottom:0.35rem">Official Exam Schematics (Figures T-1, T-2, T-3)</h2>
-        <p class="panel-desc">Tap any schematic below to inspect full-screen component callouts.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.6rem">
-          <button type="button" class="btn btn-secondary" data-zoom-fig="T-1">Figure T-1 (NPN Switch)</button>
-          <button type="button" class="btn btn-secondary" data-zoom-fig="T-2">Figure T-2 (Power Supply)</button>
-          <button type="button" class="btn btn-secondary" data-zoom-fig="T-3">Figure T-3 (T-Tuner)</button>
+        <div class="panel-eyebrow">Subelements T6A, T6C &amp; T6D</div>
+        <h2 class="panel-title" style="margin-bottom:0.35rem">Official Exam Schematics (Tested Callouts Only)</h2>
+        <p class="panel-desc">Only 11 numbered symbols across all 3 diagrams are ever asked on the exam—tap any schematic to zoom full-screen.</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem">
+          <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-1">
+            ${DATA.figures['T-1']}
+            <div class="callout-chips">
+              <span class="callout-chip"><strong>#1</strong> Resistor</span>
+              <span class="callout-chip"><strong>#2</strong> Transistor (controls current)</span>
+              <span class="callout-chip"><strong>#3</strong> Lamp</span>
+              <span class="callout-chip"><strong>#4</strong> Battery</span>
+            </div>
+          </button>
+          <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-2">
+            ${DATA.figures['T-2']}
+            <div class="callout-chips">
+              <span class="callout-chip"><strong>#3</strong> SPST Switch</span>
+              <span class="callout-chip"><strong>#4</strong> Transformer</span>
+              <span class="callout-chip"><strong>#6</strong> Capacitor</span>
+              <span class="callout-chip"><strong>#8</strong> LED</span>
+              <span class="callout-chip"><strong>#9</strong> Variable Resistor</span>
+            </div>
+          </button>
+          <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-3">
+            ${DATA.figures['T-3']}
+            <div class="callout-chips">
+              <span class="callout-chip"><strong>#3</strong> Variable Inductor</span>
+              <span class="callout-chip"><strong>#4</strong> Antenna</span>
+            </div>
+          </button>
         </div>
       </div>
 
@@ -2073,7 +2244,7 @@
     // Global click delegation
     document.addEventListener('click', async (e) => {
       lastInteractionTs = Date.now();
-      const el = e.target.closest('[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target]');
+      const el = e.target.closest('[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target]');
       if (!el) return;
 
       if (el.dataset.zoomFig) {
@@ -2130,6 +2301,12 @@
 
       if (el.dataset.mathTarget) {
         mathSolveTarget = el.dataset.mathTarget;
+        renderAidsTab();
+        return;
+      }
+
+      if (el.dataset.powerTarget) {
+        powerSolveTarget = el.dataset.powerTarget;
         renderAidsTab();
         return;
       }

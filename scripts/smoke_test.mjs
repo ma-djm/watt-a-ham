@@ -223,11 +223,17 @@ assert.match(domById.get('campaign-container').innerHTML, /T2A/);
 navTabs[1].dispatchEvent({ type: 'click' });
 assert.match(domById.get('exams-container').innerHTML, /Official 35-Question Mock Exam/);
 navTabs[2].dispatchEvent({ type: 'click' });
-assert.match(domById.get('aids-container').innerHTML, /Visual Technician Band/);
+assert.match(domById.get('aids-container').innerHTML, /Exam-Focused Band/);
+fireClick({ powerTarget: 'PI' });
+assert.match(domById.get('aids-container').innerHTML, /I = P \/ E/);
+fireClick({ zoomFig: 'T-1' });
+assert.match(domById.get('figure-dialog-caption').textContent, /Tested on Exam/);
 navTabs[0].dispatchEvent({ type: 'click' });
 
-// Start Node 1 (T2A) directly -> walk Briefing -> Flash-Pass -> Challenge (with 1 retry!)
+// Start Node 1 (T2A) directly -> verify Night-1 aid has only T2A starter numbers -> walk Briefing -> Flash-Pass -> Challenge
 fireClick({ openNode: 'T2A', directStart: '1' });
+assert.match(domById.get('session-body').innerHTML, /3 Starter Numbers in Group T2A/);
+assert.doesNotMatch(domById.get('session-body').innerHTML, /200 W PEP/);
 const t2aCards = DATA.briefings.T2A.cards.length;
 for (let i = 0; i < t2aCards; i++) {
   fireClick({ action: 'next-card' });
@@ -270,8 +276,10 @@ assert.equal(saved.nodes.T2A.status, 'gold');
 assert.equal(saved.nodes.T2B.status, 'next');
 assert.equal(saved.streak.todayNodes, 1);
 
-// Launch Official 35-Q Mock Exam and submit with all slot 0 answers to test Dual Scoring & Cracking
+// Launch Official 35-Q Mock Exam and verify schematic zoom hides component spoilers!
 fireClick({ action: 'start-mock35' });
+fireClick({ zoomFig: 'T-2' });
+assert.match(domById.get('figure-dialog-caption').textContent, /Component labels hidden while answering/);
 for (let i = 0; i < 35; i++) {
   fireClick({ examJump: String(i) });
   // Intentionally leave T2A wrong so T2A cracks!

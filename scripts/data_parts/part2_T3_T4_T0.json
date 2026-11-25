@@ -251,14 +251,14 @@
       ]
     },
     "T4A02": {
-      "explanation": "SWR meters are built for specific bands and wattages—an HF meter won't read accurately on UHF, and exceeding its power rating can burn out internal sensing diodes.",
+      "explanation": "An SWR meter (which checks how well your antenna matches the feed cable) is built for specific frequency bands and wattages—exceeding either ruins accuracy or burns out sensors.",
       "tags": [
         "station-setup",
         "meters"
       ]
     },
     "T4A03": {
-      "explanation": "Transmitting pulls heavy DC current (10–20+ amps); short, thick wires keep resistance low (V = I × R) so voltage doesn't sag at the radio when you key the mic.",
+      "explanation": "Transmitting pulls heavy DC current (10+ amps); short, thick wires minimize electrical resistance so battery voltage doesn't sag at the radio when you press transmit.",
       "tags": [
         "station-setup",
         "power-supplies"
@@ -293,7 +293,7 @@
       ]
     },
     "T4A08": {
-      "explanation": "Due to the skin effect, RF current rides on a conductor's outer surface—flat copper strap offers wide surface area and low RF inductance, unlike unraveling coax braid.",
+      "explanation": "Radio-frequency currents travel mainly along a conductor's outer surface—flat copper strap provides wide surface area for a clean RF ground, unlike unraveling coax braid.",
       "tags": [
         "station-setup",
         "grounding"
@@ -348,7 +348,7 @@
       ]
     },
     "T4B04": {
-      "explanation": "Unlike SSB (where off-frequency tuning changes voice pitch), tuning slightly off an FM signal clips its frequency swings against the receiver filter edge, causing distorted audio.",
+      "explanation": "Tuning slightly off an FM channel clips the edges of the incoming voice signal inside your receiver, making the speaker audio sound harsh and distorted.",
       "tags": [
         "audio-controls",
         "operating-controls"
@@ -482,7 +482,7 @@
       ]
     },
     "T0B01": {
-      "explanation": "Lightning is a fast, high-frequency surge—keeping tower ground connections short and direct minimizes inductance so strike current flows straight into the Earth.",
+      "explanation": "Lightning is a sudden, high-energy surge—keeping tower ground wires short and straight gives the strike the easiest path directly into the Earth.",
       "tags": [
         "antenna-safety",
         "grounding"
@@ -541,7 +541,7 @@
       ]
     },
     "T0B10": {
-      "explanation": "Sharp corners create high inductance to fast lightning pulses and can cause a strike to flash straight off the wire—always route lightning ground conductors in smooth, gradual curves.",
+      "explanation": "Sharp wire bends resist fast lightning surges and can cause a strike to flash across the corner—always route lightning ground wires in smooth, gradual curves.",
       "tags": [
         "antenna-safety",
         "grounding"
@@ -742,102 +742,104 @@
     },
     "T4A": {
       "group": "T4A",
-      "title": "Station Power, Meters & Digital Wiring",
-      "subtitle": "Hooking up DC power, SWR/watt meters, RF bonding, and sound-card digital modes",
+      "title": "Station Power, Meters & Digital Hookups",
+      "subtitle": "Wiring 13.8V DC power safely, placing inline antenna meters, and connecting a computer for digital modes.",
       "aid": null,
       "cards": [
         {
-          "heading": "DC Power Wiring & Battery Runtime",
-          "body": "Transceivers draw high current when transmitting, so solid `13.8 V DC` power delivery prevents voltage sag and transmit distortion. Portable operators estimate battery life from average current draw.",
+          "heading": "13.8V DC Power & Battery Runtime",
+          "body": "Mobile and base transceivers run on automotive-style `13.8 V DC` power and pull heavy current whenever you transmit.",
           "bullets": [
-            "**50W mobile FM supply:** Rated around **`13.8 volts at 12 amperes`**.",
-            "**Wire gauge & mobile ground:** Use **short, heavy-gauge wires** to minimize **voltage drop**; connect a mobile rig's negative lead at the **12-volt battery chassis ground**.",
-            "**Battery runtime formula:** Divide **ampere-hour (`Ah`) rating** by **average current draw (`A`)**."
+            "**50-watt FM rig supply:** Needs roughly **`13.8 volts at 12 amperes`**",
+            "**Power leads:** Use **short, heavy-gauge wires** to prevent **voltage drop**; connect a car rig's negative wire to the **12V battery chassis ground**",
+            "**Battery runtime math:** Divide **ampere-hour (`Ah`) capacity** by **average current draw (`A`)**"
           ]
         },
         {
-          "heading": "Meters, RF Bonding & CW Keyers",
-          "body": "Inline station accessories monitor antenna health, tame stray RF currents on equipment chassis, and help operators send crisp Morse code.",
+          "heading": "Inline Antenna Meters, Bonding & Keyers",
+          "body": "Accessories between your radio and antenna check system health, while wide copper straps bond gear cases together.",
           "bullets": [
-            "**RF power & SWR meters:** Install inline **in the feed line between transmitter and antenna**; choose an SWR meter rated for your **frequency and power level**.",
-            "**RF bonding:** Use **flat copper strap** (maximum surface area for RF skin effect), not coax braid.",
-            "**Electronic keyer:** Assists in **manual sending of Morse code** with paddles."
+            "**Power & SWR meters** *(antenna-match meters)*: Wire **inline in the coax cable** between radio and antenna; match **frequency and power ratings**",
+            "**Bonding radio chassis:** Use **flat copper strap** (wide surface area conducts RF best)",
+            "**Electronic keyer:** Works with paddles to assist **manual sending of Morse code**"
           ]
         },
         {
-          "heading": "Digital Mode Interfaces & Hotspots",
-          "body": "Modes like **FT8** link your radio and computer sound card using **receive audio, transmit audio, and transmitter keying (PTT)**. Digital voice handhelds can also link to internet networks via a tiny local RF **hotspot**.",
+          "heading": "Computer Digital Modes & Hotspots",
+          "body": "Digital modes like **FT8** send data as audio tones between your radio and a computer sound card.",
           "bullets": [
-            "**FT8 & audio crossover:** Connect transceiver audio I/O to a **computer running FT8 software**—specifically transceiver **speaker out** to computer **`line in`**.",
-            "**Digital hotspot:** Enables nearby digital handhelds to communicate with a **digital voice or data network** over the internet."
+            "**3 interface signals:** **Receive audio**, **transmit audio**, and **PTT** *(Push-To-Talk transmit switch)*",
+            "**Audio cable pairing:** Radio **speaker out** plugs into computer **`line in`**",
+            "**Digital hotspot:** Pocket RF bridge letting digital handhelds reach **internet voice/data networks**"
           ]
         }
       ]
     },
     "T4B": {
       "group": "T4B",
-      "title": "Transceiver Controls, Filters & Digital Voice",
-      "subtitle": "Dialing in clean audio, receiver filters, RIT, DMR talkgroups, and D-STAR",
+      "title": "Radio Controls, Clear Audio & Digital Setup",
+      "subtitle": "Using tuning knobs, squelch, receiver filters, and programming DMR or D-STAR radios.",
       "aid": null,
       "cards": [
         {
-          "heading": "Tuning, Scanning & Squelch",
-          "body": "Front-panel controls let you dial frequencies, hunt for active channels, hear faint FM stations, and fine-tune off-pitch SSB callers without chasing them up and down the band.",
+          "heading": "Tuning, Scanning, Squelch & Fine-Pitch",
+          "body": "Front-panel controls let you dial channels, hunt for signals, and fine-tune voice clarity without moving your own transmit frequency.",
           "bullets": [
-            "**Frequency & scanning:** Enter frequencies via **keypad or VFO knob**; **scanning** tunes across frequencies to check for activity.",
-            "**Weak-signal FM squelch:** Open squelch so **receiver output audio is on all the time**.",
-            "**RIT / Clarifier:** Adjusts receive pitch on an off-frequency SSB caller without moving your transmit frequency."
+            "**Setting frequency:** Use the **keypad or VFO knob** *(main tuning dial)*; **scanning** sweeps channels for activity",
+            "**Hearing faint FM callers:** Turn squelch open until **background audio/static stays on continuously**",
+            "**`RIT` / Clarifier:** Fine-tunes the **receive pitch** of an off-frequency **SSB** *(long-distance voice)* caller without shifting your TX frequency"
           ]
         },
         {
-          "heading": "Clean Audio & Filter Bandwidths",
-          "body": "Proper gain and tuning keep your signal crisp, while selectable receiver filters narrow the window your radio listens through to reject nearby interference and static.",
+          "heading": "Preventing Distortion & Picking Filters",
+          "body": "Clean audio comes from proper mic levels and matching your receiver's listening width (**filter bandwidth**) to the signal.",
           "bullets": [
-            "**Two distortion culprits:** **Excessive mic gain** distorts transmitted SSB audio; tuning **slightly off frequency** distorts received FM audio.",
-            "**Filter matching:** Selecting a bandwidth matching the mode reduces noise/interference—**`2400 Hz`** gives the best signal-to-noise ratio for **SSB**."
+            "**Distorted SSB transmit voice:** Caused by **mic gain set too high**",
+            "**Distorted FM receive audio:** Caused by tuning **slightly off frequency**",
+            "**Best SSB filter width:** **`2400 Hz`** gives the cleanest speech-to-noise balance"
           ]
         },
         {
-          "heading": "DMR & D-STAR Setup Essentials",
-          "body": "Digital voice radios carry routing metadata alongside digitized speech, requiring basic configuration before you press push-to-talk.",
+          "heading": "DMR & D-STAR Digital Voice Prep",
+          "body": "Before transmitting on digital voice systems, your radio needs basic identity and channel settings loaded.",
           "bullets": [
-            "**DMR code plug:** Software **configuration data** loaded onto your radio for repeaters and talkgroups.",
-            "**DMR talkgroups:** Select a specific group of stations by entering the **group's identification code**.",
-            "**D-STAR requirement:** You must program **your call sign** into a D-STAR radio before transmitting."
+            "**DMR `code plug`:** Software **configuration file** holding repeaters, color codes, and talkgroups",
+            "**Selecting a DMR talkgroup:** Enter the **group's numeric ID code**",
+            "**D-STAR first step:** Program **your FCC call sign** into the radio before transmitting"
           ]
         }
       ]
     },
     "T0A": {
       "group": "T0A",
-      "title": "Station Electrical & Battery Safety",
-      "subtitle": "Preventing shocks, fires, capacitor hazards, battery explosions, and surge damage",
+      "title": "Electrical, Fuse & Battery Safety",
+      "subtitle": "Preventing shocks, wiring fires, stored high-voltage jolts, battery hazards, and lightning surges.",
       "aid": null,
       "cards": [
         {
-          "heading": "AC Wiring, Fuses & Shock Guards",
-          "body": "Electrical current flowing through the body **heats tissue, disrupts cell electrical functions, and locks muscles**. Proper US `120V AC` wiring and fusing stop fires and shocks before they happen.",
+          "heading": "Household AC Wiring, Fuses & Shocks",
+          "body": "Current through the body **burns tissue, scrambles nerve/heart signals, and locks muscles**—proper wiring and fuses stop hazards early.",
           "bullets": [
-            "**Hot wire & fusing:** In US `120V AC`, **black = Hot**; install fuses/breakers **in series with the hot conductor only**.",
-            "**Fuse purpose:** Removes power during an **overload**—never replace a `5A` fuse with `20A` or **excessive current could cause a fire**.",
-            "**Shock protection:** Use **3-wire cords**, a **common safety ground**, and **discharge high-voltage capacitors** before working inside gear."
+            "**US `120V AC` hot wire:** **Black = Hot**; wire fuses/breakers **in series with the hot wire only**",
+            "**Fuse job:** Cuts power during an **overload**—swapping a `5A` fuse for `20A` lets **excess current start a fire**",
+            "**3 shock guards:** Use **3-wire grounded cords**, a **common safety ground**, and **discharge internal capacitors** before servicing"
           ]
         },
         {
-          "heading": "Batteries, Filter Capacitors & Voltmeters",
-          "body": "Low-voltage batteries pack massive short-circuit current, and unplugged power supplies can still bite with stored high-voltage DC.",
+          "heading": "Batteries, Stored Charge & High-Voltage Probes",
+          "body": "Even `12V` batteries pack welding-level short-circuit current, and unplugged power supplies can still hold lethal voltage inside.",
           "bullets": [
-            "**Unprotected batteries:** Shorting a `12V` battery causes **burns, fire, or explosion**; rapid charging/discharging causes **overheating or out-gassing**.",
-            "**Lingering HV hazard:** Turned-off power supplies retain dangerous **charge stored in filter capacitors**.",
-            "**High-voltage measurement:** Ensure both the **voltmeter and its leads** are rated for the voltages being measured."
+            "**Battery hazards:** Shorting a `12V` battery causes **burns, fire, or explosion**; rapid charging/discharging causes **overheating or out-gassing**",
+            "**Unplugged power supply shock:** Caused by **charge stored in filter capacitors** *(parts that store electricity like fast batteries)*",
+            "**Measuring high voltage:** Verify **both the voltmeter AND its leads** are rated for that voltage"
           ]
         },
         {
-          "heading": "Entry Panels & Ground Rod Bonding",
-          "body": "Outdoor coax cables and separate earth rods must work as a unified system so lightning energy stays outside your home.",
+          "heading": "Coax Entry Panels & Ground Rods",
+          "body": "Outdoor antenna cables and ground rods must tie together so lightning energy stays outside your home.",
           "bullets": [
-            "**Lightning arresters:** Mount on a **grounded panel near where feed lines enter the building**.",
-            "**External ground rods:** **Bond them all together** with heavy wire or conductive strap."
+            "**Lightning arresters:** Mount on a **grounded metal panel right where coax cables enter the building**",
+            "**Multiple outdoor ground rods:** **Bond them all together** with heavy wire or copper strap"
           ]
         }
       ]
@@ -878,31 +880,32 @@
     "T0C": {
       "group": "T0C",
       "title": "RF Exposure & Radiation Safety",
-      "subtitle": "Non-ionizing RF limits, the 50 MHz resonance peak, duty cycle, and compliance",
+      "subtitle": "Why radio waves are non-ionizing, why 50 MHz has the strictest limit, and how duty cycle works.",
       "aid": null,
       "cards": [
         {
-          "heading": "Non-Ionizing RF & the 50 MHz Peak",
-          "body": "Radio waves are **non-ionizing radiation**—they warm tissue at high levels (and touching a live antenna causes an **RF burn to skin**), but lack the energy to damage DNA. Because body size resonates with VHF wavelengths, absorption varies by frequency.",
+          "heading": "Non-Ionizing RF & the 50 MHz Body Peak",
+          "body": "Radio waves are **non-ionizing**—they can warm tissue (and touching a live antenna causes an **RF skin burn**), but never break DNA like X-rays.",
           "bullets": [
-            "**Non-ionizing vs. ionizing:** RF lacks sufficient energy to cause **chemical changes in cells or damage DNA**.",
-            "**Strictest MPE band:** The human body absorbs more RF at resonant frequencies, giving **`50 MHz`** (6m) the **lowest Maximum Permissible Exposure** limit."
+            "**Why non-ionizing?** RF lacks the energy to cause **chemical changes in cells or damage DNA**",
+            "**Strictest safety limit (`50 MHz`):** Human body size absorbs RF fastest around **`50 MHz`** (the 6-meter band), giving it the **lowest Maximum Permissible Exposure**"
           ]
         },
         {
-          "heading": "Duty Cycle & What Controls Exposure",
-          "body": "RF exposure depends on **frequency, power level, distance, and antenna pattern**, averaged over several minutes. **Duty cycle** is the percentage of time a transmitter actually transmits.",
+          "heading": "Duty Cycle & What Shapes RF Fields",
+          "body": "RF safety limits measure heating **averaged over several minutes**, not just instantaneous watts.",
           "bullets": [
-            "**Why duty cycle matters:** It determines **average exposure** to radiation over time.",
-            "**Half the TX time = 2x power density:** Dropping duty cycle from `100%` to `50%` increases allowable power density **by a factor of 2**."
+            "**4 field factors:** **Frequency, power level, distance from antenna, and radiation pattern**",
+            "**Duty cycle:** Percentage of time you **actually transmit**—controls **average exposure**",
+            "**Duty-cycle math:** Cutting TX time from `100%` to `50%` lets allowable power density **double (`2×`)**"
           ]
         },
         {
-          "heading": "Station Compliance & Reducing RF",
-          "body": "**The station licensee** is legally responsible for keeping everyone within FCC exposure limits and re-checking safety whenever the station changes.",
+          "heading": "Compliance Checks & Moving Antennas",
+          "body": "The **station licensee** is legally responsible for keeping RF exposure within FCC limits.",
           "bullets": [
-            "**3 valid evaluation methods:** **FCC OET Bulletin 65** calculations, **computer modeling**, or **calibrated field-strength measurements**.",
-            "**Staying compliant:** **Relocate antennas** (not the transmitter!) to cut exposure, and **re-evaluate** whenever any transmitter or antenna item changes."
+            "**3 valid check methods:** **FCC OET Bulletin 65** tables, **computer modeling**, or **calibrated field measurements**",
+            "**Lowering exposure:** **Relocate antennas** farther/higher from people, and **re-evaluate** whenever TX power or antenna gear changes"
           ]
         }
       ]

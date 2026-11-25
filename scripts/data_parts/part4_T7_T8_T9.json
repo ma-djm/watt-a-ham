@@ -518,7 +518,7 @@
       ]
     },
     "T8D01": {
-      "explanation": "Packet radio (AX.25 frames), IEEE 802.11 (Wi-Fi protocols adapted for ham mesh networks), and FT8 (weak-signal HF/VHF data) are all digital communications modes.",
+      "explanation": "Packet radio, IEEE 802.11 (Wi-Fi protocols adapted for amateur mesh networks), and FT8 weak-signal messaging all send information as digital data.",
       "tags": [
         "digital-modes"
       ]
@@ -557,7 +557,7 @@
       ]
     },
     "T8D07": {
-      "explanation": "DMR (Digital Mobile Radio) uses two alternating TDMA time slots to carry two independent digital voice signals simultaneously on a single 12.5 kHz repeater channel.",
+      "explanation": "DMR (Digital Mobile Radio) splits a single 12.5 kHz repeater channel into two alternating time slots so two separate voice conversations can happen at once.",
       "tags": [
         "digital-modes",
         "bandwidth"
@@ -577,7 +577,7 @@
       ]
     },
     "T8D10": {
-      "explanation": "The WSJT-X software suite provides specialized weak-signal digital modes designed for Earth-Moon-Earth (moonbounce), meteor scatter, and propagation beacons (WSPR), plus FT8.",
+      "explanation": "The WSJT-X software suite includes specialized weak-signal digital modes built for moonbounce (Earth-Moon-Earth), meteor scatter, propagation beacons, and FT8.",
       "tags": [
         "digital-modes",
         "operating-activities"
@@ -590,7 +590,7 @@
       ]
     },
     "T8D12": {
-      "explanation": "Amateur mesh networks load custom ham firmware (such as AREDN) onto commercial Wi-Fi equipment to form high-speed, self-healing data networks on amateur microwave bands.",
+      "explanation": "Amateur mesh networks load custom ham radio firmware onto standard commercial Wi-Fi routers to create high-speed local data networks on microwave bands.",
       "tags": [
         "digital-modes"
       ]
@@ -690,7 +690,7 @@
       ]
     },
     "T9B05": {
-      "explanation": "Because RF skin effect and dielectric heating grow worse at higher frequencies, attenuation (loss) in any coaxial cable always increases as signal frequency goes up.",
+      "explanation": "Higher frequencies suffer greater conductor and insulation losses inside any cable, so coaxial cable attenuation (signal loss) always rises as frequency goes up.",
       "tags": [
         "feed-lines"
       ]
@@ -710,7 +710,7 @@
       ]
     },
     "T9B08": {
-      "explanation": "Water intrusion ruins cable insulation, high SWR bounces energy back and forth through lossy coax, and multiple inline connectors each add insertion loss—all three waste RF power.",
+      "explanation": "Water seeping into cable, high SWR bouncing power back and forth, and stringing multiple inline connectors together all convert precious RF watts into lost heat.",
       "tags": [
         "feed-lines",
         "swr",
@@ -889,7 +889,7 @@
       "group": "T8A",
       "title": "Modulation Modes & Signal Bandwidths",
       "subtitle": "Picking CW, SSB, FM, or TV for the job—and memorizing the 4 exam bandwidth anchors.",
-      "aid": null,
+      "aid": "bandwidth-ladder",
       "cards": [
         {
           "heading": "Matching the Mode: FM vs. SSB",
