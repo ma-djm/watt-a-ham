@@ -56,6 +56,26 @@ for (const q of posQs) {
   assert.match(q.choices[3], /all these (choices|answers) are correct/i, `Unexpected positional choice on ${q.id}`);
 }
 
+// Verify zero unrendered markdown (* or `) in explanations or rendered briefing cards
+for (const q of DATA.pool) {
+  assert.doesNotMatch(q.explanation, /[*`]/, `Raw markdown token in explanation ${q.id}`);
+}
+function testFormatRich(s) {
+  const slots = [];
+  let o = String(s).replace(/`([^`]+)`/g, (_, c) => { slots.push(`<code>${c}</code>`); return `\0C${slots.length - 1}\0`; });
+  o = o.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/(?<!\*)\*([^\s*](?:[^*]*?[^\s*])?)\*(?!\*)/g, '<em>$1</em>');
+  return o.replace(/\0C(\d+)\0/g, (_, i) => slots[Number(i)]);
+}
+for (const [g, b] of Object.entries(DATA.briefings)) {
+  assert.doesNotMatch(b.title + ' ' + b.subtitle, /[*`]/, `Raw markdown in ${g} title/subtitle`);
+  for (const card of b.cards) {
+    for (const txt of [card.heading, card.body, ...(card.bullets || [])]) {
+      const rendered = testFormatRich(txt);
+      assert.doesNotMatch(rendered, /[*`]/, `Unrendered markdown in ${g}: ${rendered}`);
+    }
+  }
+}
+
 // Verify every index.html element ID referenced by getElementById in app.js exists in index.html or dynamic templates
 const htmlSrc = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const appSrc = fs.readFileSync(path.join(root, 'app.js'), 'utf8');

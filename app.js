@@ -404,9 +404,15 @@
   }
 
   function formatRichText(str) {
-    return escHtml(str)
+    const codeSlots = [];
+    let out = escHtml(str).replace(/`([^`]+)`/g, (_, code) => {
+      codeSlots.push(`<code>${code}</code>`);
+      return `\u0000CODE${codeSlots.length - 1}\u0000`;
+    });
+    out = out
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/`([^`]+)`/g, '<code>$1</code>');
+      .replace(/(?<!\*)\*([^\s*](?:[^*]*?[^\s*])?)\*(?!\*)/g, '<em>$1</em>');
+    return out.replace(/\u0000CODE(\d+)\u0000/g, (_, idx) => codeSlots[Number(idx)]);
   }
 
   // Accessible Toast + Clipboard Copy (Modern Web Guidance)
@@ -1572,7 +1578,7 @@
     body.innerHTML = `
       <div class="briefing-card">
         <div class="panel-eyebrow">${escHtml(brief.title)}</div>
-        <h2 style="font-size:1.22rem">${escHtml(card.heading)}</h2>
+        <h2 style="font-size:1.22rem">${formatRichText(card.heading)}</h2>
         <p style="font-size:0.95rem;color:var(--text-primary)">${formatRichText(card.body)}</p>
         ${card.bullets && card.bullets.length ? `
           <ul class="briefing-bullets">
