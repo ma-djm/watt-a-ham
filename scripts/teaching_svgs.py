@@ -309,7 +309,7 @@ ILLUSTRATIONS = {
     <text x="541" y="67" font-size="9.5" font-weight="600" fill="currentColor">Locks steady 13.8V DC</text>
     <line x1="508" y1="84" x2="574" y2="84" stroke="var(--success)" stroke-width="2.8"/>
   </g>
-  <text x="310" y="142" text-anchor="middle" font-size="11" fill="var(--text-secondary)">Look familiar? That exact 4-step chain is drawn left-to-right inside Official Exam Figure T-2!</text>
+  <text x="310" y="142" text-anchor="middle" font-size="11" fill="var(--text-secondary)">Look familiar? That exact 4-step chain is drawn left-to-right inside Exam Figure T-2!</text>
 </svg>""",
 
     "transceiver-stages": f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" class="teaching-svg" role="img" aria-label="Signal path blocks inside a transceiver including Oscillator, Mixer, Modulator, and Amplifier" {SVG_STYLE}>

@@ -297,9 +297,16 @@ fireClick({ action: 'welcome-dismiss-forever' });
 assert.equal(domById.get('welcome-dialog').open, false);
 assert.equal(JSON.parse(storageMap.get('ham_study_v1')).hideWelcome, true, 'Opting out must persist hideWelcome=true');
 
+// Guard against claiming official status/endorsement or certification in app UI or metadata
+assert.doesNotMatch(
+  htmlSrc + '\n' + appSrc,
+  /official\s+(?:35|mock|practice|exam|schematic|question)|true vec (?:exam )?simulation|final boss certification|certified ready/i,
+  'UI copy must never claim official exams/schematics or certification'
+);
+
 // Switch through Exams & Aids tabs cleanly
 navTabs[1].dispatchEvent({ type: 'click' });
-assert.match(domById.get('exams-container').innerHTML, /Official 35-Question Mock Exam/);
+assert.match(domById.get('exams-container').innerHTML, /Full 35-Question Practice Exam/);
 navTabs[2].dispatchEvent({ type: 'click' });
 assert.match(domById.get('aids-container').innerHTML, /Exam-Focused Band/);
 assert.match(domById.get('aids-container').innerHTML, /Searchable Ham &amp; Electronics Glossary/);

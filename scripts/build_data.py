@@ -135,7 +135,7 @@ CAMPAIGN = [
         "bossAfter": {
             "id": "boss_4",
             "title": "Boss Checkpoint IV: Full Pool Gauntlet",
-            "subtitle": "All 35 groups unlocked — prove mastery before your Final Certification!",
+            "subtitle": "All 35 groups unlocked — prove mastery across the entire question pool!",
         },
     },
 ]

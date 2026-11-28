@@ -600,7 +600,7 @@
     const svg = DATA.figures[figKey];
     if (!svg) return;
     const dlg = document.getElementById('figure-dialog');
-    document.getElementById('figure-dialog-title').textContent = `Official Schematic — Figure ${figKey}`;
+    document.getElementById('figure-dialog-title').textContent = `Exam Schematic — Figure ${figKey}`;
     document.getElementById('figure-dialog-svg').innerHTML = svg;
     const testedCaptions = {
       'T-1': 'Tested on Exam: #1 Resistor · #2 NPN Transistor (controls current flow) · #3 Lamp · #4 Battery. (#5 Ground is not asked.)',
@@ -637,11 +637,11 @@
     {
       eyebrow: 'Welcome to Watt a Ham · Step 1 of 5',
       title: 'Your Guided Path to a Ham Radio Call Sign',
-      lead: 'Watt a Ham teaches the entire 2026–2030 US FCC Technician (Element 2) pool from scratch—no prior radio or electronics background required.',
+      lead: 'Watt a Ham is an independent study guide teaching the public-domain 2026–2030 US Technician (Element 2) question pool from scratch—no prior radio or electronics background required.',
       rows: [
         {
           icon: '🗺️',
-          html: '<strong>35-Node Skill Path (409 Official Questions):</strong> Instead of random flashcards, topics are ordered from everyday on-air operating into electronics, antennas, and FCC rules.'
+          html: '<strong>35-Node Skill Path (All 409 Pool Questions):</strong> Instead of random flashcards, topics are ordered from everyday on-air operating into electronics, antennas, and FCC rules.'
         },
         {
           icon: '⏱️',
@@ -656,7 +656,7 @@
     {
       eyebrow: 'How Lessons Work · Step 2 of 5',
       title: 'Every Node Uses a 3-Stage Lesson',
-      lead: 'Each node on the Path covers one official exam question group (~11–12 questions) in three smooth steps:',
+      lead: 'Each node on the Path covers one NCVEC question group (~11–12 questions) in three smooth steps:',
       rows: [
         {
           icon: '📖',
@@ -702,7 +702,7 @@
         },
         {
           icon: '📝',
-          html: '<strong>2 Practice Exam Modes (Exams Tab):</strong> Take a <strong>Progress Checkpoint</strong> on only unlocked groups, or a true <strong>35-Question VEC Mock Exam</strong> (26/35 to pass) with Smart Dual Scoring.'
+          html: '<strong>2 Practice Exam Modes (Exams Tab):</strong> Take a <strong>Progress Checkpoint</strong> on only unlocked groups, or a <strong>Full 35-Question Practice Exam</strong> (26/35 to pass) with Smart Dual Scoring.'
         },
         {
           icon: '⚡',
@@ -962,7 +962,7 @@
     const chips = chipsByFig[figKey] || [];
     return `
       <div class="panel-card" style="margin:0.2rem 0 0">
-        <div class="panel-eyebrow" style="margin-bottom:0.4rem">Official Exam Diagram — Figure ${escHtml(figKey)} (Only Highlighted Numbers Tested)</div>
+        <div class="panel-eyebrow" style="margin-bottom:0.4rem">Exam Diagram — Figure ${escHtml(figKey)} (Only Highlighted Numbers Tested)</div>
         <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="${escHtml(figKey)}">
           ${DATA.figures[figKey] || ''}
           <div class="callout-chips">
@@ -1303,7 +1303,7 @@
             </div>
           </div>
           <p class="signal-desc">
-            Master all 409 official FCC Technician questions at your own pace—knock out one 8-minute node whenever you have a spare moment, or power through multiple chapters in a sitting.
+            Master all 409 public-domain Technician pool questions at your own pace—knock out one 8-minute node whenever you have a spare moment, or power through multiple chapters in a sitting.
           </p>
           <button type="button" class="btn btn-primary btn-block" data-open-node="${escHtml(firstGroup)}" data-direct-start="1">
             Start Node 1: ${escHtml(firstGroup)} — ${escHtml(firstBrief ? firstBrief.title : 'Operating')}
@@ -1428,26 +1428,26 @@
       `;
     }).join('');
 
-    // Chapter 13: Final Boss License Readiness Certification (3 Mock Exams >= 30/35)
+    // Chapter 13: Final Readiness Milestone (3 Practice Exams >= 30/35)
     const highPasses = state.exams.filter((e) => e.mode === 'mock35' && e.score >= 30).length;
     const certDone = highPasses >= 3 && goldCount === 35;
 
     const finalBossHtml = `
-      <section class="final-boss-card" aria-label="Chapter 13 Final Boss License Readiness">
-        <div class="panel-eyebrow" style="color:var(--gold)">Chapter 13 · Final Boss Certification</div>
-        <h3>FCC Technician License Readiness</h3>
-        <div class="cert-stars" aria-label="${Math.min(3, highPasses)} of 3 high-pass mock exams earned">
+      <section class="final-boss-card" aria-label="Chapter 13 Final Readiness Milestone">
+        <div class="panel-eyebrow" style="color:var(--gold)">Chapter 13 · Final Readiness Milestone</div>
+        <h3>Technician Exam Readiness Milestone</h3>
+        <div class="cert-stars" aria-label="${Math.min(3, highPasses)} of 3 high-pass practice exams earned">
           <span class="cert-star ${highPasses >= 1 ? 'earned' : ''}">⭐</span>
           <span class="cert-star ${highPasses >= 2 ? 'earned' : ''}">⭐</span>
           <span class="cert-star ${highPasses >= 3 ? 'earned' : ''}">⭐</span>
         </div>
         <p class="signal-desc">
           ${certDone
-            ? '🎉 CERTIFIED READY! You have mastered all 35 groups and scored 30+/35 (85%+) on 3 Official Mock Exams. Go claim your call sign!'
-            : `Complete all 35 Path nodes (${goldCount}/35 Gold) and pass 3 Official 35-Question Mock Exams at 30+/35 (85%+) — ${Math.min(3, highPasses)}/3 completed.`}
+            ? '🎉 EXAM-READY MILESTONE! You have mastered all 35 groups and scored 30+/35 (85%+) on 3 Full 35-Question Practice Exams. Go claim your call sign!'
+            : `Complete all 35 Path nodes (${goldCount}/35 Gold) and score 30+/35 (85%+) on 3 Full 35-Question Practice Exams — ${Math.min(3, highPasses)}/3 completed.`}
         </p>
         <button type="button" class="btn btn-gold btn-block" data-action="start-mock35">
-          Launch Official 35-Question Mock Exam
+          Launch Full 35-Question Practice Exam
         </button>
       </section>
     `;
@@ -1471,7 +1471,7 @@
     body.innerHTML = `
       <div class="dialog-head-row">
         <div>
-          <div class="panel-eyebrow">Group ${escHtml(group)} · ${qs.length} Official Questions</div>
+          <div class="panel-eyebrow">Group ${escHtml(group)} · ${qs.length} Pool Questions</div>
           <h2 id="node-dialog-title" class="dialog-title">${escHtml(brief.title)}</h2>
         </div>
         <form method="dialog">
@@ -1542,7 +1542,7 @@
               <div class="band-row" style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap">
                 <div>
                   <div style="font-weight:800;font-size:0.9rem">
-                    ${ex.mode === 'mock35' ? 'Official 35-Q Mock Exam' : `Progress Checkpoint (${ex.total} Qs)`}
+                    ${ex.mode === 'mock35' ? 'Full 35-Q Practice Exam' : `Progress Checkpoint (${ex.total} Qs)`}
                     <span style="color:${passed ? 'var(--success)' : 'var(--danger)'};margin-left:0.35rem">${ex.score}/${ex.total} (${pct}%)</span>
                   </div>
                   <div style="font-size:0.75rem;color:var(--text-secondary)">
@@ -1566,26 +1566,26 @@
       <div class="panel-card">
         <div class="panel-header">
           <div>
-            <div class="panel-eyebrow">True VEC Exam Simulation</div>
-            <h2 class="panel-title">Official 35-Question Mock Exam</h2>
+            <div class="panel-eyebrow">Exam-Format Practice Test</div>
+            <h2 class="panel-title">Full 35-Question Practice Exam</h2>
           </div>
           <span class="badge-pill">Pass: 26/35 (74%)</span>
         </div>
         <p class="panel-desc">
-          Pulls 1 random question from each of the 35 official NCVEC groups (<code>T1A</code>–<code>T0C</code>). No mid-test hints, supports flagging questions, and reports <strong>both</strong> your Raw Score and your <strong>Studied-Nodes Score</strong> (${completedGroups.length}/35 Gold so far).
+          Pulls 1 random question from each of the 35 NCVEC pool groups (<code>T1A</code>–<code>T0C</code>). No mid-test hints, supports flagging questions, and reports <strong>both</strong> your Raw Score and your <strong>Studied-Nodes Score</strong> (${completedGroups.length}/35 Gold so far).
         </p>
         <div class="stat-grid">
           <div class="stat-box">
             <div class="stat-box-val">${state.exams.filter((e) => e.mode === 'mock35').length}</div>
-            <div class="stat-box-lbl">Mock Exams Taken</div>
+            <div class="stat-box-lbl">Practice Exams Taken</div>
           </div>
           <div class="stat-box">
             <div class="stat-box-val">${highPasses}/3</div>
-            <div class="stat-box-lbl">85%+ Cert Stars</div>
+            <div class="stat-box-lbl">85%+ Readiness Stars</div>
           </div>
         </div>
         <button type="button" class="btn btn-primary btn-block" data-action="start-mock35">
-          Start Official 35-Question Mock Exam
+          Start Full 35-Question Practice Exam
         </button>
       </div>
 
@@ -1752,10 +1752,10 @@
         ${renderBandPrivilegesHtml(true)}
       </div>
 
-      <!-- 3. Official Circuit Schematics Reference (Tested Callouts Only) -->
+      <!-- 3. Exam Circuit Schematics Reference (Tested Callouts Only) -->
       <div class="panel-card">
         <div class="panel-eyebrow">Subelements T6A, T6C &amp; T6D</div>
-        <h2 class="panel-title" style="margin-bottom:0.35rem">Official Exam Schematics (Tested Callouts Only)</h2>
+        <h2 class="panel-title" style="margin-bottom:0.35rem">Exam Circuit Schematics (Tested Callouts Only)</h2>
         <p class="panel-desc">Only 11 numbered symbols across all 3 diagrams are ever asked on the exam—tap any schematic to zoom full-screen.</p>
         <div style="display:flex;flex-direction:column;gap:0.75rem">
           <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="T-1">
@@ -1851,6 +1851,9 @@
             Reset All Progress
           </button>
         </div>
+        <p class="panel-desc" style="margin:0.85rem 0 0;font-size:0.76rem">
+          Watt a Ham is an independent open-source study guide built on the public-domain 2026–2030 NCVEC Element 2 question pool and is not affiliated with, sponsored by, or endorsed by the FCC, NCVEC, ARRL, or any Volunteer Examiner Coordinator.
+        </p>
       </div>
     `;
 
@@ -2071,7 +2074,7 @@
     renderSession();
   }
 
-  // 3. Start Official 35-Q Mock Exam or Progress Checkpoint Exam
+  // 3. Start Full 35-Q Practice Exam or Progress Checkpoint Exam
   function startExamSession(mode) {
     let groups = ORDERED_GROUPS;
     if (mode === 'checkpoint') {
@@ -2665,7 +2668,7 @@
     `;
   }
 
-  // Official Mock Exam & Progress Checkpoint Question View
+  // Full 35-Q Practice Exam & Progress Checkpoint Question View
   function renderExamQuestion() {
     const { items, qIdx, mode } = activeSession;
     const item = items[qIdx];
@@ -2673,7 +2676,7 @@
     const answeredCount = items.filter((it) => it.selectedSlot !== null).length;
 
     document.getElementById('session-title-pill').textContent =
-      mode === 'mock35' ? 'Official 35-Q Mock Exam' : 'Progress Checkpoint Exam';
+      mode === 'mock35' ? 'Full 35-Q Practice Exam' : 'Progress Checkpoint Exam';
     document.getElementById('session-counter').textContent =
       `Q ${qIdx + 1}/${items.length} (${answeredCount} answered)`;
     document.getElementById('session-bar').value = Math.round((answeredCount / items.length) * 100);

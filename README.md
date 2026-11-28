@@ -12,7 +12,7 @@
 
 ## Key Features
 
-- **Authoritative 2026–2030 Pool + Feb 19, 2026 Errata:** Covers all **409 official NCVEC Element 2 questions** across **10 subelements (`T1`–`T0`)** and **35 groups (`T1A`–`T0C`)**, valid July 1, 2026 – June 30, 2030.
+- **2026–2030 Public-Domain Pool + Feb 19, 2026 Errata:** Covers all **409 NCVEC Element 2 pool questions** across **10 subelements (`T1`–`T0`)** and **35 groups (`T1A`–`T0C`)**, valid July 1, 2026 – June 30, 2030.
 - **Zero-Prior-Knowledge Illustrated Handbook (146 Walkthrough Cards):**
   - Every group opens with **4–5 conversational cards** explaining equipment, slang (`rig`, `shack`, `HT`, `SWR`, `keyer`, `PTT`), radio physics, and FCC rules from scratch, ending in a **Quick-Recap Cheat-Sheet** card.
   - **Exam vs. Lore Visual Signaling:** Only exam-tested facts and numbers are **bolded** or `code-highlighted`; hobbyist context and analogies stay in normal type so you never wonder what to memorize.
@@ -27,7 +27,7 @@
   3. **Stage 3 — Node Challenge:** Positional-safe shuffled 4-choice quiz that loops missed items at the end of the round until 100% cleared (`Gold`).
   - **Signal Check & Boss Checkpoints:** Targeted 5–10 question review queue prioritizing `Cracked` nodes and >12s hesitations, plus 4 multi-chapter Boss Checkpoints.
 - **Closed-Loop Practice Exams:**
-  - **Official 35-Question Mock Exam:** True VEC simulation (1 random question per group, flagging, spoiler-free schematics, `26/35` pass) with **Smart Dual Scoring** (*Raw Score* + *Studied-Nodes Score*), Subelement breakdown, automatic `Cracked` markers on missed Gold groups, and a **Mistake Walkthrough**.
+  - **Full 35-Question Practice Exam:** Exam-format practice test (1 random question per group, flagging, spoiler-free schematics, `26/35` pass) with **Smart Dual Scoring** (*Raw Score* + *Studied-Nodes Score*), Subelement breakdown, automatic `Cracked` markers on missed Gold groups, and a **Mistake Walkthrough**.
   - **Progress Checkpoint Exam:** 1 question per completed/unlocked group for mid-path retention checks.
 - **Interactive Study Aids & Offline Portability:**
   - Exam-focused **Technician Band & Power Summary** (with optional full Part 97 reference), live **Ohm's Law / Power Calculator**, **33-Question Math & Formula Drill**, zoomable **Figures T-1, T-2, and T-3**, **Exam Day Checklist**, and **1-Tap `HAM1:` Progress Backup/Transfer Codes**.
@@ -87,3 +87,4 @@ node scripts/smoke_test.mjs
 - **Official Question Pool (`Public Domain`):** The 2026–2030 Element 2 (Technician Class) question pool, answer choices, FCC rule citations, February 19, 2026 errata, and examination figures `T-1`, `T-2`, and `T-3` are released into the **public domain** by the [NCVEC Question Pool Committee](https://www.ncvec.org/index.php/2026-2030-technician-question-pool).
 - **Bundled Equipment Photographs (`PD` / `CC0` / `CC BY` / `CC BY-SA`):** Hardware photographs in `assets/photos/` originate from Wikimedia Commons; see **[NOTICE](./NOTICE)** and each photo's in-app zoom lightbox for author, license, and source URL credits.
 - **Machine-Readable Pool Source (`Apache-2.0`):** Raw pool files in `scripts/pool_raw.*` are sourced from [`russolsen/ham_radio_question_pool`](https://github.com/russolsen/ham_radio_question_pool) under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). See **[NOTICE](./NOTICE)** for full attribution and state-of-change details.
+- **Non-Affiliation:** Watt a Ham is an independent open-source educational tool and is not affiliated with, sponsored by, or endorsed by the FCC, NCVEC, ARRL, Laurel VEC, or HamStudy.org.
