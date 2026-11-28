@@ -670,269 +670,387 @@
   "briefings": {
     "T5A": {
       "group": "T5A",
-      "title": "Voltage, Current, Power & AC/DC",
-      "subtitle": "Core electrical quantities, their units, conductors vs. insulators, and how current flows",
-      "aid": null,
+      "title": "Electricity Without Tears: Voltage, Current, Resistance & AC/DC",
+      "subtitle": "Building genuine intuition for how electrons move through circuits, wires, and antennas.",
       "cards": [
         {
-          "heading": "The Water-Pipe Analogy of Electricity",
-          "body": "Electricity behaves a lot like water in a hose. **Voltage** is the pressure pushing electrons, **current** is the flow of electrons, **resistance** narrows the pipe to oppose flow, and **power** is how fast energy gets used.",
-          "bullets": [
-            "**Voltage** (Volts, `V` or `E`): electrical pressure difference that causes electrons to flow",
-            "**Current** (Amperes, `A` or `I`): the flow of electrons in a circuit",
-            "**Power** (Watts, `W` or `P`): the rate at which electrical energy is used (not Watt-hours, which measure total energy)",
-            "**Resistance** (Ohms, `Ω` or `R`): opposes **all** types of current—DC, low-frequency AC, and RF alike"
+          "kind": "concept",
+          "heading": "The Garden-Hose Picture of Electricity",
+          "illustration": "water-pipe-electricity",
+          "widget": null,
+          "paragraphs": [
+            "If you have never built an electronic circuit before, picture water waiting inside a backyard garden hose connected to an outdoor faucet. Even while the spray nozzle is shut tight, municipal water pressure pushes against the hose walls, ready to move the instant a path opens. In electronics, a difference in **voltage** is that electrical pressure difference between two points that causes electrons to move. Once you connect a complete loop from a battery's negative terminal back to its positive terminal, that steady **flow of electrons** through the wire is called **current**, and we measure electrical **current** in **amperes** (often shortened to *amps* on power supply gauges).",
+            "Of course, no real pipe lets water rush through infinitely fast—a narrow nozzle, kinked hose, or rough interior wall pushes back and limits the flow rate. Every electrical path also has built-in friction called **resistance** (measured in ohms). Whenever electrons squeeze through a narrow bulb filament or carbon element, **resistance** pushes back regardless of how the current behaves: it opposes **direct current**, **alternating current**, and high-frequency **RF current** alike (**All these choices are correct**)."
           ]
         },
         {
-          "heading": "Conductors, Insulators & Alternating Current",
-          "body": "Materials conduct or block electricity depending on how tightly their atoms hold outer electrons. Meanwhile, circuits can carry steady one-way **DC** or reversing **AC**.",
-          "bullets": [
-            "**Metals** are great conductors because they have **many free electrons** (not free protons!)",
-            "**Glass** is a classic electrical **insulator**; sea water, stainless steel, and graphite all conduct",
-            "**Alternating current (AC)** alternates between **positive and negative directions**",
-            "**Frequency** is the number of complete AC cycles per second, measured in **hertz (Hz)**"
+          "kind": "concept",
+          "heading": "Why Metals Conduct and Glass Insulates",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Why do hams wind antennas out of copper or aluminum wire while hanging the ends from glass or glazed ceramic supports? Everything comes down to atomic structure and how tightly an atom hugs its outermost shell of electrons. Inside copper, silver, brass, or gold, outer electrons sit so loosely that they drift effortlessly from atom to atom like a shared ocean whenever pressure nudges them. **Metals** are generally good conductors of electricity because **they have many free electrons**—never *free protons*, since heavy positive protons remain locked tightly inside each atom's central nucleus.",
+            "An electrical insulator does the exact opposite, locking outer electrons into rigid chemical bonds so almost none can wander away even under high electrical pressure. Among the exam materials, **glass** is a good electrical **insulator**, keeping antenna voltages safely isolated from trees and masts. Watch out for three tricky everyday materials that might sound non-metallic at first glance: salty *sea water* teems with dissolved mineral ions that carry charge easily, *stainless steel* is still a metallic iron-chromium alloy, and *graphite* (ordinary pencil lead) lets electrons glide freely between flat carbon sheets—so all three conduct electricity."
           ]
         },
         {
-          "heading": "Instant Exam Shortcuts",
-          "body": "Watch out for unit distractors that tack on 'per second' or 'hours' where they don't belong.",
+          "kind": "concept",
+          "heading": "Electrical Power vs. Alternating Radio Waves",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Moving electrons aren't much help until they perform real work—warming a soldering iron, lighting a panel display, spinning a cooling fan, or launching a radio signal over the horizon. **Power** describes **the rate at which electrical energy is used** (or delivered) at any given moment, and electrical **power** is measured in **watts**. Don't let your monthly home utility bill trip you up with *watt-hours* or *kilowatt-hours*; tacking *hours* onto the unit measures total accumulated energy over an entire afternoon or month, whereas **watts** already means energy per second.",
+            "Portable batteries push electrons steadily in one direction (direct current), whereas household wall outlets and radio antennas slosh electrons rhythmically back and forth. **Alternating current** is **current that alternates between positive and negative directions**. One full push forward followed by one full pull backward counts as one complete cycle. **Frequency** describes **the number of times per second that an alternating current makes a complete cycle**, and the unit of **frequency** is **hertz** (`Hz`)—ranging from a gentle 60 cycles per second in North American wall wiring up to hundreds of millions of cycles per second on VHF and UHF ham bands."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T5A Quick Takeaways",
           "bullets": [
-            "**Watts** = rate of energy use (power); **Amperes** = flow rate of charge (never pick 'Amperes per second')",
-            "If asked what current resistance opposes (`T5A11`), pick **All these choices are correct** (DC, AC, and RF)"
+            "**Voltage:** Electrical pressure difference that causes electron flow",
+            "**Current (`Amperes`):** The **flow of electrons** in an electric circuit",
+            "**Power (`Watts`):** The **rate at which electrical energy is used** (instantaneous rate, not watt-hours)",
+            "**Resistance:** Opposes **direct current**, **alternating current**, and **RF current** (**All these choices are correct**)",
+            "**Conductors vs. Insulators:** **Metals** conduct well because **they have many free electrons**; **glass** is a good **insulator**",
+            "**AC & Frequency (`Hertz`):** **Alternating current** reverses between **positive and negative directions**; **frequency** is complete cycles per second"
           ]
         }
       ]
     },
     "T5B": {
       "group": "T5B",
-      "title": "Metric Prefixes & Decibel Ratios",
-      "subtitle": "Sliding decimals by 3s across pico, micro, milli, kilo, mega, giga—plus the 3 dB and 10 dB power rules",
-      "aid": "metric-db",
+      "title": "Radio Shorthand: Metric Prefixes & Decibels on the Air",
+      "subtitle": "Sliding decimals effortlessly from tiny microvolts to gigahertz, and thinking in 3 dB and 10 dB steps.",
       "cards": [
         {
-          "heading": "Sliding the Decimal by 3 Places",
-          "body": "Radio prefixes step in clean jumps of **1,000** (3 decimal places)—moving to a smaller unit always makes the number 1,000× bigger.",
-          "bullets": [
-            "**kilo (`k`)** = `1,000` (`1 kV` = 1,000 V; `1,500,000 Hz` = `1500 kHz`)",
-            "**milli (`m`)** = `1/1,000` (`1.5 A` = `1500 mA`; `3000 mA` = `3 A`; `500 mW` = `0.5 W`)",
-            "**micro (`µ`)** = `1/1,000,000` (one one-millionth of a volt); `1,000,000 pF` (`10⁻¹²`) = **`1 µF`** (`10⁻⁶`)",
-            "Frequency hops: `3.525 MHz` = **`3525 kHz`** | `28400 kHz` = **`28.400 MHz`** | `2425 MHz` = **`2.425 GHz`**"
+          "kind": "concept",
+          "heading": "Why Radio Needs Tiny Metric Prefixes",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Amateur radio spans mind-boggling extremes on the exact same workbench. A whisper-faint signal arriving from a distant mountain peak or orbiting satellite might nudge your receiver's antenna jack by a few millionths of a volt, while a ceramic tuning part inside that receiver holds trillionths of a farad. Writing long strings of decimal zeros across schematics would guarantee constant blunders, so radio uses clean metric steps of a thousand: *milli* means one-thousandth, *micro* means one-millionth, and *pico* means one-trillionth (a millionth of a millionth). Thus **one microvolt** equals **one one-millionth of a volt**.",
+            "Converting between neighboring steps simply slides the decimal point three places—and switching to a smaller unit always makes the number larger, just like converting dollars into cents. For circuit current, **1.5 amperes** multiplies by a thousand to equal **1500 milliamperes**, and going back up, **3000 milliamperes** divides by a thousand to equal **3 amperes**. For low-power radios, **500 milliwatts** divides by a thousand to become **0.5 watts**. Finally, stepping twice from *pico* up through *nano* to *micro* divides by a million, so **1,000,000 picofarads** equals **1 microfarad**."
           ]
         },
         {
-          "heading": "Decibels Made Painless: Only Two Numbers to Know",
-          "body": "Decibels (`dB`) turn power multiplication into simple addition—every Technician question uses just `2×` (`3 dB`) or `10×` (`10 dB`).",
-          "bullets": [
-            "**`+3 dB`** = **2× power** (`5 W → 10 W` is doubled, so **`3 dB`**)",
-            "**`-3 dB`** = **½ power**; halving twice (`12 W → 6 W → 3 W`, or ¼ power) is `-3 dB + -3 dB` = **`-6 dB`**",
-            "**`+10 dB`** = **10× power** (`20 W → 200 W` is 10×, so **`10 dB`**)"
+          "kind": "concept",
+          "heading": "Climbing the Dial: Kilovolts, kHz, MHz & GHz",
+          "illustration": null,
+          "widget": "metric-db",
+          "paragraphs": [
+            "Stepping upward from base units follows the exact same three-decimal-place rhythm: *kilo* means one thousand, *mega* means one million, and *giga* means one billion. Inside a vintage vacuum-tube linear amplifier, the high-voltage plate meter might read **one kilovolt**, which equals **one thousand volts**. Out on your transceiver's digital frequency display, bands climb smoothly from hertz (`Hz`) to kilohertz (`kHz`), megahertz (`MHz`), and gigahertz (`GHz`), sliding the decimal point three places at every rung of the ladder so frequency callouts stay compact, friendly, and easy to read aloud on a net.",
+            "Always run a two-second common-sense check before clicking any exam choice: switching to a *larger* unit shrinks the number, while switching to a *smaller* unit grows it. Dividing **1,500,000 hertz** by a thousand gives **1500 kHz** (near the top of the AM broadcast dial). Converting megahertz down to smaller kilohertz multiplies by a thousand, turning **3.525 MHz** into **3525 kHz**. Moving upward to larger units divides by a thousand: **28400 kHz** on the 10-meter band becomes **28.400 MHz**, and **2425 MHz** in the amateur microwave band becomes **2.425 GHz**."
           ]
         },
         {
-          "heading": "Sanity-Check Before Clicking",
-          "body": "Avoid shifting the decimal the wrong way under test pressure by checking unit size.",
+          "kind": "concept",
+          "heading": "Why Hams Speak in Decibels: S-Meters & Antenna Gain",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "If you turn a 5-watt handheld radio up to 10 watts, does your voice sound twice as loud to a friend across town? Not even close—human hearing and receiver signal meters respond to *ratios* rather than linear wattage steps. That is why radio operators use the *decibel*, a logarithmic scale that turns messy multiplication of amplifier gains and coax cable losses into simple addition and subtraction. In real life, swapping a stock whip for a roof antenna with 3 dB of gain helps your signal just like doubling transmitter watts, while 10 dB of directional beam gain makes a 5-watt radio punch like 50 watts—and a classic receiver S-meter climbs roughly one S-unit per 6 dB.",
+            "On the Technician exam, you never touch a logarithm button—just combine two building blocks! Every time power *doubles*, you add **3 dB**, so a power increase from **5 watts to 10 watts** is **3 dB**. Cutting power in half is `-3 dB`; dropping from **12 watts to 3 watts** halves the wattage twice (from 12 down to 6, then 6 down to 3), which adds `-3 dB` and `-3 dB` for **-6 dB**. And multiplying power tenfold, such as boosting **20 watts to 200 watts**, equals **10 dB**."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T5B Quick Takeaways",
           "bullets": [
-            "Smaller unit = bigger number (`3.525 MHz` must become thousands of `kHz`, never `0.003525 kHz`)",
-            "Power **increase** = **positive** dB; power **decrease** = **negative** dB"
+            "**Prefix definitions:** **One kilovolt** = **one thousand volts**; **one microvolt** = **one one-millionth of a volt**",
+            "**Milli & pico conversions:** `1.5 A` = **1500 milliamperes** | `3000 mA` = **3 amperes** | `500 mW` = **0.5 watts** | `1,000,000 pF` = **1 microfarad**",
+            "**Frequency conversions:** `1,500,000 Hz` = **1500 kHz** | `3.525 MHz` = **3525 kHz** | `28400 kHz` = **28.400 MHz** | `2425 MHz` = **2.425 GHz**",
+            "**+3 dB (2× power):** Increasing from **5 watts to 10 watts** = **3 dB**",
+            "**-6 dB (1/4 power, halved twice):** Decreasing from **12 watts to 3 watts** = **-6 dB**",
+            "**+10 dB (10× power):** Increasing from **20 watts to 200 watts** = **10 dB**"
           ]
         }
       ]
     },
     "T5C": {
       "group": "T5C",
-      "title": "Capacitance, Inductance, Impedance & Power",
-      "subtitle": "Electric vs. magnetic energy storage, AC impedance, unit capitalization, and the P = I × E power circle",
-      "aid": "power-circle",
+      "title": "Energy Fields, Impedance & the DC Power Formula",
+      "subtitle": "How capacitors and inductors store energy in invisible fields, and how to calculate wattage with P = I × E.",
       "cards": [
         {
-          "heading": "Fields, Units & Impedance",
-          "body": "Reactive components store energy temporarily in fields instead of burning it as heat, while **impedance** measures total opposition to alternating current.",
-          "bullets": [
-            "**Capacitance** stores energy in an **electric field** — measured in **Farads (`F`)**",
-            "**Inductance** stores energy in a **magnetic field** — measured in **Henries (`H`)**",
-            "**Impedance (`Z`)** is the **opposition to AC current flow** — measured in **Ohms (`Ω`)**"
+          "kind": "concept",
+          "heading": "What Electric & Magnetic Fields Actually Do",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "When electricity flows through an ordinary resistor, energy leaves the circuit permanently as heat. Two other fundamental electrical properties behave instead like tiny rechargeable springs, catching energy in invisible fields and returning it to the circuit moments later. Imagine pushing electrons onto one metal plate while pulling them off a facing plate across a thin insulating gap: opposite charges attract across that barrier like stretched elastic. **Capacitance** describes **the ability to store energy in an electric field**, and its unit is the **farad**—creating a voltage reservoir that smooths out power ripples and resists sudden jumps in voltage.",
+            "Now wind a length of copper wire into a coil and send current flowing through the turns. Every moving electron projects magnetism, and coiling the wire concentrates each turn's magnetism into a shared invisible magnetic halo around the winding. **Inductance** describes **the ability to store energy in a magnetic field**, and its unit is the **henry**. Because building up or collapsing that magnetic halo takes effort, inductance acts like a heavy mechanical flywheel that opposes sudden surges or drops in current."
           ]
         },
         {
-          "heading": "DC Power Law (`P = I × E` — Easy as PIE)",
-          "body": "Cover the unknown letter in the **PIE** circle (`P` on top, `I × E` on bottom) to solve every DC power question.",
-          "bullets": [
-            "Formula: **`P = I × E`** (Power = Current × Voltage)",
-            "`13.8 V` at `10 A`: `P = 10 × 13.8` = **`138 watts`**",
-            "`12 V` at `2.5 A`: `P = 2.5 × 12` = **`30 watts`**",
-            "Current for `120 W` at `12 V`: `I = P / E = 120 / 12` = **`10 amperes`**"
+          "kind": "concept",
+          "heading": "The DC Power Circle: Calculating Watts & Amps",
+          "illustration": null,
+          "widget": "power-circle",
+          "paragraphs": [
+            "Whenever you wire a mobile transceiver to a desktop power supply or portable field battery, you need to know how many watts of electrical power the station draws and how many amps your inline fuse and heavy red-and-black zip cord must safely handle. Classic radio formulas use `E` for voltage (*electromotive force* in volts) and `I` for current (*intensity* in amperes). Multiplying electron flow by electrical pressure gives the DC power formula `P = I x E`—easy to remember as *PIE* (*Power* equals *I* times *E*).",
+            "With `P = I x E` in your pocket, every Technician power math question takes five seconds. A typical shack supply delivering **13.8 volts DC** and a current of **10 amperes** provides `10 × 13.8` = **138 watts**—plenty of headroom for a 50-watt mobile FM rig. A compact radio running at **12 volts DC** and drawing **2.5 amperes** consumes `2.5 × 12` = **30 watts**. And if the question gives power first—asking how much current is required to deliver **120 watts** at **12 volts DC**—cover `I` in the *PIE* circle and divide `I = P / E` (`120 / 12`) to get **10 amperes**."
           ]
         },
         {
-          "heading": "Case-Sensitive Abbreviations Trap",
-          "body": "Two questions specifically test exact uppercase vs. lowercase letters in frequency abbreviations!",
+          "kind": "concept",
+          "heading": "AC Impedance & Case-Sensitive Frequency Units",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "In a simple flashlight loop, steady one-way DC current only fights plain resistance. Once you switch to alternating radio-frequency currents, capacitors and inductors add their own frequency-dependent pushback—called *reactance*—as their electric and magnetic fields build and collapse millions of times every second. **Impedance** is **the opposition to AC current flow**, combining resistance and reactance into one overall figure. Even though AC behavior is richer than DC, the unit of **impedance** is still the familiar **ohm**—which is why your transceiver antenna jack, coaxial cable, and dipole feedpoint are all engineered around 50 ohms!",
+            "Before wrapping up this group, pay close attention to uppercase versus lowercase letters on two quick unit-abbreviation questions. In the metric system, prefixes up through *kilo* are written in lowercase, whereas *mega* and larger prefixes use capital letters so nobody confuses millions with thousandths; meanwhile, unit symbols named after scientists—like Heinrich Hertz—always capitalize their first letter. Put both rules together and the abbreviation for **kilohertz** is `kHz`, while **megahertz** is `MHz` (writing lowercase *mHz* by accident would mean a sluggish *millihertz*—just one cycle every thousand seconds!)."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T5C Quick Takeaways",
           "bullets": [
-            "**Kilohertz** = **`kHz`** (lowercase `k` for kilo; capital `H`, lowercase `z` for Hertz)",
-            "**Megahertz** = **`MHz`** (capital `M` for mega = `10⁶` — lowercase `mHz` would mean *millihertz*!)"
+            "**Capacitance (`Farad`):** The **ability to store energy in an electric field**",
+            "**Inductance (`Henry`):** The **ability to store energy in a magnetic field**",
+            "**Impedance (`Ohm`):** Total **opposition to AC current flow**",
+            "**Exact case-sensitive abbreviations:** Kilohertz = `kHz`; Megahertz = `MHz`",
+            "**DC Power Formula:** `P = I x E` (Watts = Amperes × Volts; rearrange as `I = P / E`)",
+            "**Exam numbers:** `13.8 V × 10 A` = **138 watts** | `12 V × 2.5 A` = **30 watts** | `120 W / 12 V` = **10 amperes**"
           ]
         }
       ]
     },
     "T5D": {
       "group": "T5D",
-      "title": "Ohm's Law & Series vs. Parallel Circuits",
-      "subtitle": "Solving for E, I, and R with the E-I-R triangle, plus what stays constant in series and parallel loops",
-      "aid": "ohms-circle",
+      "title": "Ohm's Law Mastery & Series vs. Parallel Wiring",
+      "subtitle": "One visual circle to nail twelve Ohm's Law questions, plus how loops and branches share current and voltage.",
       "cards": [
         {
-          "heading": "Mastering the Ohm's Law Triangle (`E = I × R`)",
-          "body": "Cover whichever letter the question asks for in the **E-I-R** circle (`E` always sits on top; `I × R` sit side-by-side underneath).",
-          "bullets": [
-            "**Voltage**: **`E = I × R`** (`0.5 A × 2 Ω = 1 V` | `1 A × 10 Ω = 10 V` | `2 A × 10 Ω = 20 V`)",
-            "**Current**: **`I = E / R`** (`120 V / 80 Ω = 1.5 A` | `200 V / 100 Ω = 2 A` | `240 V / 24 Ω = 10 A`)",
-            "**Resistance**: **`R = E / I`** (`90 V / 3 A = 30 Ω` | `12 V / 1.5 A = 8 Ω` | `12 V / 4 A = 3 Ω`)"
+          "kind": "concept",
+          "heading": "One Circle for Every Ohm's Law Formula",
+          "illustration": null,
+          "widget": "ohms-circle",
+          "paragraphs": [
+            "In the 1820s, experimenter Georg Simon Ohm uncovered the single most useful relationship in all of hobby electronics: push twice as hard with electrical pressure and twice as much current flows; double the resistance in the path and current drops cleanly in half. Rather than juggling three separate algebra rearrangements under test-day nerves, sketch or picture the classic Ohm's Law circle with `E` (voltage in volts) sitting alone in the top half, and `I` (current in amps) perched side-by-side with `R` (resistance in ohms) across the bottom half.",
+            "Place your thumb over whichever letter an exam question asks you to calculate, and the remaining two letters hand you the exact formula! Cover `E` on top and `I` sits next to `R`, giving the voltage formula `E = I x R`. Cover `I` at bottom left and `E` sits above `R`, giving the current formula `I = E / R`. Cover `R` at bottom right and `E` sits above `I`, giving the resistance formula `R = E / I`. Notice the foolproof memory anchor: whenever you divide, voltage `E` *always* goes on top of the fraction!"
           ]
         },
         {
-          "heading": "Series vs. Parallel Circuits",
-          "body": "How components are wired determines whether they share the same current flow or see the same voltage across their leads.",
-          "bullets": [
-            "**Series circuit** (one single loop, daisy-chained): **Current is always the same** through all components",
-            "**Parallel circuit** (side-by-side rungs across two rails): **Voltage is always the same** across all components"
+          "kind": "concept",
+          "heading": "Series Loops vs. Parallel Rails",
+          "illustration": "series-vs-parallel",
+          "widget": null,
+          "paragraphs": [
+            "Whenever two or more parts connect in a real radio project, how you wire their leads determines whether they share identical current or identical voltage. Connect components end-to-end in a single daisy-chained loop—like an inline fuse protecting a power cord, or old-fashioned holiday bulbs where one loose bulb darkens the whole strand—and you have built a **series** circuit. Because electrons have only one continuous path with zero side branches, every electron entering the first part must continue through the next: in a **series** circuit, **current is always the same through all components**.",
+            "Now wire each component side-by-side like rungs on a ladder across two shared power rails—just like plugging your VHF transceiver, SWR meter lamp, and cooling fan into the same 13.8-volt distribution strip on your desk. That ladder arrangement is a **parallel** circuit. Heavy equipment on one rung can draw ten amps while a tiny lamp on the next rung sips a trickle, yet because every branch clips directly across the exact same positive and negative rails, **voltage is always the same across all components** in a **parallel** circuit."
           ]
         },
         {
-          "heading": "Zero-Mistake Exam Habit",
-          "body": "Every single Ohm's Law distractor comes from multiplying when you should divide (or flipping `I / E` instead of `E / I`).",
+          "kind": "concept",
+          "heading": "Bench Practice: All Nine Ohm's Law Calculations",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Nine questions in this group hand you two friendly round numbers and ask for the third—meaning you can breeze through every single one in your head without even needing a calculator! On the workbench, you often check how much voltage drops across a resistor or power cable carrying a known current by multiplying `E = I x R`: a **2-ohm** resistor carrying **0.5 amperes** drops **1 volt**; a **10-ohm** resistor carrying **1 ampere** drops **10 volts**; and doubling that flow to **2 amperes** through a **10-ohm** resistor drops **20 volts**.",
+            "Whenever voltage is already known, put `E` on top of the fraction and divide! Solving `I = E / R` for unknown circuit current: **120 volts** across **80 ohms** pushes **1.5 amperes**, **200 volts** across a **100-ohm** resistor pushes **2 amperes**, and **240 volts** across a **24-ohm** resistor pushes **10 amperes**. Solving `R = E / I` to find unknown circuit resistance: **90 volts** driving **3 amperes** equals **30 ohms**, **12 volts** driving **1.5 amperes** equals **8 ohms**, and a **12-volt** source supplying **4 amperes** sees **3 ohms**."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T5D Quick Takeaways",
           "bullets": [
-            "Jot **`E` over `I · R`** on scratch paper first—**`E`** is *always* on top of the fraction (`I = E/R`, `R = E/I`)",
-            "Memory hook: **S**eries = **S**ame current; **P**arallel = same **P**otential (voltage)"
+            "**Ohm's Law Formulas (`E` on top):** Voltage `E = I x R` | Current `I = E / R` | Resistance `R = E / I`",
+            "**Solve for Voltage (`I × R`):** `0.5 A × 2 Ω` = **1 volt** | `1 A × 10 Ω` = **10 volts** | `2 A × 10 Ω` = **20 volts**",
+            "**Solve for Current (`E / R`):** `120 V / 80 Ω` = **1.5 amperes** | `200 V / 100 Ω` = **2 amperes** | `240 V / 24 Ω` = **10 amperes**",
+            "**Solve for Resistance (`E / I`):** `90 V / 3 A` = **30 ohms** | `12 V / 1.5 A` = **8 ohms** | `12 V / 4 A` = **3 ohms**",
+            "**Series vs. Parallel:** **Series** = **same current** through all components; **Parallel** = **same voltage** across all components"
           ]
         }
       ]
     },
     "T6A": {
       "group": "T6A",
-      "title": "Resistors, Capacitors, Inductors, Switches & Batteries",
-      "subtitle": "How basic passive components are built, how poles and throws work, and which batteries recharge",
-      "aid": "fig-t2-switch",
+      "title": "Meet the Parts Bin: Passive Components, Switches & Batteries",
+      "subtitle": "What resistors, capacitors, inductors, switches, and shack batteries actually look like and do inside.",
       "cards": [
         {
-          "heading": "The Big Three Passive Components",
-          "body": "Resistors, capacitors, and inductors are the foundational building blocks of every power supply, filter, and radio stage.",
-          "bullets": [
-            "**Resistor**: opposes DC and AC current flow; a **potentiometer** is an adjustable resistor (controls **resistance**, used as a **volume control**)",
-            "**Capacitor**: **conductive surfaces separated by an insulator** (dielectric); stores energy in an **electric field**",
-            "**Inductor**: constructed as a **coil of wire**; stores energy in a **magnetic field**"
+          "kind": "concept",
+          "heading": "Resistors & Potentiometers: Controlling Flow and Volume",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Pop the top cover off almost any kit transceiver or bench power supply and the most common tiny cylinder you will spot—painted with bright colored value bands—is a **resistor**, the passive component engineered specifically to **oppose the flow of current in a DC circuit** (as well as AC signals). Circuit designers sprinkle fixed resistors throughout every stage to hold current down to safe levels so delicate indicator LEDs and transistors never overheat, and to establish predictable operating voltages from stage to stage.",
+            "Fixed resistors stay locked at one value forever, so what happens when *you* want smooth fingertip adjustment from the front panel while tuning across a lively band? Engineers shape that resistive carbon or cermet material into a curved horseshoe track and press a springy metal wiper arm against it on a rotating shaft. That three-terminal adjustable component is a **potentiometer**: turning the knob slides the wiper along the track to control **resistance**, which is why a **potentiometer** is the classic part used as an **adjustable volume control** (along with squelch and RF-gain knobs)."
           ]
         },
         {
-          "heading": "Switches & Battery Chemistries",
-          "body": "Switches are named by how many separate circuits they control (**poles**) and how many positions each pole connects to (**throws**). Batteries split into rechargeable vs. single-use.",
+          "kind": "concept",
+          "heading": "Mechanical Switches: Decoding Poles & Throws",
+          "illustration": null,
+          "widget": "switch-flipper",
+          "paragraphs": [
+            "Catalog abbreviations for mechanical switches sound cryptic until you picture an old-fashioned iron railroad track switch in a freight yard. A switch's *poles* count how many completely separate incoming circuits move together when you flip the handle, while its *throws* count how many output landing contacts each moving arm can connect to. The simplest everyday light-switch toggle has just one moving arm and one landing contact: a **single-pole single-throw** switch that simply opens or closes a single path—and that exact hinged on/off switch symbol is **component 3 in figure T-2**.",
+            "Now add a second output contact so flipping the toggle doesn't leave the circuit hanging open, but instead routes that center arm cleanly between path A and path B without ever disconnecting the input lead. That three-terminal toggle is an `SPDT` (single-pole double-throw) switch, whose function is that **a single circuit is switched between one of two other circuits**. Around an amateur station bench, an `SPDT` toggle makes it effortless to flip one external speaker between two receivers, or switch a control line between *transmit* and *receive* paths."
+          ]
+        },
+        {
+          "kind": "concept",
+          "heading": "Inside Capacitors, Inductors & Radio Batteries",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Peek inside the two reactive field-storing parts in your kit bin and their physical construction tells you immediately how they work. A **capacitor** consists of **conductive surfaces separated by an insulator** (a thin *dielectric* barrier made of ceramic, mica, plastic film, or air). Because those metal plates never touch, steady DC is blocked while the **capacitor** stores energy in an **electric field** across the gap. Next to it sits the **inductor**, typically constructed as a **coil of wire** wound in air or on a ferrite core so its loops team up to store energy in a **magnetic field**.",
+            "When you pack a handheld or portable rig for a park activation or storm net, battery chemistry determines whether a pack can go back on the charger. Secondary chemistries safely reverse their chemical reaction when charged: **nickel-metal hydride**, **lithium-ion**, and **lead-acid** are all rechargeable (**All these choices are correct**), as is older **nickel-cadmium**. By contrast, **carbon-zinc** (inexpensive *heavy-duty* flashlight cells) is **not rechargeable**—trying to charge a disposable primary cell builds internal gas that can rupture the casing and leak corrosive paste."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T6A Quick Takeaways",
           "bullets": [
-            "**SPST** (Single-Pole Single-Throw, **Component 3 in Figure T-2**): simple on/off switch for one circuit",
-            "**SPDT** (Single-Pole Double-Throw): routes **a single circuit between one of two other circuits**",
-            "**Rechargeable**: **Nickel-metal hydride (NiMH)**, **Lithium-ion**, **Nickel-cadmium (NiCd)**, and **Lead-acid**",
-            "**NOT rechargeable**: **Carbon-zinc** (disposable heavy-duty flashlight cells)"
+            "**Resistor & Potentiometer:** A **resistor** opposes DC current flow; a **potentiometer** controls **resistance** and serves as an **adjustable volume control**",
+            "**Capacitor:** Built from **conductive surfaces separated by an insulator**; stores energy in an **electric field**",
+            "**Inductor:** Constructed as a **coil of wire**; stores energy in a **magnetic field**",
+            "**Switches:** **Component 3 in figure T-2** is **single-pole single-throw**; an `SPDT` switch routes **a single circuit between one of two other circuits**",
+            "**Batteries:** **Nickel-metal hydride**, **lithium-ion**, **lead-acid** (and **nickel-cadmium**) are **rechargeable**; **carbon-zinc** is **not rechargeable**"
           ]
         }
       ]
     },
     "T6B": {
       "group": "T6B",
-      "title": "Diodes, LEDs & Transistors",
-      "subtitle": "One-way semiconductor junctions, diode stripes, BJT vs. FET pin names, and amplifier gain",
-      "aid": null,
+      "title": "Semiconductors Demystified: Diodes, LEDs & Transistors",
+      "subtitle": "How doped silicon acts as one-way check valves, solid-state switches, and signal-boosting amplifiers.",
       "cards": [
         {
-          "heading": "Diodes & LEDs: One-Way Valves",
-          "body": "A **diode** allows current to flow in **only one direction**—from **anode** to **cathode**—with a small **forward voltage drop** that varies by diode type.",
-          "bullets": [
-            "Electrodes: **Anode** and **Cathode**; the **cathode** end of the package is marked **with a stripe**",
-            "**Forward voltage drop** is **lower in some diode types than in others** (e.g., ~0.3 V Schottky/germanium vs. ~0.7 V silicon)",
-            "An **LED** (light-emitting diode) emits light when **forward current** flows through it"
+          "kind": "concept",
+          "heading": "Diodes & LEDs: One-Way Semiconductor Check Valves",
+          "illustration": "semiconductors-switches",
+          "widget": null,
+          "paragraphs": [
+            "Pure crystalline silicon sits halfway between a copper conductor and a glass insulator—earning the name *semiconductor*. By infusing two touching regions of a silicon wafer with trace elements, engineers create a **diode**, an electronic component that allows current to flow in **only one direction**, much like a spring-loaded check valve in a water pipe that prevents backflow. A diode's two leads (electrodes) are named the **anode and cathode**: conventional forward current enters the *anode* and exits the **cathode**, which is marked on cylindrical diode packages **with a stripe** matching the vertical bar on its schematic symbol.",
+            "Pushing electrons across that internal junction requires overcoming a small electrical threshold called **forward voltage drop**, and **it is lower in some diode types than in others**—for instance, sensitive Schottky or germanium RF detector diodes drop around 0.3 volts, whereas standard silicon power rectifier diodes drop about 0.7 volts. In a specialized **light-emitting diode (LED)**, electrons crossing that junction release tiny packets of visible light instead of plain warmth, so **forward current** is what causes a **light-emitting diode (LED)** to emit light on your radio's front panel."
           ]
         },
         {
-          "heading": "Transistors: Electronic Switches & Amplifiers",
-          "body": "Transistors are active **three-region** semiconductor devices that act as fast **electronic switches** and provide **power gain**.",
-          "bullets": [
-            "**Bipolar Junction Transistor (BJT)** electrodes: **Emitter, Base, Collector** (`E-B-C`)",
-            "**FET (Field Effect Transistor)** electrodes: **Gate, Drain, Source** (`G-D-S`)",
-            "**Amplifier gain** means output signal relative to input signal—for **voltage, current, or power** (**All these choices are correct**)"
+          "kind": "concept",
+          "heading": "Transistors: Three-Region Switches, BJTs & FETs",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "If joining two semiconductor layers makes a one-way check valve, sandwiching **three regions of semiconductor material** together creates a **transistor**—a solid-state workhorse with zero moving parts that can be used as an instant, wear-free **electronic switch**. Feeding a tiny control signal into one control pin opens or shuts a much heavier current path between the other two pins, allowing a delicate logic chip inside your modern transceiver to switch transmit and receive stages silently thousands of times every second without mechanical contacts ever pitting or wearing out.",
+            "Two major transistor families appear throughout amateur radio gear, and the exam tests the exact three electrode names of each family so you never mix them up on schematics. A **bipolar junction transistor** uses a small control current into its thin center region to regulate main flow across its **emitter, base, collector** electrodes. Its cousin is the `FET`—which stands for **Field Effect Transistor**—where voltage on an input terminal creates an electric field to widen or pinch a conducting channel; a **field-effect** transistor always has **gate, drain, and source** electrodes."
           ]
         },
         {
-          "heading": "Quick Semiconductor Traps to Dodge",
-          "body": "Don't let look-alike component names trip you up on test day.",
+          "kind": "concept",
+          "heading": "Active Amplification & What Gain Really Means",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Beyond crisp on/off switching, a **transistor** performs the core miracle that makes radio communication possible across continents: it is an *active* device that can provide **power gain**. A passive iron-core transformer can step AC voltage higher only by stepping current proportionally lower, never adding a single extra watt. Because a **transistor** taps fresh energy from your station's DC battery or 13.8-volt power supply, a microscopic antenna wave nudging its *base* or *gate* sculpts a hefty DC supply stream into a faithful, high-power replica of the original voice or Morse signal.",
+            "When hams compare preamplifiers, audio stages, or final RF bricks, they measure how strongly a stage enlarges a signal using the term **gain**—defined as the ratio of output signal size to input signal size. Depending on what job a particular amplifier stage performs inside your rig, **gain** in amplifiers can describe **the output signal voltage relative to the input signal voltage**, **the output signal current relative to the input signal current**, or **the output signal power relative to the input signal power** (**All these choices are correct**)."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T6B Quick Takeaways",
           "bullets": [
-            "**Transistors** provide **power gain**; passive *transformers* step voltage up or down but never create extra power",
-            "Keep pin trios straight: **BJT** = **E**mitter/**B**ase/**C**ollector; **FET** = **G**ate/**D**rain/**S**ource"
+            "**Diode basics:** Allows current in **only one direction** between **anode and cathode**; the **cathode** lead is marked **with a stripe**",
+            "**Forward drop & LEDs:** Diode **forward voltage drop** is **lower in some diode types than in others**; **forward current** makes an **LED** emit light",
+            "**Transistor roles:** Built from **three regions of semiconductor material**; acts as an **electronic switch** and provides **power gain**",
+            "**BJT vs. FET pins:** **Bipolar junction transistor** = **emitter, base, collector**; `FET` (**Field Effect Transistor** / **field-effect**) = **gate, drain, and source**",
+            "**Amplifier gain:** Output signal relative to input signal in **voltage**, **current**, or **power** (**All these choices are correct**)"
           ]
         }
       ]
     },
     "T6C": {
       "group": "T6C",
-      "title": "Reading Schematics: Figures T-1, T-2 & T-3",
-      "subtitle": "Identifying every component symbol on the three Technician exam circuit diagrams",
-      "aid": "figures",
+      "title": "Reading Schematics Without Fear: Figures T-1, T-2 & T-3",
+      "subtitle": "How to read circuit diagrams like a subway map—and exactly which numbered callouts are on the exam.",
       "cards": [
         {
-          "heading": "What Schematics Show — & Figure T-1 (Transistor Lamp Driver)",
-          "body": "A **schematic** uses standard symbols to show **component connections** (never physical wire lengths or real-world shapes). **Figure T-1** shows a transistor switching a lamp:",
-          "bullets": [
-            "**Fig T-1 #1**: **Resistor** (sharp zigzag line feeding the base)",
-            "**Fig T-1 #2**: **Transistor** (NPN symbol with base bar, collector, and outward emitter arrow—controls current flow)",
-            "**Fig T-1 #3**: **Lamp** (bulb dome with looped filament inside)",
-            "**Fig T-1 #4**: **Battery** (alternating long and short parallel cell lines)"
+          "kind": "concept",
+          "heading": "Subway Maps for Circuits — & Decoding Figure T-1",
+          "illustration": null,
+          "widget": "fig-t1",
+          "paragraphs": [
+            "Beginners sometimes freeze up when looking at a circuit diagram, expecting it to resemble a photograph of physical parts on a circuit board. Instead, read a **schematic**—an electrical diagram using standard component symbols—just like a city subway map! A transit map ignores exact street curves and building sizes so riders can trace which station connects to which rail line; likewise, what is accurately represented in electrical schematics is **component connections**, never physical part appearance or actual wire lengths.",
+            "Start with **Figure T-1**, a simple transistor lamp-driver circuit with five numbered callouts—four tested here and one background symbol. An input control signal enters at left through **component 1**, a fixed **resistor** (sharp zigzag), feeding the base of **component 2**, an NPN **transistor** (circle with base bar and outward emitter arrow). When turned on, current flows down through **component 3**, an incandescent **lamp** (glass bulb outline with filament loop), powered by **component 4**, a multi-cell **battery** (alternating long and short parallel lines). *Background context:* callout 5 is simply the chassis ground return symbol—drawn to keep return wiring tidy, and never asked on the Technician exam!"
           ]
         },
         {
-          "heading": "Figure T-2 (Power Supply) & Figure T-3 (Antenna Tuner)",
-          "body": "**Figure T-2** steps down AC, rectifies, filters, and regulates DC. **Figure T-3** is a T-network antenna tuner matching a rig to an antenna:",
-          "bullets": [
-            "**Fig T-2 #4**: **Transformer** (two coils facing across vertical core lines) | **#6**: **Capacitor** (flat + curved plate)",
-            "**Fig T-2 #8**: **Light emitting diode (LED)** (diode with two arrows pointing out) | **#9**: **Variable resistor** (zigzag with wiper arrow)",
-            "**Fig T-3 #3**: **Variable inductor** (coil loops with tap arrow) | **#4**: **Antenna** (vertical line with 3-pronged triangle top)"
+          "kind": "concept",
+          "heading": "Figure T-2: Walking Through the Power Supply",
+          "illustration": null,
+          "widget": "fig-t2",
+          "paragraphs": [
+            "**Figure T-2** looks intimidating at first glance with ten numbered parts, so let out a breath: *only five of those ten numbers are tested anywhere in the entire Technician pool*, while the other five are purely background context showing a complete linear DC power supply! Tracing from left to right, household AC enters wall plug *1* (untested), passes safety fuse *2* (untested) and **component 3** (the **single-pole single-throw** power switch tested back in group T6A), and energizes **component 4**: an iron-core step-down **transformer** drawn as two facing wire coils separated by parallel core lines.",
+            "Next, rectifier diode *5* (untested) converts AC into one-way pulses, which **component 6**—a polarized filter **capacitor** drawn as one flat plate facing a curved plate across a gap—smooths out into steady DC. Series resistor *7* (untested) limits current for **component 8**, a **light emitting diode** recognizable by its diode symbol with two tiny outward arrows shining light. Finally, **component 9** is a **variable resistor** (zigzag with a movable wiper arrow) working alongside Zener reference diode *10* (untested) to set clean output voltage on the right."
           ]
         },
         {
-          "heading": "Visual Arrow Clues",
-          "body": "Arrows on schematic symbols give away the answer instantly if you check where they point.",
+          "kind": "concept",
+          "heading": "Figure T-3: The Antenna Tuner & Symbol Arrow Clues",
+          "illustration": null,
+          "widget": "fig-t3",
+          "paragraphs": [
+            "**Figure T-3** depicts a classic *T-network* antenna tuner—a compact matching box hams connect between a transceiver and feed line so multi-band antennas accept full transmitter power cleanly. Out of the four numbered callouts on this diagram, *only components 3 and 4 are tested on the exam*! Radio-frequency energy from your rig enters curved coaxial input terminal *1* (untested) on the left and passes through adjustable input capacitor *2* (untested, paired in series with an unnumbered twin variable capacitor on the right).",
+            "Connected from the center junction down to ground sits **component 3**, a **variable inductor** drawn as rounded coil loops with a movable tap arrow contacting the winding so you can adjust how many coil turns are active. Rising from the right-hand output stands **component 4**, the standard **antenna** symbol—a vertical mast topped by a three-pronged triangle radiating into open sky. Notice how schematic arrows hand you instant visual clues across all three figures: an arrow *crossing or touching* a zigzag or coil always means *variable*, whereas two tiny arrows *pointing outward* from a diode mean emitted light!"
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T6C Quick Takeaways",
           "bullets": [
-            "**Arrow across/onto a zigzag or coil** = **variable/adjustable** (`T-2 #9` variable resistor, `T-3 #3` variable inductor)",
-            "**Two tiny arrows pointing away** from a diode = shines light = **LED** (`T-2 #8`)"
+            "**Schematic basics:** An electrical diagram using standard symbols is a **schematic**; it accurately represents **component connections** (not wire lengths or physical appearance)",
+            "**Figure T-1 (tested parts):** **#1** = **Resistor** | **#2** = **Transistor** | **#3** = **Lamp** | **#4** = **Battery** (*#5 chassis ground is untested*)",
+            "**Figure T-2 (`T6C` tested parts):** **#4** = **Transformer** | **#6** = **Capacitor** | **#8** = **Light emitting diode** | **#9** = **Variable resistor**",
+            "**Figure T-2 context note:** **#3** is a **single-pole single-throw** switch (`T6A09`); *#1 plug, #2 fuse, #5 diode, #7 resistor, and #10 Zener diode are untested*",
+            "**Figure T-3 (`T6C` tested parts):** **#3** = **Variable inductor** | **#4** = **Antenna** (*#1 RF input and #2 variable capacitor are untested*)"
           ]
         }
       ]
     },
     "T6D": {
       "group": "T6D",
-      "title": "Practical Circuits: Power Supplies, Relays, ICs & Tuned LC",
-      "subtitle": "How rectifiers, transformers, regulators, relays, shielded wire, ICs, and resonant circuits work together",
-      "aid": null,
+      "title": "Real-World Radio Building Blocks: Power Supplies, Relays & Tuned Circuits",
+      "subtitle": "How bench power supplies tame 120V AC into clean 13.8V DC, and how LC circuits pluck one station out of the air.",
       "cards": [
         {
-          "heading": "Inside a Linear DC Power Supply",
-          "body": "Turning `120 V AC` wall power into clean `13.8 V DC` for a transceiver takes three classic stages working in sequence.",
-          "bullets": [
-            "**Transformer**: steps `120 V AC` down to a lower AC voltage",
-            "**Rectifier**: diode circuit that converts bidirectional **AC into varying (pulsating) DC**",
-            "**Regulator**: holds the power supply output at a steady, controlled DC voltage"
+          "kind": "concept",
+          "heading": "From 120V Wall Outlet to Clean 13.8V Shack Power",
+          "illustration": "linear-psu-stages",
+          "widget": null,
+          "paragraphs": [
+            "Almost all modern base and mobile amateur transceivers are built around 12-volt automotive battery standards, expecting a clean, hum-free 13.8 volts DC on your operating desk—yet your household wall outlet supplies 120 volts of reversing AC. Inside a classic heavy linear bench power supply, three stages work like a relay team to bridge that gap safely. First, a hefty iron-core **transformer** steps **120 V AC** household power down to a safer **lower AC voltage** (typically around 16 to 18 volts AC) through magnetic coupling between isolated primary and secondary coils.",
+            "Second, a diode **rectifier** stage blocks or flips the negative half-cycles, changing **alternating current into a varying direct current signal**—one-way pulses that still rise and fall in bumpy ripples. Large reservoir filter capacitors smooth out the deep valleys between those pulses, and finally an active **regulator** stage guards the output binding posts: a **regulator** controls the amount of **voltage from a power supply**, locking output right at 13.8 volts so your transmitted voice stays pure even when current draw leaps from half an amp on receive to twenty amps on transmit!"
           ]
         },
         {
-          "heading": "Relays, Shielding, Indicators, Meters & ICs",
-          "body": "Practical radio hardware combines switching, measurement, noise protection, and miniaturized semiconductor packages.",
-          "bullets": [
-            "**Relay**: an **electrically-controlled switch** | **Meter**: displays an electrical quantity as a **numeric value**",
-            "**Shielded wire**: prevents **coupling of unwanted signals** to or from the wire",
-            "**LED**: common visual indicator | **Integrated circuit (IC)**: combines **several semiconductors and other components** in one package",
-            "**Fig T-1 #2 (Transistor)** function: **control the flow of current**"
+          "kind": "concept",
+          "heading": "Switches, Relays, Shielding, Meters & Integrated Circuits",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Practical radio gear combines smart electronic control with noise protection and clear operator readouts on every chassis. Looking back at **figure T-1**, the function of **component 2** (the NPN transistor) is to **control the flow of current** from the battery through the indicator lamp. Whenever a delicate low-voltage circuit needs to switch high voltage, heavy current, or completely isolated coaxial antenna contacts, designers use a **relay**—**an electrically-controlled switch** whose internal electromagnet coil pulls mechanical metal contacts open or closed with a reassuring *click*.",
+            "Between boxes on your operating desk, weak microphone audio and sensitive control lines are wrapped in grounded metallic braid—using **shielded wire** **to prevent coupling of unwanted signals to or from the wire** so stray transmitter RF won't cause hum or audio feedback. On the front bezel, an **LED** serves as a bright, long-lived **visual indicator**, while a panel **meter** displays an electrical quantity like volts, amps, or watts as a **numeric value**. Inside the rig, whole circuit boards of parts shrink onto a single silicon **integrated circuit** that combines **several semiconductors and other components into one package**."
           ]
         },
         {
-          "heading": "Resonant (Tuned) Circuits",
-          "body": "Two exam questions test how radios tune in one frequency while rejecting others.",
+          "kind": "concept",
+          "heading": "Plucking One Station from the Sky: Resonant LC Circuits",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "At this very second, thousands of FM broadcasts, aviation beacons, weather radars, and amateur conversations are washing across your outdoor antenna wire simultaneously, all inducing tiny overlapping alternating currents at once. How does turning your radio's tuning dial let you hear *one* friendly voice on 146.52 MHz while silencing every other transmitter across town? Receiver designers pair the two reactive field-storing components you met earlier: a **capacitor** is combined with an **inductor** to make a **resonant circuit**.",
+            "Think of pushing a child on a backyard playground swing: give gentle pushes timed to the swing's exact natural rhythm and motion builds effortlessly, whereas mistimed faster or slower pushes cancel right out. Connecting **an inductor and a capacitor in series or parallel** forms a **resonant or tuned circuit** (fondly called an *LC tank* by radio builders). Electric-field energy in the capacitor and magnetic-field energy in the inductor slosh rhythmically back and forth at one specific natural resonant frequency determined by their component values, letting your chosen station ring loud and clear while rejecting off-frequency interference."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T6D Quick Takeaways",
           "bullets": [
-            "Combine an **inductor** with a **capacitor** (**in series or parallel**) to form a **resonant (tuned) circuit**"
+            "**Linear power supply stages:** **Transformer** steps **120 V AC** down to a **lower AC voltage** -> **Rectifier** changes **AC into varying DC** -> **Regulator** controls **voltage from a power supply**",
+            "**Transistor & Relay control:** **Component 2 in figure T-1** acts to **control the flow of current**; a **relay** is **an electrically-controlled switch**",
+            "**Shielded wire:** Wraps conductors in grounded braid **to prevent coupling of unwanted signals to or from the wire**",
+            "**Readouts & ICs:** **LED** = common **visual indicator** | **Meter** = displays a **numeric value** | **Integrated circuit** = combines **several semiconductors and other components into one package**",
+            "**Resonant (tuned) circuit:** Combine a **capacitor** with an **inductor** (**an inductor and a capacitor in series or parallel**)"
           ]
         }
       ]

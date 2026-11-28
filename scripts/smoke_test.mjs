@@ -37,6 +37,8 @@ const DATA = sandbox.window.HAM_DATA;
 assert.equal(DATA.pool.length, 409, 'Pool must have 409 questions');
 assert.equal(Object.keys(DATA.briefings).length, 35, 'Must have 35 briefings');
 assert.deepEqual(Object.keys(DATA.figures).sort(), ['T-1', 'T-2', 'T-3']);
+assert.ok(Object.keys(DATA.glossary || {}).length >= 60, 'Must bundle >= 60 glossary concepts');
+assert.ok(Object.keys(DATA.illustrations || {}).length >= 15, 'Must bundle >= 15 teaching SVGs');
 
 // Verify SVG callout numbers in Figures T-1, T-2, T-3
 for (const n of ['1', '2', '3', '4', '5']) {
@@ -56,20 +58,37 @@ for (const q of posQs) {
   assert.match(q.choices[3], /all these (choices|answers) are correct/i, `Unexpected positional choice on ${q.id}`);
 }
 
-// Verify zero unrendered markdown (* or `) in explanations or rendered briefing cards
+// Verify zero unrendered markdown (* or `) in explanations, glossary, or rendered walkthrough cards
 for (const q of DATA.pool) {
   assert.doesNotMatch(q.explanation, /[*`]/, `Raw markdown token in explanation ${q.id}`);
 }
 function testFormatRich(s) {
   const slots = [];
-  let o = String(s).replace(/`([^`]+)`/g, (_, c) => { slots.push(`<code>${c}</code>`); return `\0C${slots.length - 1}\0`; });
+  let o = String(s ?? '').replace(/`([^`]+)`/g, (_, c) => { slots.push(`<code>${c}</code>`); return `\0C${slots.length - 1}\0`; });
   o = o.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/(?<!\*)\*([^\s*](?:[^*]*?[^\s*])?)\*(?!\*)/g, '<em>$1</em>');
   return o.replace(/\0C(\d+)\0/g, (_, i) => slots[Number(i)]);
 }
+for (const [gk, ge] of Object.entries(DATA.glossary)) {
+  assert.ok(ge.term && ge.definition && Array.isArray(ge.aliases) && ge.aliases.length > 0, `Invalid glossary entry ${gk}`);
+  for (const txt of [ge.definition, ge.analogy || '']) {
+    const rendered = testFormatRich(txt);
+    assert.doesNotMatch(rendered, /[*`]/, `Unrendered markdown in glossary ${gk}: ${rendered}`);
+  }
+}
 for (const [g, b] of Object.entries(DATA.briefings)) {
   assert.doesNotMatch(b.title + ' ' + b.subtitle, /[*`]/, `Raw markdown in ${g} title/subtitle`);
-  for (const card of b.cards) {
-    for (const txt of [card.heading, card.body, ...(card.bullets || [])]) {
+  assert.ok(b.cards.length >= 4 && b.cards.length <= 7, `${g} must have 4-7 walkthrough cards`);
+  assert.equal(b.cards[b.cards.length - 1].kind, 'cheatsheet', `${g} final card must be cheatsheet`);
+  for (let idx = 0; idx < b.cards.length; idx++) {
+    const card = b.cards[idx];
+    if (idx < b.cards.length - 1) {
+      assert.equal(card.kind, 'concept', `${g} card ${idx} must be concept`);
+      assert.ok(Array.isArray(card.paragraphs) && card.paragraphs.length >= 2, `${g} card ${idx} needs >=2 paragraphs`);
+    }
+    if (card.illustration) {
+      assert.ok(DATA.illustrations[card.illustration], `${g} unknown illustration ${card.illustration}`);
+    }
+    for (const txt of [card.heading, ...(card.paragraphs || []), ...(card.bullets || [])]) {
       const rendered = testFormatRich(txt);
       assert.doesNotMatch(rendered, /[*`]/, `Unrendered markdown in ${g}: ${rendered}`);
     }
@@ -139,6 +158,9 @@ class MockElement {
     for (const fn of arr) fn(ev);
   }
   showModal() { this.open = true; }
+  showPopover() { this._popoverOpen = true; }
+  hidePopover() { this._popoverOpen = false; }
+  getBoundingClientRect() { return { left: 100, right: 160, top: 200, bottom: 222 }; }
   close(val = '') {
     this.open = false;
     if (val) this.returnValue = val;
@@ -146,7 +168,7 @@ class MockElement {
   }
   select() {}
   remove() {}
-  matches() { return false; }
+  matches(sel) { return sel === ':popover-open' ? Boolean(this._popoverOpen) : false; }
   closest(sel) { return this._closestMatch || null; }
 }
 
@@ -244,34 +266,86 @@ navTabs[1].dispatchEvent({ type: 'click' });
 assert.match(domById.get('exams-container').innerHTML, /Official 35-Question Mock Exam/);
 navTabs[2].dispatchEvent({ type: 'click' });
 assert.match(domById.get('aids-container').innerHTML, /Exam-Focused Band/);
+assert.match(domById.get('aids-container').innerHTML, /Searchable Ham &amp; Electronics Glossary/);
+assert.match(domById.get('glossary-list').innerHTML, /Standing Wave Ratio/);
+domById.get('glossary-search').value = 'keyer';
+domById.get('glossary-search').dispatchEvent({ type: 'input' });
+assert.match(domById.get('glossary-list').innerHTML, /Electronic Keyer/i);
+domById.get('glossary-search').value = '';
+domById.get('glossary-search').dispatchEvent({ type: 'input' });
 fireClick({ powerTarget: 'PI' });
 assert.match(domById.get('aids-container').innerHTML, /I = P \/ E/);
 fireClick({ zoomFig: 'T-1' });
 assert.match(domById.get('figure-dialog-caption').textContent, /Tested on Exam/);
 navTabs[0].dispatchEvent({ type: 'click' });
 
-// Start Node 1 (T2A) directly -> verify Night-1 aid has only T2A starter numbers -> walk Briefing -> Flash-Pass -> Challenge
+// Verify Read-Only Walkthrough Cards mode on a locked node (T4A) does NOT unlock/alter status, and renders jargon + SVGs!
+fireClick({ openNode: 'T4A' });
+assert.match(domById.get('node-dialog-body').innerHTML, /Read Walkthrough Cards Only/);
+fireClick({ modalStart: 'T4A', startStage: 'briefing', readOnly: '1' });
+assert.match(domById.get('session-title-pill').textContent, /T4A · Walkthrough Handbook/);
+assert.match(domById.get('session-body').innerHTML, /class="jargon-term"/);
+// Test clicking a jargon term inside T4A card -> opens #jargon-popover with definition + analogy!
+const firstJargonMatch = domById.get('session-body').innerHTML.match(/data-jargon-key="([^"]+)"/);
+assert.ok(firstJargonMatch, 'Walkthrough card must contain clickable jargon-term');
+fireClick({ jargonKey: firstJargonMatch[1] });
+assert.equal(domById.get('jargon-popover')._popoverOpen, true);
+assert.match(domById.get('jargon-popover-inner').innerHTML, /Real-world intuition:/);
+// Test nested jargon click inside popover -> shows ← Back button!
+const nestedJargonMatch = domById.get('jargon-popover-inner').innerHTML.match(/data-jargon-key="([^"]+)"/);
+if (nestedJargonMatch) {
+  fireClick({ jargonKey: nestedJargonMatch[1] });
+  assert.match(domById.get('jargon-popover-inner').innerHTML, /data-action="jargon-back"/);
+  fireClick({ action: 'jargon-back' });
+}
+fireClick({ action: 'jargon-close' });
+assert.equal(domById.get('jargon-popover')._popoverOpen, false);
+fireClick({ action: 'finish-session' });
+assert.equal(JSON.parse(storageMap.get('ham_study_v1')).nodes.T4A.status, 'locked', 'Read-only mode must keep locked node locked');
+
+// Start Node 1 (T2A) directly -> walk Walkthrough Cards -> test interactive repeater-sim widget -> Cheat-Sheet -> Flash-Pass -> Challenge
 fireClick({ openNode: 'T2A', directStart: '1' });
-assert.match(domById.get('session-body').innerHTML, /3 Starter Numbers in Group T2A/);
+assert.match(domById.get('session-body').innerHTML, /walkthrough-prose/);
 assert.doesNotMatch(domById.get('session-body').innerHTML, /200 W PEP/);
 const t2aCards = DATA.briefings.T2A.cards.length;
 for (let i = 0; i < t2aCards; i++) {
+  if (domById.get('session-body').innerHTML.includes('data-widget-rep=')) {
+    fireClick({ widgetRep: 'reverse' });
+    assert.match(domById.get('session-body').innerHTML, /Reverse Button Held/);
+  }
+  if (i === t2aCards - 1) {
+    assert.match(domById.get('session-body').innerHTML, /cheatsheet-card/);
+  }
   fireClick({ action: 'next-card' });
 }
 assert.match(domById.get('session-title-pill').textContent, /Flash-Pass/);
 
-// Complete all 11 Flash-Pass questions by picking the highlighted choice
+// Complete all 12 Flash-Pass questions by picking the highlighted choice; verify 📖 Cards button works!
+fireClick({ peekGroup: 'T2A' });
+assert.equal(domById.get('cards-peek-dialog').open, true);
+assert.match(domById.get('cards-peek-body').innerHTML, /Card 1 of/);
+fireClick({ action: 'peek-next' });
+assert.match(domById.get('cards-peek-body').innerHTML, /Card 2 of/);
+domById.get('cards-peek-dialog').close();
+
 const t2aLen = DATA.pool.filter((q) => q.group === 'T2A').length;
+let sawJargonInFlash = false;
 for (let i = 0; i < t2aLen; i++) {
   const bodyHtml = domById.get('session-body').innerHTML;
+  if (bodyHtml.includes('class="jargon-term"')) sawJargonInFlash = true;
+  // Ensure ZERO nested buttons inside choice-btn!
+  const choicesOnly = bodyHtml.split('<div class="choices-stack">')[1] || '';
+  assert.doesNotMatch(choicesOnly, /class="jargon-term"/, 'Must NEVER render jargon buttons inside choice-btn');
   const match = bodyHtml.match(/class="choice-btn is-flash-target"\s+data-pick-choice="(\d)"/);
   assert.ok(match, 'Flash-Pass must highlight exactly 1 target choice');
   fireClick({ pickChoice: match[1] });
   fireClick({ action: 'continue-quiz' });
 }
+assert.ok(sawJargonInFlash, 'Flash-Pass stems must highlight clickable jargon terms');
 
-// Now in Stage 3 Challenge! Intentionally miss Q1 on first try, then clear all + loop-back!
+// Now in Stage 3 Challenge! Verify ZERO jargon buttons on unanswered Challenge stems, intentionally miss Q1, then clear all!
 assert.match(domById.get('session-title-pill').textContent, /Stage 3: Challenge/);
+assert.doesNotMatch(domById.get('session-body').innerHTML, /class="jargon-term"/, 'Unanswered Stage 3 Challenge stem must NOT highlight jargon');
 let safety = 0;
 let intentionallyMissedOnce = false;
 while (!domById.get('session-title-pill').textContent.includes('Node Mastered') && safety < 30) {

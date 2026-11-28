@@ -640,272 +640,413 @@
   "briefings": {
     "T3A": {
       "group": "T3A",
-      "title": "Signal Paths, Polarization & Weather",
-      "subtitle": "How reflections, antenna orientation, trees, and rain shape real-world signals",
-      "aid": null,
+      "title": "Real-World Signal Paths: Multipath, Polarization & Weather",
+      "subtitle": "Why moving two feet fixes a dead spot, how antenna orientation matters, and when trees or rain soak up signals.",
       "cards": [
         {
-          "heading": "Multipath: Reflections, Flutter & Data Errors",
-          "body": "VHF and UHF waves bounce off buildings, hills, and vehicles, arriving at your antenna via multiple paths at slightly different times. Depending on whether those waves arrive in step or out of step, they either reinforce or cancel each other.",
-          "bullets": [
-            "**Few-foot swings:** Moving a VHF antenna just a few feet can turn a dead spot into a booming signal due to **multipath**.",
-            "**Picket fencing:** Rapid signal flutter while driving through alternating multipath zones.",
-            "**Bank shots & data:** Aiming a beam at a reflective building can reach a blocked repeater, but multipath echoes **increase error rates** on digital data."
+          "kind": "concept",
+          "heading": "Bouncing Off Buildings: Multipath, Picket Fencing & Bank Shots",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "On VHF and UHF handhelds, radio waves act a lot like flashlight beams in a hall of mirrors—bouncing off steel buildings, water towers, and hillsides on their way to your antenna. Because a reflected echo travels slightly farther than the direct wave, the two copies can arrive either in step (boosting your signal) or out of step (canceling each other into a dead spot). That **multipath propagation cancels or reinforces signals**, explaining why VHF signal strength can swing wildly when you move your antenna only a few feet! Drive down a city street through those closely spaced peaks and nulls, and voices flutter rapidly in and out—an effect hams call **\"picket fencing\"**: **rapid flutter on mobile signals due to multipath propagation**.",
+            "Reflections are a mixed blessing depending on what you are sending. If a tall office building blocks your direct line of sight to a distant repeater, you can aim a directional beam toward another structure and **try to find a path that reflects signals to the repeater** like a billiard bank shot. On digital packet or data links, however, delayed multipath echoes smear crisp ones and zeros into each other, meaning **error rates are likely to increase**."
           ]
         },
         {
-          "heading": "Polarization & the Ionosphere",
-          "body": "Over a direct line-of-sight VHF/UHF path, both stations must match antenna polarization or suffer heavy signal loss. Once a wave bounces off the **ionosphere** (which reflects **HF** waves), its polarization twists into an ellipse.",
-          "bullets": [
-            "**Cross-polarization:** Mixing vertical and horizontal antennas line-of-sight **reduces received signal strength**.",
-            "**Horizontal for VHF/UHF DX:** Long-distance **CW and SSB** contacts on VHF/UHF normally use **horizontal** polarization.",
-            "**Skywave behavior:** Ionospheric signals become **elliptically polarized** (either V or H antennas work), and random multi-path combining causes **irregular fading**."
+          "kind": "concept",
+          "heading": "Antenna Polarization & Skywave Twisting in the Ionosphere",
+          "illustration": "wave-polarization",
+          "widget": null,
+          "paragraphs": [
+            "Every antenna launches waves oriented in a plane—vertical whips stand straight up, while horizontal beams lie flat parallel to the ground. Over a direct line-of-sight VHF or UHF path, both stations want matching orientation; if one uses a vertical whip and the other uses a horizontal beam (*cross-polarization*), **received signal strength is reduced** dramatically. While local FM repeaters and car whips standardize on vertical antennas, weak-signal enthusiasts chasing **long-distance CW and SSB contacts on the VHF and UHF bands** standardize on **horizontal** polarization because it rejects local vertical man-made static and ground-reflection losses.",
+            "Everything changes when lower-frequency **HF radio waves** head skyward and bounce off **the ionosphere**—electrically charged layers high in the upper atmosphere. As a signal refracts through the ionosphere, Earth's magnetic field twists the wave into spinning **elliptically polarized** energy, which means **either vertically or horizontally polarized antennas may be used for transmission or reception**! Meanwhile, parts of that skywave split along slightly different upper-air paths and recombine out of step at your receiver, causing the slow, **irregular fading** caused by **random combining of signals arriving via different paths**."
           ]
         },
         {
-          "heading": "Trees, Rain & Wavelength Immunity",
-          "body": "Whether foliage or weather bothers your signal depends on how close your wavelength is to the size of leaves and raindrops. Shorter UHF and microwave waves get soaked up, while longer 10m and 6m waves cruise right through.",
+          "kind": "concept",
+          "heading": "Trees, Raindrops & Why Wavelength Size Matters",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Whether thick woods, coastal fog, or a summer thunderstorm bothers your signal comes down to a neat physical rule of thumb: how big is one radio wave compared to a wet leaf or a raindrop? As you climb up into **UHF and microwave** bands (440 MHz and above), wavelengths shrink down to inches and centimeters—right on the scale of damp twigs, pine needles, and summer foliage. Sap and water inside **vegetation** act like an RF sponge at short wavelengths and **absorbs signals, leading to poor reception of weak signals**, which is why UHF weak-signal operators notice stronger signals once autumn leaves fall—or mount antennas high above the treetops.",
+            "Climb higher still into gigahertz **microwave** bands, where tiny wavelengths match the size of raindrops, sleet, and wet snow, and **precipitation** scatters and absorbs RF energy (*rain fade*), noticeably decreasing your operating range. Down on the **`10-meter` and `6-meter` bands**, by contrast, each individual wave stretches twenty to thirty-three feet long—thousands of times larger than mist or raindrops—so **fog or rain** have **little effect** on your contacts."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T3A Quick Takeaways",
           "bullets": [
-            "**Vegetation:** **Absorbs** UHF and microwave signals, hurting weak-signal reception.",
-            "**Microwave weather:** **Precipitation** (rain/snow) scatters and absorbs microwaves, decreasing range.",
-            "**10m & 6m immunity:** Fog and rain have **little effect** on the `10-meter` and `6-meter` bands."
+            "**Multipath effects:** Moving a VHF antenna a few feet swings strength as **multipath cancels or reinforces signals**; driving through nulls causes **picket fencing** (**rapid mobile flutter**); multipath makes **data error rates increase**, though **reflected paths** can reach a blocked repeater.",
+            "**Line-of-sight polarization:** VHF/UHF **cross-polarization reduces received signal strength**; long-distance VHF/UHF **CW and SSB** uses **horizontal** polarization.",
+            "**Ionospheric skywaves:** **The ionosphere** reflects **HF** waves, twisting them into **elliptical polarization** (**either vertical or horizontal antennas work**); **random multi-path combining** causes **irregular fading**.",
+            "**Foliage & weather:** **Vegetation absorbs** UHF/microwave weak signals; **precipitation** cuts **microwave** range; fog/rain have **little effect** on **`10m` and `6m`**."
           ]
         }
       ]
     },
     "T3B": {
       "group": "T3B",
-      "title": "Radio Waves, Wavelength & Band Ranges",
-      "subtitle": "Electromagnetic fields, the speed of light, and the 300 / MHz formula",
-      "aid": "wavelength",
+      "title": "Anatomy of a Radio Wave: Fields, Wavelength & Spectrum",
+      "subtitle": "Inside electromagnetic waves, the 300 / MHz conversion rule, and the HF–VHF–UHF frequency ladder.",
       "cards": [
         {
-          "heading": "Inside an Electromagnetic Wave",
-          "body": "Every radio wave is made of two partners—an **electric field** and a **magnetic field**—locked at right angles to each other and racing through free space at the **speed of light** (`300,000,000 meters per second`).",
-          "bullets": [
-            "**Right-angle fields:** Electric and magnetic fields are always **at right angles** (`90°`) to each other.",
-            "**Electric = Polarization:** The orientation of the **electric field** defines a radio wave's polarization.",
-            "**Same speed for all:** HF, VHF, UHF, and microwaves **all travel at the exact same velocity** in free space—watch out for 'miles per hour' traps!"
+          "kind": "concept",
+          "heading": "Inside an Electromagnetic Wave: Right-Angle Fields & Light Speed",
+          "illustration": "wave-polarization",
+          "widget": null,
+          "paragraphs": [
+            "How does your voice leap across miles of empty air with no wire connecting two stations? Alternating current sloshing back and forth inside a metal antenna launches a self-sustaining **radio wave** woven from two inseparable partners: **electric and magnetic fields**. As one field swells and collapses, it smoothly regenerates the other, locked **at right angles** (90 degrees) to each other and to the direction of travel. Picture shaking a jump rope straight up and down versus side to side: whenever hams call a wave vertically or horizontally polarized, they are naming **the orientation of the electric field** (memory hook: *Electric* = *Orientation*).",
+            "Because radio waves belong to the exact same electromagnetic family as visible light—just oscillating at lower frequencies our eyes cannot see—every radio wave races through free space at the **speed of light**: approximately **`300,000,000 meters per second`**, fast enough to circle Earth more than seven times in one second! Read exam units carefully so you never pick *miles per hour*, and skip the classic speed-trap question: in free space, **all radio frequencies travel at the same velocity**."
           ]
         },
         {
-          "heading": "Wavelength vs. Frequency (The 300 Rule)",
-          "body": "Wavelength and frequency have an inverse seesaw relationship: as **frequency increases, wavelength gets shorter**. Amateur bands are commonly named by their **approximate wavelength in meters**.",
-          "bullets": [
-            "**The Formula:** `Wavelength (meters) = 300 / Frequency (MHz)` (and `MHz = 300 / meters`).",
-            "**Quick sanity check:** `146 MHz` → `300 / 146 ≈ 2 meters` (the 2m band); `50 MHz` → `300 / 50 = 6 meters`."
+          "kind": "concept",
+          "heading": "The Frequency-Wavelength Seesaw & the 300 Formula",
+          "illustration": null,
+          "widget": "wavelength-slider",
+          "paragraphs": [
+            "Since every radio signal travels at the exact same speed, picture sprinters covering 300 million meters every second: taking more steps per second (*higher frequency*) forces each individual stride (*wavelength*, the physical crest-to-crest length of one complete wave) to get shorter. Frequency and wavelength sit on an inverse seesaw—**wavelength gets shorter as frequency increases**. In everyday shack talk, hams refer to **amateur radio bands** not only by dial frequency, but by **the approximate wavelength in meters**, such as the *10-meter*, *6-meter*, or *2-meter* bands.",
+            "Converting between dial frequency and band nickname takes one pocket formula built straight from the speed of light: **wavelength in meters equals 300 divided by frequency in megahertz** (`meters = 300 / MHz`). Drag the interactive slider below to watch radio waves stretch and compress live across the spectrum! On a popular local repeater around 146 MHz, 300 divided by 146 gives roughly 2 meters (hence the 2-meter band); at 50 MHz, 300 divided by 50 equals 6 meters; and up at 430 MHz, 300 divided by 430 is about 0.7 meters—the 70-centimeter band."
           ]
         },
         {
-          "heading": "HF, VHF & UHF Frequency Ladder",
-          "body": "Radio spectrum designations step upward by clean multiples of 10 around the number `3`. Always double-check that the units say **`MHz`** and not `kHz` on the exam!",
+          "kind": "concept",
+          "heading": "Mapping the Radio Spectrum: The HF, VHF & UHF Ladder",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Because radio frequencies span many orders of magnitude, international standards group the dial into clean tenfold steps anchored around the number 3, each with its own on-air personality. Starting at the classic shortwave bands where ocean-spanning skywave skip happens daily, **HF** (*High Frequency*) covers **`3 to 30 MHz`**, spanning big wire-antenna wavelengths from 100 meters down to the 10-meter band (28 MHz). Multiply both edges by ten and you step into **VHF** (*Very High Frequency*), covering **`30 MHz to 300 MHz`**—home to Technician favorites like 6 meters (50 MHz) and 2 meters (144 MHz) for crisp local repeaters and regional simplex.",
+            "Multiply by ten once more and you reach **UHF** (*Ultra High Frequency*), spanning **`300 to 3000 MHz`** (300 MHz up to 3 GHz). Here short wavelengths like the 70-centimeter band (420–450 MHz) let compact, flexible handheld whips work great indoors and bounce cleanly through downtown streets and windows. On exam day, visualize the 3, 30, 300, and 3000 ladder—and always double-check that the answer says megahertz (*MHz*), not a sneaky *kilohertz* (*kHz*) trap!"
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T3B Quick Takeaways",
           "bullets": [
-            "**HF (High Frequency):** `3 to 30 MHz` (100m down to 10m).",
-            "**VHF (Very High Frequency):** `30 to 300 MHz` (includes 6m and 2m).",
-            "**UHF (Ultra High Frequency):** `300 to 3000 MHz` (includes 70cm and 33cm)."
+            "**Wave structure:** Made of **electric and magnetic fields** locked **at right angles**; **polarization** is defined by **the orientation of the electric field**.",
+            "**Velocity in free space:** **All radio frequencies travel at the same velocity**—the **speed of light**, approximately **`300,000,000 meters per second`**.",
+            "**Wavelength & bands:** **Wavelength gets shorter as frequency increases**; bands are nicknamed by **approximate wavelength in meters**.",
+            "**The `300` rule:** **`Wavelength (meters) = 300 / Frequency (MHz)`** (e.g., `300 / 146 MHz ≈ 2m`; `300 / 50 MHz = 6m`).",
+            "**Spectrum ladder (watch for `MHz`!):** **HF** = **`3 to 30 MHz`**; **VHF** = **`30 MHz to 300 MHz`**; **UHF** = **`300 to 3000 MHz`**."
           ]
         }
       ]
     },
     "T3C": {
       "group": "T3C",
-      "title": "Propagation Modes & Over-the-Horizon DX",
-      "subtitle": "How HF skywaves, Sporadic E, tropospheric ducts, and meteors bend the horizon",
-      "aid": null,
+      "title": "Over-the-Horizon Magic: Skywaves, Ducts & Scatter",
+      "subtitle": "Why HF skips across oceans, how weather layers pipe VHF 300 miles, and catching meteors or aurora.",
       "cards": [
         {
-          "heading": "Ionospheric Skywaves & Sunspot Peaks",
-          "body": "Long-distance ionospheric skip is routine on **HF**, whereas **UHF** waves normally pass right through the ionosphere into space. When solar activity peaks, upper bands come alive.",
-          "bullets": [
-            "**10-meter F-region prime time:** **Dawn to shortly after sunset** during periods of **high sunspot activity**.",
-            "**Solar peak magic:** Both **`6 and 10 meters`** can provide worldwide F-region contacts at sunspot cycle peaks.",
-            "**Sporadic E:** Patchy E-region ionization producing sudden strong over-the-horizon signals on **`10m`, `6m`, and `2m`**."
+          "kind": "concept",
+          "heading": "Skywave Highways: Why HF Skips the Globe & Solar Peaks Light Up 10m/6m",
+          "illustration": "propagation-paths",
+          "widget": null,
+          "paragraphs": [
+            "High above all weather—roughly 30 to 250 miles up—ultraviolet light and X-rays from the Sun strip electrons off gas atoms to create the *ionosphere*, a layered radio mirror wrapping the planet. Lower-frequency waves bend easily inside those charged layers, which is why **long-distance ionospheric propagation is far more common on HF** (3 to 30 MHz) than on VHF and higher bands. Short-wavelength **UHF signals**, by contrast, punch straight through the ionosphere into outer space—which is why simplex UHF signals are rarely heard beyond their local radio horizon (**UHF signals are usually not propagated by the ionosphere**).",
+            "Every eleven years, the Sun swings from quiet minimums to stormy *sunspot peaks* that supercharge the highest, densest layer—the *F region*. Technicians hold valuable voice and digital privileges on the 10-meter (28 MHz) and 6-meter (50 MHz) bands, and during **the peak of the sunspot cycle**, **`6 and 10 meters`** can spring wide open for worldwide **F-region** contacts on modest wire antennas! Because sunlight drives that ionization, the prime window for **`10-meter` F-region** DX runs **from dawn to shortly after sunset during periods of high sunspot activity**."
           ]
         },
         {
-          "heading": "Tropospheric Ducting, Refraction & Ridges",
-          "body": "Even without the ionosphere, the lower atmosphere bends VHF/UHF waves slightly downward so your **radio horizon is farther than your visual horizon**. Weather layers and sharp terrain can stretch VHF/UHF much further.",
-          "bullets": [
-            "**Tropospheric ducting:** Caused by **temperature inversions**, regularly carrying VHF/UHF signals **`~300 miles`** past the horizon.",
-            "**Knife-edge diffraction:** Bends radio energy over a sharp mountain ridge or building edge to reach stations behind obstructions."
+          "kind": "concept",
+          "heading": "Bending the Horizon: Refraction, Tropospheric Ducts & Mountain Ridges",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Even on a calm, ordinary afternoon with zero upper-atmosphere skip, VHF and UHF handhelds reach roughly 15 percent farther than your eyes can see. Because air density thins gradually with altitude, **the atmosphere refracts radio waves slightly**, curving them gently downward along Earth's curvature so your **radio horizon** stretches noticeably beyond the visual horizon. Solid terrain is not always a total roadblock, either: when a radio wave grazes a sharp mountain ridge or building edge, **knife-edge diffraction** bends part of the signal downward into the valley or shadow zone behind the obstacle.",
+            "Lower-atmosphere weather inside the *troposphere* (the lowest weather layer where clouds form) can carry VHF and UHF signals much farther still. Normally air cools steadily with height, but calm summer high-pressure domes or coastal sea breezes often slide a blanket of warm air over cooler surface air. Those **temperature inversions in the atmosphere** form **tropospheric ducting**—acting like a giant sky pipeline that guides VHF and UHF signals over the horizon to ranges of **approximately 300 miles on a regular basis**, letting a modest 2-meter rig chat across several states!"
           ]
         },
         {
-          "heading": "Aurora & Meteor Scatter on VHF",
-          "body": "Brief or turbulent ionization high in the E region gives VHF operators thrilling ways to make contacts hundreds of miles away when bands otherwise seem closed.",
+          "kind": "concept",
+          "heading": "Magic-Band Surprises: Sporadic E, Meteor Trails & Aurora",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Hams fondly call 6 meters *the Magic Band* because upper-atmosphere surprises can transform a dead-quiet dial into a coast-to-coast pileup within minutes. Especially around late spring, summer, and mid-winter, dense, mirror-like patches of intense ionization form unpredictably in the *E region* roughly 60 miles overhead. Called **Sporadic E**, these clouds bounce unexpectedly strong over-the-horizon signals hundreds or thousands of miles on the **`10-`, `6-`, and `2-meter` bands**—even in years when the 11-year sunspot cycle is fast asleep!",
+            "Two more E-region phenomena give adventurous VHF operators thrilling ways to work far beyond the horizon. Billions of sand-sized meteors burn up in the upper air every day (peaking during showers like the Perseids or Geminids), leaving brief ionized trails that reflect low-VHF bursts for a few seconds at a time; **`6 meters`** hits the physics sweet spot and is the band best suited for **meteor scatter**. And when solar storms ignite northern lights, operators aim directional VHF beams *north* into the glowing curtains for **auroral backscatter**—where rapidly churning ionization scrambles signal phase so voices and Morse tones arrive **distorted, with a characteristic raspy sound**."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T3C Quick Takeaways",
           "bullets": [
-            "**Auroral backscatter:** Signals bouncing off shimmering auroral curtains sound **distorted, with a characteristic raspy sound**.",
-            "**Meteor scatter:** Ionized trails from vaporizing meteors work best on the **`6-meter`** band (`50 MHz`)."
+            "**HF vs. UHF ionospheric skip:** **Long-distance ionospheric propagation is far more common on HF**; simplex **UHF signals are usually not propagated by the ionosphere**.",
+            "**Solar peak F-region DX:** **`6 and 10 meters`** open via the F region at **sunspot cycle peaks**; **`10-meter`** F-region skip works best **from dawn to shortly after sunset during high sunspot activity**.",
+            "**Lower-air & terrain paths:** Slight atmospheric **refraction** pushes the **radio horizon** past the visual horizon; **knife-edge diffraction** bends waves past sharp ridges; **temperature inversions** cause **tropospheric ducting** (`~300 miles` regularly on VHF/UHF).",
+            "**Sporadic E, meteors & aurora:** **Sporadic E** brings strong occasional skip on **`10m`, `6m`, and `2m`**; **`6 meters`** is best for **meteor scatter**; **auroral backscatter** makes VHF signals **distorted, with a characteristic raspy sound**."
           ]
         }
       ]
     },
     "T4A": {
       "group": "T4A",
-      "title": "Station Power, Meters & Digital Hookups",
-      "subtitle": "Wiring 13.8V DC power safely, placing inline antenna meters, and connecting a computer for digital modes.",
-      "aid": null,
+      "title": "Anatomy of a Ham Shack: Power, Meters & Digital Hookups",
+      "subtitle": "What every box, cable, copper strap, and computer link on an operator's desk actually does—and why it's wired that way.",
       "cards": [
         {
-          "heading": "13.8V DC Power & Battery Runtime",
-          "body": "Mobile and base transceivers run on automotive-style `13.8 V DC` power and pull heavy current whenever you transmit.",
-          "bullets": [
-            "**50-watt FM rig supply:** Needs roughly **`13.8 volts at 12 amperes`**",
-            "**Power leads:** Use **short, heavy-gauge wires** to prevent **voltage drop**; connect a car rig's negative wire to the **12V battery chassis ground**",
-            "**Battery runtime math:** Divide **ampere-hour (`Ah`) capacity** by **average current draw (`A`)**"
+          "kind": "concept",
+          "heading": "Inside the Shack: Feeding Clean 13.8V Power to Your Rig",
+          "illustration": "station-hookup",
+          "widget": null,
+          "paragraphs": [
+            "Hams affectionately call their radio desk a *shack* and their combined transmitter-receiver a *rig* or *transceiver*. Instead of plugging straight into a household wall outlet, nearly all mobile and home base rigs are built around automotive electrical systems so the exact same radio works on your desk, in a pickup truck, or out at a campsite. On a desk, an external power supply converts wall electricity into steady direct current, and a typical **50-watt output mobile FM transceiver** needs a supply rated around **`13.8 volts at 12 amperes`** (*amperes*, or amps, measure how much electrical current flows). When installing that radio in a car, attach the negative power return wire **at the 12-volt battery chassis ground** rather than to random dashboard metal.",
+            "Listening sips very little current, but pressing the microphone button gulps ten amps or more at once. Skinny, long power cords resist that sudden rush of current, starving the radio of voltage right when you speak—so hams always wire DC power with **short, heavy-gauge wires** **to minimize voltage drop when transmitting**. And if you hike a rig to a summit or park for *Parks on the Air*, you can estimate how many hours a battery will last: **divide the battery ampere-hour rating by the average current draw of the equipment**."
           ]
         },
         {
-          "heading": "Inline Antenna Meters, Bonding & Keyers",
-          "body": "Accessories between your radio and antenna check system health, while wide copper straps bond gear cases together.",
-          "bullets": [
-            "**Power & SWR meters** *(antenna-match meters)*: Wire **inline in the coax cable** between radio and antenna; match **frequency and power ratings**",
-            "**Bonding radio chassis:** Use **flat copper strap** (wide surface area conducts RF best)",
-            "**Electronic keyer:** Device that assists in **manual sending of Morse code**"
+          "kind": "concept",
+          "heading": "Coax Feed Lines, Inline Meters & Flat Copper Bonding",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Once your rig has clean power, its radio-frequency energy travels out to the antenna through a thick shielded cable called *coaxial cable* (*coax*, pronounced *koh-aks*), which serves as your station's *feed line*. To see how much wattage is actually heading up that cable, hams insert an **RF power meter** **in the feed line, between the transmitter and antenna**. Many operators use a combined power and *SWR* (*Standing Wave Ratio*) meter, which checks whether the antenna accepts energy smoothly instead of bouncing it back down the cable. Because internal sensor circuits are tuned for specific bands and wattage ceilings, choosing an accessory **SWR meter** always depends on **the frequency and power level at which the measurements will be made**.",
+            "Back on the desk, veteran operators also tie the metal cases of their transceiver, power supply, and tuners together onto a single reference bar—a practice called *bonding*—to prevent stray radio energy from biting microphones or buzzing speakers. High-frequency radio currents love to skim along the outer surface of metal rather than flowing deep through its core. Because **flat copper strap** offers lots of smooth outer surface area, it is the preferred conductor for **bonding at RF**."
           ]
         },
         {
-          "heading": "Computer Digital Modes & Hotspots",
-          "body": "Digital modes like **FT8** send data as audio tones between your radio and a computer sound card.",
+          "kind": "concept",
+          "heading": "Sound-Card Digital Modes: Wiring Your Radio for FT8",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Some of the farthest-reaching contacts in amateur radio happen without anyone speaking into a microphone at all. Modes like **FT8** turn short text exchanges—call signs, signal reports, and map grid squares—into gentle musical warbles that a laptop can pull out of deep static even with a modest backyard or balcony wire antenna. Newer rigs often bundle this sound-card link inside a single USB cord, while older radios use an external audio interface box, yet the signal pathway underneath is identical either way.",
+            "Every **computer-radio interface** for digital modes coordinates three essential pathways: **receive audio, transmit audio, and transmitter keying** (often called *PTT*, or Push-To-Talk, which automatically flips the radio from listening to transmitting when your software sends a reply). Audio always travels from an output jack into an input jack—so for **FT8**, the transceiver's audio input and output connect **to the audio output and input of a computer running FT8 software**. Tracing an individual cable on exam day is effortless if you follow the sound: audio leaving the **transceiver speaker connector** plugs straight into the **computer \"line in\"** port for decoding."
+          ]
+        },
+        {
+          "kind": "concept",
+          "heading": "Tapping Out Morse Code & Linking Up via Pocket Hotspots",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Two very different desktop accessories round out a modern ham shack—one celebrating radio's oldest craft and the other bridging handhelds to the internet. Even though the FCC dropped Morse code speed tests years ago, *CW* (*Continuous Wave* Morse code) remains hugely popular because a pure, narrow tone slices through heavy noise across oceans on tiny power. Rather than pumping a vintage up-and-down telegraph key, most modern CW operators gently squeeze a two-lever *paddle* plugged into an **electronic keyer**—**a device that assists in manual sending of Morse code** by forming crisp, evenly timed dots on one thumb lever and dashes on the other.",
+            "At the ultra-modern end of the hobby, you might own a digital voice handheld (such as DMR, D-STAR, or System Fusion) while living in a valley or apartment miles out of range of any digital repeater tower. Enter the **digital mode hotspot**: a deck-of-cards-sized micro-transceiver powered by a tiny computer board on your home Wi-Fi or phone hotspot. Sitting quietly on a bookshelf, it gives nearby digital transceivers **communication with a digital voice or data network** linking chat rooms of operators worldwide."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T4A Quick Takeaways",
           "bullets": [
-            "**3 interface signals:** **Receive audio**, **transmit audio**, and **PTT** *(Push-To-Talk transmit switch)*",
-            "**Audio cable pairing:** Radio **speaker out** plugs into computer **`line in`**",
-            "**Digital hotspot:** Pocket RF bridge letting digital handhelds reach **internet voice/data networks**"
+            "**50W mobile FM supply:** Rated around **`13.8 volts at 12 amperes`**; wire vehicle negative return **at the 12-volt battery chassis ground**.",
+            "**DC power leads & battery math:** Use **short, heavy-gauge wires** to **minimize voltage drop when transmitting**; runtime = **ampere-hour (`Ah`) rating divided by average current draw**.",
+            "**Inline RF meters:** Install an **RF power meter** **in the feed line, between transmitter and antenna**; pick an **SWR meter** by **frequency and power level**.",
+            "**RF bonding & CW keyers:** Bond station gear with **flat copper strap**; an **electronic keyer** **assists in manual sending of Morse code**.",
+            "**FT8 & digital interfaces:** Pass **receive audio, transmit audio, and transmitter keying**; wire **computer \"line in\" to transceiver speaker connector**.",
+            "**Digital mode hotspot:** Bridges nearby digital handhelds for **communication with a digital voice or data network**."
           ]
         }
       ]
     },
     "T4B": {
       "group": "T4B",
-      "title": "Radio Controls, Clear Audio & Digital Setup",
-      "subtitle": "Using tuning knobs, squelch, receiver filters, and programming DMR or D-STAR radios.",
-      "aid": null,
+      "title": "Driving Your Transceiver: Controls, Clean Audio & Digital Setup",
+      "subtitle": "Mastering tuning dials, squelch, receiver filters, voice clarity, and digital handheld programming.",
       "cards": [
         {
-          "heading": "Tuning, Scanning, Squelch & Fine-Pitch",
-          "body": "Front-panel controls let you dial channels, hunt for signals, and fine-tune voice clarity without moving your own transmit frequency.",
-          "bullets": [
-            "**Setting frequency:** Use the **keypad or VFO knob** *(main tuning dial)*; **scanning** sweeps channels for activity",
-            "**Hearing faint FM callers:** Turn squelch open until **background audio/static stays on continuously**",
-            "**`RIT` / Clarifier:** Fine-tunes the **receive pitch** of an off-frequency **SSB** *(long-distance voice)* caller without shifting your TX frequency"
+          "kind": "concept",
+          "heading": "Dialing the Airwaves: VFO Knobs, Scanning & FM Squelch",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Sit down in front of any amateur transceiver and the largest control on the face is the *VFO* (*Variable Frequency Oscillator*) knob—the smooth main tuning dial that glides across a band like an analog car stereo. Whenever you want to jump straight to a specific channel or frequency, you enter it using **the keypad or VFO knob**. Rather than spinning the dial by hand all afternoon, you can also press the **scanning** button, which automatically **tunes through a range of frequencies to check for activity** and pauses the moment someone keys up.",
+            "On FM channels (the crisp voice mode used on local VHF and UHF repeaters), an empty frequency produces a loud, rushing waterfall of white noise. That is why FM rigs include a *squelch* knob: an automatic audio gate that keeps the speaker silent until a signal strong enough to cross your threshold arrives. If a friend is calling from far away with a whisper-faint signal that cannot trip that gate, **set the squelch threshold so that receiver output audio is on all the time**, letting you listen directly into the background hiss."
           ]
         },
         {
-          "heading": "Preventing Distortion & Picking Filters",
-          "body": "Clean audio comes from proper mic levels and matching your receiver's listening width (**filter bandwidth**) to the signal.",
-          "bullets": [
-            "**Distorted SSB transmit voice:** Caused by **mic gain set too high**",
-            "**Distorted FM receive audio:** Caused by tuning **slightly off frequency**",
-            "**Best SSB filter width:** **`2400 Hz`** gives the cleanest speech-to-noise balance"
+          "kind": "concept",
+          "heading": "Sculpting Your Receiver: Filter Bandwidths & the RIT Knob",
+          "illustration": "receiver-filter-rit",
+          "widget": null,
+          "paragraphs": [
+            "All-band radios let you listen to several modes—from tiny Morse tones to *SSB* (*Single Sideband*, the efficient voice mode used for long-distance contacts). Crowded bands are noisy, so multimode rigs give you selectable **receiver filter bandwidths** (*hertz*, or Hz, measures how wide a slice of radio spectrum reaches your ears). Like adjustable blinders on a camera lens, choosing a filter width **permits noise or interference reduction by selecting a bandwidth matching the mode**. Human speech fits neatly inside a narrow vocal window, so **`2400 Hz`** gives the best signal-to-noise ratio for **SSB reception**—narrow enough to slice away neighboring chatter without muffling voices.",
+            "Because SSB signals have no automatic frequency lock, a caller answering your *CQ* just slightly off your dial frequency will sound comically high-pitched like a chipmunk or booming low like a movie villain. If you spin the main VFO knob to fix their voice, your own transmit frequency moves too, starting a game of leapfrog across the band! Instead, reach for **the RIT or Clarifier** (*Receiver Incremental Tuning*), which nudges only your listening pitch while keeping your transmit frequency parked right where you called."
           ]
         },
         {
-          "heading": "DMR & D-STAR Digital Voice Prep",
-          "body": "Before transmitting on digital voice systems, your radio needs basic identity and channel settings loaded.",
+          "kind": "concept",
+          "heading": "Keeping Voices Crisp: Why SSB and FM Distort Differently",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "When another operator reports that your voice sounds crunchy or garbled, the cause depends entirely on whether you are using SSB or FM. On **SSB**, transmit power rises and falls directly with your voice, governed by a *microphone gain* setting that controls mic sensitivity (not an extra wattage booster!). Beginners sometimes crank mic gain way up hoping to sound louder across the country, but **excessive microphone gain on SSB** overdrives internal amplifier stages—clipping voice peaks into harsh, **distorted transmitted audio** (*flat-topping*) while splattering interference across neighboring frequencies.",
+            "FM behaves quite differently because local repeaters sit on fixed channel steps, and FM encodes your voice as rapid back-and-forth swings in frequency rather than changes in amplitude. If your radio is tuned **slightly off frequency** when listening to an incoming **FM signal**, the outer peaks of those voice swings slam into the edges of your receiver's filter window and get chopped off. Instead of shifting vocal pitch the way SSB does, tuning slightly off an FM channel means **the audio becomes distorted** and scratchy—a quick sign to double-check the exact repeater frequency on your screen."
+          ]
+        },
+        {
+          "kind": "concept",
+          "heading": "Digital Voice Prep: DMR Code Plugs & D-STAR Call Signs",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Analog FM handhelds only need a frequency and a repeater tone to jump into a local net, whereas modern *digital voice* radios convert your speech into crisp data packets routed over internet-linked repeaters. Two of the most popular digital systems you will meet at ham clubs are **DMR** (*Digital Mobile Radio*, adapted from commercial two-way gear) and **D-STAR** (built from the ground up for amateurs). When a friendly club member emails you a starter **DMR \"code plug\"**, don't look for a hardware dongle—a code plug is simply **configuration data loaded onto your radio to access repeaters and talkgroups**, saving you hours of typing local channels by hand.",
+            "Those DMR *talkgroups* work like virtual conference rooms—local, statewide, or international—sharing one repeater tower cleanly without everyone talking over one another. You select a specific group of stations on a **DMR** transceiver **by entering the group's identification code** into your channel list or keypad. Over on **D-STAR**, repeaters and internet gateways route traffic using digital identity headers embedded inside every transmission, so **your call sign** must be programmed into the radio before transmitting."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T4B Quick Takeaways",
           "bullets": [
-            "**DMR `code plug`:** Software **configuration file** holding repeaters, color codes, and talkgroups",
-            "**Selecting a DMR talkgroup:** Enter the **group's numeric ID code**",
-            "**D-STAR first step:** Program **your FCC call sign** into the radio before transmitting"
+            "**Frequency & scanning:** Enter frequencies via **the keypad or VFO knob**; **scanning** **tunes through a range of frequencies to check for activity**.",
+            "**Weak-signal FM squelch:** Open squelch so **receiver output audio is on all the time**.",
+            "**Receiver filters:** Matching bandwidth to mode **reduces noise or interference**; **`2400 Hz`** gives the best signal-to-noise ratio for **SSB**.",
+            "**Fixing SSB caller pitch:** Adjust **the RIT or Clarifier** (shifts receive pitch without moving your transmit frequency).",
+            "**Audio distortion culprits:** **Excessive microphone gain** causes **distorted transmitted audio** on SSB; receiving **slightly off frequency** makes **FM audio distorted**.",
+            "**DMR & D-STAR setup:** A DMR **code plug** is repeater/talkgroup **configuration data**; pick DMR groups **by entering the group's identification code**; program **your call sign** into **D-STAR** before transmitting."
           ]
         }
       ]
     },
     "T0A": {
       "group": "T0A",
-      "title": "Electrical, Fuse & Battery Safety",
-      "subtitle": "Preventing shocks, wiring fires, stored high-voltage jolts, battery hazards, and lightning surges.",
-      "aid": null,
+      "title": "Bench & Shack Electrical Safety: Shocks, Fuses & Batteries",
+      "subtitle": "How household wiring, fuses, capacitors, storage batteries, and ground rods keep you and your home safe.",
       "cards": [
         {
-          "heading": "Household AC Wiring, Fuses & Shocks",
-          "body": "Current through the body **burns tissue, scrambles nerve/heart signals, and locks muscles**—proper wiring and fuses stop hazards early.",
-          "bullets": [
-            "**US `120V AC` hot wire:** **Black = Hot**; wire fuses/breakers **in series with the hot wire only**",
-            "**Fuse job:** Cuts power during an **overload**—swapping a `5A` fuse for `20A` lets **excess current start a fire**",
-            "**3 shock guards:** Use **3-wire grounded cords**, a **common safety ground**, and **discharge internal capacitors** before servicing"
+          "kind": "concept",
+          "heading": "How Electricity Hurts—and Grounding Your Shack Against It",
+          "illustration": "electrical-ground-safety",
+          "widget": null,
+          "paragraphs": [
+            "Before you ever pick up a soldering iron or wire a power strip, it pays to respect what electrical current does to the human body. Our nerves and heart run on tiny electrical pulses, so external current flowing through a person poses a triple threat: it can **cause injury by heating body tissue**, **disrupt the electrical functions of cells**, and **cause involuntary muscle contractions** that freeze your grip onto a live wire. Good station habits stop shock hazards before they start: **use three-wire cords and plugs for all AC powered equipment**, **connect all AC powered station equipment to a common safety ground**, and **ensure all capacitors used for high-voltage DC are fully discharged** before working inside gear.",
+            "Outdoor antenna cables need equal respect when thunderstorms roll in. Every coaxial feed line entering your house should pass through a **lightning arrester** mounted **on a grounded panel near where feed lines enter the building**, shunting surge energy straight to Earth outside your walls. If your antenna mast has its own ground rod separate from your home's utility ground rod, **bond them together with heavy wire or conductive strap** so lightning cannot send a lethal flash leaping through your shack between two isolated grounds."
           ]
         },
         {
-          "heading": "Batteries, Stored Charge & High-Voltage Probes",
-          "body": "Even `12V` batteries pack welding-level short-circuit current, and unplugged power supplies can still hold lethal voltage inside.",
-          "bullets": [
-            "**Battery hazards:** Shorting a `12V` battery causes **burns, fire, or explosion**; rapid charging/discharging causes **overheating or out-gassing**",
-            "**Unplugged power supply shock:** Caused by **charge stored in filter capacitors** *(parts that store electricity like fast batteries)*",
-            "**Measuring high voltage:** Verify **both the voltmeter AND its leads** are rated for that voltage"
+          "kind": "concept",
+          "heading": "120V AC Wiring & Fuses: Protecting Wires from Fire",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Inside a standard North American **three-wire `120 V AC`** power cord, three colored jackets have strict jobs: white is the *neutral* return, green (or bare copper) is the *safety ground* tied to the metal case, and **black** wire insulation marks the live **hot** wire carrying full wall voltage. Whenever a power supply or outlet strip includes a **fuse or circuit breaker**, it must be wired **in series with the hot conductor only**. Putting a fuse in the neutral wire is a dangerous trap: if it blew, the device would turn off, yet everything inside the box would remain silently energized at 120 volts!",
+            "A **fuse** is intentionally the weakest link in the chain, engineered with a calibrated metal strip that melts **to remove power in case of an overload**. Notice that fuses protect wiring and equipment from overheating—they do not prevent human shock. Never swap a blown **`5-ampere` fuse** for a **`20-ampere` fuse** just to get back on the air: allowing four times the safe current through thin internal wiring means **excessive current could cause a fire** long before that oversized fuse ever melts."
           ]
         },
         {
-          "heading": "Coax Entry Panels & Ground Rods",
-          "body": "Outdoor antenna cables and ground rods must tie together so lightning energy stays outside your home.",
+          "kind": "concept",
+          "heading": "Hidden Jolts: Unplugged Power Supplies & High-Voltage Probes",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "One of the most surprising hazards on an electronics workbench happens *after* you flip the power switch off and unplug the cord from the wall. Inside desktop power supplies and amplifiers sit soda-can-sized cylinders called *filter capacitors*, which smooth pulsing wall current into steady DC by storing electrical energy like fast-acting reservoirs. Although internal *bleeder resistors* are supposed to drain them slowly, a failed resistor leaves **charge stored in filter capacitors** lingering at hundreds of volts—ready to deliver a severe jolt if you reach inside immediately after switching off.",
+            "When experienced builders troubleshoot live high-voltage circuits—such as vacuum-tube amplifiers or high-voltage supply rails—a bargain pocket multimeter from a hardware bin can be a serious hazard. High voltage can arc right across cramped internal circuit traces or punch through thin rubber test probe insulation into your fingers. Before touching probes to any high-voltage circuit, always **ensure that the voltmeter and its leads are rated for use at the voltages being measured**, and keep one hand safely in your pocket away from grounded chassis metal while probing."
+          ]
+        },
+        {
+          "kind": "concept",
+          "heading": "12-Volt Storage Batteries: Welding Sparks & Out-Gassing",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Hams love deep-cycle lead-acid and lithium batteries for *Field Day* weekends and emergency backup power when storms knock out the grid. Because touching the posts of a **12-volt storage battery** will not shock dry skin, beginners often underestimate the massive energy packed inside that case. Unlike a small flashlight cell, a storage battery without internal protection circuitry can dump hundreds of amperes in an instant—turning a dropped wrench or loose ring red-hot like an arc welder. On an unprotected 12-volt battery, **shorting the terminals can cause burns, fire, or an explosion**, so always cover exposed posts with insulating boots and fuse battery leads right at the terminals.",
+            "Batteries also demand smart automatic chargers and good ventilation when working hard during an emergency net or portable outing. Forcing current into or out of battery cells faster than their internal chemistry can keep up builds intense heat and internal gas pressure. **Rapidly charging or discharging an unprotected battery** creates a dangerous hazard of **overheating or out-gassing**—venting corrosive, flammable fumes such as explosive hydrogen gas from lead-acid cells."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T0A Quick Takeaways",
           "bullets": [
-            "**Lightning arresters:** Mount on a **grounded metal panel right where coax cables enter the building**",
-            "**Multiple outdoor ground rods:** **Bond them all together** with heavy wire or copper strap"
+            "**Body current & shock guards:** Current **heats tissue, disrupts cell functions, and locks muscles**; guard against shock with **3-wire grounded cords**, a **common safety ground**, and **discharging HV capacitors**.",
+            "**US `120V AC` & fuses:** **Black = Hot**; wire fuses/breakers **in series with the hot conductor only** to **remove power in an overload** (a `20A` fuse in a `5A` slot lets **excessive current cause a fire**).",
+            "**Lightning & ground rods:** Mount coax **lightning arresters on a grounded panel near building entry**; **bond all external ground rods together** with heavy wire or strap.",
+            "**Unplugged supplies & HV meters:** Switched-off supplies still hold **charge stored in filter capacitors**; verify **both the voltmeter and its leads are rated** for high voltages.",
+            "**Unprotected `12V` batteries:** **Shorting terminals causes burns, fire, or explosion**; rapid charge/discharge causes **overheating or out-gassing**."
           ]
         }
       ]
     },
     "T0B": {
       "group": "T0B",
-      "title": "Antenna & Tower Safety",
-      "subtitle": "Staying clear of power lines, climbing safely, and grounding towers for lightning",
-      "aid": null,
+      "title": "Outdoor Antenna & Tower Safety",
+      "subtitle": "Power-line fall zones, safe climbing habits, crank-up locks, and lightning ground paths.",
       "cards": [
         {
-          "heading": "Power Lines: Keep the 10-Foot Fall Zone",
-          "body": "Overhead utility wires are the single deadliest hazard during antenna installation. Always look up before lifting any mast or ladder.",
-          "bullets": [
-            "**Safe distance rule:** If the antenna falls, no part may come within **`10 feet`** of power wires.",
-            "**Lookup & utility poles:** Always **stay clear of overhead electrical wires**, and never attach antennas to **utility poles** (risk of contacting high-voltage lines)."
+          "kind": "concept",
+          "heading": "Look Up and Live: Power Lines & the 10-Foot Fall Zone",
+          "illustration": "tower-fall-zone",
+          "widget": null,
+          "paragraphs": [
+            "Walking into the backyard with shiny aluminum antenna tubing on a Saturday morning is an exciting milestone, yet overhead electrical wires are the single deadliest hazard in amateur radio. Aluminum masts, copper wire dipoles, and even damp ropes conduct lethal utility voltage instantly, and overhead street distribution lines carry thousands of volts with zero protective insulation—what looks like black rubber from the ground is merely weather coating, or bare metal wire! Before lifting any pole, mast, or ladder, stop, scan the entire sky, and **look for and stay clear of any overhead electrical wires**.",
+            "When picking a spot in your yard, plan for the worst-case ice storm or base failure: measure the combined height of your mast plus antenna and add a wide horizontal buffer. The minimum safe distance from a power line is **enough so that if the antenna falls, no part of it can come within 10 feet of the power wires** (so a 30-foot mast needs at least 40 feet of horizontal clearance!). Never take a shortcut by **attaching an antenna to a utility pole**, either—a sagging wire or broken mount **could contact high-voltage power lines**."
           ]
         },
         {
-          "heading": "Safe Climbing, Crank-Ups & Guy Hardware",
-          "body": "Gravity never gives second chances—safe tower work demands training, proper fall-arrest gear, mechanical locks, and a partner on the ground.",
-          "bullets": [
-            "**Never climb alone:** It is **never** safe to climb without a helper or observer; always have **training**, wear an **approved climbing harness**, and **tie off** at all times.",
-            "**Crank-up towers:** Never climb unless **retracted** or **mechanical safety locking devices** are installed.",
-            "**Turnbuckle safety wire:** Prevents turnbuckles on guy lines from **loosening due to vibration**."
+          "kind": "concept",
+          "heading": "Safe Climbing, Crank-Up Locks & Guy-Wire Turnbuckles",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Working high above the ground leaves zero margin for solo shortcuts. Under what circumstances is it safe to climb an antenna tower without a ground helper or observer? **Never**—you always need an attentive partner on the ground to pass up tools on a rope, watch for approaching weather, and call emergency responders if you slip or become dizzy. Every climb also requires three personal safety essentials: **sufficient training on safe tower climbing techniques**, wearing an **approved climbing harness** (a modern full-body fall-arrest harness, never an old waist belt), and using **appropriate tie-off to the tower at all times**.",
+            "Tower hardware demands equal mechanical respect. Nested **crank-up towers** telescope upward on a steel winch cable; if that hoist cable snaps while extended, heavy steel sections slam together like a guillotine, so a crank-up **must not be climbed unless it is retracted, or mechanical safety locking devices have been installed** to block the sections solidly. On guyed towers, threaded *turnbuckles* tension the support cables—looping a **safety wire through a turnbuckle** locks the barrel to **prevent loosening of the turnbuckle from vibration** in gusty winds."
           ]
         },
         {
-          "heading": "Tower Lightning Grounding & Codes",
-          "body": "A metal tower is a natural lightning target, so grounding conductors must steer fast surge pulses smoothly and directly into Earth according to **local electrical codes**.",
+          "kind": "concept",
+          "heading": "Steering Lightning into Earth: Tower Grounding & Local Codes",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Because a backyard metal tower reaches high above surrounding roofs and trees, you must give lightning strikes an effortless expressway straight into the soil. While FCC Part 97 rules regulate your on-air transmissions, physical grounding requirements for an amateur tower or antenna are established by **local electrical codes**—the municipal building rules (usually modeled on the National Electrical Code) that keep your home safe and insured. At the base of a tower, proper grounding uses **separate eight-foot ground rods for each tower leg, bonded to the tower and each other** with heavy copper conductor and tied into your home's main utility ground.",
+            "Remember that a lightning bolt is not ordinary household current; it is a violent, split-second high-frequency pulse carrying tens of thousands of amperes that refuses to turn tight corners. When routing ground wires on a tower for lightning protection, **ensure that connections are short and direct** straight down into the earth rods, and **sharp bends must be avoided**—using smooth, sweeping curves instead—so a strike doesn't flash sideways across a kinked wire into nearby coax cables."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T0B Quick Takeaways",
           "bullets": [
-            "**Tower legs:** Drive **separate `8-foot` ground rods** for each leg, bonded to the tower and each other.",
-            "**Routing rules:** Keep lightning ground connections **short and direct**, and **avoid sharp bends**."
+            "**Power-line clearance:** Always **look for and stay clear of overhead wires**; site antennas so if one falls, **no part comes within `10 feet` of power wires**; never use **utility poles** (**could contact high-voltage lines**).",
+            "**Tower climbing rules:** **Never** climb without a helper/observer; always have **safe climbing training**, wear an **approved climbing harness**, and stay **tied off at all times**.",
+            "**Crank-ups & turnbuckles:** Never climb a **crank-up tower** unless **retracted or mechanical safety locks are installed**; **turnbuckle safety wire** stops **loosening from vibration**.",
+            "**Tower lightning grounds:** Governed by **local electrical codes**; use **separate `8-foot` ground rods per leg** bonded together, keep wires **short and direct**, and **avoid sharp bends**."
           ]
         }
       ]
     },
     "T0C": {
       "group": "T0C",
-      "title": "RF Exposure & Radiation Safety",
-      "subtitle": "Why radio waves are non-ionizing, why 50 MHz has the strictest limit, and how duty cycle works.",
-      "aid": null,
+      "title": "Understanding RF Exposure & Radiation Safety",
+      "subtitle": "Why radio waves are non-ionizing, why 50 MHz is strictest, how duty cycle works, and keeping your station compliant.",
       "cards": [
         {
-          "heading": "Non-Ionizing RF & the 50 MHz Body Peak",
-          "body": "Radio waves are **non-ionizing**—they can warm tissue (and touching a live antenna causes an **RF skin burn**), but never break DNA like X-rays.",
-          "bullets": [
-            "**Why non-ionizing?** RF lacks the energy to cause **chemical changes in cells or damage DNA**",
-            "**Strictest safety limit (`50 MHz`):** Human body size absorbs RF fastest around **`50 MHz`** (the 6-meter band), giving it the **lowest Maximum Permissible Exposure**"
+          "kind": "concept",
+          "heading": "Non-Ionizing Radio Waves & the 50 MHz Body Absorption Peak",
+          "illustration": "rf-mpe-curve",
+          "widget": null,
+          "paragraphs": [
+            "The word *radiation* makes many newcomers uneasy because movies lump harmless radio waves together with hospital X-rays and nuclear fallout. In physics, radiation just means energy rippling outward through space—like warmth from a campfire or light from a lamp—and radio signals are strictly **non-ionizing radiation**. Unlike high-energy X-rays, gamma rays, or ultraviolet rays, **RF radiation does not have sufficient energy to cause chemical changes in cells and damage DNA**. Strong radio fields only warm tissue gently, though grabbing a bare metal whip or wire end while someone transmits funnels concentrated current into your skin, causing a painful thermal **RF burn to skin**.",
+            "How efficiently the human body absorbs RF warmth depends on how closely a radio wave's length matches human height: exposure limits vary with frequency because **the human body absorbs more RF energy at some frequencies than at others**. Standing upright, an adult body acts like a natural resonant antenna right in the lower VHF range around the 6-meter band. Because we soak up RF fastest there, **`50 MHz`** has the **lowest Maximum Permissible Exposure** (strictest safety limit) of any amateur band."
           ]
         },
         {
-          "heading": "Duty Cycle & What Shapes RF Fields",
-          "body": "RF safety limits measure heating **averaged over several minutes**, not just instantaneous watts.",
-          "bullets": [
-            "**4 field factors:** **Frequency, power level, distance from antenna, and radiation pattern**",
-            "**Duty cycle:** Percentage of time you **actually transmit**—controls **average exposure**",
-            "**Duty-cycle math:** Cutting TX time from `100%` to `50%` lets allowable power density **double (`2×`)**"
+          "kind": "concept",
+          "heading": "Duty Cycle & the Four Factors Shaping RF Fields",
+          "illustration": null,
+          "widget": "duty-slider",
+          "paragraphs": [
+            "Around any transmitting antenna, four physical ingredients work together to set how much RF energy reaches people nearby: **frequency and power level of the RF field**, **distance from the antenna to a person**, and the **radiation pattern of the antenna** (whether an omnidirectional whip spreads energy equally or a beam focuses it forward). Because blood circulation continuously cools human tissue, FCC exposure limits measure thermal heating *averaged over several minutes* rather than an instantaneous flash.",
+            "That time-averaging window makes **duty cycle**—defined as **the percentage of time that a transmitter is transmitting**—a huge ally for everyday hams. Duty cycle is factored into safety checks because **it affects the average exposure to radiation**: holding down a continuous FM test carrier runs at a full 100 percent duty cycle, whereas trading casual voice turns or short Morse elements spends plenty of cool-down time listening between sentences. Try dragging the interactive slider below to watch the exact math in action: if **duty cycle** drops in half from **`100 percent` to `50 percent`**, your **allowable power density increases by a factor of 2**."
           ]
         },
         {
-          "heading": "Compliance Checks & Moving Antennas",
-          "body": "The **station licensee** is legally responsible for keeping RF exposure within FCC limits.",
+          "kind": "concept",
+          "heading": "Staying Compliant: Licensee Duty, Checks & Moving Antennas",
+          "illustration": null,
+          "widget": null,
+          "paragraphs": [
+            "Every amateur station—from a bedroom handheld to a kilowatt backyard beam—must respect FCC RF exposure limits, and legal responsibility rests squarely on **the station licensee**. Fortunately, checking a typical Technician station takes only a few minutes and requires zero pricey lab instruments. The FCC accepts three ways to determine compliance: **calculation based on FCC OET Bulletin 65** (available as free online calculators and lookup tables), **calculation based on computer modeling**, or direct **measurement of field strength using calibrated equipment**.",
+            "What if an evaluation shows RF fields are a little too strong near an upstairs window, deck, or neighbor's walkway? Sliding the transceiver box across your desk won't change a thing, because RF radiates from the antenna outdoors, not the radio cabinet! Since RF field strength drops dramatically with every extra foot of separation, the effective fix is to **relocate antennas** higher up or farther away from people. Whenever you upgrade gear—like adding an amplifier, switching to lower-loss coax, or mounting a new beam—stay compliant **by re-evaluating the station whenever an item in the transmitter or antenna system is changed**."
+          ]
+        },
+        {
+          "kind": "cheatsheet",
+          "heading": "Exam Cheat-Sheet: T0C Quick Takeaways",
           "bullets": [
-            "**3 valid check methods:** **FCC OET Bulletin 65** tables, **computer modeling**, or **calibrated field measurements**",
-            "**Lowering exposure:** **Relocate antennas** farther/higher from people, and **re-evaluate** whenever TX power or antenna gear changes"
+            "**Non-ionizing RF & live antennas:** Radio signals are **non-ionizing radiation** (lack energy to **cause chemical changes in cells or damage DNA**); touching a live antenna causes an **RF burn to skin**.",
+            "**Frequency & `50 MHz` dip:** Bodies **absorb more RF at some frequencies than others**; **`50 MHz`** has the **lowest Maximum Permissible Exposure (MPE)**.",
+            "**Exposure factors & duty cycle:** Shaped by **frequency/power, distance, and antenna pattern**; **duty cycle** (% of time transmitting) sets **average exposure** (`100% -> 50%` duty cycle **doubles (`2x`)** allowable power density).",
+            "**Licensee & 3 check methods:** **Station licensee** is responsible; verify via **FCC OET Bulletin 65**, **computer modeling**, or **calibrated field-strength measurement**.",
+            "**Reducing & maintaining safety:** **Relocate antennas** to cut exposure, and **re-evaluate whenever transmitter or antenna gear changes**."
           ]
         }
       ]

@@ -2,8 +2,9 @@
 import json
 import os
 import re
-import sys
 from figures_svg import FIGURES
+from glossary_data import GLOSSARY
+from teaching_svgs import ILLUSTRATIONS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PARTS_DIR = os.path.join(ROOT, "scripts", "data_parts")
@@ -100,7 +101,7 @@ CAMPAIGN = [
         "chapter": 9,
         "title": "FCC Rules II: Band Privileges",
         "subelement": "T1",
-        "focus": "Authorized frequencies (paired with the Visual Band Map) & permitted transmissions.",
+        "focus": "Authorized frequencies (paired with the Band Guide) & permitted transmissions.",
         "groups": ["T1B", "T1D"],
         "bossAfter": {
             "id": "boss_3",
@@ -150,6 +151,22 @@ POSITIONAL_RE = re.compile(
     r"all\s+of\s+the\s+above|none\s+of\s+the\s+above|both\s+[abcd]\s+and\s+[abcd]|"
     r"neither\s+[abcd]\s+nor\s+[abcd]|choices?\s+[abcd]\s+and\s+[abcd])\b"
 )
+
+VALID_WIDGETS = {
+    "repeater-sim",
+    "duty-slider",
+    "band-privileges",
+    "metric-db",
+    "power-circle",
+    "ohms-circle",
+    "switch-flipper",
+    "fig-t1",
+    "fig-t2",
+    "fig-t3",
+    "figures",
+    "wavelength-slider",
+    "bandwidth-ladder",
+}
 
 MATH_IDS = {
     "T3B06",
@@ -257,38 +274,46 @@ def main() -> None:
             "explanation": exp_text,
         })
 
-    # Validation checks per TECHNICAL_DESIGN.md Section 3.2
     assert len(pool) == 409, f"Expected 409 questions, got {len(pool)}"
     assert len(subs_seen) == 10, f"Expected 10 subelements, got {len(subs_seen)}"
     assert len(groups_seen) == 35, f"Expected 35 groups, got {len(groups_seen)}"
 
-    # Campaign completeness check
     campaign_groups = [g for ch in CAMPAIGN for g in ch["groups"]]
-    assert len(campaign_groups) == 35 and set(campaign_groups) == groups_seen, (
-        "Campaign groups mismatch pool groups!"
-    )
+    assert len(campaign_groups) == 35 and set(campaign_groups) == groups_seen
 
-    # Errata verification
     by_id = {q["id"]: q for q in pool}
     for eid, expected_stem in ERRATA_2026_02_19.items():
         actual = by_id[eid]["question"]
-        assert actual == expected_stem, (
-            f"Errata mismatch for {eid}:\n  expected: {expected_stem}\n  actual:   {actual}"
-        )
+        assert actual == expected_stem, f"Errata mismatch for {eid}: {actual}"
 
-    # Briefings verification
-    assert set(briefings.keys()) == groups_seen, (
-        f"Briefings keys mismatch: missing={groups_seen - set(briefings.keys())}"
-    )
+    # Validate Walkthrough Card Decks
+    assert set(briefings.keys()) == groups_seen
+    total_cards = 0
     for g, b in briefings.items():
         cards = b.get("cards", [])
-        assert 2 <= len(cards) <= 4, f"Briefing {g} should have 2-4 cards, got {len(cards)}"
+        assert 4 <= len(cards) <= 7, f"Briefing {g} should have 4-7 walkthrough cards, got {len(cards)}"
         assert b.get("title"), f"Briefing {g} missing title"
+        assert cards[-1].get("kind") == "cheatsheet", f"Briefing {g} final card must be kind='cheatsheet'"
+        assert len(cards[-1].get("bullets", [])) >= 3, f"Briefing {g} cheatsheet needs >=3 bullets"
+        for idx, c in enumerate(cards[:-1]):
+            assert c.get("kind", "concept") == "concept", f"{g} card {idx} expected kind='concept'"
+            paras = c.get("paragraphs", [])
+            assert len(paras) >= 2, f"{g} card {idx} must have >=2 paragraphs"
+            ill = c.get("illustration")
+            if ill is not None:
+                assert ill in ILLUSTRATIONS, f"{g} card {idx} unknown illustration {ill!r}"
+            wid = c.get("widget")
+            if wid is not None:
+                assert wid in VALID_WIDGETS, f"{g} card {idx} unknown widget {wid!r}"
+        total_cards += len(cards)
 
-    # Figures verification
+    # Validate Glossary
+    assert len(GLOSSARY) >= 70, f"Expected >=70 glossary entries, got {len(GLOSSARY)}"
+    total_aliases = sum(len(v.get("aliases", [])) for v in GLOSSARY.values())
+
     assert set(FIGURES.keys()) == {"T-1", "T-2", "T-3"}
     fig_qs = [q for q in pool if q["figure"] is not None]
-    assert len(fig_qs) == 12, f"Expected 12 figure questions, got {len(fig_qs)}"
+    assert len(fig_qs) == 12
 
     ham_data = {
         "meta": {
@@ -302,6 +327,8 @@ def main() -> None:
         },
         "subelements": SUBELEMENTS,
         "campaign": CAMPAIGN,
+        "glossary": GLOSSARY,
+        "illustrations": ILLUSTRATIONS,
         "briefings": briefings,
         "figures": FIGURES,
         "pool": pool,
@@ -317,12 +344,11 @@ def main() -> None:
         f.write(js_payload)
 
     size_kb = os.path.getsize(OUT_DATA_JS) / 1024
-    pos_count = sum(1 for q in pool if q["has_positional_choice"])
-    math_count = sum(1 for q in pool if "math" in q["tags"])
     print(
         f"SUCCESS: Generated data.js ({size_kb:.1f} KB) | "
-        f"{len(pool)} questions | {len(briefings)} briefings | "
-        f"{pos_count} positional-guarded | {math_count} math-tagged | {len(fig_qs)} figure-linked."
+        f"{len(pool)} questions | {len(briefings)} decks ({total_cards} cards) | "
+        f"{len(GLOSSARY)} glossary concepts ({total_aliases} terms) | "
+        f"{len(ILLUSTRATIONS)} teaching SVGs + {len(FIGURES)} official figures."
     )
 
 

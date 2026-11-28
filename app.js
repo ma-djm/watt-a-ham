@@ -394,7 +394,7 @@
     }
   }
 
-  // HTML Escaping & Simple Markdown (**bold** + `code`) Formatter
+  // HTML Escaping, Markdown (**bold**, *italic*, `code`) & Jargon Auto-Linker
   function escHtml(str) {
     return String(str ?? '')
       .replace(/&/g, '&amp;')
@@ -403,7 +403,31 @@
       .replace(/"/g, '&quot;');
   }
 
-  function formatRichText(str) {
+  const GLOSSARY = DATA.glossary || {};
+  const ALIAS_TO_KEY = new Map();
+  let JARGON_RE = null;
+  (function initGlossaryMatcher() {
+    const allAliases = [];
+    for (const [key, entry] of Object.entries(GLOSSARY)) {
+      for (const rawAlias of entry.aliases || []) {
+        const clean = rawAlias.trim();
+        if (!clean) continue;
+        const low = clean.toLowerCase();
+        if (!ALIAS_TO_KEY.has(low)) {
+          ALIAS_TO_KEY.set(low, key);
+          allAliases.push(clean);
+        }
+      }
+    }
+    if (allAliases.length) {
+      allAliases.sort((a, b) => b.length - a.length);
+      const escaped = allAliases.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+      JARGON_RE = new RegExp(`(?<![A-Za-z0-9-/])(${escaped.join('|')})(?![A-Za-z0-9-])`, 'gi');
+    }
+  })();
+
+  function formatRichText(str, opts = {}) {
+    const { linkJargon = false, seenTerms = null, excludeKey = null } = opts;
     const codeSlots = [];
     let out = escHtml(str).replace(/`([^`]+)`/g, (_, code) => {
       codeSlots.push(`<code>${code}</code>`);
@@ -412,7 +436,99 @@
     out = out
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/(?<!\*)\*([^\s*](?:[^*]*?[^\s*])?)\*(?!\*)/g, '<em>$1</em>');
+
+    if (linkJargon && JARGON_RE) {
+      const localSeen = seenTerms || new Set();
+      const parts = out.split(/(<[^>]+>|\u0000CODE\d+\u0000)/g);
+      out = parts.map((seg) => {
+        if (!seg || seg.startsWith('<') || seg.startsWith('\u0000CODE')) return seg;
+        return seg.replace(JARGON_RE, (match) => {
+          const gKey = ALIAS_TO_KEY.get(match.toLowerCase());
+          if (!gKey || gKey === excludeKey || localSeen.has(gKey)) return match;
+          localSeen.add(gKey);
+          return `<button type="button" class="jargon-term" data-jargon-key="${escHtml(gKey)}">${match}</button>`;
+        });
+      }).join('');
+    }
+
     return out.replace(/\u0000CODE(\d+)\u0000/g, (_, idx) => codeSlots[Number(idx)]);
+  }
+
+  // Anchored Jargon Popover Controller (with Nested Term History)
+  let jargonHistory = [];
+  let jargonAnchorRect = null;
+
+  function closeJargonPopover() {
+    const pop = document.getElementById('jargon-popover');
+    if (!pop) return;
+    if (typeof pop.hidePopover === 'function') {
+      try { pop.hidePopover(); } catch {}
+    }
+    pop.classList.remove('is-fallback-open');
+    jargonHistory = [];
+  }
+
+  function openJargonPopover(gKey, triggerEl = null, isBack = false) {
+    const entry = GLOSSARY[gKey];
+    const pop = document.getElementById('jargon-popover');
+    const inner = document.getElementById('jargon-popover-inner');
+    if (!entry || !pop || !inner) return;
+
+    if (triggerEl && typeof triggerEl.getBoundingClientRect === 'function') {
+      const r = triggerEl.getBoundingClientRect();
+      if (!pop.matches?.(':popover-open') && !pop.classList.contains('is-fallback-open')) {
+        jargonAnchorRect = r;
+        jargonHistory = [];
+      } else if (!isBack && pop.dataset.currentKey && pop.dataset.currentKey !== gKey) {
+        jargonHistory.push(pop.dataset.currentKey);
+      }
+    }
+    pop.dataset.currentKey = gKey;
+
+    const popSeen = new Set([gKey]);
+    inner.innerHTML = `
+      <div class="jargon-pop-top">
+        <div>
+          <div class="jargon-pop-cat">${escHtml(entry.category || 'Glossary')}</div>
+          <h3 id="jargon-pop-title" class="jargon-pop-title">${escHtml(entry.term)}</h3>
+          ${entry.expansion ? `<div class="jargon-pop-exp">${escHtml(entry.expansion)}</div>` : ''}
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem">
+          ${jargonHistory.length > 0 ? `<button type="button" class="jargon-back-btn" data-action="jargon-back">← Back</button>` : ''}
+          <button type="button" class="jargon-close-btn" data-action="jargon-close" aria-label="Close definition">✕</button>
+        </div>
+      </div>
+      <p class="jargon-pop-def">${formatRichText(entry.definition, { linkJargon: true, seenTerms: popSeen, excludeKey: gKey })}</p>
+      ${entry.analogy ? `
+        <div class="jargon-pop-analogy">
+          <strong>Real-world intuition:</strong> ${formatRichText(entry.analogy, { linkJargon: true, seenTerms: popSeen, excludeKey: gKey })}
+        </div>
+      ` : ''}
+    `;
+
+    if (typeof pop.showPopover === 'function') {
+      try { pop.showPopover(); } catch {}
+    } else {
+      pop.classList.add('is-fallback-open');
+    }
+
+    // Clamp popover cleanly near the clicked word within viewport bounds
+    const vw = window.innerWidth || 390;
+    const vh = window.innerHeight || 800;
+    const rect = jargonAnchorRect || { left: vw / 2 - 40, right: vw / 2 + 40, top: vh / 3, bottom: vh / 3 + 22 };
+    const popW = pop.offsetWidth || Math.min(vw * 0.92, 340);
+    const popH = pop.offsetHeight || 210;
+
+    let left = rect.left + (rect.right - rect.left) / 2 - popW / 2;
+    left = Math.max(12, Math.min(vw - popW - 12, left));
+    let top = rect.bottom + 8;
+    if (rect.top > vh * 0.54 && rect.top - popH - 10 >= 12) {
+      top = rect.top - popH - 8;
+    } else if (top + popH > vh - 12) {
+      top = Math.max(12, vh - popH - 12);
+    }
+    pop.style.left = `${Math.round(left)}px`;
+    pop.style.top = `${Math.round(top)}px`;
   }
 
   // Accessible Toast + Clipboard Copy (Modern Web Guidance)
@@ -622,8 +738,179 @@
     `;
   }
 
+  // Interactive Mini-Widget State & Renderer (Used Inside Walkthrough Cards)
+  const widgetState = {
+    repeaterMode: 'repeater', // 'simplex' | 'repeater' | 'reverse'
+    dutyPct: 50,
+    switchType: 'spst', // 'spst' | 'spdt'
+    spstClosed: false,
+    spdtPos: 'A',
+    waveMhz: 146.52
+  };
+
+  function renderSingleSchematicWidget(figKey) {
+    const chipsByFig = {
+      'T-1': [
+        ['#1', 'Resistor'], ['#2', 'Transistor (controls current)'], ['#3', 'Lamp'], ['#4', 'Battery']
+      ],
+      'T-2': [
+        ['#3', 'SPST Switch'], ['#4', 'Transformer'], ['#6', 'Capacitor'], ['#8', 'LED'], ['#9', 'Variable Resistor']
+      ],
+      'T-3': [
+        ['#3', 'Variable Inductor'], ['#4', 'Antenna']
+      ]
+    };
+    const chips = chipsByFig[figKey] || [];
+    return `
+      <div class="panel-card" style="margin:0.2rem 0 0">
+        <div class="panel-eyebrow" style="margin-bottom:0.4rem">Official Exam Diagram — Figure ${escHtml(figKey)} (Only Highlighted Numbers Tested)</div>
+        <button type="button" class="schematic-box btn-block" style="margin-top:0" data-zoom-fig="${escHtml(figKey)}">
+          ${DATA.figures[figKey] || ''}
+          <div class="callout-chips">
+            ${chips.map(([num, lbl]) => `<span class="callout-chip"><strong>${escHtml(num)}</strong> ${escHtml(lbl)}</span>`).join('')}
+          </div>
+          <div class="zoom-hint">🔍 Tap diagram to inspect full screen</div>
+        </button>
+      </div>
+    `;
+  }
+
   function renderMiniAidForBriefing(aid) {
     if (!aid) return '';
+    if (aid === 'repeater-sim') {
+      const m = widgetState.repeaterMode;
+      const rx = m === 'simplex' ? '146.520 MHz' : m === 'repeater' ? '146.940 MHz (Repeater Out)' : '147.540 MHz (Repeater In!)';
+      const tx = m === 'simplex' ? '146.520 MHz' : m === 'repeater' ? '147.540 MHz (+600 kHz Offset)' : '146.940 MHz';
+      const note = m === 'simplex'
+        ? 'Simplex: Both radios transmit & receive directly on the exact same frequency (no hilltop relay).'
+        : m === 'repeater'
+          ? 'Repeater (+600 kHz offset): When you hold PTT, your rig automatically shifts +600 kHz up to feed the repeater’s input!'
+          : 'Reverse Button Held: You are listening directly on the repeater’s input—if your friend still sounds clear, you can switch to simplex!';
+      return `
+        <div class="mini-widget-box">
+          <div class="panel-eyebrow">Interactive Try-It: Simplex vs. Repeater Offset &amp; Reverse</div>
+          <div class="widget-pill-row">
+            <button type="button" class="widget-pill-btn ${m === 'simplex' ? 'is-active' : ''}" data-widget-rep="simplex">Simplex (146.520)</button>
+            <button type="button" class="widget-pill-btn ${m === 'repeater' ? 'is-active' : ''}" data-widget-rep="repeater">2m Repeater (+600 kHz)</button>
+            <button type="button" class="widget-pill-btn ${m === 'reverse' ? 'is-active' : ''}" data-widget-rep="reverse">Hold [Reverse] Button</button>
+          </div>
+          <div class="quick-tiles">
+            <div class="quick-tile">
+              <div class="quick-tile-val">${escHtml(rx)}</div>
+              <div class="quick-tile-lbl">Your Radio Listens (RX)</div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">${escHtml(tx)}</div>
+              <div class="quick-tile-lbl">Your Radio Transmits (TX)</div>
+            </div>
+          </div>
+          <p class="band-notes" style="margin:0">${escHtml(note)}</p>
+        </div>
+      `;
+    }
+    if (aid === 'duty-slider') {
+      const d = widgetState.dutyPct;
+      const mult = (100 / d).toFixed(d === 50 || d === 100 || d === 25 || d === 20 ? 0 : 1);
+      return `
+        <div class="mini-widget-box">
+          <div class="panel-eyebrow">Interactive Try-It: Transmit Duty Cycle vs. Allowable RF Exposure</div>
+          <div class="widget-pill-row">
+            <button type="button" class="widget-pill-btn ${d === 100 ? 'is-active' : ''}" data-widget-duty="100">100% (Continuous FM)</button>
+            <button type="button" class="widget-pill-btn ${d === 50 ? 'is-active' : ''}" data-widget-duty="50">50% (Half TX / Half RX)</button>
+            <button type="button" class="widget-pill-btn ${d === 25 ? 'is-active' : ''}" data-widget-duty="25">25% (Casual SSB Chat)</button>
+          </div>
+          <div class="quick-tiles">
+            <div class="quick-tile">
+              <div class="quick-tile-val">${d}% TX Time</div>
+              <div class="quick-tile-lbl">Active transmit duty cycle</div>
+            </div>
+            <div class="quick-tile">
+              <div class="quick-tile-val">${mult}× Power Density</div>
+              <div class="quick-tile-lbl">Allowed vs. 100% continuous TX</div>
+            </div>
+          </div>
+          <p class="band-notes" style="margin:0">Notice the exam rule: dropping duty cycle from <code>100%</code> to <code>50%</code> doubles (<code>2×</code>) allowable power density!</p>
+        </div>
+      `;
+    }
+    if (aid === 'switch-flipper') {
+      const isSpst = widgetState.switchType === 'spst';
+      const closed = widgetState.spstClosed;
+      const pos = widgetState.spdtPos;
+      return `
+        <div class="mini-widget-box">
+          <div class="panel-eyebrow">Interactive Bench: Tap to Flip SPST vs. SPDT Switches</div>
+          <div class="widget-pill-row">
+            <button type="button" class="widget-pill-btn ${isSpst ? 'is-active' : ''}" data-widget-swtype="spst">SPST (Fig T-2 #3)</button>
+            <button type="button" class="widget-pill-btn ${!isSpst ? 'is-active' : ''}" data-widget-swtype="spdt">SPDT (1 Input → 2 Outputs)</button>
+            <button type="button" class="btn btn-secondary" style="padding:0.32rem 0.68rem;font-size:0.76rem;margin-left:auto" data-widget-flip="1">
+              ${isSpst ? (closed ? '⚡ Open Switch' : '⚡ Close Switch') : `⚡ Flip to Circuit ${pos === 'A' ? 'B' : 'A'}`}
+            </button>
+          </div>
+          ${isSpst ? `
+            <svg viewBox="0 0 420 105" class="teaching-svg" role="img" aria-label="Interactive SPST switch">
+              <line x1="35" y1="58" x2="148" y2="58" stroke="currentColor" stroke-width="3"/>
+              <circle cx="154" cy="58" r="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="2.5"/>
+              <line x1="160" y1="${closed ? 58 : 55}" x2="218" y2="${closed ? 58 : 30}" stroke="var(--gold)" stroke-width="3.5" stroke-linecap="round"/>
+              <circle cx="224" cy="58" r="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="2.5"/>
+              <line x1="230" y1="58" x2="325" y2="58" stroke="currentColor" stroke-width="3"/>
+              <circle cx="348" cy="58" r="18" fill="${closed ? 'var(--gold)' : 'var(--bg-surface)'}" stroke="currentColor" stroke-width="2.5"/>
+              <text x="348" y="63" text-anchor="middle" font-size="11" font-weight="800" fill="${closed ? '#451a03' : 'var(--text-secondary)'}">${closed ? 'ON' : 'OFF'}</text>
+              <text x="210" y="94" text-anchor="middle" font-size="11" fill="var(--text-secondary)">Single-Pole Single-Throw (SPST) — exact symbol of Component #3 in Figure T-2!</text>
+            </svg>
+          ` : `
+            <svg viewBox="0 0 420 120" class="teaching-svg" role="img" aria-label="Interactive SPDT switch">
+              <line x1="35" y1="60" x2="142" y2="60" stroke="currentColor" stroke-width="3"/>
+              <circle cx="148" cy="60" r="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="2.5"/>
+              <line x1="154" y1="60" x2="218" y2="${pos === 'A' ? 34 : 86}" stroke="var(--gold)" stroke-width="3.5" stroke-linecap="round"/>
+              <circle cx="224" cy="34" r="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="2.5"/>
+              <circle cx="224" cy="86" r="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="2.5"/>
+              <line x1="230" y1="34" x2="318" y2="34" stroke="currentColor" stroke-width="2.5"/>
+              <line x1="230" y1="86" x2="318" y2="86" stroke="currentColor" stroke-width="2.5"/>
+              <rect x="318" y="19" width="76" height="28" rx="6" fill="${pos === 'A' ? 'var(--success-soft)' : 'var(--bg-surface)'}" stroke="${pos === 'A' ? 'var(--success)' : 'var(--border-strong)'}"/>
+              <text x="356" y="37" text-anchor="middle" font-size="10.5" font-weight="800" fill="currentColor">Antenna A</text>
+              <rect x="318" y="71" width="76" height="28" rx="6" fill="${pos === 'B' ? 'var(--success-soft)' : 'var(--bg-surface)'}" stroke="${pos === 'B' ? 'var(--success)' : 'var(--border-strong)'}"/>
+              <text x="356" y="89" text-anchor="middle" font-size="10.5" font-weight="800" fill="currentColor">Dummy Load B</text>
+            </svg>
+          `}
+        </div>
+      `;
+    }
+    if (aid === 'wavelength-slider') {
+      const mhz = widgetState.waveMhz;
+      const meters = 300 / mhz;
+      const bandLbl = mhz < 30 ? '10m HF Band' : mhz < 60 ? '6m VHF Band' : mhz < 200 ? '2m VHF Band' : '70cm UHF Band';
+      const cycles = mhz < 35 ? 2 : mhz < 70 ? 3 : mhz < 200 ? 6 : 11;
+      let pathD = 'M 24 44';
+      const segW = 372 / (cycles * 2);
+      for (let i = 0; i < cycles * 2; i++) {
+        const x1 = 24 + i * segW + segW / 2;
+        const y1 = i % 2 === 0 ? 12 : 76;
+        const x2 = 24 + (i + 1) * segW;
+        pathD += ` Q ${x1.toFixed(1)} ${y1} ${x2.toFixed(1)} 44`;
+      }
+      return `
+        <div class="mini-widget-box">
+          <div class="panel-eyebrow">Interactive 300 Rule: Pick a Band to Watch Wavelength Change</div>
+          <div class="widget-pill-row">
+            <button type="button" class="widget-pill-btn ${mhz === 28.4 ? 'is-active' : ''}" data-widget-wave="28.4">28.4 MHz (10m)</button>
+            <button type="button" class="widget-pill-btn ${mhz === 50.1 ? 'is-active' : ''}" data-widget-wave="50.1">50.1 MHz (6m)</button>
+            <button type="button" class="widget-pill-btn ${mhz === 146.52 ? 'is-active' : ''}" data-widget-wave="146.52">146.52 MHz (2m)</button>
+            <button type="button" class="widget-pill-btn ${mhz === 440 ? 'is-active' : ''}" data-widget-wave="440">440 MHz (70cm)</button>
+          </div>
+          <svg viewBox="0 0 420 88" class="teaching-svg" role="img" aria-label="Dynamic wavelength visualization">
+            <line x1="18" y1="44" x2="402" y2="44" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <path d="${pathD}" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          </svg>
+          <div class="formula-readout" style="text-align:center">
+            300 ÷ ${mhz} MHz = ${meters.toFixed(2)} meters (${escHtml(bandLbl)})
+          </div>
+        </div>
+      `;
+    }
+    if (aid === 'fig-t1') return renderSingleSchematicWidget('T-1');
+    if (aid === 'fig-t2' || aid === 'fig-t2-switch') return renderSingleSchematicWidget('T-2');
+    if (aid === 'fig-t3') return renderSingleSchematicWidget('T-3');
     if (aid === 'repeater-basics') {
       return `
         <div class="panel-card" style="margin-top:0.2rem">
@@ -654,32 +941,46 @@
       `;
     }
     if (aid === 'power-circle') {
+      const powerReadout = powerSolveTarget === 'PI'
+        ? 'I = P / E (Amps = Watts ÷ Volts)'
+        : powerSolveTarget === 'PE'
+          ? 'E = P / I (Volts = Watts ÷ Amps)'
+          : 'P = I × E (Watts = Amps × Volts)';
       return `
-        <div class="panel-card" style="margin-top:0.2rem;text-align:center">
-          <div class="panel-eyebrow">Cover-Up Circle: DC Power ("PIE")</div>
-          <div class="t-circle" aria-label="P on top, I times E on bottom">
-            <div class="t-top"><div class="t-cell">P<small>Watts</small></div></div>
+        <div class="mini-widget-box" style="align-items:center;text-align:center">
+          <div class="panel-eyebrow">Interactive Cover-Up Circle: Tap P, I, or E</div>
+          <div class="t-circle" role="group" aria-label="DC Power interactive circle">
+            <div class="t-top">
+              <button type="button" class="t-cell ${powerSolveTarget === 'P' ? 'is-selected' : ''}" data-power-target="P">P<small>Watts</small></button>
+            </div>
             <div class="t-bottom">
-              <div class="t-cell">I<small>Amps</small></div>
-              <div class="t-cell">E<small>Volts</small></div>
+              <button type="button" class="t-cell ${powerSolveTarget === 'PI' ? 'is-selected' : ''}" data-power-target="PI">I<small>Amps</small></button>
+              <button type="button" class="t-cell ${powerSolveTarget === 'PE' ? 'is-selected' : ''}" data-power-target="PE">E<small>Volts</small></button>
             </div>
           </div>
-          <div class="formula-readout">P = I × E &nbsp;·&nbsp; I = P / E &nbsp;·&nbsp; E = P / I</div>
+          <div class="formula-readout">${escHtml(powerReadout)}</div>
         </div>
       `;
     }
     if (aid === 'ohms-circle' || aid === 'ohms-triangle') {
+      const ohmsReadout = mathSolveTarget === 'I'
+        ? 'I = E / R (Amps = Volts ÷ Ohms)'
+        : mathSolveTarget === 'R'
+          ? 'R = E / I (Ohms = Volts ÷ Amps)'
+          : 'E = I × R (Volts = Amps × Ohms)';
       return `
-        <div class="panel-card" style="margin-top:0.2rem;text-align:center">
-          <div class="panel-eyebrow">Cover-Up Circle: Ohm's Law (E Always on Top)</div>
-          <div class="t-circle" aria-label="E on top, I times R on bottom">
-            <div class="t-top"><div class="t-cell">E<small>Volts</small></div></div>
+        <div class="mini-widget-box" style="align-items:center;text-align:center">
+          <div class="panel-eyebrow">Interactive Cover-Up Circle: Tap E, I, or R</div>
+          <div class="t-circle" role="group" aria-label="Ohm's Law interactive circle">
+            <div class="t-top">
+              <button type="button" class="t-cell ${mathSolveTarget === 'E' ? 'is-selected' : ''}" data-math-target="E">E<small>Volts</small></button>
+            </div>
             <div class="t-bottom">
-              <div class="t-cell">I<small>Amps</small></div>
-              <div class="t-cell">R<small>Ohms</small></div>
+              <button type="button" class="t-cell ${mathSolveTarget === 'I' ? 'is-selected' : ''}" data-math-target="I">I<small>Amps</small></button>
+              <button type="button" class="t-cell ${mathSolveTarget === 'R' ? 'is-selected' : ''}" data-math-target="R">R<small>Ohms</small></button>
             </div>
           </div>
-          <div class="formula-readout">E = I × R &nbsp;·&nbsp; I = E / R &nbsp;·&nbsp; R = E / I</div>
+          <div class="formula-readout">${escHtml(ohmsReadout)}</div>
         </div>
       `;
     }
@@ -992,18 +1293,27 @@
       <div style="display:flex;flex-direction:column;gap:0.55rem;margin-top:0.2rem">
         ${isLocked ? `
           <button type="button" class="btn btn-primary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="briefing" autofocus>
-            Unlock &amp; Jump Ahead (Full 3-Stage Lesson)
+            Unlock &amp; Start Full Lesson (${(brief.cards || []).length} Cards + Quiz)
+          </button>
+          <button type="button" class="btn btn-secondary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="briefing" data-read-only="1">
+            📖 Read Walkthrough Cards Only
           </button>
         ` : isGoldOrCracked ? `
           <button type="button" class="btn ${node.cracked ? 'btn-gold' : 'btn-primary'} btn-block" data-modal-start="${escHtml(group)}" data-start-stage="challenge" autofocus>
-            ${node.cracked ? 'Repair Cracked Node (Quiz Only)' : 'Quick Practice Quiz (Skip Warm-Up)'}
+            ${node.cracked ? 'Repair Cracked Node (Quiz Only)' : 'Quick Practice Quiz (Skip Cards)'}
+          </button>
+          <button type="button" class="btn btn-secondary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="briefing" data-read-only="1">
+            📖 Read Walkthrough Cards Only (${(brief.cards || []).length} Cards)
           </button>
           <button type="button" class="btn btn-secondary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="briefing">
-            Full 3-Stage Lesson (Briefing + Flash-Pass + Quiz)
+            Full 3-Stage Lesson (Cards + Flash-Pass + Quiz)
           </button>
         ` : `
           <button type="button" class="btn btn-primary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="briefing" autofocus>
-            Start 3-Stage Lesson (~8 min)
+            Start Guided Lesson (${(brief.cards || []).length} Cards + Quiz)
+          </button>
+          <button type="button" class="btn btn-secondary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="briefing" data-read-only="1">
+            📖 Read Walkthrough Cards Only
           </button>
           <button type="button" class="btn btn-secondary btn-block" data-modal-start="${escHtml(group)}" data-start-stage="challenge">
             Skip Straight to 4-Choice Challenge
@@ -1278,7 +1588,23 @@
         </div>
       </div>
 
-      <!-- 4. Exam Day Logistics Checklist -->
+      <!-- 4. Searchable A-Z Ham & Electronics Glossary -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div>
+            <div class="panel-eyebrow">Plain-English Jargon Reference</div>
+            <h2 class="panel-title">Searchable Ham &amp; Electronics Glossary</h2>
+          </div>
+          <span class="badge-pill">${Object.keys(GLOSSARY).length} Concepts</span>
+        </div>
+        <p class="panel-desc">
+          Every dotted term inside lessons and Flash-Pass is tappable—or search any acronym, slang word, or circuit part right here.
+        </p>
+        <input id="glossary-search" type="search" class="glossary-search-input" value="${escHtml(glossaryQuery)}" placeholder="Search terms (e.g., SWR, rig, PTT, CTCSS, keyer, ULS...)" aria-label="Search ham radio glossary">
+        <div id="glossary-list" class="glossary-scroll"></div>
+      </div>
+
+      <!-- 5. Exam Day Logistics Checklist -->
       <div class="panel-card">
         <div class="panel-eyebrow">From Study Path to Call Sign</div>
         <h2 class="panel-title" style="margin-bottom:0.65rem">Exam Day Logistics Checklist</h2>
@@ -1327,6 +1653,65 @@
     `;
 
     bindLiveOhmCalculator();
+    bindGlossarySearch();
+  }
+
+  let glossaryQuery = '';
+  const SORTED_GLOSSARY_ENTRIES = Object.entries(GLOSSARY).sort((a, b) =>
+    (a[1].term || '').localeCompare(b[1].term || '')
+  );
+
+  function renderGlossaryList(query) {
+    const listEl = document.getElementById('glossary-list');
+    if (!listEl) return;
+    const q = (query || '').trim().toLowerCase();
+    const matches = !q
+      ? SORTED_GLOSSARY_ENTRIES
+      : SORTED_GLOSSARY_ENTRIES.filter(([, entry]) => {
+          if ((entry.term || '').toLowerCase().includes(q)) return true;
+          if ((entry.expansion || '').toLowerCase().includes(q)) return true;
+          if ((entry.category || '').toLowerCase().includes(q)) return true;
+          if ((entry.definition || '').toLowerCase().includes(q)) return true;
+          return (entry.aliases || []).some((al) => al.toLowerCase().includes(q));
+        });
+
+    if (!matches.length) {
+      listEl.innerHTML = `<p class="panel-desc" style="margin:0.4rem 0">No glossary terms matched <strong>${escHtml(query)}</strong>.</p>`;
+      return;
+    }
+
+    listEl.innerHTML = matches.map(([gKey, entry]) => {
+      const localSeen = new Set([gKey]);
+      return `
+        <div class="glossary-item">
+          <div class="glossary-item-head">
+            <div>
+              <strong style="font-size:0.95rem;color:var(--text-primary)">${escHtml(entry.term)}</strong>
+              ${entry.expansion ? `<span style="font-size:0.78rem;color:var(--text-secondary);margin-left:0.35rem">— ${escHtml(entry.expansion)}</span>` : ''}
+            </div>
+            <span class="badge-pill">${escHtml(entry.category || 'Glossary')}</span>
+          </div>
+          <p style="font-size:0.85rem;line-height:1.46;color:var(--text-primary);margin:0.2rem 0 0">
+            ${formatRichText(entry.definition, { linkJargon: true, seenTerms: localSeen, excludeKey: gKey })}
+          </p>
+          ${entry.analogy ? `
+            <p style="font-size:0.79rem;line-height:1.42;color:var(--text-secondary);margin:0.35rem 0 0">
+              <em>Analogy:</em> ${formatRichText(entry.analogy, { linkJargon: true, seenTerms: localSeen, excludeKey: gKey })}
+            </p>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  function bindGlossarySearch() {
+    const searchIn = document.getElementById('glossary-search');
+    if (!searchIn) return;
+    renderGlossaryList(glossaryQuery);
+    searchIn.addEventListener('input', () => {
+      glossaryQuery = searchIn.value;
+      renderGlossaryList(glossaryQuery);
+    });
   }
 
   function bindLiveOhmCalculator() {
@@ -1370,6 +1755,7 @@
   }
 
   function switchTab(tab) {
+    closeJargonPopover();
     activeTab = tab;
     for (const sec of ['path', 'exams', 'aids']) {
       const view = document.getElementById(`view-${sec}`);
@@ -1395,22 +1781,24 @@
   }
 
   function closeSessionOverlay() {
+    closeJargonPopover();
     activeSession = null;
     document.getElementById('session-overlay').hidden = true;
     document.getElementById('app-shell').removeAttribute('inert');
     renderActiveTab();
   }
 
-  // 1. Start 3-Stage Node Lesson
-  function startNodeLesson(group, initialStage = 'briefing') {
+  // 1. Start 3-Stage Node Lesson (or Read-Only Walkthrough Handbook)
+  function startNodeLesson(group, initialStage = 'briefing', opts = {}) {
+    const { readOnly = false } = opts;
     const qs = Q_BY_GROUP.get(group) || [];
     const brief = DATA.briefings[group];
     if (!qs.length || !brief) return;
 
-    if (state.nodes[group].status === 'locked') {
-      state.nodes[group].status = 'in_progress';
-    } else if (state.nodes[group].status === 'next') {
-      state.nodes[group].status = 'in_progress';
+    if (!readOnly) {
+      if (state.nodes[group].status === 'locked' || state.nodes[group].status === 'next') {
+        state.nodes[group].status = 'in_progress';
+      }
     }
     recordStudyActivity();
     saveState();
@@ -1418,6 +1806,7 @@
     activeSession = {
       kind: 'node',
       group,
+      readOnly: Boolean(readOnly),
       stage: initialStage, // 'briefing' | 'flash' | 'challenge' | 'summary'
       cardIdx: 0,
       queue: initialStage === 'challenge' ? prepareQuizItems(qs, false) : prepareQuizItems(qs, true),
@@ -1556,55 +1945,177 @@
     }
   }
 
-  // Stage 1: Node Briefing Cards
-  function renderNodeBriefing() {
-    const { group, cardIdx } = activeSession;
+  // Shared Walkthrough Card Renderer (Used by Stage 1 Lesson, Read-Only Mode & Mid-Quiz Peek)
+  function renderWalkthroughCardHtml(group, cardIdx) {
     const brief = DATA.briefings[group];
-    const cards = brief.cards || [];
+    const cards = (brief && brief.cards) || [];
     const card = cards[cardIdx];
+    if (!brief || !card) return '';
 
-    document.getElementById('session-title-pill').textContent = `${group} · Stage 1: Briefing`;
-    document.getElementById('session-counter').textContent = `Card ${cardIdx + 1} / ${cards.length}`;
-    const pct = Math.round(((cardIdx + 1) / (cards.length * 3)) * 100);
-    document.getElementById('session-bar').value = pct;
+    const seenTerms = new Set();
+    const isCheatsheet = card.kind === 'cheatsheet';
+    const paragraphs = Array.isArray(card.paragraphs)
+      ? card.paragraphs
+      : (card.body ? [card.body] : []);
+    const illusSvg = card.illustration && DATA.illustrations
+      ? DATA.illustrations[card.illustration]
+      : '';
+    const widgetKey = card.widget || (!card.paragraphs && cardIdx === 0 ? brief.aid : null);
 
-    document.getElementById('session-right-slot').innerHTML = `
-      <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.65rem;font-size:0.74rem" data-action="skip-to-challenge">
-        Skip to Quiz
-      </button>
-    `;
-
-    const body = document.getElementById('session-body');
-    body.innerHTML = `
-      <div class="briefing-card">
-        <div class="panel-eyebrow">${escHtml(brief.title)}</div>
+    return `
+      <div class="briefing-card ${isCheatsheet ? 'cheatsheet-card' : ''}">
+        <div class="panel-eyebrow">
+          ${isCheatsheet
+            ? `${escHtml(group)} · Exam Quick-Recap Cheat-Sheet`
+            : `${escHtml(group)} · ${escHtml(brief.title)}`}
+        </div>
+        ${!isCheatsheet && cardIdx === 0 ? `
+          <div class="exam-signal-note">
+            <span>🎯 <strong>Bold</strong> &amp; <code>highlighted</code> facts are on the exam · Dotted words open definitions</span>
+          </div>
+        ` : ''}
         <h2 style="font-size:1.22rem">${formatRichText(card.heading)}</h2>
-        <p style="font-size:0.95rem;color:var(--text-primary)">${formatRichText(card.body)}</p>
+        ${paragraphs.length ? `
+          <div class="walkthrough-prose">
+            ${paragraphs.map((p) => `<p>${formatRichText(p, { linkJargon: true, seenTerms })}</p>`).join('')}
+          </div>
+        ` : ''}
+        ${illusSvg ? `
+          <div class="teaching-fig-frame">
+            ${illusSvg}
+          </div>
+        ` : ''}
         ${card.bullets && card.bullets.length ? `
           <ul class="briefing-bullets">
-            ${card.bullets.map((b) => `<li>${formatRichText(b)}</li>`).join('')}
+            ${card.bullets.map((b) => `<li>${formatRichText(b, { linkJargon: true, seenTerms })}</li>`).join('')}
           </ul>
         ` : ''}
       </div>
-      ${cardIdx === 0 ? renderMiniAidForBriefing(brief.aid) : ''}
+      ${widgetKey ? renderMiniAidForBriefing(widgetKey) : ''}
       <div class="briefing-dots" aria-hidden="true">
         ${cards.map((_, i) => `<span class="b-dot ${i === cardIdx ? 'is-active' : ''}"></span>`).join('')}
       </div>
     `;
+  }
 
-    const isLast = cardIdx === cards.length - 1;
-    document.getElementById('session-footer').innerHTML = `
-      <div class="footer-inner">
-        <div style="display:flex;gap:0.6rem">
-          ${cardIdx > 0 ? `<button type="button" class="btn btn-secondary" data-action="prev-card">Back</button>` : ''}
-          <button type="button" class="btn btn-primary btn-block" data-action="next-card">
-            ${isLast ? 'Continue to Stage 2: Flash-Pass →' : 'Next Concept Card →'}
-          </button>
+  // Mid-Quiz Walkthrough Cards Peek Modal
+  const peekState = { group: null, cardIdx: 0 };
+
+  function openCardsPeekModal(group) {
+    if (!DATA.briefings[group]) return;
+    closeJargonPopover();
+    peekState.group = group;
+    peekState.cardIdx = 0;
+    renderCardsPeekModal();
+    const dlg = document.getElementById('cards-peek-dialog');
+    if (dlg && !dlg.open) dlg.showModal();
+  }
+
+  function renderCardsPeekModal() {
+    const dlg = document.getElementById('cards-peek-dialog');
+    const body = document.getElementById('cards-peek-body');
+    const brief = DATA.briefings[peekState.group];
+    if (!dlg || !body || !brief) return;
+    const cards = brief.cards || [];
+    const idx = Math.max(0, Math.min(cards.length - 1, peekState.cardIdx));
+    peekState.cardIdx = idx;
+
+    body.innerHTML = `
+      <div class="dialog-head-row">
+        <div>
+          <div class="panel-eyebrow">${escHtml(peekState.group)} · Card ${idx + 1} of ${cards.length}</div>
+          <h2 id="cards-peek-title" class="dialog-title">${escHtml(brief.title)}</h2>
         </div>
-        <div class="kbd-hint">Press Space / Enter for next · ← / → to flip cards</div>
+        <form method="dialog">
+          <button value="close" class="icon-btn" aria-label="Close walkthrough cards">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div style="max-height:64dvh;overflow-y:auto;display:flex;flex-direction:column;gap:0.75rem;padding-right:0.15rem">
+        ${renderWalkthroughCardHtml(peekState.group, idx)}
+      </div>
+      <div style="display:flex;gap:0.55rem;padding-top:0.25rem">
+        <button type="button" class="btn btn-secondary" data-action="peek-prev" ${idx === 0 ? 'disabled' : ''}>← Prev</button>
+        <button type="button" class="btn btn-primary btn-block" data-action="peek-next" ${idx >= cards.length - 1 ? 'disabled' : ''}>
+          ${idx >= cards.length - 1 ? 'Last Card (Cheat-Sheet)' : `Next Card (${idx + 2}/${cards.length}) →`}
+        </button>
       </div>
     `;
-    body.scrollTop = 0;
+  }
+
+  // Stage 1: Node Walkthrough Cards (Full Lesson or Read-Only Handbook Mode)
+  function renderNodeBriefing(preserveScroll = false) {
+    const { group, cardIdx, readOnly } = activeSession;
+    const brief = DATA.briefings[group];
+    const cards = brief.cards || [];
+
+    document.getElementById('session-title-pill').textContent = readOnly
+      ? `${group} · Walkthrough Handbook`
+      : `${group} · Stage 1: Walkthrough`;
+    document.getElementById('session-counter').textContent = `Card ${cardIdx + 1} / ${cards.length}`;
+    const pct = readOnly
+      ? Math.round(((cardIdx + 1) / cards.length) * 100)
+      : Math.round(((cardIdx + 1) / (cards.length * 3)) * 100);
+    document.getElementById('session-bar').value = pct;
+
+    document.getElementById('session-right-slot').innerHTML = readOnly
+      ? `
+        <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.65rem;font-size:0.74rem" data-action="convert-to-quiz">
+          Take Quiz →
+        </button>
+      `
+      : `
+        <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.65rem;font-size:0.74rem" data-action="skip-to-challenge">
+          Skip to Quiz
+        </button>
+      `;
+
+    const body = document.getElementById('session-body');
+    const prevScroll = body.scrollTop;
+    body.innerHTML = renderWalkthroughCardHtml(group, cardIdx);
+
+    const isLast = cardIdx === cards.length - 1;
+    const gPos = ORDERED_GROUPS.indexOf(group);
+    const nextOrderedGroup = gPos >= 0 && gPos < ORDERED_GROUPS.length - 1 ? ORDERED_GROUPS[gPos + 1] : null;
+
+    if (readOnly && isLast) {
+      document.getElementById('session-footer').innerHTML = `
+        <div class="footer-inner">
+          <div style="display:flex;gap:0.6rem">
+            ${cardIdx > 0 ? `<button type="button" class="btn btn-secondary" data-action="prev-card">Back</button>` : ''}
+            <button type="button" class="btn btn-primary btn-block" data-action="convert-to-quiz">
+              Start Quiz for ${escHtml(group)} →
+            </button>
+          </div>
+          <div style="display:flex;gap:0.6rem">
+            ${nextOrderedGroup ? `
+              <button type="button" class="btn btn-secondary btn-block" data-action="read-next-node">
+                📖 Read Next Group (${escHtml(nextOrderedGroup)}) →
+              </button>
+            ` : ''}
+            <button type="button" class="btn btn-secondary ${nextOrderedGroup ? '' : 'btn-block'}" data-action="finish-session">
+              Done
+            </button>
+          </div>
+        </div>
+      `;
+    } else {
+      document.getElementById('session-footer').innerHTML = `
+        <div class="footer-inner">
+          <div style="display:flex;gap:0.6rem">
+            ${cardIdx > 0 ? `<button type="button" class="btn btn-secondary" data-action="prev-card">Back</button>` : ''}
+            <button type="button" class="btn btn-primary btn-block" data-action="next-card">
+              ${isLast ? 'Continue to Stage 2: Flash-Pass →' : `Next Card (${cardIdx + 2}/${cards.length}) →`}
+            </button>
+          </div>
+          <div class="kbd-hint">Press Space / Enter for next · ← / → to flip cards</div>
+        </div>
+      `;
+    }
+    body.scrollTop = preserveScroll ? prevScroll : 0;
   }
 
   // Stage 2 (Flash-Pass) & Stage 3 (Challenge) & Drills
@@ -1622,16 +2133,26 @@
       const baseOffset = isFlashPass ? 33 : 66;
       const pct = Math.min(99, baseOffset + Math.round((pos / total) * 33));
       document.getElementById('session-bar').value = pct;
-      if (isFlashPass) {
-        document.getElementById('session-right-slot').innerHTML = `
-          <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.65rem;font-size:0.74rem" data-action="skip-to-challenge">
-            Skip Warm-Up
+      document.getElementById('session-right-slot').innerHTML = `
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.6rem;font-size:0.74rem" data-peek-group="${escHtml(q.group)}">
+            📖 Cards
           </button>
-        `;
-      }
+          ${isFlashPass ? `
+            <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.6rem;font-size:0.74rem" data-action="skip-to-challenge">
+              Skip Warm-Up
+            </button>
+          ` : ''}
+        </div>
+      `;
     } else {
       document.getElementById('session-title-pill').textContent = activeSession.title;
       document.getElementById('session-bar').value = Math.round((pos / total) * 100);
+      document.getElementById('session-right-slot').innerHTML = `
+        <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.62rem;font-size:0.74rem" data-peek-group="${escHtml(q.group)}">
+          📖 Cards
+        </button>
+      `;
     }
     document.getElementById('session-counter').textContent = `${pos} / ${total}`;
 
@@ -1677,7 +2198,7 @@
               ? '<span class="q-rule-chip">Tap the highlighted answer to lock it in</span>'
               : ''}
         </div>
-        <h2 class="q-stem">${escHtml(q.question)}</h2>
+        <h2 class="q-stem">${isFlashPass ? formatRichText(q.question, { linkJargon: true }) : escHtml(q.question)}</h2>
         ${figHtml}
       </div>
       <div class="choices-stack">
@@ -1706,7 +2227,7 @@
               ? (isFlashPass ? '✓ Got it! Why this is right:' : '✓ Correct!')
               : '✗ Not quite — queued to loop back at end of round'}
           </div>
-          <p class="feedback-why">${escHtml(q.explanation)}</p>
+          <p class="feedback-why">${formatRichText(q.explanation, { linkJargon: true })}</p>
           <button type="button" class="btn ${ansState.isCorrect ? 'btn-success' : 'btn-danger'} btn-block" data-action="continue-quiz">
             Continue →
           </button>
@@ -2154,6 +2675,11 @@
     document.getElementById('session-title-pill').textContent = title;
     document.getElementById('session-counter').textContent = `Missed ${qIdx + 1} / ${items.length}`;
     document.getElementById('session-bar').value = Math.round(((qIdx + 1) / items.length) * 100);
+    document.getElementById('session-right-slot').innerHTML = `
+      <button type="button" class="btn btn-secondary" style="padding:0.35rem 0.62rem;font-size:0.74rem" data-peek-group="${escHtml(q.group)}">
+        📖 Cards
+      </button>
+    `;
 
     const figHtml = q.figure && DATA.figures[q.figure]
       ? `
@@ -2164,13 +2690,14 @@
       `
       : '';
 
+    const seenWalk = new Set();
     document.getElementById('session-body').innerHTML = `
       <div class="quiz-top-zone">
         <div class="q-meta-row">
           <span class="q-id-chip">${escHtml(q.id)} · Group ${escHtml(q.group)}</span>
           ${q.fcc_rules && q.fcc_rules.length ? `<span class="q-rule-chip">FCC Part ${escHtml(q.fcc_rules.join(', '))}</span>` : ''}
         </div>
-        <h2 class="q-stem">${escHtml(q.question)}</h2>
+        <h2 class="q-stem">${formatRichText(q.question, { linkJargon: true, seenTerms: seenWalk })}</h2>
         ${figHtml}
       </div>
 
@@ -2178,7 +2705,7 @@
         <div class="panel-eyebrow" style="color:var(--success)">Correct Answer (${letters[q.answer]})</div>
         <p style="font-weight:800;font-size:1rem;margin:0.25rem 0 0.65rem">${escHtml(q.choices[q.answer])}</p>
         <div class="panel-eyebrow">Why It's Right</div>
-        <p style="font-size:0.9rem;margin-top:0.2rem">${escHtml(q.explanation)}</p>
+        <p style="font-size:0.9rem;margin-top:0.2rem">${formatRichText(q.explanation, { linkJargon: true, seenTerms: seenWalk })}</p>
       </div>
     `;
 
@@ -2248,11 +2775,77 @@
       closeSessionOverlay();
     });
 
+    function refreshInteractiveWidgetHost() {
+      const peekDlg = document.getElementById('cards-peek-dialog');
+      if (peekDlg && peekDlg.open) {
+        renderCardsPeekModal();
+      } else if (activeSession && activeSession.kind === 'node' && activeSession.stage === 'briefing') {
+        renderNodeBriefing(true);
+      } else if (activeTab === 'aids') {
+        renderAidsTab();
+      }
+    }
+
     // Global click delegation
     document.addEventListener('click', async (e) => {
       lastInteractionTs = Date.now();
-      const el = e.target.closest('[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target]');
+
+      // Dismiss fallback jargon popover when clicking outside it
+      const popEl = document.getElementById('jargon-popover');
+      if (popEl && popEl.classList.contains('is-fallback-open')) {
+        if (!e.target.closest('#jargon-popover') && !e.target.closest('[data-jargon-key]')) {
+          closeJargonPopover();
+        }
+      }
+
+      const el = e.target.closest(
+        '[data-jargon-key],[data-peek-group],[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target],[data-widget-rep],[data-widget-duty],[data-widget-swtype],[data-widget-flip],[data-widget-wave]'
+      );
       if (!el) return;
+
+      if (el.dataset.jargonKey) {
+        openJargonPopover(el.dataset.jargonKey, el);
+        return;
+      }
+
+      if (el.dataset.peekGroup) {
+        openCardsPeekModal(el.dataset.peekGroup);
+        return;
+      }
+
+      if (el.dataset.widgetRep) {
+        widgetState.repeaterMode = el.dataset.widgetRep;
+        refreshInteractiveWidgetHost();
+        return;
+      }
+
+      if (el.dataset.widgetDuty) {
+        widgetState.dutyPct = Number(el.dataset.widgetDuty);
+        refreshInteractiveWidgetHost();
+        return;
+      }
+
+      if (el.dataset.widgetSwtype) {
+        widgetState.switchType = el.dataset.widgetSwtype;
+        refreshInteractiveWidgetHost();
+        return;
+      }
+
+      if (el.dataset.widgetFlip) {
+        if (widgetState.switchType === 'spst') {
+          widgetState.spstClosed = !widgetState.spstClosed;
+        } else {
+          widgetState.spdtPos = widgetState.spdtPos === 'A' ? 'B' : 'A';
+        }
+        refreshInteractiveWidgetHost();
+        return;
+      }
+
+      if (el.dataset.widgetWave) {
+        widgetState.waveMhz = Number(el.dataset.widgetWave);
+        refreshInteractiveWidgetHost();
+        return;
+      }
 
       if (el.dataset.zoomFig) {
         openFigureZoom(el.dataset.zoomFig);
@@ -2272,7 +2865,9 @@
       if (el.dataset.modalStart) {
         const dlg = document.getElementById('node-dialog');
         if (dlg.open) dlg.close();
-        startNodeLesson(el.dataset.modalStart, el.dataset.startStage || 'briefing');
+        startNodeLesson(el.dataset.modalStart, el.dataset.startStage || 'briefing', {
+          readOnly: el.dataset.readOnly === '1'
+        });
         return;
       }
 
@@ -2308,13 +2903,13 @@
 
       if (el.dataset.mathTarget) {
         mathSolveTarget = el.dataset.mathTarget;
-        renderAidsTab();
+        refreshInteractiveWidgetHost();
         return;
       }
 
       if (el.dataset.powerTarget) {
         powerSolveTarget = el.dataset.powerTarget;
-        renderAidsTab();
+        refreshInteractiveWidgetHost();
         return;
       }
 
@@ -2338,7 +2933,43 @@
       const act = el.dataset.action;
       if (!act) return;
 
-      if (act === 'start-signal-check') {
+      if (act === 'jargon-back') {
+        const prevKey = jargonHistory.pop();
+        if (prevKey) openJargonPopover(prevKey, null, true);
+      } else if (act === 'jargon-close') {
+        closeJargonPopover();
+      } else if (act === 'peek-prev') {
+        closeJargonPopover();
+        peekState.cardIdx = Math.max(0, peekState.cardIdx - 1);
+        renderCardsPeekModal();
+      } else if (act === 'peek-next') {
+        closeJargonPopover();
+        const cards = (DATA.briefings[peekState.group] && DATA.briefings[peekState.group].cards) || [];
+        peekState.cardIdx = Math.min(cards.length - 1, peekState.cardIdx + 1);
+        renderCardsPeekModal();
+      } else if (act === 'convert-to-quiz' && activeSession && activeSession.kind === 'node') {
+        closeJargonPopover();
+        const g = activeSession.group;
+        if (state.nodes[g].status === 'locked' || state.nodes[g].status === 'next') {
+          state.nodes[g].status = 'in_progress';
+          saveState();
+        }
+        activeSession.readOnly = false;
+        const isGold = state.nodes[g].status === 'gold';
+        activeSession.stage = isGold ? 'challenge' : 'flash';
+        const qs = Q_BY_GROUP.get(g) || [];
+        activeSession.queue = prepareQuizItems(qs, !isGold);
+        activeSession.qIdx = 0;
+        activeSession.answeredState = null;
+        activeSession.questionShownAt = Date.now();
+        renderSession();
+      } else if (act === 'read-next-node' && activeSession && activeSession.kind === 'node') {
+        closeJargonPopover();
+        const pos = ORDERED_GROUPS.indexOf(activeSession.group);
+        if (pos >= 0 && pos < ORDERED_GROUPS.length - 1) {
+          startNodeLesson(ORDERED_GROUPS[pos + 1], 'briefing', { readOnly: true });
+        }
+      } else if (act === 'start-signal-check') {
         const qList = buildSignalCheckQueue();
         startDrillSession({ mode: 'signal', title: 'Signal Check Review', questions: qList });
       } else if (act === 'start-mock35') {
@@ -2349,9 +2980,11 @@
         const mathQs = fyShuffle(DATA.pool.filter((q) => q.tags.includes('math')));
         startDrillSession({ mode: 'math', title: 'Math & Formula Drill', questions: mathQs });
       } else if (act === 'prev-card' && activeSession) {
+        closeJargonPopover();
         activeSession.cardIdx = Math.max(0, activeSession.cardIdx - 1);
         renderSession();
       } else if (act === 'next-card' && activeSession) {
+        closeJargonPopover();
         const cards = DATA.briefings[activeSession.group].cards;
         if (activeSession.cardIdx < cards.length - 1) {
           activeSession.cardIdx++;
@@ -2362,7 +2995,9 @@
         }
         renderSession();
       } else if (act === 'skip-to-challenge' && activeSession && activeSession.kind === 'node') {
+        closeJargonPopover();
         const qs = Q_BY_GROUP.get(activeSession.group) || [];
+        activeSession.readOnly = false;
         activeSession.stage = 'challenge';
         activeSession.queue = prepareQuizItems(qs, false);
         activeSession.qIdx = 0;
@@ -2370,6 +3005,7 @@
         activeSession.questionShownAt = Date.now();
         renderSession();
       } else if (act === 'continue-quiz') {
+        closeJargonPopover();
         advanceQuizStep();
       } else if (act === 'finish-session') {
         closeSessionOverlay();
@@ -2448,6 +3084,25 @@
     // Desktop Keyboard-First Shortcuts (1-4 / A-D, Space/Enter, F, Arrows, Esc)
     document.addEventListener('keydown', (e) => {
       lastInteractionTs = Date.now();
+      const popEl = document.getElementById('jargon-popover');
+      if (e.key === 'Escape' && popEl && popEl.classList.contains('is-fallback-open')) {
+        e.preventDefault();
+        closeJargonPopover();
+        return;
+      }
+      const peekDlg = document.getElementById('cards-peek-dialog');
+      if (peekDlg && peekDlg.open) {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          const nb = peekDlg.querySelector('[data-action="peek-next"]:not(:disabled)');
+          if (nb) nb.click();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const pb = peekDlg.querySelector('[data-action="peek-prev"]:not(:disabled)');
+          if (pb) pb.click();
+        }
+        return;
+      }
       if (!activeSession) return;
       if (document.querySelector('dialog[open]')) return;
       if (e.target.matches('input, textarea, select')) return;
