@@ -1,5 +1,8 @@
 # Technical Design Document (TDD): Zero-Build Static Technician HAM Study PWA
 
+> [!NOTE]
+> **Historical Initial Design Spec:** This document captures the original v1 technical design. For the current architecture (`window.HAM_DATA` with glossary & teaching SVGs, `#jargon-popover`, `#cards-peek-dialog`, and `watt-a-ham-2026-v6` caching), see [`./ARCHITECTURE.md`](./ARCHITECTURE.md), [`./OPERATIONS.md`](./OPERATIONS.md), and [`../AGENTS.md`](../AGENTS.md).
+
 ## 1. Architecture: Clean Static PWA Folder (Zero Build Step)
 
 ### 1.1 Runtime File Layout

@@ -779,6 +779,9 @@
           "paragraphs": [
             "A pocket handheld puts out about five watts—plenty when you can see the repeater tower on a nearby ridge, yet marginal when wooded hills stand in the way. Connecting **an RF power amplifier** to the output of a transceiver lets you **increase the transmitted output power** up to solid mobile or base-station levels—often turning five watts from a walkie-talkie into fifty watts or more. Look closely at the front panel of an external VHF amplifier and you will frequently spot a mode toggle labeled `SSB` and `CW-FM`. Flipping that switch **sets the amplifier for proper operation in the selected mode**: smooth linear biasing with a brief relay hang-time between spoken syllables on sideband, versus higher-efficiency constant-carrier operation on Morse code or FM.",
             "What if you already own a favorite 10-meter or 2-meter transceiver with buttery-smooth tuning and want to explore 222 MHz or microwave weak-signal bands without buying a whole new rig? Experimenters add a **transverter**—a clever external converter box that **converts the RF input and output of a transceiver to another band**, translating both receive and transmit signals up and down seamlessly."
+          ],
+          "photos": [
+            "rf-power-amplifier"
           ]
         },
         {
@@ -808,6 +811,9 @@
           "paragraphs": [
             "Checking into your first weeknight repeater net is a rite of passage—and nothing helps more than honest audio reports from fellow hams. On FM, voice loudness sets how wide your signal swings in frequency. Shout right against the plastic grille and someone may tell you your rig is **over-deviating**—swinging wider than the repeater's receiver filter, making your voice chop in and out; the instant cure is simply to **talk farther away from the microphone**. More broadly, if net control reports distorted or unintelligible FM repeater audio, check three culprits: **your transmitter is slightly off frequency**, **you are speaking too loudly or too close to the microphone**, or **you are in a bad location** with weak, bouncy signals.",
             "Sometimes stray radio energy from an indoor or attic antenna rides right down your coiled mic cord and scrambles the audio preamp inside your rig. **Adding a clip-on ferrite \"choke\" to the microphone cable** prevents the transmitted signal from **feeding back into the transmitter** and restores natural voice quality in seconds. And if your solid-state rig suddenly puts out barely a trickle of watts, check your antenna system first: **high SWR** triggers automatic protection circuitry that throttles back output power."
+          ],
+          "photos": [
+            "ferrite-choke"
           ]
         },
         {
@@ -857,6 +863,10 @@
           "paragraphs": [
             "Suppose it is eleven o'clock at night and you want to verify whether a flea-market transceiver still delivers a full fifty watts without waking up everyone monitoring the local calling channel. Experienced hams unhook the outdoor coax and screw on a **dummy load**, whose primary purpose is **to prevent transmitting signals over the air when making tests**. Inside that finned metal cylinder—or classic paint-can oil bath—sits a `50-ohm` **non-inductive resistor mounted on a heat sink**. Ordinary wire-wound resistors act like tiny inductor coils at radio frequencies and spoil the impedance match, whereas a non-inductive resistor mimics a matched 50-ohm antenna while quietly turning transmitter power into harmless warmth.",
             "When Saturday morning arrives and it is time to hang a wire dipole between two backyard maples, you do not even need a transceiver to prune the wire. Connecting the feed line to **an antenna analyzer** sweeps a tiny milliwatt test signal across the band to **determine if an antenna is resonant at the desired operating frequency**, plotting exact SWR and impedance on a screen before you ever press a mic button."
+          ],
+          "photos": [
+            "dummy-load",
+            "antenna-analyzer"
           ]
         },
         {
@@ -867,6 +877,9 @@
           "paragraphs": [
             "Picture smooth water swells rolling down a narrow canal: if the canal opens cleanly into a harbor, every bit of wave energy glides outward, whereas a concrete seawall slams waves right back upstream. Radio energy traveling up your coax behaves the exact same way. Hams place a **directional wattmeter** inline between the rig and feed line to compare forward power heading out against reflected power bouncing back and **determine SWR** (*Standing Wave Ratio*). A reading of `1:1` on an SWR meter indicates a **perfect impedance match** between the antenna and the feed line, meaning zero reflected watts.",
             "If you accidentally key up on the wrong band or snap an antenna wire in a winter windstorm, the meter might jump to `4:1`, warning you of a serious **impedance mismatch** bouncing over a third of your forward power back toward the desk. Those reflected waves build dangerous voltage spikes at the antenna jack, which is why modern solid-state transmitters automatically reduce output power once SWR climbs too high—**to protect the RF output amplifier transistors** from overheating or instant destruction."
+          ],
+          "photos": [
+            "swr-wattmeter"
           ]
         },
         {
@@ -916,6 +929,9 @@
           "paragraphs": [
             "Checking whether a newly soldered coax plug has a dead short or verifying a mystery resistor calls for the **ohmmeter** setting. How can a meter read resistance when a circuit sits unplugged on a wooden workbench? Inside the meter case, its own internal battery does the work: an ohmmeter measures resistance **by applying a small current and measuring the resulting voltage**, computing ohms automatically via Ohm's law. Because those delicate sensing circuits expect zero outside electricity, your first safety rule before measuring in-circuit resistance is to **ensure that the circuit is not powered** (and let power-supply capacitors bleed down). **Attempting to measure voltage when using the resistance setting** drives external voltage straight into the delicate sensing network and **can damage a multimeter**.",
             "Once a circuit is safely powered off, touching ohmmeter probes across a **large, discharged capacitor** creates a classic bench telltale: the display starts near zero ohms as the empty capacitor gulps charging current from the meter's battery, then shows **increasing resistance with time** as the plates steadily fill up toward full charge and draw less and less current."
+          ],
+          "photos": [
+            "digital-multimeter"
           ]
         },
         {
@@ -926,6 +942,9 @@
           "paragraphs": [
             "Few milestones in amateur radio beat soldering your own dipole center connector, audio cable, or kit transceiver and logging stations hundreds of miles away on gear you built yourself. Before plugging in your iron, inspect the solder spool label carefully! Hardware stores stock **acid-core solder** in the plumbing aisle for sweating copper water pipes, and it **should not be used for radio and electronic applications**—its corrosive acid flux residue stays behind on circuit boards and slowly eats through fine copper traces and component leads like battery acid. Always keep electronics-grade *rosin-core* or *no-clean* solder on your bench instead.",
             "Great soldering comes down to clean metal and patient heat transfer: touch the tinned iron tip to *both* the component lead and the copper pad at the same moment for a second or two, then feed solder onto the hot metal rather than the iron tip so it flows into a mirror-smooth concave volcano. If the joint wasn't heated enough—or the wire shifted while cooling—you get a **cold tin-lead solder joint**, betrayed by **a rough or lumpy surface** that causes frustrating intermittent static."
+          ],
+          "photos": [
+            "solder-joint"
           ]
         },
         {
@@ -1052,6 +1071,9 @@
           "paragraphs": [
             "Visit a regional park on a Saturday morning and you might spot hams hiking across meadows waving homebrew tape-measure beams and wearing headphones like modern treasure hunters. They are *foxhunting*—enjoying a friendly club hidden transmitter hunt built around **radio direction finding** (*RDF*). Paired with a handheld receiver and step attenuator, **a directional antenna** is the essential item for a hidden transmitter hunt: sweeping it across the horizon reveals sharp signal peaks and deep nulls that point along a compass bearing straight toward the hidden low-power \"fox\" beacon tucked inside a hollow stump, bush, or picnic shelter.",
             "Better yet, Saturday morning foxhunt games sharpen one of amateur radio's most respected real-world detective skills. Whenever an arcing power-line insulator wipes out neighborhood HF reception, a delivery van's wedged microphone keys a local repeater for hours on end, or deliberate interference disrupts an emergency net, skilled club volunteers use **radio direction finding** to **locate sources of noise interference or jamming** right down to a single utility pole or driveway—often earning heartfelt thanks from local utilities and public-safety teams."
+          ],
+          "photos": [
+            "yagi-antenna"
           ]
         },
         {
@@ -1111,6 +1133,9 @@
           "paragraphs": [
             "Tune a transceiver to 28.074 MHz on 10 meters or 50.313 MHz on 6 meters and your speaker will hum with a chorus of haunting, synchronized musical tones cycling every fifteen seconds on the dot. You are hearing **FT8**, **a digital mode capable of low signal-to-noise operation** that lets Technicians with a modest attic or backyard wire dipole log stations across oceans even when solar conditions seem completely quiet! By combining computer clock synchronization with powerful mathematical forward error correction, FT8 pulls call signs, grid locators, and signal reports out of pure receiver hiss far below what human ears can detect.",
             "FT8 is the flagship everyday mode inside the free open-source **WSJT-X software suite**, pioneered by Nobel Prize-winning astrophysicist and amateur operator Joe Taylor (K1JT) and his volunteer development team. Beyond HF and 6-meter DXing, specialized protocols inside WSJT-X allow hams to bounce signals 500,000 miles off the lunar surface and back via **Earth-Moon-Earth** (*EME*), reflect rapid pings off brief glowing shooting-star trails using **meteor scatter**, and map worldwide openings with **weak signal propagation beacons**."
+          ],
+          "photos": [
+            "ft8-waterfall"
           ]
         },
         {
@@ -1160,6 +1185,9 @@
           "paragraphs": [
             "Veteran hams love sharing amateur radio's golden budget rule: put your effort into the antenna first, because a modest transceiver feeding a resonant outdoor wire or whip will run circles around an expensive rig tied to a poor radiator! Antennas behave just like pipe-organ tubes—higher musical pitches correspond to shorter waves, which is why **shortening it** is what **increases the resonant frequency of a dipole antenna**. Try that quick wavelength math on the popular `2-meter` band (two meters equals roughly 78 inches): divide by four and you immediately see why a `19-inch` **vertical antenna** is seen on car roofs everywhere on 2 meters—**it is a resonant quarter-wave**!",
             "What happens when a full-sized element is too tall to clear low garage doors, apartment balconies, or a walkie-talkie belt clip? Antenna builders use **antenna loading**—**electrically lengthening by inserting inductors in radiating elements**. Winding a compact series coil near the base or center of a shorter whip delays the RF current wave just enough so the shorter metal still resonates cleanly on your target band without needing full-length tubing."
+          ],
+          "photos": [
+            "mobile-loading-whip"
           ]
         },
         {
@@ -1170,6 +1198,9 @@
           "paragraphs": [
             "Every radio wave leaves an antenna with its **polarization** described **by the orientation of the electric field**: a vertical mobile whip launches a vertically polarized electric field (used by nearly all VHF/UHF FM repeaters so mobile whips match without severe cross-polarization loss), whereas a flat horizontal wire launches a horizontally polarized field (favored for weak-signal VHF/UHF SSB contacts across long paths). String a classic **half-wave dipole antenna** horizontally between two backyard trees and its radiation forms a broad figure-eight pattern, throwing its strongest signal **broadside to the antenna** (perpendicular to the wire) with deep quiet nulls straight off both ends.",
             "Passive aluminum and copper never manufacture extra watts out of thin air; instead, **antenna gain** is **the increase in signal strength in a specified direction compared to a reference antenna**, achieved by squeezing wasted skyward or backward energy into a focused forward lobe like a polished spotlight reflector. **A beam antenna** is **an antenna that concentrates signals in one direction**, and among standard amateur choices, a multi-element **Yagi** offers the **greatest gain** for reaching distant stations."
+          ],
+          "photos": [
+            "yagi-antenna"
           ]
         },
         {
@@ -1180,6 +1211,10 @@
           "paragraphs": [
             "Pull a brand-new dual-band handheld out of its box and it comes topped with a short, bendable \"rubber duck\" antenna—essentially a tightly coiled spring sealed in flexible rubber. While wonderfully convenient clipped to your jacket at a parade or trailhead, shrinking a 19-inch radiator down to five or six inches carries an unavoidable physics trade-off: compared to a full-sized quarter-wave whip, a handheld's short flexible antenna **has low efficiency**, losing much of your five watts as warmth in the coil rather than launching it toward the repeater.",
             "Performance drops even further if you transmit from a cupholder or driver's seat inside a car without an outside antenna: because the steel roof and pillars surround you like a Faraday cage, **signal strength is reduced due to the shielding effect of the vehicle**! Sticking a simple magnetic-mount whip out on the metal roof transforms scratchy static into crystal-clear range. And if you step up from a `1/4-wave` mobile whip to a taller `5/8-wavelength` **whip antenna**, it compresses more RF energy low along the horizon so **it has more gain**."
+          ],
+          "photos": [
+            "handheld-ht",
+            "mobile-loading-whip"
           ]
         },
         {
@@ -1208,6 +1243,9 @@
           "paragraphs": [
             "Peek behind almost any amateur desk and you will see round black coaxial cable snaking out toward an entry panel. While home television and cable modems standardize on 75-ohm coax, `50 ohms` is **the most common impedance of coaxial cables used in amateur radio**, matching virtually every modern ham transceiver, wattmeter, and mobile whip. Coaxial cable is the universal favorite feed line in the hobby because its braided outer shield confines radio fields right inside the jacket—meaning **it is easy to use and requires few special installation considerations**, whether taped straight onto a steel mast, buried in conduit, or coiled behind a shelf.",
             "Every foot of coax still takes a toll on your watts, and **as the frequency of a signal in coaxial cable is increased**, **the loss increases** steeply—a 100-foot run that barely sips power on 10 meters can swallow more than half your watts on 70 centimeters! Skinny `RG-58` coax works fine for short mobile runs, whereas thicker `RG-213` **cable has less loss at a given frequency**. When hilltop repeater builders or weak-signal UHF operators want maximum performance, **air-insulated hardline** delivers the **lowest loss** of any feed line."
+          ],
+          "photos": [
+            "coax-cutaway"
           ]
         },
         {
@@ -1218,6 +1256,10 @@
           "paragraphs": [
             "Picking the right RF connector comes down to how high in frequency your station climbs. The classic threaded `PL-259` plug (quirkily christened a \"UHF connector\" back in the 1930s when anything above 30 MHz counted as ultra-high frequency!) remains the rugged shack workhorse **commonly used at HF and VHF frequencies** up through 2 meters. Once you operate **above** `400 MHz` on the 70-centimeter and microwave bands, a `PL-259` creates a noticeable impedance bump that wastes UHF power; up there, precision constant-impedance `Type N` plugs are the **most suitable RF connector**.",
             "Keep your feed line run as clean and direct as possible: **water intrusion into coaxial connectors**, **high SWR**, and stringing **multiple connectors in the line** all convert precious RF watts into lost heat. Outdoors on a tower or balcony, driving rain and overnight condensation will eventually creep past bare threads and rubber gaskets alike, so `PL-259`, `BNC`, and `Type N` connectors should **all be carefully taped for weather protection when used outdoors**—wrapping shingle-style layers of quality vinyl electrical tape and self-fusing silicone or rubber mastic to keep every joint bone-dry."
+          ],
+          "photos": [
+            "pl259-connector",
+            "type-n-connector"
           ]
         },
         {
@@ -1228,6 +1270,9 @@
           "paragraphs": [
             "At heart, **standing wave ratio (SWR)** is **a measure of how well a load is matched to a transmission line**. On a mechanically sound antenna installation, your SWR reading stays steady day after day in sun or breeze. If you ever notice **erratic changes in SWR**—for example, the meter needle jumping wildly whenever wind sways your dipole tree branch or when you gently wiggle a patch jumper behind the desk—suspect an intermittent **loose connection in the antenna or feed line**, such as a cracked solder joint inside a plug or a loosened hardware lug.",
             "What if you hang an all-band backyard wire antenna whose impedance wanders away from 50 ohms on several bands? Hams insert **an antenna tuner** (*antenna coupler*) right between the transceiver and feed line. Clear up the hobby's biggest myth right now: a shack tuner does *not* reach up the coax and alter the wire's physical resonance out in the yard! Instead, its major function is that **it matches the antenna system impedance to the transceiver's output impedance**, keeping your rig's 50-ohm output stage happy so it delivers full rated power."
+          ],
+          "photos": [
+            "antenna-tuner"
           ]
         },
         {

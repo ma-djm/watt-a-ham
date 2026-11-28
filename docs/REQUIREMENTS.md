@@ -1,5 +1,8 @@
 # Product Requirements Document (PRD): Technician HAM Radio Study App
 
+> [!NOTE]
+> **Historical Initial Specification:** This document captures the original pre-implementation PRD. Since initial launch, the app was generalized for all study schedules and expanded into a full 146-card illustrated handbook with clickable jargon popovers. For current features, architecture, and runbooks, see [`../README.md`](../README.md), [`../AGENTS.md`](../AGENTS.md), [`./ARCHITECTURE.md`](./ARCHITECTURE.md), and [`./OPERATIONS.md`](./OPERATIONS.md).
+
 ## 1. Overview & Vision
 
 This project builds a personal, single-user **Progressive Web App (PWA)** designed to help the user pass the **US FCC Technician Class (Element 2) Amateur Radio Exam** in **12 to 14 nights** by trading a **30-minute nightly mobile puzzle habit (like Sudoku)** for a guided, Duolingo-style learning path.

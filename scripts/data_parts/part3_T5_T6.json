@@ -876,6 +876,9 @@
           "paragraphs": [
             "Pop the top cover off almost any kit transceiver or bench power supply and the most common tiny cylinder you will spot—painted with bright colored value bands—is a **resistor**, the passive component engineered specifically to **oppose the flow of current in a DC circuit** (as well as AC signals). Circuit designers sprinkle fixed resistors throughout every stage to hold current down to safe levels so delicate indicator LEDs and transistors never overheat, and to establish predictable operating voltages from stage to stage.",
             "Fixed resistors stay locked at one value forever, so what happens when *you* want smooth fingertip adjustment from the front panel while tuning across a lively band? Engineers shape that resistive carbon or cermet material into a curved horseshoe track and press a springy metal wiper arm against it on a rotating shaft. That three-terminal adjustable component is a **potentiometer**: turning the knob slides the wiper along the track to control **resistance**, which is why a **potentiometer** is the classic part used as an **adjustable volume control** (along with squelch and RF-gain knobs)."
+          ],
+          "photos": [
+            "resistors-potentiometer"
           ]
         },
         {
@@ -896,6 +899,10 @@
           "paragraphs": [
             "Peek inside the two reactive field-storing parts in your kit bin and their physical construction tells you immediately how they work. A **capacitor** consists of **conductive surfaces separated by an insulator** (a thin *dielectric* barrier made of ceramic, mica, plastic film, or air). Because those metal plates never touch, steady DC is blocked while the **capacitor** stores energy in an **electric field** across the gap. Next to it sits the **inductor**, typically constructed as a **coil of wire** wound in air or on a ferrite core so its loops team up to store energy in a **magnetic field**.",
             "When you pack a handheld or portable rig for a park activation or storm net, battery chemistry determines whether a pack can go back on the charger. Secondary chemistries safely reverse their chemical reaction when charged: **nickel-metal hydride**, **lithium-ion**, and **lead-acid** are all rechargeable (**All these choices are correct**), as is older **nickel-cadmium**. By contrast, **carbon-zinc** (inexpensive *heavy-duty* flashlight cells) is **not rechargeable**—trying to charge a disposable primary cell builds internal gas that can rupture the casing and leak corrosive paste."
+          ],
+          "photos": [
+            "capacitors-assorted",
+            "inductors-coils"
           ]
         },
         {
@@ -924,6 +931,9 @@
           "paragraphs": [
             "Pure crystalline silicon sits halfway between a copper conductor and a glass insulator—earning the name *semiconductor*. By infusing two touching regions of a silicon wafer with trace elements, engineers create a **diode**, an electronic component that allows current to flow in **only one direction**, much like a spring-loaded check valve in a water pipe that prevents backflow. A diode's two leads (electrodes) are named the **anode and cathode**: conventional forward current enters the *anode* and exits the **cathode**, which is marked on cylindrical diode packages **with a stripe** matching the vertical bar on its schematic symbol.",
             "Pushing electrons across that internal junction requires overcoming a small electrical threshold called **forward voltage drop**, and **it is lower in some diode types than in others**—for instance, sensitive Schottky or germanium RF detector diodes drop around 0.3 volts, whereas standard silicon power rectifier diodes drop about 0.7 volts. In a specialized **light-emitting diode (LED)**, electrons crossing that junction release tiny packets of visible light instead of plain warmth, so **forward current** is what causes a **light-emitting diode (LED)** to emit light on your radio's front panel."
+          ],
+          "photos": [
+            "diodes-leds"
           ]
         },
         {
@@ -934,6 +944,9 @@
           "paragraphs": [
             "If joining two semiconductor layers makes a one-way check valve, sandwiching **three regions of semiconductor material** together creates a **transistor**—a solid-state workhorse with zero moving parts that can be used as an instant, wear-free **electronic switch**. Feeding a tiny control signal into one control pin opens or shuts a much heavier current path between the other two pins, allowing a delicate logic chip inside your modern transceiver to switch transmit and receive stages silently thousands of times every second without mechanical contacts ever pitting or wearing out.",
             "Two major transistor families appear throughout amateur radio gear, and the exam tests the exact three electrode names of each family so you never mix them up on schematics. A **bipolar junction transistor** uses a small control current into its thin center region to regulate main flow across its **emitter, base, collector** electrodes. Its cousin is the `FET`—which stands for **Field Effect Transistor**—where voltage on an input terminal creates an electric field to widen or pinch a conducting channel; a **field-effect** transistor always has **gate, drain, and source** electrodes."
+          ],
+          "photos": [
+            "transistors-packages"
           ]
         },
         {
@@ -1030,6 +1043,10 @@
           "paragraphs": [
             "Practical radio gear combines smart electronic control with noise protection and clear operator readouts on every chassis. Looking back at **figure T-1**, the function of **component 2** (the NPN transistor) is to **control the flow of current** from the battery through the indicator lamp. Whenever a delicate low-voltage circuit needs to switch high voltage, heavy current, or completely isolated coaxial antenna contacts, designers use a **relay**—**an electrically-controlled switch** whose internal electromagnet coil pulls mechanical metal contacts open or closed with a reassuring *click*.",
             "Between boxes on your operating desk, weak microphone audio and sensitive control lines are wrapped in grounded metallic braid—using **shielded wire** **to prevent coupling of unwanted signals to or from the wire** so stray transmitter RF won't cause hum or audio feedback. On the front bezel, an **LED** serves as a bright, long-lived **visual indicator**, while a panel **meter** displays an electrical quantity like volts, amps, or watts as a **numeric value**. Inside the rig, whole circuit boards of parts shrink onto a single silicon **integrated circuit** that combines **several semiconductors and other components into one package**."
+          ],
+          "photos": [
+            "relay-contacts",
+            "integrated-circuit"
           ]
         },
         {

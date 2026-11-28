@@ -982,6 +982,9 @@
           "paragraphs": [
             "While stringing up a backyard wire or hiking up a scenic summit with a pocket handheld is awesome solo fun, ham radio truly comes alive when friends band together for summer *Field Day* campouts, soldering workshops, school demonstrations, and community repeaters under a shared club call sign! Starting an official FCC-recognized club takes way fewer people than most newcomers guess: to qualify for the issuance of a **club station license grant**, **the club must have at least four members**—along with a simple club constitution and a designated licensed trustee, with zero requirement to affiliate with any national organization or hold an Extra license.",
             "Finally, one last straightforward responsibility comes attached to every FCC amateur station license in the country. In the rare event that a serious neighborhood interference complaint arises or an agent stops by to verify compliance, the station licensee must make the station and the station records available for inspection **at any time upon request by an FCC representative**—one more great reason why keeping a tidy, well-run station feels so rewarding!"
+          ],
+          "photos": [
+            "amateur-shack"
           ]
         },
         {
@@ -1032,6 +1035,9 @@
           "paragraphs": [
             "Action movies love showing people yelling *\"Breaker, breaker, over and out!\"* into microphones, yet real ham radio sounds much more like striking up a friendly chat on a front porch using your FCC *call sign* (your unique station ID). On *phone* (classic ham lingo for ordinary voice), how you invite a contact depends on whether you are using a local repeater or tuning open simplex and shortwave frequencies. Because fellow hams casually monitor local repeaters in the background while driving or tinkering in the garage, skip long calls there: to see if anyone is around for a chat, simply give **the station's call sign followed by the word \"listening\"**. Calling a specific friend whose call sign you already know? Just **say the station's call sign, then identify with your call sign**.",
             "When you are *not* using a repeater, hams use the century-old procedural signal **`CQ`**—pronounced *\"seek you\"* and meaning **\"calling any station.\"** To seek a voice contact off-repeater, **repeat \"CQ\" a few times, followed by \"this is,\" and your call sign, then pause to listen; repeat as necessary**. Hear someone else calling `CQ`? Jump right in and **transmit the other station's call sign followed by your call sign**!"
+          ],
+          "photos": [
+            "handheld-ht"
           ]
         },
         {
@@ -1081,6 +1087,9 @@
           "paragraphs": [
             "Sometimes one mountain peak isn't big enough! Radio clubs often connect several hilltop repeaters via radio or internet links to form a **linked repeater network**—**a network of repeaters in which signals received by one repeater are transmitted by all the repeaters in the network**, letting a pocket handheld chat across multiple counties or an entire state. Notice the telephone-style number pad on the front of most handhelds? Pressing those keys sends **`DTMF`** (*Dual-Tone Multi-Frequency*) signals, which transmit **two simultaneous audio tones** (one row tone and one column tone, just like phone touch-tones!) to trigger special repeater features or links.",
             "Here are two classic newcomer troubleshooting fixes every ham uses sooner or later. First, if you can hear a repeater's output loud and clear yet nothing happens when you press talk, your receiver is fine—check your transmit settings for an **improper transceiver offset**, the **wrong `CTCSS` tone**, or the **wrong `DCS` code**. Second, if friends report your FM voice drops out right on your loudest words, **you are talking too loudly**, driving your FM signal wider than their receiver's filter! Hold the mic a couple of inches away and speak in a relaxed, normal voice."
+          ],
+          "photos": [
+            "mobile-rig-mic"
           ]
         },
         {

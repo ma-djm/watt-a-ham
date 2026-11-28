@@ -404,6 +404,7 @@
   }
 
   const GLOSSARY = DATA.glossary || {};
+  const PHOTOS = DATA.photos || {};
   const ALIAS_TO_KEY = new Map();
   let JARGON_RE = null;
   (function initGlossaryMatcher() {
@@ -486,6 +487,7 @@
     pop.dataset.currentKey = gKey;
 
     const popSeen = new Set([gKey]);
+    const popPhoto = entry.photo && PHOTOS[entry.photo] ? PHOTOS[entry.photo] : null;
     inner.innerHTML = `
       <div class="jargon-pop-top">
         <div>
@@ -498,6 +500,12 @@
           <button type="button" class="jargon-close-btn" data-action="jargon-close" aria-label="Close definition">✕</button>
         </div>
       </div>
+      ${popPhoto ? `
+        <button type="button" class="jargon-pop-photo-btn" data-zoom-photo="${escHtml(entry.photo)}" aria-label="Enlarge photo of ${escHtml(popPhoto.title)}">
+          <img class="jargon-pop-photo-img" src="${escHtml(popPhoto.src)}" width="${Number(popPhoto.width) || 640}" height="${Number(popPhoto.height) || 480}" alt="${escHtml(popPhoto.title)}">
+          <span class="jargon-pop-photo-badge">🔍 Tap to enlarge</span>
+        </button>
+      ` : ''}
       <p class="jargon-pop-def">${formatRichText(entry.definition, { linkJargon: true, seenTerms: popSeen, excludeKey: gKey })}</p>
       ${entry.analogy ? `
         <div class="jargon-pop-analogy">
@@ -599,6 +607,25 @@
       ? 'Component labels hidden while answering—tap ✕ or outside to return to your question.'
       : (testedCaptions[figKey] || '');
     dlg.showModal();
+  }
+
+  function openPhotoZoom(photoKey) {
+    const p = PHOTOS[photoKey];
+    if (!p) return;
+    closeJargonPopover();
+    const dlg = document.getElementById('figure-dialog');
+    document.getElementById('figure-dialog-title').textContent = p.title;
+    document.getElementById('figure-dialog-svg').innerHTML = `
+      <img class="figure-zoom-photo" src="${escHtml(p.src)}" width="${Number(p.width) || 720}" height="${Number(p.height) || 540}" alt="${escHtml(p.title)}">
+    `;
+    document.getElementById('figure-dialog-caption').innerHTML = `
+      ${escHtml(p.caption)}
+      <span class="photo-credit-line">
+        Photo: ${escHtml(p.credit)} · ${escHtml(p.license)} ·
+        <a href="${escHtml(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+      </span>
+    `;
+    if (!dlg.open) dlg.showModal();
   }
 
   function openConfirmDialog({ title, html, confirmLabel = 'Confirm', cancelLabel = 'Cancel', danger = false }) {
@@ -1682,6 +1709,7 @@
 
     listEl.innerHTML = matches.map(([gKey, entry]) => {
       const localSeen = new Set([gKey]);
+      const gPhoto = entry.photo && PHOTOS[entry.photo] ? PHOTOS[entry.photo] : null;
       return `
         <div class="glossary-item">
           <div class="glossary-item-head">
@@ -1691,14 +1719,23 @@
             </div>
             <span class="badge-pill">${escHtml(entry.category || 'Glossary')}</span>
           </div>
-          <p style="font-size:0.85rem;line-height:1.46;color:var(--text-primary);margin:0.2rem 0 0">
-            ${formatRichText(entry.definition, { linkJargon: true, seenTerms: localSeen, excludeKey: gKey })}
-          </p>
-          ${entry.analogy ? `
-            <p style="font-size:0.79rem;line-height:1.42;color:var(--text-secondary);margin:0.35rem 0 0">
-              <em>Analogy:</em> ${formatRichText(entry.analogy, { linkJargon: true, seenTerms: localSeen, excludeKey: gKey })}
-            </p>
-          ` : ''}
+          <div class="glossary-item-body">
+            ${gPhoto ? `
+              <button type="button" class="glossary-thumb-btn" data-zoom-photo="${escHtml(entry.photo)}" aria-label="Enlarge photo of ${escHtml(gPhoto.title)}">
+                <img class="glossary-thumb-img" src="${escHtml(gPhoto.src)}" width="${Number(gPhoto.width) || 640}" height="${Number(gPhoto.height) || 480}" loading="lazy" alt="${escHtml(gPhoto.title)}">
+              </button>
+            ` : ''}
+            <div style="flex:1;min-width:0">
+              <p style="font-size:0.85rem;line-height:1.46;color:var(--text-primary);margin:0.15rem 0 0">
+                ${formatRichText(entry.definition, { linkJargon: true, seenTerms: localSeen, excludeKey: gKey })}
+              </p>
+              ${entry.analogy ? `
+                <p style="font-size:0.79rem;line-height:1.42;color:var(--text-secondary);margin:0.35rem 0 0">
+                  <em>Analogy:</em> ${formatRichText(entry.analogy, { linkJargon: true, seenTerms: localSeen, excludeKey: gKey })}
+                </p>
+              ` : ''}
+            </div>
+          </div>
         </div>
       `;
     }).join('');
@@ -1945,6 +1982,29 @@
     }
   }
 
+  function renderCardPhotosHtml(photoKeys) {
+    if (!Array.isArray(photoKeys) || !photoKeys.length) return '';
+    const valid = photoKeys.filter((k) => Boolean(PHOTOS[k]));
+    if (!valid.length) return '';
+    return `
+      <div class="equip-photo-grid ${valid.length > 1 ? 'is-pair' : ''}">
+        ${valid.map((k) => {
+          const p = PHOTOS[k];
+          return `
+            <button type="button" class="equip-photo-card" data-zoom-photo="${escHtml(k)}" aria-label="Enlarge photo: ${escHtml(p.title)}">
+              <img class="equip-photo-img" src="${escHtml(p.src)}" width="${Number(p.width) || 720}" height="${Number(p.height) || 540}" alt="${escHtml(p.title)}">
+              <div class="equip-photo-body">
+                <div class="equip-photo-title">${escHtml(p.title)}</div>
+                <div class="equip-photo-cap">${escHtml(p.caption)}</div>
+                <div class="equip-photo-meta">🔍 Tap to enlarge · ${escHtml(p.license)}</div>
+              </div>
+            </button>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
   // Shared Walkthrough Card Renderer (Used by Stage 1 Lesson, Read-Only Mode & Mid-Quiz Peek)
   function renderWalkthroughCardHtml(group, cardIdx) {
     const brief = DATA.briefings[group];
@@ -1960,6 +2020,7 @@
     const illusSvg = card.illustration && DATA.illustrations
       ? DATA.illustrations[card.illustration]
       : '';
+    const photosHtml = renderCardPhotosHtml(card.photos);
     const widgetKey = card.widget || (!card.paragraphs && cardIdx === 0 ? brief.aid : null);
 
     return `
@@ -1985,6 +2046,7 @@
             ${illusSvg}
           </div>
         ` : ''}
+        ${photosHtml}
         ${card.bullets && card.bullets.length ? `
           <ul class="briefing-bullets">
             ${card.bullets.map((b) => `<li>${formatRichText(b, { linkJargon: true, seenTerms })}</li>`).join('')}
@@ -2799,9 +2861,14 @@
       }
 
       const el = e.target.closest(
-        '[data-jargon-key],[data-peek-group],[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target],[data-widget-rep],[data-widget-duty],[data-widget-swtype],[data-widget-flip],[data-widget-wave]'
+        '[data-zoom-photo],[data-jargon-key],[data-peek-group],[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target],[data-widget-rep],[data-widget-duty],[data-widget-swtype],[data-widget-flip],[data-widget-wave]'
       );
       if (!el) return;
+
+      if (el.dataset.zoomPhoto) {
+        openPhotoZoom(el.dataset.zoomPhoto);
+        return;
+      }
 
       if (el.dataset.jargonKey) {
         openJargonPopover(el.dataset.jargonKey, el);

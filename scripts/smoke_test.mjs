@@ -39,6 +39,24 @@ assert.equal(Object.keys(DATA.briefings).length, 35, 'Must have 35 briefings');
 assert.deepEqual(Object.keys(DATA.figures).sort(), ['T-1', 'T-2', 'T-3']);
 assert.ok(Object.keys(DATA.glossary || {}).length >= 60, 'Must bundle >= 60 glossary concepts');
 assert.ok(Object.keys(DATA.illustrations || {}).length >= 15, 'Must bundle >= 15 teaching SVGs');
+assert.ok(Object.keys(DATA.photos || {}).length >= 30, 'Must bundle >= 30 equipment photos');
+
+// Verify all equipment photos exist on disk, stay under 1.8 MB total, are precached in sw.js, and are credited in NOTICE
+const noticeSrc = fs.readFileSync(path.join(root, 'NOTICE'), 'utf8');
+let totalPhotoBytes = 0;
+for (const [pslug, pmeta] of Object.entries(DATA.photos)) {
+  assert.ok(pmeta.src && pmeta.src.startsWith('./assets/photos/'), `Invalid photo src on ${pslug}`);
+  const pFull = path.join(root, pmeta.src.slice(2));
+  assert.ok(fs.existsSync(pFull), `Missing photo file on disk: ${pmeta.src}`);
+  const pst = fs.statSync(pFull);
+  assert.ok(pst.size > 1500, `Photo unexpectedly tiny: ${pmeta.src}`);
+  totalPhotoBytes += pst.size;
+  assert.ok(swCode.includes(pmeta.src), `sw.js ASSETS missing precached photo ${pmeta.src}`);
+  assert.ok(pmeta.title && pmeta.caption && pmeta.credit && pmeta.license && pmeta.sourceUrl, `Incomplete metadata on ${pslug}`);
+  assert.ok(noticeSrc.includes(pmeta.src), `NOTICE missing attribution for ${pmeta.src}`);
+}
+assert.ok(totalPhotoBytes <= 1850 * 1024, `Equipment photo bundle exceeded 1.85 MB budget: ${(totalPhotoBytes / 1024).toFixed(1)} KB`);
+console.log(`Equipment photos verified: ${Object.keys(DATA.photos).length} photos, ${(totalPhotoBytes / 1024).toFixed(1)} KB total.`);
 
 // Verify SVG callout numbers in Figures T-1, T-2, T-3
 for (const n of ['1', '2', '3', '4', '5']) {
@@ -271,6 +289,7 @@ assert.match(domById.get('glossary-list').innerHTML, /Standing Wave Ratio/);
 domById.get('glossary-search').value = 'keyer';
 domById.get('glossary-search').dispatchEvent({ type: 'input' });
 assert.match(domById.get('glossary-list').innerHTML, /Electronic Keyer/i);
+assert.match(domById.get('glossary-list').innerHTML, /class="glossary-thumb-btn"/, 'Glossary search item must render equipment thumbnail');
 domById.get('glossary-search').value = '';
 domById.get('glossary-search').dispatchEvent({ type: 'input' });
 fireClick({ powerTarget: 'PI' });
@@ -279,18 +298,34 @@ fireClick({ zoomFig: 'T-1' });
 assert.match(domById.get('figure-dialog-caption').textContent, /Tested on Exam/);
 navTabs[0].dispatchEvent({ type: 'click' });
 
-// Verify Read-Only Walkthrough Cards mode on a locked node (T4A) does NOT unlock/alter status, and renders jargon + SVGs!
+// Verify Read-Only Walkthrough Cards mode on a locked node (T4A) does NOT unlock/alter status, and renders jargon + SVGs + equipment photos!
 fireClick({ openNode: 'T4A' });
 assert.match(domById.get('node-dialog-body').innerHTML, /Read Walkthrough Cards Only/);
 fireClick({ modalStart: 'T4A', startStage: 'briefing', readOnly: '1' });
 assert.match(domById.get('session-title-pill').textContent, /T4A · Walkthrough Handbook/);
 assert.match(domById.get('session-body').innerHTML, /class="jargon-term"/);
-// Test clicking a jargon term inside T4A card -> opens #jargon-popover with definition + analogy!
+assert.match(domById.get('session-body').innerHTML, /class="equip-photo-card"/, 'T4A Card 1 must render bundled equipment photo card');
+// Test tapping equipment photo card -> opens #figure-dialog lightbox with license + Commons attribution!
+fireClick({ zoomPhoto: 'bench-power-supply' });
+assert.equal(domById.get('figure-dialog').open, true);
+assert.match(domById.get('figure-dialog-svg').innerHTML, /bench-power-supply\.jpg/);
+assert.match(domById.get('figure-dialog-caption').innerHTML, /Wikimedia Commons/);
+domById.get('figure-dialog').close();
+// Test clicking a hardware jargon term ('electronic-keyer') -> opens #jargon-popover with thumbnail + definition + analogy!
+fireClick({ jargonKey: 'electronic-keyer' });
+assert.equal(domById.get('jargon-popover')._popoverOpen, true);
+assert.match(domById.get('jargon-popover-inner').innerHTML, /class="jargon-pop-photo-btn"/);
+assert.match(domById.get('jargon-popover-inner').innerHTML, /Real-world intuition:/);
+// Tapping the thumbnail inside #jargon-popover closes popover and opens full lightbox!
+fireClick({ zoomPhoto: 'cw-iambic-paddles' });
+assert.equal(domById.get('jargon-popover')._popoverOpen, false);
+assert.equal(domById.get('figure-dialog').open, true);
+domById.get('figure-dialog').close();
+// Test nested jargon click inside popover -> shows ← Back button!
 const firstJargonMatch = domById.get('session-body').innerHTML.match(/data-jargon-key="([^"]+)"/);
 assert.ok(firstJargonMatch, 'Walkthrough card must contain clickable jargon-term');
 fireClick({ jargonKey: firstJargonMatch[1] });
 assert.equal(domById.get('jargon-popover')._popoverOpen, true);
-assert.match(domById.get('jargon-popover-inner').innerHTML, /Real-world intuition:/);
 // Test nested jargon click inside popover -> shows ← Back button!
 const nestedJargonMatch = domById.get('jargon-popover-inner').innerHTML.match(/data-jargon-key="([^"]+)"/);
 if (nestedJargonMatch) {
@@ -343,9 +378,10 @@ for (let i = 0; i < t2aLen; i++) {
 }
 assert.ok(sawJargonInFlash, 'Flash-Pass stems must highlight clickable jargon terms');
 
-// Now in Stage 3 Challenge! Verify ZERO jargon buttons on unanswered Challenge stems, intentionally miss Q1, then clear all!
+// Now in Stage 3 Challenge! Verify ZERO jargon buttons or equipment photos on unanswered Challenge stems, intentionally miss Q1, then clear all!
 assert.match(domById.get('session-title-pill').textContent, /Stage 3: Challenge/);
 assert.doesNotMatch(domById.get('session-body').innerHTML, /class="jargon-term"/, 'Unanswered Stage 3 Challenge stem must NOT highlight jargon');
+assert.doesNotMatch(domById.get('session-body').innerHTML, /data-zoom-photo=/, 'Unanswered Stage 3 Challenge stem must NOT render equipment photos');
 let safety = 0;
 let intentionallyMissedOnce = false;
 while (!domById.get('session-title-pill').textContent.includes('Node Mastered') && safety < 30) {

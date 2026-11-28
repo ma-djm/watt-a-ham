@@ -4,6 +4,7 @@ import os
 import re
 from figures_svg import FIGURES
 from glossary_data import GLOSSARY
+from photos_data import PHOTOS
 from teaching_svgs import ILLUSTRATIONS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -305,10 +306,37 @@ def main() -> None:
             wid = c.get("widget")
             if wid is not None:
                 assert wid in VALID_WIDGETS, f"{g} card {idx} unknown widget {wid!r}"
+            cphotos = c.get("photos")
+            if cphotos is not None:
+                assert isinstance(cphotos, list) and 1 <= len(cphotos) <= 2, (
+                    f"{g} card {idx} photos must be a list of 1-2 photo slugs"
+                )
+                for pslug in cphotos:
+                    assert pslug in PHOTOS, f"{g} card {idx} unknown photo slug {pslug!r}"
         total_cards += len(cards)
+
+    # Validate Equipment Photos
+    assert len(PHOTOS) >= 30, f"Expected >=30 equipment photos, got {len(PHOTOS)}"
+    total_photo_bytes = 0
+    for pslug, pmeta in PHOTOS.items():
+        rel_src = pmeta.get("src", "")
+        assert rel_src.startswith("./assets/photos/"), f"Invalid photo src on {pslug}: {rel_src}"
+        disk_path = os.path.join(ROOT, rel_src[2:].replace("/", os.sep))
+        assert os.path.exists(disk_path), f"Missing photo file on disk for {pslug}: {disk_path}"
+        fsize = os.path.getsize(disk_path)
+        assert 1500 <= fsize <= 180000, f"Photo {pslug} size out of bounds ({fsize} bytes)"
+        total_photo_bytes += fsize
+        for req_field in ("title", "caption", "credit", "license", "sourceUrl"):
+            assert pmeta.get(req_field, "").strip(), f"Photo {pslug} missing {req_field}"
+        assert int(pmeta.get("width", 0)) >= 240 and int(pmeta.get("height", 0)) >= 180, (
+            f"Invalid dimensions on photo {pslug}"
+        )
 
     # Validate Glossary
     assert len(GLOSSARY) >= 70, f"Expected >=70 glossary entries, got {len(GLOSSARY)}"
+    for gk, gv in GLOSSARY.items():
+        if gv.get("photo") is not None:
+            assert gv["photo"] in PHOTOS, f"Glossary {gk} references unknown photo {gv['photo']!r}"
     total_aliases = sum(len(v.get("aliases", [])) for v in GLOSSARY.values())
 
     assert set(FIGURES.keys()) == {"T-1", "T-2", "T-3"}
@@ -328,6 +356,7 @@ def main() -> None:
         "subelements": SUBELEMENTS,
         "campaign": CAMPAIGN,
         "glossary": GLOSSARY,
+        "photos": PHOTOS,
         "illustrations": ILLUSTRATIONS,
         "briefings": briefings,
         "figures": FIGURES,
@@ -348,6 +377,7 @@ def main() -> None:
         f"SUCCESS: Generated data.js ({size_kb:.1f} KB) | "
         f"{len(pool)} questions | {len(briefings)} decks ({total_cards} cards) | "
         f"{len(GLOSSARY)} glossary concepts ({total_aliases} terms) | "
+        f"{len(PHOTOS)} photos ({total_photo_bytes / 1024:.1f} KB) | "
         f"{len(ILLUSTRATIONS)} teaching SVGs + {len(FIGURES)} official figures."
     )
 

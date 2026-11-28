@@ -27,12 +27,116 @@ The raw machine-readable JSON and plain-text pool files stored in
 State of Changes (Apache-2.0 Section 4(b)):
   `scripts/build_data.py` transforms `scripts/pool_raw.json` into `data.js`
   (`window.HAM_DATA`), adding original plain-English explanations, topic tags,
-  positional-choice metadata, 35 multi-card group briefings, and dark-mode
-  vector SVG renderings (`scripts/figures_svg.py`) for Figures T-1, T-2,
-  and T-3.
+  positional-choice metadata, 35 multi-card illustrated walkthrough decks,
+  glossary definitions, and dark-mode vector SVG renderings
+  (`scripts/figures_svg.py` & `scripts/teaching_svgs.py`).
 
 ===============================================================================
-3. Non-Affiliation Notice
+3. Bundled Equipment Photographs (Wikimedia Commons — PD / CC0 / CC BY / CC BY-SA)
+===============================================================================
+Equipment photographs in `assets/photos/` are sourced from Wikimedia Commons,
+resized for offline mobile caching, and distributed under their respective free
+licenses:
+
+  - ./assets/photos/handheld-ht.jpg (Dual-Band Handheld Transceiver (HT))
+    Author: Варвара Каминская | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:Baofeng_UV-5R_transceiver.jpg
+  - ./assets/photos/desktop-transceiver.jpg (HF/VHF Base Station Transceiver)
+    Author: Hp.Baumeler | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:IC-7300.jpg
+  - ./assets/photos/mobile-rig-mic.jpg (Compact VHF Mobile Transceiver)
+    Author: ChrisRuvolo | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:IC-2100.jpg
+  - ./assets/photos/amateur-shack.jpg (Complete Amateur Radio 'Shack')
+    Author: Venglin | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:ICOM_IC-2340H_hamradio_station.jpg
+  - ./assets/photos/cw-iambic-paddles.jpg (Morse Code (CW) Iambic Paddles)
+    Author: camelNotation | License: CC0
+    Source: https://commons.wikimedia.org/wiki/File:Bencher_BY-1_Iambic_Paddle.JPG
+  - ./assets/photos/mmdvm-hotspot.jpg (Pocket MMDVM Digital Voice Hotspot)
+    Author: 橙子木 | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:%E4%B8%80%E7%A7%8D%E5%8D%95%E5%B7%A5mmdvm%E7%9B%92%E5%AD%90%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.jpg
+  - ./assets/photos/rf-power-amplifier.jpg (External RF Linear Power Amplifier)
+    Author: Zuzu | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:RM_Italy_KL-203_linear_amplifier_front.jpeg
+  - ./assets/photos/ft8-waterfall.jpg (WSJT-X FT8 Weak-Signal Waterfall)
+    Author: Denis Apel | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:Waterfall-diagram-ft87_WSJT-X_Denis_apel.jpg
+  - ./assets/photos/swr-wattmeter.jpg (Inline Directional SWR & Wattmeter)
+    Author: User:魔私利戸 | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:SWR_%26_power_meter_front_view.jpg
+  - ./assets/photos/dummy-load.jpg (50-Ohm Finned RF Dummy Load)
+    Author: Jeff Keyzer | License: CC BY-SA 2.0
+    Source: https://commons.wikimedia.org/wiki/File:Dummy_Load.jpg
+  - ./assets/photos/antenna-analyzer.jpg (Handheld Antenna & SWR Analyzer)
+    Author: Elgull | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:NanoVNA.jpg
+  - ./assets/photos/bench-power-supply.jpg (Regulated DC Bench Power Supply)
+    Author: Cqdx | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:Netzgeraet.jpg
+  - ./assets/photos/ferrite-choke.jpg (Snap-On Ferrite Bead RF Chokes)
+    Author: Unconventional2 | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:A_collection_of_Snap-On_-_Clamp-on_ferrite_beads.jpg
+  - ./assets/photos/digital-multimeter.jpg (Handheld Digital Multimeter (DMM))
+    Author: Jacek Halicki | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:2017_Cyfrowy_miernik_uniwersalny.jpg
+  - ./assets/photos/solder-joint.jpg (Rough, Cracked 'Cold' Solder Joint)
+    Author: MyName ( Coronium ( )) | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:Cold_solder_joint2.jpg
+  - ./assets/photos/antenna-tuner.jpg (Inside an LC Antenna Tuner (Coupler))
+    Author: Pindari at English Wikipedia | License: CC BY-SA 2.5
+    Source: https://commons.wikimedia.org/wiki/File:Kenwood_AT-230_antenna-tuner-inside.jpg
+  - ./assets/photos/resistors-potentiometer.jpg (Rotary Potentiometer (Variable Resistor))
+    Author: Evan-Amos | License: Public Domain
+    Source: https://commons.wikimedia.org/wiki/File:Electronic-Component-Potentiometer.jpg
+  - ./assets/photos/capacitors-assorted.jpg (Assorted Electrolytic, Film & Ceramic Capacitors)
+    Author: Eric Schrader from San Francisco, CA, United States | License: CC BY-SA 2.0
+    Source: https://commons.wikimedia.org/wiki/File:Capacitors_(7189597135).jpg
+  - ./assets/photos/inductors-coils.jpg (Copper-Wound Toroidal Inductor Coil)
+    Author: Peripitus | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:Toroidal_inductor.jpg
+  - ./assets/photos/diodes-leds.jpg (1N4007 Rectifier Diode (Cathode Stripe))
+    Author: Zxelt | License: CC0
+    Source: https://commons.wikimedia.org/wiki/File:Diode_1N4007.jpg
+  - ./assets/photos/transistors-packages.jpg (Discrete BJT & FET Transistor Packages)
+    Author: Mister rf at English Wikipedia | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:Transistorer_(cropped).jpg
+  - ./assets/photos/relay-contacts.jpg (Electromechanical Relay (Cover Removed))
+    Author: Raimond Spekking | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:Delta_Electronics_DPS-350FB_A_-_board_1_-_OEG_SDT-SS-112M_-_case_removed-3045.jpg
+  - ./assets/photos/integrated-circuit.jpg (Integrated Circuit (IC) Microchips)
+    Author: Swift.Hg | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:NE555_DIP_%26_SOIC.jpg
+  - ./assets/photos/blade-cartridge-fuses.jpg (Automotive Blade Overcurrent Fuses)
+    Author: havarhen | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:Electrical_fuses,_plug-in_type,_different_sizes.jpeg
+  - ./assets/photos/coax-cutaway.jpg (Coaxial Cable Cutaway (4 Layers))
+    Author: Wikimedia Commons | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:RG-59.jpg
+  - ./assets/photos/pl259-connector.jpg (PL-259 ('UHF') Coaxial Connector)
+    Author: Appaloosa | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:UHF_PL_Connector.jpg
+  - ./assets/photos/type-n-connector.jpg (Weatherproof 50-Ohm Type N Connector)
+    Author: Swift.Hg | License: CC BY-SA 3.0
+    Source: https://commons.wikimedia.org/wiki/File:Male_type_N_connector.jpg
+  - ./assets/photos/yagi-antenna.jpg (Multi-Element Directional Yagi-Uda Beams)
+    Author: Rama | License: CC BY-SA 2.0 fr
+    Source: https://commons.wikimedia.org/wiki/File:Antenne-IMG_1963.JPG
+  - ./assets/photos/mobile-loading-whip.jpg (Mobile Whip Antenna with Loading Coil)
+    Author: Nick Hubbard | License: CC BY 2.0
+    Source: https://commons.wikimedia.org/wiki/File:Small_antenna_loading_coil.jpg
+  - ./assets/photos/repeater-tower.jpg (Lattice Antenna Tower & Mast Array)
+    Author: Amasuela, Luis Lafuente, EA1CYL | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:Antenas_direccionales.jpg
+  - ./assets/photos/ground-clamp-turnbuckle.jpg (Threaded Guy-Wire Turnbuckles)
+    Author: Ted Major from Tuscaloosa, Ala., USA | License: CC BY-SA 2.0
+    Source: https://commons.wikimedia.org/wiki/File:Turnbuckles.jpg
+  - ./assets/photos/battery-12v.jpg (12-Volt Sealed Lead-Acid Storage Battery)
+    Author: Paxtonphan | License: CC BY-SA 4.0
+    Source: https://commons.wikimedia.org/wiki/File:12V_VRLA_Gel_Battery.jpg
+
+===============================================================================
+4. Non-Affiliation Notice
 ===============================================================================
 Watt a Ham is an independent open-source educational tool and is not
 affiliated with, sponsored by, or endorsed by the Federal Communications

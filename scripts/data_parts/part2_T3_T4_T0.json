@@ -793,6 +793,9 @@
           "paragraphs": [
             "Hams affectionately call their radio desk a *shack* and their combined transmitter-receiver a *rig* or *transceiver*. Instead of plugging straight into a household wall outlet, nearly all mobile and home base rigs are built around automotive electrical systems so the exact same radio works on your desk, in a pickup truck, or out at a campsite. On a desk, an external power supply converts wall electricity into steady direct current, and a typical **50-watt output mobile FM transceiver** needs a supply rated around **`13.8 volts at 12 amperes`** (*amperes*, or amps, measure how much electrical current flows). When installing that radio in a car, attach the negative power return wire **at the 12-volt battery chassis ground** rather than to random dashboard metal.",
             "Listening sips very little current, but pressing the microphone button gulps ten amps or more at once. Skinny, long power cords resist that sudden rush of current, starving the radio of voltage right when you speak—so hams always wire DC power with **short, heavy-gauge wires** **to minimize voltage drop when transmitting**. And if you hike a rig to a summit or park for *Parks on the Air*, you can estimate how many hours a battery will last: **divide the battery ampere-hour rating by the average current draw of the equipment**."
+          ],
+          "photos": [
+            "bench-power-supply"
           ]
         },
         {
@@ -803,6 +806,9 @@
           "paragraphs": [
             "Once your rig has clean power, its radio-frequency energy travels out to the antenna through a thick shielded cable called *coaxial cable* (*coax*, pronounced *koh-aks*), which serves as your station's *feed line*. To see how much wattage is actually heading up that cable, hams insert an **RF power meter** **in the feed line, between the transmitter and antenna**. Many operators use a combined power and *SWR* (*Standing Wave Ratio*) meter, which checks whether the antenna accepts energy smoothly instead of bouncing it back down the cable. Because internal sensor circuits are tuned for specific bands and wattage ceilings, choosing an accessory **SWR meter** always depends on **the frequency and power level at which the measurements will be made**.",
             "Back on the desk, veteran operators also tie the metal cases of their transceiver, power supply, and tuners together onto a single reference bar—a practice called *bonding*—to prevent stray radio energy from biting microphones or buzzing speakers. High-frequency radio currents love to skim along the outer surface of metal rather than flowing deep through its core. Because **flat copper strap** offers lots of smooth outer surface area, it is the preferred conductor for **bonding at RF**."
+          ],
+          "photos": [
+            "swr-wattmeter"
           ]
         },
         {
@@ -823,6 +829,10 @@
           "paragraphs": [
             "Two very different desktop accessories round out a modern ham shack—one celebrating radio's oldest craft and the other bridging handhelds to the internet. Even though the FCC dropped Morse code speed tests years ago, *CW* (*Continuous Wave* Morse code) remains hugely popular because a pure, narrow tone slices through heavy noise across oceans on tiny power. Rather than pumping a vintage up-and-down telegraph key, most modern CW operators gently squeeze a two-lever *paddle* plugged into an **electronic keyer**—**a device that assists in manual sending of Morse code** by forming crisp, evenly timed dots on one thumb lever and dashes on the other.",
             "At the ultra-modern end of the hobby, you might own a digital voice handheld (such as DMR, D-STAR, or System Fusion) while living in a valley or apartment miles out of range of any digital repeater tower. Enter the **digital mode hotspot**: a deck-of-cards-sized micro-transceiver powered by a tiny computer board on your home Wi-Fi or phone hotspot. Sitting quietly on a bookshelf, it gives nearby digital transceivers **communication with a digital voice or data network** linking chat rooms of operators worldwide."
+          ],
+          "photos": [
+            "cw-iambic-paddles",
+            "mmdvm-hotspot"
           ]
         },
         {
@@ -852,6 +862,9 @@
           "paragraphs": [
             "Sit down in front of any amateur transceiver and the largest control on the face is the *VFO* (*Variable Frequency Oscillator*) knob—the smooth main tuning dial that glides across a band like an analog car stereo. Whenever you want to jump straight to a specific channel or frequency, you enter it using **the keypad or VFO knob**. Rather than spinning the dial by hand all afternoon, you can also press the **scanning** button, which automatically **tunes through a range of frequencies to check for activity** and pauses the moment someone keys up.",
             "On FM channels (the crisp voice mode used on local VHF and UHF repeaters), an empty frequency produces a loud, rushing waterfall of white noise. That is why FM rigs include a *squelch* knob: an automatic audio gate that keeps the speaker silent until a signal strong enough to cross your threshold arrives. If a friend is calling from far away with a whisper-faint signal that cannot trip that gate, **set the squelch threshold so that receiver output audio is on all the time**, letting you listen directly into the background hiss."
+          ],
+          "photos": [
+            "desktop-transceiver"
           ]
         },
         {
@@ -921,6 +934,9 @@
           "paragraphs": [
             "Inside a standard North American **three-wire `120 V AC`** power cord, three colored jackets have strict jobs: white is the *neutral* return, green (or bare copper) is the *safety ground* tied to the metal case, and **black** wire insulation marks the live **hot** wire carrying full wall voltage. Whenever a power supply or outlet strip includes a **fuse or circuit breaker**, it must be wired **in series with the hot conductor only**. Putting a fuse in the neutral wire is a dangerous trap: if it blew, the device would turn off, yet everything inside the box would remain silently energized at 120 volts!",
             "A **fuse** is intentionally the weakest link in the chain, engineered with a calibrated metal strip that melts **to remove power in case of an overload**. Notice that fuses protect wiring and equipment from overheating—they do not prevent human shock. Never swap a blown **`5-ampere` fuse** for a **`20-ampere` fuse** just to get back on the air: allowing four times the safe current through thin internal wiring means **excessive current could cause a fire** long before that oversized fuse ever melts."
+          ],
+          "photos": [
+            "blade-cartridge-fuses"
           ]
         },
         {
@@ -941,6 +957,9 @@
           "paragraphs": [
             "Hams love deep-cycle lead-acid and lithium batteries for *Field Day* weekends and emergency backup power when storms knock out the grid. Because touching the posts of a **12-volt storage battery** will not shock dry skin, beginners often underestimate the massive energy packed inside that case. Unlike a small flashlight cell, a storage battery without internal protection circuitry can dump hundreds of amperes in an instant—turning a dropped wrench or loose ring red-hot like an arc welder. On an unprotected 12-volt battery, **shorting the terminals can cause burns, fire, or an explosion**, so always cover exposed posts with insulating boots and fuse battery leads right at the terminals.",
             "Batteries also demand smart automatic chargers and good ventilation when working hard during an emergency net or portable outing. Forcing current into or out of battery cells faster than their internal chemistry can keep up builds intense heat and internal gas pressure. **Rapidly charging or discharging an unprotected battery** creates a dangerous hazard of **overheating or out-gassing**—venting corrosive, flammable fumes such as explosive hydrogen gas from lead-acid cells."
+          ],
+          "photos": [
+            "battery-12v"
           ]
         },
         {
@@ -979,6 +998,10 @@
           "paragraphs": [
             "Working high above the ground leaves zero margin for solo shortcuts. Under what circumstances is it safe to climb an antenna tower without a ground helper or observer? **Never**—you always need an attentive partner on the ground to pass up tools on a rope, watch for approaching weather, and call emergency responders if you slip or become dizzy. Every climb also requires three personal safety essentials: **sufficient training on safe tower climbing techniques**, wearing an **approved climbing harness** (a modern full-body fall-arrest harness, never an old waist belt), and using **appropriate tie-off to the tower at all times**.",
             "Tower hardware demands equal mechanical respect. Nested **crank-up towers** telescope upward on a steel winch cable; if that hoist cable snaps while extended, heavy steel sections slam together like a guillotine, so a crank-up **must not be climbed unless it is retracted, or mechanical safety locking devices have been installed** to block the sections solidly. On guyed towers, threaded *turnbuckles* tension the support cables—looping a **safety wire through a turnbuckle** locks the barrel to **prevent loosening of the turnbuckle from vibration** in gusty winds."
+          ],
+          "photos": [
+            "repeater-tower",
+            "ground-clamp-turnbuckle"
           ]
         },
         {
