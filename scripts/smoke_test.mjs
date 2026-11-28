@@ -37,7 +37,8 @@ const DATA = sandbox.window.HAM_DATA;
 assert.equal(DATA.pool.length, 409, 'Pool must have 409 questions');
 assert.equal(Object.keys(DATA.briefings).length, 35, 'Must have 35 briefings');
 assert.deepEqual(Object.keys(DATA.figures).sort(), ['T-1', 'T-2', 'T-3']);
-assert.ok(Object.keys(DATA.glossary || {}).length >= 60, 'Must bundle >= 60 glossary concepts');
+assert.ok(Object.keys(DATA.glossary || {}).length >= 100, 'Must bundle >= 100 glossary concepts including community terms');
+assert.ok(DATA.glossary['field-day'] && DATA.glossary['pota'] && DATA.glossary['bleeder-resistor'], 'Must include community & bench glossary entries (Field Day, POTA, bleeder resistor)');
 assert.ok(Object.keys(DATA.illustrations || {}).length >= 15, 'Must bundle >= 15 teaching SVGs');
 assert.ok(Object.keys(DATA.photos || {}).length >= 30, 'Must bundle >= 30 equipment photos');
 

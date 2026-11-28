@@ -32,7 +32,9 @@ GLOSSARY = {
             "HT",
             "HTs",
             "handheld transceiver",
-            "handheld"
+            "handheld",
+            "handie-talkie",
+            "walkie-talkie"
         ],
         "category": "Slang & Gear",
         "definition": "A battery-powered, palm-sized two-way amateur radio with a built-in mic, speaker, and flexible whip antenna, usually operating on VHF and UHF bands.",
@@ -92,7 +94,12 @@ GLOSSARY = {
         "aliases": [
             "electronic keyer",
             "keyer",
-            "keyers"
+            "keyers",
+            "paddle",
+            "paddles",
+            "iambic paddle",
+            "iambic paddles",
+            "Morse code"
         ],
         "category": "Slang & Gear",
         "definition": "A circuit (built into most modern rigs or a small desktop box) that connects to finger paddles and automatically generates evenly timed dots and dashes to assist manual sending of Morse code (CW).",
@@ -365,7 +372,10 @@ GLOSSARY = {
             "grid locator",
             "grid locators",
             "grid square",
-            "grid squares"
+            "grid squares",
+            "Maidenhead",
+            "Maidenhead grid square",
+            "Maidenhead grid squares"
         ],
         "category": "Operating",
         "definition": "A compact letter-and-number geographic code (such as DM79 or FN31) dividing Earth into rectangular map boxes so VHF, FT8, and satellite operators can share locations in 4 characters.",
@@ -400,7 +410,12 @@ GLOSSARY = {
             "SSB",
             "single sideband",
             "USB",
-            "upper sideband"
+            "upper sideband",
+            "lower sideband",
+            "LSB",
+            "flat-topping",
+            "microphone gain",
+            "phone"
         ],
         "category": "Modes & Signals",
         "definition": "A streamlined form of amplitude modulation (AM) that strips away the power-hungry carrier and duplicate sideband, putting 100% of your watts into a narrow ~3 kHz voice signal. Upper Sideband (USB) is standard on 10m, VHF, and UHF.",
@@ -412,7 +427,9 @@ GLOSSARY = {
         "aliases": [
             "FM",
             "frequency modulation",
-            "over-deviating"
+            "over-deviating",
+            "capture effect",
+            "frequency or phase modulation"
         ],
         "category": "Modes & Signals",
         "definition": "Encoding audio by wiggling a constant-strength carrier's frequency slightly above and below center—giving clear, static-free local audio for VHF/UHF handhelds, repeaters, and packet radio.",
@@ -434,7 +451,11 @@ GLOSSARY = {
         "expansion": "Weak-signal computer digital mode",
         "aliases": [
             "FT8",
-            "WSJT-X"
+            "WSJT-X",
+            "PSK31",
+            "EME",
+            "Earth-Moon-Earth",
+            "moonbounce"
         ],
         "category": "Modes & Signals",
         "definition": "FT8 (part of the open-source WSJT-X software suite alongside moonbounce and meteor-scatter modes) sends 15-second synchronized tone bursts with heavy error correction that decode signals buried far below human hearing.",
@@ -455,7 +476,10 @@ GLOSSARY = {
         "term": "DMR",
         "expansion": "Digital Mobile Radio (2-slot TDMA digital voice)",
         "aliases": [
-            "DMR"
+            "DMR",
+            "System Fusion",
+            "C4FM",
+            "digital voice"
         ],
         "category": "Modes & Signals",
         "definition": "A digital voice standard that slices a single 12.5 kHz repeater channel into two alternating rapid-fire time slots so two separate conversations can share one repeater simultaneously.",
@@ -728,7 +752,8 @@ GLOSSARY = {
         "expansion": "Antenna-to-feedline impedance match score",
         "aliases": [
             "SWR",
-            "standing wave ratio"
+            "standing wave ratio",
+            "foldback"
         ],
         "category": "Antennas & Coax",
         "definition": "A ratio comparing forward RF power sent down your cable to reflected power bouncing back from the antenna: 1:1 is a perfect match, while 4:1 signals a severe mismatch (triggering automatic transmitter power foldback to protect output transistors).",
@@ -745,7 +770,8 @@ GLOSSARY = {
             "feed lines",
             "RG-58",
             "RG-213",
-            "hardline"
+            "hardline",
+            "dielectric"
         ],
         "category": "Antennas & Coax",
         "definition": "A center copper wire surrounded by foam/plastic insulation and a braided metal shield (standardized at 50 ohms for ham radio) that carries RF cleanly between rig and antenna. Thicker RG-213 has lower loss than thin RG-58, and air-insulated hardline has the lowest loss of all.",
@@ -770,7 +796,9 @@ GLOSSARY = {
         "expansion": "Impedance-matching LC box at the rig",
         "aliases": [
             "antenna tuner",
-            "coupler"
+            "coupler",
+            "antenna coupler",
+            "T-network"
         ],
         "category": "Antennas & Coax",
         "definition": "A box of adjustable capacitors and inductors (like Figure T-3!) placed between your transceiver and feed line that transforms a mismatched system impedance into the clean 50 ohms your transmitter expects.",
@@ -785,7 +813,10 @@ GLOSSARY = {
             "Yagi",
             "beam antenna",
             "rubber duck",
-            "antenna gain"
+            "antenna gain",
+            "half-wave",
+            "quarter-wave",
+            "5/8-wave"
         ],
         "category": "Antennas & Coax",
         "definition": "A half-wave dipole wire radiates strongest broadside to the wire; a 19-inch whip is a resonant quarter-wave on 2m (much more efficient than a stubby handheld 'rubber duck'); a multi-element Yagi beam focuses energy into one direction for maximum antenna gain.",
@@ -827,7 +858,17 @@ GLOSSARY = {
             "tropospheric ducting",
             "multipath",
             "picket fencing",
-            "knife-edge diffraction"
+            "knife-edge diffraction",
+            "skywave",
+            "E region",
+            "F region",
+            "sunspot",
+            "sunspots",
+            "sunspot peaks",
+            "meteor scatter",
+            "aurora",
+            "troposphere",
+            "rain fade"
         ],
         "category": "Propagation",
         "definition": "Sunlit ionized layers (E & F regions) high in the sky bounce HF (and 10m/6m at solar peaks or summer Sporadic E) across oceans, while UHF passes into space. Lower down, weather temperature inversions create 'tropospheric ducts' carrying VHF/UHF ~300+ miles, while city reflections cause 'multipath' flutter ('picket fencing').",
@@ -841,7 +882,9 @@ GLOSSARY = {
             "Doppler shift",
             "Keplerian elements",
             "spin fading",
-            "U/V"
+            "U/V",
+            "Keps",
+            "Low Earth Orbit"
         ],
         "category": "Propagation",
         "definition": "Most amateur satellites zip overhead in Low Earth Orbit (~100 minutes per lap), tracked with Keplerian orbital files. Mode 'U/V' means 70cm UHF uplink / 2m VHF downlink, and the bird's 17,000 mph speed creates Doppler frequency shift (higher pitch approaching, lower receding).",
@@ -868,7 +911,10 @@ GLOSSARY = {
             "Part 97",
             "ULS",
             "FRN",
-            "CSCE"
+            "CSCE",
+            "FCC Part 97",
+            "Universal Licensing System",
+            "grace period"
         ],
         "category": "Safety & FCC Rules",
         "definition": "47 CFR Part 97 is the official FCC rulebook for US ham radio. Before testing, you get a free FRN ID; after passing (receiving a paper CSCE receipt) and paying the $35 FCC fee, you may legally transmit the moment your new call sign appears in the online FCC ULS database!",
@@ -1062,7 +1108,10 @@ GLOSSARY = {
             "auxiliary station",
             "beacon",
             "beacons",
-            "vanity call sign"
+            "vanity call sign",
+            "vanity call signs",
+            "vanity call",
+            "propagation beacons"
         ],
         "category": "Safety & FCC Rules",
         "definition": "Broadcasting (one-way transmissions aimed at the general public, or playing music) is illegal on ham bands—though one-way propagation beacons (like 28.2–28.3 MHz), code practice, telemetry, and point-to-point repeater 'auxiliary stations' are permitted. Any licensed ham can also request a custom 'vanity call sign'!",
@@ -1075,11 +1124,236 @@ GLOSSARY = {
             "direction finding",
             "RDF",
             "mesh network",
-            "loading"
+            "loading",
+            "foxhunting",
+            "foxhunt",
+            "foxhunts",
+            "radio direction finding"
         ],
         "category": "Operating",
         "definition": "Radio Direction Finding uses a directional antenna to track down hidden 'fox' transmitters for sport (or locate power-line noise/jammers). Amateur mesh networks flash custom ham firmware onto Wi-Fi routers for high-speed emergency data; 'antenna loading' inserts inductor coils to electrically lengthen a compact whip.",
         "analogy": "Foxhunting is high-tech hide-and-seek in a park using a handheld Yagi beam as your compass!",
         "photo": "yagi-antenna"
+    },
+    "field-day": {
+        "term": "Field Day",
+        "expansion": "Annual June off-grid portable operating weekend",
+        "aliases": [
+            "Field Day"
+        ],
+        "category": "Community & Culture",
+        "definition": "Amateur radio's biggest annual North American community event (held the fourth full weekend of June), where clubs and solo operators set up temporary off-grid stations in parks, fields, and backyards on battery, solar, or generator power.",
+        "analogy": "Half neighborhood campout/picnic and half emergency-preparedness drill—and the single best place for a newcomer to try HF and VHF radios hands-on!",
+        "photo": "battery-12v"
+    },
+    "pota": {
+        "term": "POTA & SOTA (Parks / Summits on the Air)",
+        "expansion": "Casual portable outdoor radio operating programs",
+        "aliases": [
+            "POTA",
+            "Parks on the Air",
+            "SOTA",
+            "Summits on the Air"
+        ],
+        "category": "Community & Culture",
+        "definition": "Year-round community programs where portable 'activators' hike or drive into state/national parks (POTA) or mountain peaks (SOTA) with a battery and portable antenna, while home 'hunters' try to log contacts with them.",
+        "analogy": "Like geocaching or national-park passport stamps, except you collect parks across the country over the airwaves.",
+        "photo": "mobile-loading-whip"
+    },
+    "arrl-vec": {
+        "term": "ARRL, VEC & Volunteer Examiners (VEs)",
+        "expansion": "National ham association & peer-run license testing",
+        "aliases": [
+            "ARRL",
+            "VEC",
+            "Laurel VEC",
+            "Volunteer Examiner",
+            "Volunteer Examiners"
+        ],
+        "category": "Community & Culture",
+        "definition": "The ARRL (American Radio Relay League, founded 1914) is the US national amateur radio association that publishes voluntary band plans and study guides. Volunteer Examiner Coordinators (like ARRL VEC and free Laurel VEC) accredit teams of 3 local Volunteer Examiners (VEs) who administer FCC license exams.",
+        "analogy": "The FCC issues the actual license in ULS, while experienced fellow hams volunteer their weekends to proctor your test!"
+    },
+    "ragchew-qso": {
+        "term": "QSO, Ragchew, Elmer & Swap Nets",
+        "expansion": "Everyday ham community & club lingo",
+        "aliases": [
+            "QSO",
+            "QSOs",
+            "ragchew",
+            "ragchewing",
+            "Elmer",
+            "Elmers",
+            "swap nets",
+            "hamfest"
+        ],
+        "category": "Community & Culture",
+        "definition": "QSO means any two-way radio contact; 'ragchewing' is a relaxed, unhurried chat on the air; an 'Elmer' is a friendly mentor who helps newcomers set up gear; 'swap nets' and 'hamfests' are club on-air or in-person flea markets for trading radio equipment.",
+        "analogy": "Every hobby has warm insider shorthand—say 'Thanks for the QSO!' at the end of your first repeater chat and you'll sound right at home.",
+        "photo": "amateur-shack"
+    },
+    "contesting": {
+        "term": "Contesting (Radiosport)",
+        "expansion": "Scheduled competitive contact-making weekends",
+        "aliases": [
+            "contesting",
+            "contest",
+            "contests",
+            "radiosport"
+        ],
+        "category": "Community & Culture",
+        "definition": "Friendly weekend operating competitions where stations aim to log as many contacts and geographic multipliers (states, countries, or Maidenhead grid squares) as possible—sending only crisp minimum info (call sign + signal report/location).",
+        "analogy": "A fast-paced global scavenger hunt on the radio dial that also sharpens your weak-signal copying skills."
+    },
+    "club-tactical": {
+        "term": "Club Stations & Tactical Call Signs",
+        "expansion": "Shared group call signs & event role names",
+        "aliases": [
+            "club station",
+            "tactical call signs",
+            "tactical call sign",
+            "tactical call"
+        ],
+        "category": "Operating",
+        "definition": "A club station license (requiring at least 4 members) gives a local radio club a shared call sign. During marathons or emergencies, operators also use 'tactical call signs' like 'Net Control' or 'Finish Line' for clarity—while still giving their personal FCC call sign every 10 minutes and at the end!",
+        "analogy": "Tactical names address the job post even when volunteers swap shifts, while your FCC call sign stays your legal signature."
+    },
+    "phonetic-alphabet": {
+        "term": "NATO Phonetic Alphabet",
+        "expansion": "Alfa, Bravo, Charlie... standard voice spelling",
+        "aliases": [
+            "phonetic alphabet",
+            "Alfa, Bravo, Charlie"
+        ],
+        "category": "Operating",
+        "definition": "The standard international word list (Alfa, Bravo, Charlie, Delta...) encouraged by the FCC when identifying or spelling unusual words on voice modes so static never turns 'B' into 'D', 'P', 'T', or 'V'.",
+        "analogy": "Saying 'Kilo Foxtrot One Alfa Bravo Charlie' cuts cleanly through noisy signals where plain letters sound identical."
+    },
+    "iss-ariss": {
+        "term": "ISS (International Space Station Ham Radio)",
+        "expansion": "VHF/UHF contacts with orbiting astronauts & repeater",
+        "aliases": [
+            "ISS",
+            "International Space Station"
+        ],
+        "category": "Community & Culture",
+        "definition": "Many astronauts hold amateur licenses, and the International Space Station (~250 miles up) carries 2-meter VHF and 70-cm UHF ham gear—meaning any Technician license holder can hear its cross-band repeater, APRS digipeater, or scheduled astronaut contacts!",
+        "analogy": "Yes—a $30 handheld radio in your backyard can legally receive and work a manned spacecraft!"
+    },
+    "itu-classes": {
+        "term": "ITU Regions & US License Classes",
+        "expansion": "Global spectrum treaty body & 3 FCC tiers",
+        "aliases": [
+            "ITU",
+            "Amateur Extra",
+            "Novice",
+            "Advanced"
+        ],
+        "category": "Safety & FCC Rules",
+        "definition": "The ITU (International Telecommunication Union, a UN agency) divides the world into 3 spectrum regions (North/South America = Region 2). In the US, the FCC issues 3 active classes—Technician, General, and Amateur Extra—while grandfathered Novice and Advanced holders may still renew.",
+        "analogy": "Technician opens all VHF/UHF bands + 10m SSB; General & Extra unlock worldwide HF voice segments."
+    },
+    "magic-band": {
+        "term": "The 'Magic Band' (6 Meters)",
+        "expansion": "50–54 MHz VHF band famous for surprise long skip",
+        "aliases": [
+            "the Magic Band",
+            "Magic Band"
+        ],
+        "category": "Propagation",
+        "definition": "Affectionate ham nickname for the 6-meter band (50–54 MHz): most days it behaves like quiet local line-of-sight VHF, then suddenly erupts on summer afternoons (Sporadic E) or solar peaks with coast-to-coast signals on modest power.",
+        "analogy": "You never quite know when the atmospheric curtain will open—hence 'the Magic Band'!"
+    },
+    "bleeder-resistor": {
+        "term": "Bleeder Resistor",
+        "expansion": "Safety drain resistor across power-supply capacitors",
+        "aliases": [
+            "bleeder resistor",
+            "bleeder resistors"
+        ],
+        "category": "Safety & FCC Rules",
+        "definition": "A high-resistance resistor wired permanently across a power supply's filter capacitors so stored high-voltage DC drains safely away after you switch off and unplug the supply.",
+        "analogy": "Like a tiny pinhole drain at the bottom of a pressurized tank—though you should never trust it blindly without checking with a rated meter, in case the resistor burned open!"
+    },
+    "power-supply": {
+        "term": "Bench Power Supply (13.8V DC)",
+        "expansion": "Linear vs. Switching AC-to-DC station supply",
+        "aliases": [
+            "power supply",
+            "power supplies",
+            "switching supplies"
+        ],
+        "category": "Slang & Gear",
+        "definition": "Converts 120V household AC into regulated 13.8V DC (matching a running car's electrical system) to power mobile and base transceivers indoors. Heavy 'linear' supplies use big iron 60 Hz transformers; compact 'switching' supplies chop AC at high frequency.",
+        "analogy": "Lets car-voltage 13.8V ham radios run effortlessly on your home desk.",
+        "photo": "bench-power-supply"
+    },
+    "s-meter": {
+        "term": "S-Meter & S-Units",
+        "expansion": "Received signal-strength scale (S1–S9 + dB)",
+        "aliases": [
+            "S-meter",
+            "S-meters",
+            "S-unit",
+            "S-units"
+        ],
+        "category": "Slang & Gear",
+        "definition": "The bar graph or needle on a receiver showing incoming signal strength from S1 (faint) to S9 (strong), plus decibels above S9 ('20 over S9'). Traditionally, 1 S-unit step equals roughly 6 dB (a 4× change in transmitter power).",
+        "analogy": "Explains why doubling your power (+3 dB) moves a distant friend's S-meter by only half an S-unit!",
+        "photo": "desktop-transceiver"
+    },
+    "reactance": {
+        "term": "Reactance (X)",
+        "expansion": "AC opposition from capacitors & inductors (Ohms)",
+        "aliases": [
+            "reactance"
+        ],
+        "category": "Electronics",
+        "definition": "Opposition to alternating current (AC/RF) caused by capacitors and inductors storing energy in electric or magnetic fields and pushing it back, measured in Ohms. Unlike resistance, pure reactance turns zero power into heat; resistance + reactance together equal impedance (Z).",
+        "analogy": "Resistance is brake-pad friction turning motion into heat; reactance is a lossless spring bouncing motion back."
+    },
+    "full-duplex": {
+        "term": "Full-Duplex vs. Half-Duplex",
+        "expansion": "Simultaneous TX+RX vs. push-to-talk turns",
+        "aliases": [
+            "full-duplex",
+            "half-duplex"
+        ],
+        "category": "Operating",
+        "definition": "Standard single-band radio is 'half-duplex' (holding PTT mutes your speaker until you let go). 'Full-duplex' transmits on one band (say, 70cm uplink) while simultaneously listening on a second band (2m downlink), letting you hear your own voice return live from an orbiting satellite!",
+        "analogy": "Half-duplex is a walkie-talkie ('over!'); full-duplex is a normal telephone call where you can hear while speaking."
+    },
+    "attenuator": {
+        "term": "RF Attenuator",
+        "expansion": "Intentional signal reducer for close-in foxhunting",
+        "aliases": [
+            "attenuator",
+            "attenuators"
+        ],
+        "category": "Slang & Gear",
+        "definition": "A calibrated resistor pad switched inline between your antenna and receiver to reduce an overwhelmingly strong incoming signal by a known number of decibels.",
+        "analogy": "Sunglasses for your receiver—essential during the last 100 yards of a hidden-transmitter foxhunt when the nearby transmitter pegs your S-meter in every direction!"
+    },
+    "turnbuckle": {
+        "term": "Guy-Wire Turnbuckle",
+        "expansion": "Threaded tensioner on antenna tower support cables",
+        "aliases": [
+            "turnbuckle",
+            "turnbuckles"
+        ],
+        "category": "Safety & FCC Rules",
+        "definition": "A threaded metal barrel with opposing left- and right-hand eye bolts twisted to tighten steel or synthetic guy wires supporting a tall antenna mast—always locked with safety wire looped through the barrel so wind vibration cannot unscrew it.",
+        "analogy": "Without a safety-wire lock, months of gentle windshimmy can slowly spin a turnbuckle open and drop a tower.",
+        "photo": "ground-clamp-turnbuckle"
+    },
+    "maritime-mobile": {
+        "term": "Maritime Mobile",
+        "expansion": "Operating ham radio aboard a boat or ship at sea",
+        "aliases": [
+            "maritime mobile"
+        ],
+        "category": "Operating",
+        "definition": "Operating an amateur station from a vessel on the water (often signing '/MM' after your call sign). Under FCC rules, any US licensee may operate in international waters aboard a US-documented vessel with the ship master's (captain's) permission.",
+        "analogy": "On any ship at sea, the captain has final legal authority over every radio transmitter aboard."
     }
 }
