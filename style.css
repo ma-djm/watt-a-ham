@@ -213,6 +213,22 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus
   color: #fb923c;
 }
 
+.help-chip {
+  min-inline-size: 32px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.help-chip:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
 .chip-unit {
   font-size: 0.72rem;
   opacity: 0.85;
@@ -2120,4 +2136,138 @@ button.jargon-term:active {
 .photo-credit-line a {
   color: var(--accent);
   text-decoration: underline;
+}
+
+/* =========================================================================
+   PAGED WELCOME / HOW-IT-WORKS ONBOARDING MODAL
+   ========================================================================= */
+
+dialog.welcome-modal {
+  width: min(94vw, 530px);
+}
+
+.welcome-lead {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.welcome-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.welcome-feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.68rem;
+  padding: 0.65rem 0.78rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.welcome-feature-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.welcome-feature-text {
+  font-size: 0.84rem;
+  line-height: 1.44;
+  color: var(--text-secondary);
+}
+
+.welcome-feature-text strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.welcome-dotted-demo {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.8px;
+  text-underline-offset: 3px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  padding: 0.03rem 0.18rem;
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.welcome-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.15rem 0;
+}
+
+.welcome-dot-btn {
+  min-block-size: 0;
+  min-inline-size: 0;
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--border-strong);
+  border: none;
+  transition: width 0.18s ease, background-color 0.18s ease;
+}
+
+.welcome-dot-btn.is-active {
+  width: 24px;
+  background: var(--accent);
+}
+
+.welcome-dismiss-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.welcome-optout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.welcome-optout input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.welcome-skip-forever-btn {
+  min-block-size: 0;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.welcome-skip-forever-btn:hover {
+  border-color: var(--accent);
 }

@@ -45,6 +45,10 @@
               <span id="goal-nodes-label" class="goal-sub">0 nodes</span>
             </div>
           </button>
+
+          <button type="button" id="help-guide-btn" class="stat-chip help-chip" data-action="open-welcome-guide" aria-label="How Watt a Ham works" title="How Watt a Ham works">
+            ?
+          </button>
         </div>
       </div>
     </header>
@@ -158,6 +162,13 @@
   <dialog id="cards-peek-dialog" closedby="any" aria-labelledby="cards-peek-title" class="cards-peek-modal">
     <div id="cards-peek-body" class="dialog-card">
       <h2 id="cards-peek-title" class="dialog-title">Walkthrough Cards</h2>
+    </div>
+  </dialog>
+
+  <!-- Native Modal Dialog: First-Visit Paged App Guide -->
+  <dialog id="welcome-dialog" closedby="any" aria-labelledby="welcome-dialog-title" class="welcome-modal">
+    <div id="welcome-dialog-body" class="dialog-card">
+      <h2 id="welcome-dialog-title" class="dialog-title">Welcome to Watt a Ham</h2>
     </div>
   </dialog>
 

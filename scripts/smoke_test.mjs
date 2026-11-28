@@ -276,9 +276,26 @@ function fireClick(dataset) {
   }
 }
 
-// Verify initial Path render
+// Verify initial Path render + automatic First-Visit Paged Welcome Guide
 assert.match(domById.get('campaign-container').innerHTML, /Chapter 1/);
 assert.match(domById.get('campaign-container').innerHTML, /T2A/);
+assert.equal(domById.get('welcome-dialog').open, true, 'Welcome guide must open automatically when hideWelcome is false');
+assert.match(domById.get('welcome-dialog-body').innerHTML, /Step 1 of 5/);
+fireClick({ action: 'welcome-next' });
+assert.match(domById.get('welcome-dialog-body').innerHTML, /Step 2 of 5/);
+fireClick({ welcomeStep: '4' });
+assert.match(domById.get('welcome-dialog-body').innerHTML, /Step 5 of 5/);
+// Closing without opting out must leave hideWelcome false so it keeps appearing on future visits
+fireClick({ action: 'welcome-close' });
+assert.equal(domById.get('welcome-dialog').open, false);
+assert.equal(storageMap.get('ham_study_v1'), undefined, 'Closing welcome without opting out must not set hideWelcome=true');
+// Re-opening via header '?' / Settings button works anytime, and 'welcome-dismiss-forever' persists hideWelcome=true
+fireClick({ action: 'open-welcome-guide' });
+assert.equal(domById.get('welcome-dialog').open, true);
+assert.match(domById.get('welcome-dialog-body').innerHTML, /Step 1 of 5/);
+fireClick({ action: 'welcome-dismiss-forever' });
+assert.equal(domById.get('welcome-dialog').open, false);
+assert.equal(JSON.parse(storageMap.get('ham_study_v1')).hideWelcome, true, 'Opting out must persist hideWelcome=true');
 
 // Switch through Exams & Aids tabs cleanly
 navTabs[1].dispatchEvent({ type: 'click' });

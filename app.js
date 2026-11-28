@@ -58,6 +58,7 @@
     });
     return {
       version: 1,
+      hideWelcome: false,
       theme: 'dark',
       sound: true,
       streak: {
@@ -103,6 +104,7 @@
 
   function mergeState(base, incoming) {
     if (!incoming || typeof incoming !== 'object') return base;
+    if (typeof incoming.hideWelcome === 'boolean') base.hideWelcome = incoming.hideWelcome;
     if (incoming.theme === 'light' || incoming.theme === 'dark') base.theme = incoming.theme;
     if (typeof incoming.sound === 'boolean') base.sound = incoming.sound;
     if (incoming.streak && typeof incoming.streak === 'object') {
@@ -191,6 +193,7 @@
   function exportBackupString() {
     const compact = {
       v: 1,
+      hw: state.hideWelcome ? 1 : 0,
       th: state.theme,
       sn: state.sound ? 1 : 0,
       st: state.streak,
@@ -225,6 +228,7 @@
     if (!c || c.v !== 1) throw new Error('Unsupported backup format version.');
 
     const next = createDefaultState();
+    if (c.hw !== undefined) next.hideWelcome = Boolean(c.hw);
     if (c.th === 'light' || c.th === 'dark') next.theme = c.th;
     next.sound = c.sn !== 0;
     if (c.st) Object.assign(next.streak, c.st);
@@ -626,6 +630,174 @@
       </span>
     `;
     if (!dlg.open) dlg.showModal();
+  }
+
+  // Paged First-Visit Welcome / How-It-Works Guide
+  const WELCOME_SLIDES = [
+    {
+      eyebrow: 'Welcome to Watt a Ham · Step 1 of 5',
+      title: 'Your Guided Path to a Ham Radio Call Sign',
+      lead: 'Watt a Ham teaches the entire 2026–2030 US FCC Technician (Element 2) pool from scratch—no prior radio or electronics background required.',
+      rows: [
+        {
+          icon: '🗺️',
+          html: '<strong>35-Node Skill Path (409 Official Questions):</strong> Instead of random flashcards, topics are ordered from everyday on-air operating into electronics, antennas, and FCC rules.'
+        },
+        {
+          icon: '⏱️',
+          html: '<strong>Built for Any Pace:</strong> Knock out one 8-minute node whenever you have a spare moment, or work through several chapters in a weekend cram.'
+        },
+        {
+          icon: '✈️',
+          html: '<strong>100% Offline Ready:</strong> Add to your phone’s Home Screen (or open locally) and every lesson, diagram, and photo works without internet.'
+        }
+      ]
+    },
+    {
+      eyebrow: 'How Lessons Work · Step 2 of 5',
+      title: 'Every Node Uses a 3-Stage Lesson',
+      lead: 'Each node on the Path covers one official exam question group (~11–12 questions) in three smooth steps:',
+      rows: [
+        {
+          icon: '📖',
+          html: '<strong>Stage 1 · Illustrated Walkthrough Cards:</strong> Plain-English concept cards with custom diagrams, interactive widgets, real equipment photos, and a final <strong>Cheat-Sheet</strong>.'
+        },
+        {
+          icon: '⚡',
+          html: '<strong>Stage 2 · Flash-Pass Warm-Up:</strong> First look at every question with wrong choices dimmed/crossed out so you lock in the right answer first.'
+        },
+        {
+          icon: '🏅',
+          html: '<strong>Stage 3 · 4-Choice Challenge:</strong> Shuffled quiz where any missed item loops back at the end of the round until you clear 100% and turn the node <strong>Gold ★</strong>.'
+        }
+      ]
+    },
+    {
+      eyebrow: 'Smart Reading Aids · Step 3 of 5',
+      title: 'Know Exactly What to Memorize',
+      lead: 'Handbook cards are designed so you can enjoy the real-world hobby context without guessing what is actually on the test:',
+      rows: [
+        {
+          icon: '🎯',
+          html: '<strong>Bold &amp; <code>Highlighted</code> = Tested Facts:</strong> In concept cards, only exam-tested rules, formulas, and numbers are bolded or highlighted.'
+        },
+        {
+          icon: '💬',
+          html: '<strong>Tap <span class="welcome-dotted-demo">Dotted Terms</span> Anywhere:</strong> Tap underlined slang or acronyms (like <em>SWR</em>, <em>PTT</em>, or <em>Field Day</em>) for instant definitions, analogies, and gear photos.'
+        },
+        {
+          icon: '👀',
+          html: '<strong>Read-Only &amp; Mid-Quiz Peek:</strong> Tap any node to <strong>Read Cards Only</strong> without quizzing, or tap <strong>📖 Cards</strong> mid-quiz for a quick refresher.'
+        }
+      ]
+    },
+    {
+      eyebrow: 'Closed-Loop Practice · Step 4 of 5',
+      title: 'Signal Checks, Cracked Nodes & Mock Exams',
+      lead: 'Your practice exams and your Skill Path talk directly to each other so nothing slips through the cracks:',
+      rows: [
+        {
+          icon: '📡',
+          html: '<strong>Signal Check &amp; Boss Checkpoints:</strong> Quick 5–10 question tune-ups prioritize questions you previously missed or hesitated on (&gt;12 seconds).'
+        },
+        {
+          icon: '📝',
+          html: '<strong>2 Practice Exam Modes (Exams Tab):</strong> Take a <strong>Progress Checkpoint</strong> on only unlocked groups, or a true <strong>35-Question VEC Mock Exam</strong> (26/35 to pass) with Smart Dual Scoring.'
+        },
+        {
+          icon: '⚡',
+          html: '<strong>Cracked Node Repair:</strong> Missing a Gold group on a Mock Exam marks that node <strong>Cracked</strong> on your Path so your next review repairs that exact weak spot.'
+        }
+      ]
+    },
+    {
+      eyebrow: 'Reference & Sync · Step 5 of 5',
+      title: 'Study Aids, Exam Checklist & Backup Codes',
+      lead: 'Visit the Aids & Info tab anytime for interactive reference tools and one-tap cross-device progress transfer:',
+      rows: [
+        {
+          icon: '🧮',
+          html: '<strong>Visual Aids &amp; 106-Term Glossary:</strong> Exam-focused Band &amp; Power chart, live Ohm’s Law calculator + <strong>33-Q Math Drill</strong>, zoomable <strong>Figures T-1..T-3</strong>, and searchable A–Z Glossary.'
+        },
+        {
+          icon: '🔄',
+          html: '<strong>1-Tap <code>HAM1:</code> Backup Code:</strong> Progress saves automatically on this device—copy your compact backup code to save a snapshot or move between phone and computer.'
+        },
+        {
+          icon: '❓',
+          html: '<strong>Bring This Guide Back Anytime:</strong> Tap the <strong>?</strong> button in the top-right header (or in <em>Aids &amp; Info → Settings</em>) whenever you want a refresher.'
+        }
+      ]
+    }
+  ];
+
+  let welcomeStep = 0;
+
+  function openWelcomeModal(stepIdx = 0) {
+    closeJargonPopover();
+    welcomeStep = Math.max(0, Math.min(WELCOME_SLIDES.length - 1, stepIdx));
+    renderWelcomeModal();
+    const dlg = document.getElementById('welcome-dialog');
+    if (dlg && !dlg.open) dlg.showModal();
+  }
+
+  function renderWelcomeModal() {
+    const dlg = document.getElementById('welcome-dialog');
+    const body = document.getElementById('welcome-dialog-body');
+    if (!dlg || !body) return;
+    const idx = Math.max(0, Math.min(WELCOME_SLIDES.length - 1, welcomeStep));
+    welcomeStep = idx;
+    const slide = WELCOME_SLIDES[idx];
+    const isLast = idx === WELCOME_SLIDES.length - 1;
+
+    body.innerHTML = `
+      <div class="dialog-head-row">
+        <div>
+          <div class="panel-eyebrow">${escHtml(slide.eyebrow)}</div>
+          <h2 id="welcome-dialog-title" class="dialog-title">${escHtml(slide.title)}</h2>
+        </div>
+        <form method="dialog">
+          <button value="close" class="icon-btn" aria-label="Close guide for now">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div style="max-height:58dvh;overflow-y:auto;display:flex;flex-direction:column;gap:0.7rem;padding-right:0.1rem">
+        <p class="welcome-lead">${escHtml(slide.lead)}</p>
+        <div class="welcome-feature-list">
+          ${slide.rows.map((r) => `
+            <div class="welcome-feature-row">
+              <div class="welcome-feature-icon" aria-hidden="true">${r.icon}</div>
+              <div class="welcome-feature-text">${r.html}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="welcome-dots" role="tablist" aria-label="Guide steps">
+        ${WELCOME_SLIDES.map((_, i) => `
+          <button type="button" class="welcome-dot-btn ${i === idx ? 'is-active' : ''}" data-welcome-step="${i}" aria-label="Go to step ${i + 1}" aria-current="${i === idx ? 'step' : 'false'}"></button>
+        `).join('')}
+      </div>
+      <div style="display:flex;gap:0.55rem">
+        ${idx > 0 ? `<button type="button" class="btn btn-secondary" data-action="welcome-prev">← Back</button>` : ''}
+        <button type="button" class="btn btn-primary btn-block" data-action="${isLast ? 'welcome-close' : 'welcome-next'}">
+          ${isLast ? 'Start Studying →' : `Next (${idx + 2}/${WELCOME_SLIDES.length}) →`}
+        </button>
+      </div>
+      <div class="welcome-dismiss-bar">
+        <label class="welcome-optout">
+          <input type="checkbox" id="welcome-optout-cb" data-welcome-optout="1" ${state.hideWelcome ? 'checked' : ''}>
+          <span>Don’t show again on startup</span>
+        </label>
+        ${!state.hideWelcome ? `
+          <button type="button" class="welcome-skip-forever-btn" data-action="welcome-dismiss-forever">
+            Don’t show again &amp; close
+          </button>
+        ` : ''}
+      </div>
+    `;
   }
 
   function openConfirmDialog({ title, html, confirmLabel = 'Confirm', cancelLabel = 'Cancel', danger = false }) {
@@ -1666,6 +1838,9 @@
         </div>
 
         <div style="display:flex;gap:0.55rem;flex-wrap:wrap;padding-top:0.75rem;border-top:1px solid var(--border-subtle)">
+          <button type="button" class="btn btn-secondary" data-action="open-welcome-guide">
+            📖 How Watt a Ham Works
+          </button>
           <button type="button" class="btn btn-secondary" data-action="toggle-theme">
             Theme: ${state.theme === 'dark' ? '🌙 Dark' : '☀️ Light'}
           </button>
@@ -2861,9 +3036,15 @@
       }
 
       const el = e.target.closest(
-        '[data-zoom-photo],[data-jargon-key],[data-peek-group],[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target],[data-widget-rep],[data-widget-duty],[data-widget-swtype],[data-widget-flip],[data-widget-wave]'
+        '[data-welcome-step],[data-zoom-photo],[data-jargon-key],[data-peek-group],[data-open-node],[data-modal-start],[data-zoom-fig],[data-action],[data-pick-choice],[data-exam-pick],[data-exam-jump],[data-boss-id],[data-review-exam],[data-math-target],[data-power-target],[data-widget-rep],[data-widget-duty],[data-widget-swtype],[data-widget-flip],[data-widget-wave]'
       );
       if (!el) return;
+
+      if (el.dataset.welcomeStep !== undefined) {
+        welcomeStep = Number(el.dataset.welcomeStep);
+        renderWelcomeModal();
+        return;
+      }
 
       if (el.dataset.zoomPhoto) {
         openPhotoZoom(el.dataset.zoomPhoto);
@@ -3000,7 +3181,23 @@
       const act = el.dataset.action;
       if (!act) return;
 
-      if (act === 'jargon-back') {
+      if (act === 'open-welcome-guide') {
+        openWelcomeModal(0);
+      } else if (act === 'welcome-prev') {
+        welcomeStep = Math.max(0, welcomeStep - 1);
+        renderWelcomeModal();
+      } else if (act === 'welcome-next') {
+        welcomeStep = Math.min(WELCOME_SLIDES.length - 1, welcomeStep + 1);
+        renderWelcomeModal();
+      } else if (act === 'welcome-close') {
+        const dlg = document.getElementById('welcome-dialog');
+        if (dlg && dlg.open) dlg.close();
+      } else if (act === 'welcome-dismiss-forever') {
+        state.hideWelcome = true;
+        saveState();
+        const dlg = document.getElementById('welcome-dialog');
+        if (dlg && dlg.open) dlg.close();
+      } else if (act === 'jargon-back') {
         const prevKey = jargonHistory.pop();
         if (prevKey) openJargonPopover(prevKey, null, true);
       } else if (act === 'jargon-close') {
@@ -3139,8 +3336,15 @@
       }
     });
 
-    // Checklist checkboxes
+    // Checklist & Welcome Opt-Out checkboxes
     document.addEventListener('change', (e) => {
+      const welcomeCb = e.target.closest('input[data-welcome-optout]');
+      if (welcomeCb) {
+        state.hideWelcome = Boolean(welcomeCb.checked);
+        saveState();
+        renderWelcomeModal();
+        return;
+      }
       const cb = e.target.closest('input[data-check-key]');
       if (!cb) return;
       state.checklist[cb.dataset.checkKey] = cb.checked;
@@ -3155,6 +3359,19 @@
       if (e.key === 'Escape' && popEl && popEl.classList.contains('is-fallback-open')) {
         e.preventDefault();
         closeJargonPopover();
+        return;
+      }
+      const welcomeDlg = document.getElementById('welcome-dialog');
+      if (welcomeDlg && welcomeDlg.open) {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          const nb = welcomeDlg.querySelector('[data-action="welcome-next"]');
+          if (nb) nb.click();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const pb = welcomeDlg.querySelector('[data-action="welcome-prev"]');
+          if (pb) pb.click();
+        }
         return;
       }
       const peekDlg = document.getElementById('cards-peek-dialog');
@@ -3300,6 +3517,9 @@
     ensureNextNodeUnlocked();
     bindEvents();
     renderActiveTab();
+    if (!state.hideWelcome) {
+      openWelcomeModal(0);
+    }
     registerServiceWorker();
   }
 
