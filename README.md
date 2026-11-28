@@ -2,7 +2,8 @@
 
 **Watt a Ham** is a zero-build, offline-capable Progressive Web App (PWA) and illustrated hobbyist handbook for passing the **2026–2030 US FCC Technician Class (Element 2) Amateur Radio Exam**—whether you are studying in short daily sessions or cramming in a single weekend.
 
-- **Live App (GitHub Pages):** https://ma-djm.github.io/watt-a-ham/
+- **Live App (Cloudflare Pages):** https://watt-a-ham.dayjobmedia.com/ (`https://watt-a-ham.pages.dev/`)
+- **Mirror (GitHub Pages):** https://ma-djm.github.io/watt-a-ham/
 - **Repository:** https://github.com/ma-djm/watt-a-ham
 - **Runtime Stack:** Vanilla HTML5 (`<dialog>`, `popover="auto"`), CSS3 (dark/light custom properties), Vanilla ES2020 JavaScript, Offline Service Worker (`sw.js`) — **0 external runtime dependencies**
 - **Authoring / Test Tooling:** Python 3 (`scripts/build_data.py`), Node.js ESM (`scripts/smoke_test.mjs`)
@@ -58,14 +59,15 @@ node scripts/smoke_test.mjs
 
 ## Deployment Quick Reference
 
-GitHub Pages serves the repository root (`/`) directly from the `main` branch (`.nojekyll` enabled, no CI build step).
+- **Cloudflare Pages (`watt-a-ham.dayjobmedia.com` / `watt-a-ham.pages.dev`):** Stages only runtime static files + `_headers` and deploys via Wrangler:
+  ```bash
+  python scripts/deploy_cloudflare.py
+  ```
+- **GitHub Pages (`ma-djm.github.io/watt-a-ham`):** Serves the repository root (`/`) directly from the `main` branch (`.nojekyll` enabled, no CI build step).
 
-1. **Always bump `CACHE_NAME` in [`./sw.js`](./sw.js)** (e.g., `'watt-a-ham-2026-v6'` → `'watt-a-ham-2026-v7'`) whenever changing `index.html`, `style.css`, `app.js`, `data.js`, `manifest.json`, or `icon.svg`—otherwise installed offline PWAs will continue serving cached assets!
+1. **Always bump `CACHE_NAME` in [`./sw.js`](./sw.js)** (e.g., `'watt-a-ham-2026-v9'` → `'watt-a-ham-2026-v10'`) whenever changing `index.html`, `style.css`, `app.js`, `data.js`, `manifest.json`, `icon.svg`, or `assets/photos/*.jpg`—otherwise installed offline PWAs will continue serving cached assets!
 2. Run `python scripts/build_data.py`, `node --check app.js`, and `node scripts/smoke_test.mjs`.
-3. Commit updated files (including regenerated `data.js`) and push to `origin/main`:
-   ```bash
-   git push origin main
-   ```
+3. Deploy to Cloudflare Pages (`python scripts/deploy_cloudflare.py`) and/or commit and push to `origin/main` (`git push origin main`).
    > **Warning:** Never force-push (`git push --force`) to `main` and never commit untracked build caches (`__pycache__/`).
 
 ---

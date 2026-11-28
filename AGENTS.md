@@ -7,7 +7,7 @@ High-signal instructions for AI coding assistants working in this repository.
 - **Runtime App:** Zero-build static PWA — Vanilla HTML5 (`<dialog closedby="any">`, `popover="auto"`), CSS3 custom properties (`[data-theme="dark" | "light"]`), Vanilla ES2020 IIFE (`app.js` + `window.HAM_DATA` from `data.js`), Service Worker (`sw.js`). **Zero npm packages or external CDN scripts.**
 - **Data Builder & Validator:** Python `3.13+` (`scripts/build_data.py`, standard library only).
 - **Smoke & Integration Tests:** Node.js `22.x` ESM (`scripts/smoke_test.mjs`, built-in `node:vm` + `node:assert/strict` only).
-- **Hosting:** GitHub Pages (`legacy` static deploy directly from `main` branch `/`, `.nojekyll`, live at https://ma-djm.github.io/watt-a-ham/).
+- **Hosting:** Cloudflare Pages (`https://watt-a-ham.dayjobmedia.com/`, project `watt-a-ham` via `python scripts/deploy_cloudflare.py`) + GitHub Pages (`https://ma-djm.github.io/watt-a-ham/` from `main` branch `/`).
 
 ## Repository Map
 
@@ -22,6 +22,7 @@ High-signal instructions for AI coding assistants working in this repository.
 | `assets/photos/*.jpg` | 32 resized Wikimedia Commons equipment photos (~1.25 MB, precached in `sw.js`) |
 | `scripts/build_data.py` | Compiles & validates `data.js` from `pool_raw.json`, `data_parts/*.json`, glossary, photos, and SVGs |
 | `scripts/fetch_photos.py` / `scripts/photos_data.py` | Deterministic Commons fetcher/optimizer and verified photo license/metadata registry |
+| `scripts/deploy_cloudflare.py` | Stages clean runtime bundle + `_headers` and deploys to Cloudflare Pages (`watt-a-ham`) |
 | `scripts/data_parts/*.json` | Authored per-question `explanations` and per-group `briefings` (35 walkthrough decks / 146 cards) |
 | `scripts/glossary_data.py` | 88 multi-alias ham/electronics glossary concepts (254 terms) for inline popovers & Aids search |
 | `scripts/teaching_svgs.py` | 19 theme-aware inline teaching SVGs (`ILLUSTRATIONS`) |
@@ -55,9 +56,10 @@ node --check app.js; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 node scripts/smoke_test.mjs; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 ```
 
-Deploy to GitHub Pages (after bumping `CACHE_NAME` in `sw.js` if runtime assets changed):
+Deploy to Cloudflare Pages & GitHub Pages (after bumping `CACHE_NAME` in `sw.js` if runtime assets changed):
 
 ```powershell
+python scripts/deploy_cloudflare.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 git status -s
 git push origin main
 & "C:\Program Files\GitHub CLI\gh.exe" api repos/ma-djm/watt-a-ham/pages/builds/latest --jq "{status: .status, commit: .commit, updated_at: .updated_at}"

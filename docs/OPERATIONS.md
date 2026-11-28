@@ -8,10 +8,10 @@ Deployment configuration, Service Worker cache management, content authoring wor
 
 | Item | Value |
 | :--- | :--- |
-| **Production URL** | https://ma-djm.github.io/watt-a-ham/ |
+| **Primary Production URL (Cloudflare Pages)** | https://watt-a-ham.dayjobmedia.com/ (`https://watt-a-ham.pages.dev/`, project `watt-a-ham`) |
+| **DNS Setup (`dayjobmedia.com` on GoDaddy)** | `CNAME` record `watt-a-ham` → `watt-a-ham.pages.dev` (`ns45/ns46.domaincontrol.com`) |
+| **GitHub Pages Mirror** | https://ma-djm.github.io/watt-a-ham/ (branch `main`, root `/`, [`.nojekyll`](../.nojekyll)) |
 | **GitHub Repository** | `ma-djm/watt-a-ham` (`https://github.com/ma-djm/watt-a-ham.git`) |
-| **Hosting Platform** | GitHub Pages (`build_type: "legacy"`, HTTPS enforced) |
-| **Publish Source** | Branch `main`, root directory `/` (with [`.nojekyll`](../.nojekyll) disabling Jekyll processing) |
 | **Environment Variables / Secrets** | **None** — 100% client-side static PWA with zero backend or build secrets |
 
 ---
@@ -38,10 +38,11 @@ Expected output ends with:
 - `ALL SMOKE CHECKS PASSED!`
 - `ALL END-TO-END BEHAVIORAL INTEGRATION TESTS PASSED!`
 
-### Step 3: Commit, Push & Verify GitHub Pages Build
-Ensure no untracked scratch or `__pycache__` artifacts are staged, push to `main`, and verify the GitHub Pages build reaches `"status": "built"`:
+### Step 3: Deploy to Cloudflare Pages + Commit & Push to GitHub
+Deploy the staged production bundle (excluding `scripts/` and `docs/`, and injecting cache-revalidation `_headers` for `sw.js` and `index.html`) to Cloudflare Pages, then push to `main`:
 
 ```powershell
+python scripts/deploy_cloudflare.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 git status -s
 git add index.html style.css app.js data.js sw.js
 git commit -m "Describe release concisely"
